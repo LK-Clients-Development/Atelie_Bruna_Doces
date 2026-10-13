@@ -18,6 +18,7 @@
 import { LINKS } from './site';
 import { CATEGORIES, type Product } from './products';
 import { getProductDescription, getProductDisplayName } from '../lib/catalog';
+import { PORTFOLIO_COPY } from './portfolio-copy';
 
 // ---------------------------------------------------------------------------
 // Tipos
@@ -31,7 +32,41 @@ export type MatchState = 'MATCH_CONFIRMED' | 'MATCH_PROBABLE' | 'UNIDENTIFIED';
 export type Orientation = 'portrait' | 'landscape' | 'square';
 export type PurchaseType = 'YOOGA' | 'WHATSAPP' | 'BOTH' | 'PENDING';
 export type ImageStatus = 'COMPLETE' | 'PARTIAL_3' | 'PARTIAL_2' | 'PARTIAL_1' | 'MISSING';
-export type GenerationPlan = 'NONE' | 'NEEDS_GENERATION' | 'NEEDS_REAL_PHOTO';
+/**
+ * Plano de produção de imagens por produto:
+ *   NONE                  já tem 4+ imagens publicáveis.
+ *   NEEDS_GENERATION      tem referência real PUBLICÁVEL: dá para gerar variações fiéis.
+ *   BLOCKED_AUTHORIZATION a única referência é real mas sem autorização (Instagram): não gerar até liberar.
+ *   NEEDS_REAL_PHOTO      sem referência utilizável: pedir foto real (docs/product-photo-request.md).
+ */
+export type GenerationPlan = 'NONE' | 'NEEDS_GENERATION' | 'BLOCKED_AUTHORIZATION' | 'NEEDS_REAL_PHOTO';
+
+/**
+ * Situação de uma imagem em relação ao site (≠ "foi encontrada"):
+ *   PUBLICABLE             pode aparecer no site hoje (imagem pública do cardápio Yooga, ou gerada e aprovada).
+ *   AUTHORIZATION_PENDING  foto real encontrada (Instagram) SEM autorização da Bruna: só referência interna.
+ *   REFERENCE_ONLY         serve só de referência/indício (ex.: capa de reel), nunca como foto do produto.
+ *   GENERATED_APPROVED     imagem gerada e aprovada (publicável; continua sendo `APPROVED_GENERATED`, nunca REAL).
+ *   MISSING                espaço da galeria sem imagem.
+ */
+export type SourceStatus = 'PUBLICABLE' | 'AUTHORIZATION_PENDING' | 'REFERENCE_ONLY' | 'GENERATED_APPROVED' | 'MISSING';
+
+export type CopyStatus = 'APPROVED' | 'DRAFT' | 'SOURCE_RAW' | 'NEEDS_BRUNA_APPROVAL';
+
+/** Os 4 espaços de cada galeria, na ordem de exibição (arquivos futuros: `src/assets/portfolio/<slug>/<slot>.<ext>`). */
+export const IMAGE_SLOTS = ['01-hero', '02-detail', '03-angle', '04-context'] as const;
+export type ImageSlot = (typeof IMAGE_SLOTS)[number];
+
+/** Registro obrigatório quando uma imagem GERADA for integrada (status `APPROVED_GENERATED`, nunca `REAL`). */
+export interface GeneratedProvenance {
+  baseProductId: string;
+  /** `GalleryImage.id` da foto real usada como fonte de verdade. */
+  referenceImageId: string;
+  generatedAt: string;
+  kind: 'DETAIL' | 'ANGLE' | 'CONTEXT';
+  approvedBy: string;
+  approvedAt: string;
+}
 
 export interface GalleryImage {
   id: string;
@@ -41,6 +76,8 @@ export interface GalleryImage {
   /** Página de origem (publicação do Instagram) ou cardápio. */
   sourceUrl: string;
   status: GalleryImageStatus;
+  /** Pode aparecer no site hoje? (ver SourceStatus) */
+  sourceStatus: SourceStatus;
   alt: string;
   orientation: Orientation;
   width: number | null;
@@ -53,6 +90,8 @@ export interface GalleryImage {
     authorization: 'PUBLIC_CDN' | 'PENDING';
     match: MatchState;
     note?: string;
+    /** Só para `APPROVED_GENERATED`. */
+    generation?: GeneratedProvenance;
   };
 }
 
@@ -73,12 +112,21 @@ export interface PortfolioProduct {
   sourceCategoryId: string | null;
   status: PortfolioStatus;
   portfolioSource: 'yooga' | 'instagram';
+  /** Texto exibido no card e no modal (EDITORIAL; a fonte bruta fica em `source`). */
   shortDescription: string | null;
+  editorialDescription: string | null;
+  copyStatus: CopyStatus;
+  /** Nome e descrição exatamente como o Yooga publica (preservados; não exibir). */
+  source: { name: string; description: string | null } | null;
   gallery: GalleryImage[];
   /** Imagem principal EXIBÍVEL (a única que o card carrega). null → card tipográfico. */
   heroImage: GalleryImage | null;
   purchase: PortfolioPurchase;
-  /** Cobertura de imagens REAIS mapeadas (inclui as ainda não publicáveis). */
+  /** Imagens encontradas (reais + referências), publicáveis ou não. */
+  mappedImageCount: number;
+  /** Imagens que podem aparecer no site hoje. */
+  publishableImageCount: number;
+  /** Cobertura PUBLICÁVEL (o que o site mostra hoje) frente à meta de 4. */
   imageStatus: ImageStatus;
   /** Só documentação/admin: nunca mostrar ao cliente. */
   plannedImages: number;
@@ -215,6 +263,7 @@ const igImage = (post: InstagramPost, productId: string, name: string, note?: st
   sourceUrl: `${IG}/ateliedocesbruna/${post.kind === 'reel' ? 'reel' : 'p'}/${post.shortcode}/`,
   // capa de reel é quadro de vídeo, não foto do produto: fica PENDING até haver foto estática
   status: post.kind === 'reel' ? 'PENDING' : 'REAL',
+  sourceStatus: post.kind === 'reel' ? 'REFERENCE_ONLY' : 'AUTHORIZATION_PENDING',
   alt: `${name}: ${post.alt}`,
   orientation: orientationOf(post.width, post.height),
   width: post.width,
@@ -237,6 +286,7 @@ const yoogaImage = (product: Product, name: string): GalleryImage | null =>
         source: 'yooga',
         sourceUrl: LINKS.cardapio,
         status: 'REAL',
+        sourceStatus: 'PUBLICABLE',
         alt: name,
         orientation: orientationOf(product.imageSize.width, product.imageSize.height),
         width: product.imageSize.width,
@@ -261,33 +311,47 @@ const imageStatusOf = (count: number): ImageStatus =>
 const whatsappFor = (name: string) =>
   `${LINKS.whatsapp}?text=${encodeURIComponent(`Olá! Tenho interesse no produto ${name}.`)}`;
 
+/** Pode aparecer no site hoje: tem URL e a situação é publicável (nunca `AUTHORIZATION_PENDING`/`REFERENCE_ONLY`). */
+export const isPublishable = (image: GalleryImage): boolean =>
+  Boolean(image.src) && (image.sourceStatus === 'PUBLICABLE' || image.sourceStatus === 'GENERATED_APPROVED');
+
+function generationPlanOf(gallery: GalleryImage[], publishable: number): GenerationPlan {
+  if (publishable >= TARGET_IMAGES) return 'NONE';
+  // referência real utilizável = foto REAL publicável (a de combo não serve de base do produto isolado)
+  if (gallery.some((image) => image.status === 'REAL' && isPublishable(image))) return 'NEEDS_GENERATION';
+  if (gallery.some((image) => image.sourceStatus === 'AUTHORIZATION_PENDING' && !/COMBO/.test(image.provenance.note ?? ''))) return 'BLOCKED_AUTHORIZATION';
+  return 'NEEDS_REAL_PHOTO';
+}
+
 function build(
-  base: Pick<PortfolioProduct, 'id' | 'slug' | 'name' | 'category' | 'sourceProductId' | 'sourceCategoryId' | 'status' | 'portfolioSource' | 'shortDescription'>,
+  base: Pick<PortfolioProduct, 'id' | 'slug' | 'name' | 'category' | 'sourceProductId' | 'sourceCategoryId' | 'status' | 'portfolioSource' | 'shortDescription' | 'editorialDescription' | 'copyStatus' | 'source'>,
   gallery: GalleryImage[],
 ): PortfolioProduct {
-  const real = gallery.filter((image) => image.status === 'REAL').length;
-  const displayable = gallery.filter((image) => image.src && image.provenance.authorization !== 'PENDING');
+  const publishable = gallery.filter(isPublishable);
   const active = base.status === 'YOOGA_ACTIVE';
   return {
     ...base,
     gallery,
-    heroImage: displayable.find((image) => image.isPrimary) ?? displayable[0] ?? null,
+    heroImage: publishable.find((image) => image.isPrimary) ?? publishable[0] ?? null,
     purchase: {
       type: active ? 'BOTH' : 'PENDING',
       whatsappHref: active ? whatsappFor(base.name) : null,
       yoogaHref: active ? LINKS.cardapio : null,
     },
-    imageStatus: imageStatusOf(real),
+    mappedImageCount: gallery.length,
+    publishableImageCount: publishable.length,
+    imageStatus: imageStatusOf(publishable.length),
     plannedImages: TARGET_IMAGES,
-    generationPlan: real === 0 ? 'NEEDS_REAL_PHOTO' : real >= TARGET_IMAGES ? 'NONE' : 'NEEDS_GENERATION',
+    generationPlan: generationPlanOf(gallery, publishable.length),
     // Yooga ativo sempre entra (card tipográfico quando não há foto); extras só com imagem publicável.
-    published: active || displayable.length > 0,
+    published: active || publishable.length > 0,
   };
 }
 
 const yoogaProducts: PortfolioProduct[] = CATEGORIES.filter((category) => !(category.id in EXCLUDED)).flatMap((category) =>
   category.products.map((product) => {
-    const name = getProductDisplayName(product);
+    const copy = PORTFOLIO_COPY[product.sourceProductId];
+    const name = copy?.displayName ?? getProductDisplayName(product);
     const gallery: GalleryImage[] = [];
     const hero = yoogaImage(product, name);
     if (hero) gallery.push(hero);
@@ -304,7 +368,11 @@ const yoogaProducts: PortfolioProduct[] = CATEGORIES.filter((category) => !(cate
         sourceCategoryId: category.id,
         status: 'YOOGA_ACTIVE',
         portfolioSource: 'yooga',
-        shortDescription: capitalize(getProductDescription(product)),
+        // EDITORIAL (copy) quando existe; senão o texto de origem (SOURCE_RAW). A fonte bruta fica em `source`.
+        shortDescription: copy ? copy.shortDescription : capitalize(getProductDescription(product)),
+        editorialDescription: copy?.editorialDescription ?? null,
+        copyStatus: copy?.status ?? 'SOURCE_RAW',
+        source: { name: product.name, description: product.description },
       },
       gallery,
     );
@@ -323,6 +391,9 @@ const extraProducts: PortfolioProduct[] = EXTRA_PRODUCTS.map((extra) =>
       status: extra.status,
       portfolioSource: 'instagram',
       shortDescription: null,
+      editorialDescription: null,
+      copyStatus: 'SOURCE_RAW',
+      source: null,
     },
     [igImage(extra.post, extra.id, extra.name, extra.note)],
   ),
@@ -340,9 +411,9 @@ export function getPortfolioBySlug(slug: string): PortfolioProduct | undefined {
   return PORTFOLIO.find((product) => product.slug === slug);
 }
 
-/** Imagens que o visitante pode ver: com URL e sem autorização pendente. */
+/** Imagens que o visitante pode ver: só as PUBLICÁVEIS (ver `isPublishable`). */
 export function getDisplayableImages(product: PortfolioProduct): GalleryImage[] {
   return product.gallery
-    .filter((image) => image.src && image.provenance.authorization !== 'PENDING')
+    .filter(isPublishable)
     .sort((a, b) => Number(b.isPrimary) - Number(a.isPrimary));
 }

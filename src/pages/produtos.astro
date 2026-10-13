@@ -57,7 +57,7 @@ const modalData = PORTFOLIO.map((p) => ({
   slug: p.slug,
   name: p.name,
   category: EDITORIAL_CATEGORIES.find((c) => c.slug === p.category)!.name,
-  description: p.shortDescription,
+  description: p.editorialDescription ?? p.shortDescription,
   images: getDisplayableImages(p).map((i) => ({ src: i.src, width: i.width, height: i.height, alt: p.name })),
   whatsapp: p.purchase.whatsappHref,
   yooga: p.purchase.yoogaHref,
