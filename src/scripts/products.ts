@@ -48,13 +48,13 @@ if (root) {
       { rootMargin: '0px 0px -8% 0px' },
     );
     groups.forEach((group) => {
-      group.querySelectorAll<HTMLElement>('.pcard').forEach((card, index) => {
+      group.querySelectorAll<HTMLElement>('.ptile').forEach((card, index) => {
         card.style.transitionDelay = `${Math.min(index, 5) * 70}ms`;
         io!.observe(card);
       });
     });
   } else {
-    root.querySelectorAll('.pcard').forEach(reveal);
+    root.querySelectorAll('.ptile').forEach(reveal);
   }
 
   // ----- filtro (categoria + busca) -----
@@ -69,7 +69,7 @@ if (root) {
       item.hidden = !match;
       if (match) {
         visible += 1;
-        const card = item.querySelector<HTMLElement>('.pcard');
+        const card = item.querySelector<HTMLElement>('.ptile');
         card?.classList.add('is-in'); // resultado nunca fica invisível
         card?.style.removeProperty('transition-delay');
       }
@@ -87,7 +87,7 @@ if (root) {
     if (status) {
       status.hidden = !filtered || visible === 0;
       const label = visible === 1 ? 'criação' : 'criações';
-      const catName = category !== 'all' ? root.querySelector(`#${CSS.escape(category)} .pgroup__title`)?.textContent : null;
+      const catName = category !== 'all' ? root.querySelector(`#${CSS.escape(category)} .pchapter__title`)?.textContent : null;
       status.textContent = searching
         ? `Resultados para “${query.trim()}”${catName ? ` em ${catName}` : ''}: ${visible} ${label}`
         : catName
@@ -128,6 +128,14 @@ if (root) {
   resetBtn?.addEventListener('click', () => {
     clearAll();
     input?.focus({ preventScroll: true });
+  });
+
+  // "Explorar <categoria>" no capítulo = mesmo filtro do trilho
+  root.querySelectorAll<HTMLAnchorElement>('[data-explore]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      root.querySelector<HTMLAnchorElement>(`[data-rail-link="${CSS.escape(link.dataset.explore ?? '')}"]`)?.click();
+    });
   });
 
   // categorias = filtro (o visitante explora um portfólio); "Todos" remove o filtro

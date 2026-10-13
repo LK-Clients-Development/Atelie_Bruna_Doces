@@ -1,0 +1,66 @@
+---
+/**
+ * Capítulo do portfólio: uma categoria editorial = coluna editorial (número, título, texto) + fotografias
+ * compostas em blocos (src/data/portfolio-layout.ts decide variante e blocos; CSS em portfolio-gallery.css).
+ * Os produtos entram na ordem do capítulo, os mais completos primeiro (o primeiro é o protagonista).
+ */
+import PortfolioTile from './PortfolioTile.astro';
+import Icon from './Icon.astro';
+import { CHAPTER_LAYOUT, planBlocks } from '../data/portfolio-layout';
+import type { PortfolioProduct } from '../data/portfolio';
+
+interface Props {
+  slug: string;
+  name: string;
+  products: PortfolioProduct[];
+  /** Posição do capítulo na página (1-based): número decorativo e alternância de lado. */
+  index: number;
+  /** Textos de busca por produto (slug → texto normalizado). */
+  searchText: Map<string, string>;
+}
+
+const { slug, name, products, index, searchText } = Astro.props;
+const layout = CHAPTER_LAYOUT[slug as keyof typeof CHAPTER_LAYOUT];
+// mais completos primeiro; em empate, a foto mais larga lidera (o tile protagonista é o maior da composição)
+const ordered = [...products].sort(
+  (a, b) => b.publishableImageCount - a.publishableImageCount || (b.heroImage?.width ?? 0) - (a.heroImage?.width ?? 0),
+);
+const blocks = planBlocks(layout.variant, ordered.length, index % 2 === 0);
+let cursor = 0;
+const chapters = blocks.map((block) => {
+  const items = ordered.slice(cursor, cursor + block.count);
+  cursor += block.count;
+  return { ...block, items };
+});
+const number = String(index).padStart(2, '0');
+---
+
+<section class:list={['pchapter', `pchapter--${layout.variant}`]} id={slug} aria-labelledby={`g-${slug}`} data-group>
+  <header class="pchapter__head">
+    <span class="pchapter__num" aria-hidden="true">{number}</span>
+    <h2 class="pchapter__title" id={`g-${slug}`}>{name}</h2>
+    <p class="pchapter__blurb">{layout.blurb}</p>
+    {layout.detail && <p class="pchapter__detail">{layout.detail}</p>}
+    {
+      products.length >= 3 && (
+        <a class="pchapter__explore" href={`#${slug}`} data-explore={slug}>
+          <span>Explorar {name.toLocaleLowerCase('pt-BR')}</span>
+          <Icon name="arrow" size={16} />
+        </a>
+      )
+    }
+  </header>
+  <div class="pchapter__body">
+    {
+      chapters.map((block, bi) => (
+        <ul class:list={['pblock', `pblock--${block.kind}`, block.flip && 'pblock--flip']} role="list">
+          {block.items.map((product, i) => (
+            <li data-search={searchText.get(product.slug)}>
+              <PortfolioTile product={product} protagonist={bi === 0 && i === 0} />
+            </li>
+          ))}
+        </ul>
+      ))
+    }
+  </div>
+</section>

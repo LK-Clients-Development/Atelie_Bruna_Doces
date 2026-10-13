@@ -1,0 +1,47 @@
+---
+/**
+ * Tile do portfólio (/produtos): a unidade visual é a FOTOGRAFIA, colocada direto na página, com
+ * legenda sobreposta (nome + "Ver criação →" discreto). Sem caixa, borda, preço ou descrição.
+ *
+ * - O tile inteiro é um único link. Com JS abre o modal (src/scripts/product-modal.ts); sem JS cai no
+ *   WhatsApp com o nome do produto: nunca fica morto.
+ * - Carrega só UMA imagem (lazy): a principal (01-source). Exceção documentada: o tile PROTAGONISTA de
+ *   um capítulo pode usar a 03-angle gerada e aprovada, de resolução muito maior, para não ampliar uma
+ *   foto de 375 px em um tile grande (`protagonist`). As demais fotos só existem no modal.
+ * - Sem foto exibível: superfície da marca (sem imagem genérica) e legenda escura.
+ */
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import { linkAttrs } from '../data/site';
+import { IMAGES } from '../data/images';
+import { isPublishable, type PortfolioProduct } from '../data/portfolio';
+
+interface Props {
+  product: PortfolioProduct;
+  /** Tile grande do capítulo: usa a 03-angle aprovada quando existir. */
+  protagonist?: boolean;
+}
+
+const { product, protagonist = false } = Astro.props;
+const angle = protagonist ? product.gallery.find((i) => isPublishable(i) && i.provenance.generation?.kind === 'ANGLE') : undefined;
+const image = angle ?? product.heroImage;
+const href = product.purchase.whatsappHref ?? '#';
+---
+
+<a class:list={['ptile', !image && 'ptile--empty']} href={href} {...linkAttrs(href)} data-open={product.slug} data-slug={product.slug}>
+  <span class="ptile__media">
+    {
+      image?.src ? (
+        <img src={image.src} width={image.width ?? undefined} height={image.height ?? undefined} alt="" loading="lazy" decoding="async" />
+      ) : (
+        <span class="ptile__fallback" aria-hidden="true">
+          <Image class="ptile__flower" src={IMAGES.florLinha} alt="" width={44} />
+        </span>
+      )
+    }
+  </span>
+  <span class="ptile__cap">
+    <span class="ptile__name">{product.name}</span>
+    <span class="ptile__cta">Ver criação<span class="sr-only">: {product.name}</span><Icon name="arrow" size={16} /></span>
+  </span>
+</a>

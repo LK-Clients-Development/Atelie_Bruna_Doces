@@ -83,9 +83,9 @@ export const LINKS = {
 export const PRODUCTS_PAGE = {
   title: 'Produtos',
   eyebrow: 'Nossas criações',
-  heroTitle: ['Tem sempre', 'algo para', 'a sua vontade.'],
-  heroLead: 'Doces, salgados, sobremesas e criações artesanais para diferentes momentos do seu dia.',
-  searchPlaceholder: 'Buscar doce, sabor ou produto...',
+  heroTitle: ['Tem sempre algo', 'para', 'a sua vontade.'],
+  heroLead: 'Um álbum das criações do Ateliê. Doces, salgados e sobremesas artesanais para diferentes momentos do seu dia.',
+  searchPlaceholder: 'Buscar uma criação...',
   catalogEyebrow: 'O álbum do Ateliê',
   catalogTitle: ['Tudo o que a Bruna', 'cria, em um só lugar.'],
   catalogLead: 'Passeie pelas criações, abra a que chamar a sua atenção e conheça cada uma de perto. Quando decidir, o pedido é só um toque.',

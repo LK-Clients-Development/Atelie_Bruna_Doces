@@ -1,11 +1,13 @@
 ---
 /**
- * /produtos: portfólio / galeria de criações do Ateliê. NÃO é cardápio de compra: o visitante
+
+ * /produtos: portfólio / galeria de criações do Ateliê (Concept 09 V2: álbum editorial). NÃO é cardápio de compra: o visitante
  * descobre, abre uma criação (modal com galeria) e só então segue para o WhatsApp ou o cardápio
  * Yooga. Não há carrinho nem checkout.
  *
  * Duas camadas de dados, nenhuma escrita aqui:
  *   EDITORIAL  src/data/portfolio.ts (categorias editoriais, galeria de imagens, compra)
+ *   ARTE       src/data/portfolio-layout.ts (variante visual de cada capítulo; só decisão de layout)
  *   COMERCIAL  src/data/products.ts (snapshot do Yooga; preço e opções ficam lá e NÃO aparecem na galeria)
  *
  * - Os cards carregam só a imagem principal; as demais fotos são pedidas quando o modal abre.
@@ -21,7 +23,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Footer from '../components/Footer.astro';
 import SectionEyebrow from '../components/SectionEyebrow.astro';
 import CtaButton from '../components/CtaButton.astro';
-import PortfolioCard from '../components/PortfolioCard.astro';
+import PortfolioChapter from '../components/PortfolioChapter.astro';
 import Icon from '../components/Icon.astro';
 import Wave from '../components/Wave.astro';
 import Seal from '../components/Seal.astro';
@@ -29,6 +31,9 @@ import { BRAND, LINKS, PRODUCTS_PAGE, isPending, linkAttrs } from '../data/site'
 import { CAKES_MENU } from '../data/products';
 import { IMAGES } from '../data/images';
 import { EDITORIAL_CATEGORIES, PORTFOLIO, getDisplayableImages } from '../data/portfolio';
+import { EDITORIAL_MOMENTS } from '../data/portfolio-layout';
+import heroCake from '../assets/portfolio/bolo-de-cenoura/03-angle.webp';
+import heroSlice from '../assets/portfolio/fatia-chocolatuda/04-context.webp';
 import { normalizeSearchText } from '../lib/search';
 import '../styles/products.css';
 import '../styles/product-modal.css';
@@ -42,7 +47,6 @@ const groups = EDITORIAL_CATEGORIES.map((category) => ({
 })).filter((group) => group.products.length > 0);
 
 const count = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
-const thumbOf = (group: (typeof groups)[number]) => group.products.find((p) => p.heroImage?.src)?.heroImage ?? null;
 
 // busca: nome, descrição e categoria (normalizados, sem acento)
 const searchText = new Map(
@@ -63,11 +67,9 @@ const modalData = PORTFOLIO.map((p) => ({
   yooga: p.purchase.yoogaHref,
 }));
 
-// fotos do Hero: escolha editorial dentre os itens do portfólio (imagens não ampliadas: ≤ 500 px de altura)
-const HERO_SLUGS = ['copo-ninho-com-morango', 'fatia-chocolatuda', 'cheesecake-frutas-vermelhas', 'coxinha-belga'];
-const heroPhotos = HERO_SLUGS.map((slug) => PORTFOLIO.find((p) => p.slug === slug)?.heroImage).filter(
-  (image): image is NonNullable<typeof image> => Boolean(image?.src && image.width && image.height),
-);
+// Hero: composição editorial com imagens aprovadas já no projeto (bolo de cenoura e fatia = geradas e aprovadas,
+// 03-angle e 04-context; a pequena é a foto do Yooga). Decorativas: o nome dos produtos está nos tiles.
+const heroSmall = PORTFOLIO.find((p) => p.slug === 'coxinha-belga')?.heroImage;
 
 // Menu de Bolos: enquanto não houver arquivo público auditado, o CTA vai para o WhatsApp (documentado)
 const menuReady = CAKES_MENU.status === 'audited' && !isPending(LINKS.menuBolos);
@@ -77,77 +79,64 @@ const cakesLabel = menuReady ? page.cakes.ctaMenu : page.cakes.ctaFallback;
 
 <BaseLayout title={`${page.title} | ${BRAND.name}`} path="/produtos" header={{ current: 'produtos', base: '/', solid: true }}>
   <main id="conteudo" tabindex="-1" class="products-page">
-    {/* 01 Hero curto */}
+    {/* 01 Hero editorial: texto + busca à esquerda, composição fotográfica à direita */}
     <section class="phero" aria-labelledby="produtos-titulo">
-      <div class="phero__photos" aria-hidden="true">
-        {heroPhotos.map((p, i) => (
-          <div class="phero__photo" style={`--i:${i}`}>
-            <img
-              src={p.src!}
-              width={p.width!}
-              height={p.height!}
-              alt=""
-              loading={i < 3 ? 'eager' : 'lazy'}
-              decoding="async"
-            />
-          </div>
-        ))}
+      <div class="phero__art" aria-hidden="true">
+        <div class="phero__main">
+          <Image src={heroCake} alt="" widths={[640, 960, 1122]} sizes="(max-width: 899px) 100vw, 56vw" loading="eager" fetchpriority="high" />
+        </div>
+        <figure class="phero__paper phero__paper--a">
+          <Image src={heroSlice} alt="" widths={[360, 560]} sizes="(max-width: 899px) 40vw, 24vw" loading="eager" />
+          <figcaption class="phero__script" data-copy-status={EDITORIAL_MOMENTS.heroNote.status}>{EDITORIAL_MOMENTS.heroNote.text}</figcaption>
+        </figure>
+        {heroSmall?.src && (
+          <figure class="phero__paper phero__paper--b">
+            <img src={heroSmall.src} width={heroSmall.width ?? undefined} height={heroSmall.height ?? undefined} alt="" loading="lazy" decoding="async" />
+          </figure>
+        )}
       </div>
       <div class="container phero__inner">
         <SectionEyebrow>{page.eyebrow}</SectionEyebrow>
         <h1 class="h1 phero__title" id="produtos-titulo">
           <span class="line"><span class="line__in">{page.heroTitle[0]}</span></span>{' '}
-          <span class="line"><span class="line__in">{page.heroTitle[1]}</span></span>{' '}
-          <span class="line h3"><span class="line__in">{page.heroTitle[2]}</span></span>
+          <span class="line"><span class="line__in">{page.heroTitle[1]} <span class="h3 phero__em">{page.heroTitle[2]}</span></span></span>
         </h1>
         <p class="t1 phero__lead">{page.heroLead}</p>
+        <div class="psearch" data-search-wrap hidden>
+          <form class="psearch__form" role="search" aria-label="Buscar nas criações" data-search-form novalidate>
+            <Icon name="search" size={20} />
+            <label class="sr-only" for="produtos-busca">Buscar uma criação</label>
+            <input
+              id="produtos-busca"
+              class="psearch__input"
+              type="search"
+              name="q"
+              placeholder={page.searchPlaceholder}
+              autocomplete="off"
+              enterkeyhint="search"
+              data-search-input
+            />
+            <button class="psearch__go" type="submit" aria-label="Buscar"><Icon name="arrow" size={20} /></button>
+          </form>
+        </div>
       </div>
     </section>
 
-    {/* 02 Busca + trilho de categorias */}
-    <div class="psearch container" data-search-wrap hidden>
-      <form class="psearch__form" role="search" aria-label="Buscar nos produtos" data-search-form novalidate>
-        <Icon name="search" size={22} />
-        <label class="sr-only" for="produtos-busca">Buscar doce, sabor ou produto</label>
-        <input
-          id="produtos-busca"
-          class="psearch__input"
-          type="search"
-          name="q"
-          placeholder={page.searchPlaceholder}
-          autocomplete="off"
-          enterkeyhint="search"
-          data-search-input
-        />
-        <button class="psearch__go" type="submit" aria-label="Buscar"><Icon name="arrow" size={22} /></button>
-      </form>
-    </div>
-
+    {/* 02 Categorias: navegação tipográfica (filtro com JS; âncoras sem JS) */}
     <nav class="prail" aria-label="Categorias do portfólio">
       <ul class="prail__list" role="list" data-rail>
         <li>
-          <a class="prail__item prail__item--all" href="#catalogo" data-rail-link="all" aria-current="true">
-            <span class="prail__thumb"><Icon name="grid" size={26} /></span>
-            <span class="prail__label">Todos</span>
-          </a>
+          <a class="prail__item" href="#catalogo" data-rail-link="all" aria-current="true">Todos</a>
         </li>
-        {groups.map((group) => {
-          const thumb = thumbOf(group);
-          return (
-            <li>
-              <a class="prail__item" href={`#${group.slug}`} data-rail-link={group.slug}>
-                <span class="prail__thumb">
-                  {thumb?.src && <img src={thumb.src} width={thumb.width ?? undefined} height={thumb.height ?? undefined} alt="" loading="lazy" decoding="async" />}
-                </span>
-                <span class="prail__label">{group.name}</span>
-              </a>
-            </li>
-          );
-        })}
+        {groups.map((group) => (
+          <li>
+            <a class="prail__item" href={`#${group.slug}`} data-rail-link={group.slug}>{group.name}</a>
+          </li>
+        ))}
       </ul>
     </nav>
 
-    {/* 03 Galeria */}
+    {/* 03 O álbum: intro + capítulos */}
     <section class="pcatalog" aria-label="Galeria de criações">
       <div class="container pintro" id="catalogo">
         <div class="pintro__title">
@@ -159,9 +148,14 @@ const cakesLabel = menuReady ? page.cakes.ctaMenu : page.cakes.ctaFallback;
         </div>
         <p class="t1 pintro__lead">{page.catalogLead}</p>
         <p class="pintro__stats">
-          <strong>{count(PORTFOLIO.length, 'criação', 'criações')}</strong>
-          <span>em {count(groups.length, 'categoria', 'categorias')}</span>
+          <strong>{PORTFOLIO.length}</strong>{' '}
+          <span>{PORTFOLIO.length === 1 ? 'criação' : 'criações'}</span>{' '}
+          <small>em {groups.length} {groups.length === 1 ? 'categoria' : 'categorias'}</small>
         </p>
+        <div class="pintro__band" aria-hidden="true">
+          <Image src={IMAGES.manifestoChocolate} alt="" widths={[313]} sizes="30vw" />
+          <p class="pintro__script" data-copy-status={EDITORIAL_MOMENTS.albumNote.status}>{EDITORIAL_MOMENTS.albumNote.text}</p>
+        </div>
       </div>
 
       <div class="container pcatalog__body">
@@ -171,20 +165,8 @@ const cakesLabel = menuReady ? page.cakes.ctaMenu : page.cakes.ctaFallback;
           <button class="pempty__btn" type="button" data-reset>Ver todas as criações</button>
         </div>
 
-        {groups.map((group) => (
-          <section class="pgroup" id={group.slug} aria-labelledby={`g-${group.slug}`} data-group>
-            <div class="pgroup__head">
-              <h2 class="pgroup__title" id={`g-${group.slug}`}>{group.name}</h2>
-              <p class="pgroup__count">{count(group.products.length, 'criação', 'criações')}</p>
-            </div>
-            <ul class="pgroup__grid" role="list">
-              {group.products.map((product) => (
-                <li data-search={searchText.get(product.slug)}>
-                  <PortfolioCard product={product} />
-                </li>
-              ))}
-            </ul>
-          </section>
+        {groups.map((group, i) => (
+          <PortfolioChapter slug={group.slug} name={group.name} products={group.products} index={i + 1} {searchText} />
         ))}
       </div>
     </section>
