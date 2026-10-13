@@ -1,0 +1,825 @@
+{
+  "url": "http://localhost:4399/produtos",
+  "note": "scale = fator de ampliação do arquivo no tile (cover). ≥ 1,4 = desfoque perceptível; vem da fonte (ASSET-LIMITED).",
+  "summary": {
+    "390": {
+      "max": 1.5,
+      "over140": [
+        "copo-ninho-com-morango ×1.43 (242x500 → 347x260)",
+        "bolo-de-pote-de-prestigio ×1.5 (231x500 → 347x260)"
+      ]
+    },
+    "1024": {
+      "max": 1.39,
+      "over140": []
+    },
+    "1440": {
+      "max": 1.54,
+      "over140": [
+        "brigadeirao-belga ×1.54 (375x500 → 578x507)",
+        "cone-trufado-de-brigadeiro ×1.54 (375x500 → 578x424)",
+        "acai-350ml ×1.54 (375x500 → 578x446)"
+      ]
+    }
+  },
+  "tiles": {
+    "390": [
+      {
+        "slug": "bolo-de-cenoura",
+        "tile": "347x260",
+        "natural": "1122x1402",
+        "scale": 0.31
+      },
+      {
+        "slug": "fatia-chocolatuda",
+        "tile": "347x260",
+        "natural": "1122x1402",
+        "scale": 0.31
+      },
+      {
+        "slug": "fatia-brownie-ninho-com-nutella",
+        "tile": "168x210",
+        "natural": "375x500",
+        "scale": 0.45
+      },
+      {
+        "slug": "fatia-maracolate",
+        "tile": "168x210",
+        "natural": "375x500",
+        "scale": 0.45
+      },
+      {
+        "slug": "fatia-duo-com-morango",
+        "tile": "168x210",
+        "natural": "375x500",
+        "scale": 0.45
+      },
+      {
+        "slug": "fatia-nutelluda",
+        "tile": "168x210",
+        "natural": "375x500",
+        "scale": 0.45
+      },
+      {
+        "slug": "fatia-limao-siciliano-c-frutas-vermelhas",
+        "tile": "347x260",
+        "natural": "375x500",
+        "scale": 0.92
+      },
+      {
+        "slug": "fatia-matilda",
+        "tile": "168x210",
+        "natural": "375x500",
+        "scale": 0.45
+      },
+      {
+        "slug": "fatia-brownie-brigadeiro",
+        "tile": "168x210",
+        "natural": "281x500",
+        "scale": 0.6
+      },
+      {
+        "slug": "supremo-maracuja",
+        "tile": "347x260",
+        "natural": "375x500",
+        "scale": 0.92
+      },
+      {
+        "slug": "copo-ferrero",
+        "tile": "168x210",
+        "natural": "375x500",
+        "scale": 0.45
+      },
+      {
+        "slug": "copo-duo-com-morangos",
+        "tile": "168x210",
+        "natural": "375x500",
+        "scale": 0.45
+      },
+      {
+        "slug": "copo-danette-com-morango",
+        "tile": "347x260",
+        "natural": "375x500",
+        "scale": 0.92
+      },
+      {
+        "slug": "copo-ninho-com-nutella",
+        "tile": "347x260",
+        "natural": "299x500",
+        "scale": 1.16
+      },
+      {
+        "slug": "copo-ninho-com-morango",
+        "tile": "347x260",
+        "natural": "242x500",
+        "scale": 1.43
+      },
+      {
+        "slug": "coxinha-de-ninho-com-nutella",
+        "tile": "347x260",
+        "natural": "375x500",
+        "scale": 0.92
+      },
+      {
+        "slug": "coxinha-belga",
+        "tile": "168x210",
+        "natural": "375x500",
+        "scale": 0.45
+      },
+      {
+        "slug": "coxinha-de-ferrero",
+        "tile": "168x210",
+        "natural": "300x500",
+        "scale": 0.56
+      },
+      {
+        "slug": "brigadeirao-belga",
+        "tile": "347x260",
+        "natural": "375x500",
+        "scale": 0.92
+      },
+      {
+        "slug": "alfajor-doce-de-leite",
+        "tile": "168x210",
+        "natural": "375x500",
+        "scale": 0.45
+      },
+      {
+        "slug": "bombom-cravejado",
+        "tile": "168x210",
+        "natural": "375x500",
+        "scale": 0.45
+      },
+      {
+        "slug": "caseirinho-ninho-com-nutella",
+        "tile": "347x260",
+        "natural": "375x500",
+        "scale": 0.92
+      },
+      {
+        "slug": "caseirinho-ninho-nutella-e-morango",
+        "tile": "168x210",
+        "natural": "375x500",
+        "scale": 0.45
+      },
+      {
+        "slug": "caseirinho-de-cenoura-com-cobertura-de-chocolate",
+        "tile": "168x210",
+        "natural": "375x500",
+        "scale": 0.45
+      },
+      {
+        "slug": "caseirinho-de-brigadeiro",
+        "tile": "347x260",
+        "natural": "375x500",
+        "scale": 0.92
+      },
+      {
+        "slug": "cheesecake-frutas-vermelhas",
+        "tile": "347x260",
+        "natural": "375x500",
+        "scale": 0.92
+      },
+      {
+        "slug": "cheesecake-maracuja",
+        "tile": "168x210",
+        "natural": "375x500",
+        "scale": 0.45
+      },
+      {
+        "slug": "torta-de-limao",
+        "tile": "168x210",
+        "natural": "375x500",
+        "scale": 0.45
+      },
+      {
+        "slug": "cookie-nutella",
+        "tile": "347x260",
+        "natural": "375x500",
+        "scale": 0.92
+      },
+      {
+        "slug": "geladinho-ninho-com-nutella",
+        "tile": "347x260",
+        "natural": "375x500",
+        "scale": 0.92
+      },
+      {
+        "slug": "geladinho-pudim",
+        "tile": "168x210",
+        "natural": "375x500",
+        "scale": 0.45
+      },
+      {
+        "slug": "geladinho-cappuccino",
+        "tile": "168x210",
+        "natural": "375x500",
+        "scale": 0.45
+      },
+      {
+        "slug": "combo-familia-10-geladinhos",
+        "tile": "347x260",
+        "natural": "296x500",
+        "scale": 1.17
+      },
+      {
+        "slug": "bolo-de-pote-de-danette",
+        "tile": "347x260",
+        "natural": "281x500",
+        "scale": 1.23
+      },
+      {
+        "slug": "bolo-de-pote-de-prestigio",
+        "tile": "347x260",
+        "natural": "231x500",
+        "scale": 1.5
+      },
+      {
+        "slug": "cone-trufado-de-brigadeiro",
+        "tile": "347x260",
+        "natural": "375x500",
+        "scale": 0.92
+      },
+      {
+        "slug": "cone-trufado-de-maracuja",
+        "tile": "347x260",
+        "natural": "375x500",
+        "scale": 0.92
+      },
+      {
+        "slug": "empada-de-frango",
+        "tile": "347x260",
+        "natural": "375x500",
+        "scale": 0.92
+      },
+      {
+        "slug": "coxinha-de-costela-c-cream-cheese",
+        "tile": "168x210",
+        "natural": "375x500",
+        "scale": 0.45
+      },
+      {
+        "slug": "coxinha-de-frango-c-catupiry",
+        "tile": "168x210",
+        "natural": "375x500",
+        "scale": 0.45
+      },
+      {
+        "slug": "esfiha-de-carne",
+        "tile": "347x260",
+        "natural": "375x500",
+        "scale": 0.92
+      },
+      {
+        "slug": "esfiha-de-frango-com-catupiry",
+        "tile": "168x210",
+        "natural": "375x500",
+        "scale": 0.45
+      },
+      {
+        "slug": "enrroladinho-de-salchicha",
+        "tile": "168x210",
+        "natural": "281x500",
+        "scale": 0.6
+      },
+      {
+        "slug": "acai-350ml",
+        "tile": "347x260",
+        "natural": "375x500",
+        "scale": 0.92
+      }
+    ],
+    "1024": [
+      {
+        "slug": "bolo-de-cenoura",
+        "tile": "399x317",
+        "natural": "1122x1402",
+        "scale": 0.36
+      },
+      {
+        "slug": "fatia-chocolatuda",
+        "tile": "342x376",
+        "natural": "1122x1402",
+        "scale": 0.3
+      },
+      {
+        "slug": "fatia-brownie-ninho-com-nutella",
+        "tile": "165x183",
+        "natural": "375x500",
+        "scale": 0.44
+      },
+      {
+        "slug": "fatia-maracolate",
+        "tile": "165x183",
+        "natural": "375x500",
+        "scale": 0.44
+      },
+      {
+        "slug": "fatia-duo-com-morango",
+        "tile": "165x183",
+        "natural": "375x500",
+        "scale": 0.44
+      },
+      {
+        "slug": "fatia-nutelluda",
+        "tile": "165x183",
+        "natural": "375x500",
+        "scale": 0.44
+      },
+      {
+        "slug": "fatia-limao-siciliano-c-frutas-vermelhas",
+        "tile": "224x280",
+        "natural": "375x500",
+        "scale": 0.6
+      },
+      {
+        "slug": "fatia-matilda",
+        "tile": "224x280",
+        "natural": "375x500",
+        "scale": 0.6
+      },
+      {
+        "slug": "fatia-brownie-brigadeiro",
+        "tile": "224x280",
+        "natural": "281x500",
+        "scale": 0.8
+      },
+      {
+        "slug": "supremo-maracuja",
+        "tile": "272x230",
+        "natural": "375x500",
+        "scale": 0.73
+      },
+      {
+        "slug": "copo-ferrero",
+        "tile": "130x230",
+        "natural": "375x500",
+        "scale": 0.46
+      },
+      {
+        "slug": "copo-duo-com-morangos",
+        "tile": "130x230",
+        "natural": "375x500",
+        "scale": 0.46
+      },
+      {
+        "slug": "copo-danette-com-morango",
+        "tile": "130x230",
+        "natural": "375x500",
+        "scale": 0.46
+      },
+      {
+        "slug": "copo-ninho-com-nutella",
+        "tile": "320x400",
+        "natural": "299x500",
+        "scale": 1.07
+      },
+      {
+        "slug": "copo-ninho-com-morango",
+        "tile": "320x400",
+        "natural": "242x500",
+        "scale": 1.32
+      },
+      {
+        "slug": "coxinha-de-ninho-com-nutella",
+        "tile": "224x280",
+        "natural": "375x500",
+        "scale": 0.6
+      },
+      {
+        "slug": "coxinha-belga",
+        "tile": "224x299",
+        "natural": "375x500",
+        "scale": 0.6
+      },
+      {
+        "slug": "coxinha-de-ferrero",
+        "tile": "224x280",
+        "natural": "300x500",
+        "scale": 0.75
+      },
+      {
+        "slug": "brigadeirao-belga",
+        "tile": "399x360",
+        "natural": "375x500",
+        "scale": 1.06
+      },
+      {
+        "slug": "alfajor-doce-de-leite",
+        "tile": "285x175",
+        "natural": "375x500",
+        "scale": 0.76
+      },
+      {
+        "slug": "bombom-cravejado",
+        "tile": "285x175",
+        "natural": "375x500",
+        "scale": 0.76
+      },
+      {
+        "slug": "caseirinho-ninho-com-nutella",
+        "tile": "272x230",
+        "natural": "375x500",
+        "scale": 0.73
+      },
+      {
+        "slug": "caseirinho-ninho-nutella-e-morango",
+        "tile": "130x230",
+        "natural": "375x500",
+        "scale": 0.46
+      },
+      {
+        "slug": "caseirinho-de-cenoura-com-cobertura-de-chocolate",
+        "tile": "130x230",
+        "natural": "375x500",
+        "scale": 0.46
+      },
+      {
+        "slug": "caseirinho-de-brigadeiro",
+        "tile": "130x230",
+        "natural": "375x500",
+        "scale": 0.46
+      },
+      {
+        "slug": "cheesecake-frutas-vermelhas",
+        "tile": "224x280",
+        "natural": "375x500",
+        "scale": 0.6
+      },
+      {
+        "slug": "cheesecake-maracuja",
+        "tile": "224x299",
+        "natural": "375x500",
+        "scale": 0.6
+      },
+      {
+        "slug": "torta-de-limao",
+        "tile": "224x280",
+        "natural": "375x500",
+        "scale": 0.6
+      },
+      {
+        "slug": "cookie-nutella",
+        "tile": "285x317",
+        "natural": "375x500",
+        "scale": 0.76
+      },
+      {
+        "slug": "geladinho-ninho-com-nutella",
+        "tile": "272x230",
+        "natural": "375x500",
+        "scale": 0.73
+      },
+      {
+        "slug": "geladinho-pudim",
+        "tile": "130x230",
+        "natural": "375x500",
+        "scale": 0.46
+      },
+      {
+        "slug": "geladinho-cappuccino",
+        "tile": "130x230",
+        "natural": "375x500",
+        "scale": 0.46
+      },
+      {
+        "slug": "combo-familia-10-geladinhos",
+        "tile": "130x230",
+        "natural": "296x500",
+        "scale": 0.46
+      },
+      {
+        "slug": "bolo-de-pote-de-danette",
+        "tile": "320x400",
+        "natural": "281x500",
+        "scale": 1.14
+      },
+      {
+        "slug": "bolo-de-pote-de-prestigio",
+        "tile": "320x400",
+        "natural": "231x500",
+        "scale": 1.39
+      },
+      {
+        "slug": "cone-trufado-de-brigadeiro",
+        "tile": "399x302",
+        "natural": "375x500",
+        "scale": 1.06
+      },
+      {
+        "slug": "cone-trufado-de-maracuja",
+        "tile": "285x302",
+        "natural": "375x500",
+        "scale": 0.76
+      },
+      {
+        "slug": "empada-de-frango",
+        "tile": "224x280",
+        "natural": "375x500",
+        "scale": 0.6
+      },
+      {
+        "slug": "coxinha-de-costela-c-cream-cheese",
+        "tile": "224x299",
+        "natural": "375x500",
+        "scale": 0.6
+      },
+      {
+        "slug": "coxinha-de-frango-c-catupiry",
+        "tile": "224x280",
+        "natural": "375x500",
+        "scale": 0.6
+      },
+      {
+        "slug": "esfiha-de-carne",
+        "tile": "224x280",
+        "natural": "375x500",
+        "scale": 0.6
+      },
+      {
+        "slug": "esfiha-de-frango-com-catupiry",
+        "tile": "224x299",
+        "natural": "375x500",
+        "scale": 0.6
+      },
+      {
+        "slug": "enrroladinho-de-salchicha",
+        "tile": "224x280",
+        "natural": "281x500",
+        "scale": 0.8
+      },
+      {
+        "slug": "acai-350ml",
+        "tile": "399x317",
+        "natural": "375x500",
+        "scale": 1.06
+      }
+    ],
+    "1440": [
+      {
+        "slug": "bolo-de-cenoura",
+        "tile": "578x446",
+        "natural": "1122x1402",
+        "scale": 0.52
+      },
+      {
+        "slug": "fatia-chocolatuda",
+        "tile": "495x529",
+        "natural": "1122x1402",
+        "scale": 0.44
+      },
+      {
+        "slug": "fatia-brownie-ninho-com-nutella",
+        "tile": "240x257",
+        "natural": "375x500",
+        "scale": 0.64
+      },
+      {
+        "slug": "fatia-maracolate",
+        "tile": "240x257",
+        "natural": "375x500",
+        "scale": 0.64
+      },
+      {
+        "slug": "fatia-duo-com-morango",
+        "tile": "240x257",
+        "natural": "375x500",
+        "scale": 0.64
+      },
+      {
+        "slug": "fatia-nutelluda",
+        "tile": "240x257",
+        "natural": "375x500",
+        "scale": 0.64
+      },
+      {
+        "slug": "fatia-limao-siciliano-c-frutas-vermelhas",
+        "tile": "325x406",
+        "natural": "375x500",
+        "scale": 0.87
+      },
+      {
+        "slug": "fatia-matilda",
+        "tile": "325x406",
+        "natural": "375x500",
+        "scale": 0.87
+      },
+      {
+        "slug": "fatia-brownie-brigadeiro",
+        "tile": "325x406",
+        "natural": "281x500",
+        "scale": 1.16
+      },
+      {
+        "slug": "supremo-maracuja",
+        "tile": "395x324",
+        "natural": "375x500",
+        "scale": 1.05
+      },
+      {
+        "slug": "copo-ferrero",
+        "tile": "188x324",
+        "natural": "375x500",
+        "scale": 0.65
+      },
+      {
+        "slug": "copo-duo-com-morangos",
+        "tile": "188x324",
+        "natural": "375x500",
+        "scale": 0.65
+      },
+      {
+        "slug": "copo-danette-com-morango",
+        "tile": "188x324",
+        "natural": "375x500",
+        "scale": 0.65
+      },
+      {
+        "slug": "copo-ninho-com-nutella",
+        "tile": "320x400",
+        "natural": "299x500",
+        "scale": 1.07
+      },
+      {
+        "slug": "copo-ninho-com-morango",
+        "tile": "320x400",
+        "natural": "242x500",
+        "scale": 1.32
+      },
+      {
+        "slug": "coxinha-de-ninho-com-nutella",
+        "tile": "325x406",
+        "natural": "375x500",
+        "scale": 0.87
+      },
+      {
+        "slug": "coxinha-belga",
+        "tile": "325x433",
+        "natural": "375x500",
+        "scale": 0.87
+      },
+      {
+        "slug": "coxinha-de-ferrero",
+        "tile": "325x406",
+        "natural": "300x500",
+        "scale": 1.08
+      },
+      {
+        "slug": "brigadeirao-belga",
+        "tile": "578x507",
+        "natural": "375x500",
+        "scale": 1.54
+      },
+      {
+        "slug": "alfajor-doce-de-leite",
+        "tile": "413x246",
+        "natural": "375x500",
+        "scale": 1.1
+      },
+      {
+        "slug": "bombom-cravejado",
+        "tile": "413x246",
+        "natural": "375x500",
+        "scale": 1.1
+      },
+      {
+        "slug": "caseirinho-ninho-com-nutella",
+        "tile": "395x324",
+        "natural": "375x500",
+        "scale": 1.05
+      },
+      {
+        "slug": "caseirinho-ninho-nutella-e-morango",
+        "tile": "188x324",
+        "natural": "375x500",
+        "scale": 0.65
+      },
+      {
+        "slug": "caseirinho-de-cenoura-com-cobertura-de-chocolate",
+        "tile": "188x324",
+        "natural": "375x500",
+        "scale": 0.65
+      },
+      {
+        "slug": "caseirinho-de-brigadeiro",
+        "tile": "188x324",
+        "natural": "375x500",
+        "scale": 0.65
+      },
+      {
+        "slug": "cheesecake-frutas-vermelhas",
+        "tile": "325x406",
+        "natural": "375x500",
+        "scale": 0.87
+      },
+      {
+        "slug": "cheesecake-maracuja",
+        "tile": "325x433",
+        "natural": "375x500",
+        "scale": 0.87
+      },
+      {
+        "slug": "torta-de-limao",
+        "tile": "325x406",
+        "natural": "375x500",
+        "scale": 0.87
+      },
+      {
+        "slug": "cookie-nutella",
+        "tile": "413x446",
+        "natural": "375x500",
+        "scale": 1.1
+      },
+      {
+        "slug": "geladinho-ninho-com-nutella",
+        "tile": "395x324",
+        "natural": "375x500",
+        "scale": 1.05
+      },
+      {
+        "slug": "geladinho-pudim",
+        "tile": "188x324",
+        "natural": "375x500",
+        "scale": 0.65
+      },
+      {
+        "slug": "geladinho-cappuccino",
+        "tile": "188x324",
+        "natural": "375x500",
+        "scale": 0.65
+      },
+      {
+        "slug": "combo-familia-10-geladinhos",
+        "tile": "188x324",
+        "natural": "296x500",
+        "scale": 0.65
+      },
+      {
+        "slug": "bolo-de-pote-de-danette",
+        "tile": "320x400",
+        "natural": "281x500",
+        "scale": 1.14
+      },
+      {
+        "slug": "bolo-de-pote-de-prestigio",
+        "tile": "320x400",
+        "natural": "231x500",
+        "scale": 1.39
+      },
+      {
+        "slug": "cone-trufado-de-brigadeiro",
+        "tile": "578x424",
+        "natural": "375x500",
+        "scale": 1.54
+      },
+      {
+        "slug": "cone-trufado-de-maracuja",
+        "tile": "413x424",
+        "natural": "375x500",
+        "scale": 1.1
+      },
+      {
+        "slug": "empada-de-frango",
+        "tile": "325x406",
+        "natural": "375x500",
+        "scale": 0.87
+      },
+      {
+        "slug": "coxinha-de-costela-c-cream-cheese",
+        "tile": "325x433",
+        "natural": "375x500",
+        "scale": 0.87
+      },
+      {
+        "slug": "coxinha-de-frango-c-catupiry",
+        "tile": "325x406",
+        "natural": "375x500",
+        "scale": 0.87
+      },
+      {
+        "slug": "esfiha-de-carne",
+        "tile": "325x406",
+        "natural": "375x500",
+        "scale": 0.87
+      },
+      {
+        "slug": "esfiha-de-frango-com-catupiry",
+        "tile": "325x433",
+        "natural": "375x500",
+        "scale": 0.87
+      },
+      {
+        "slug": "enrroladinho-de-salchicha",
+        "tile": "325x406",
+        "natural": "281x500",
+        "scale": 1.16
+      },
+      {
+        "slug": "acai-350ml",
+        "tile": "578x446",
+        "natural": "375x500",
+        "scale": 1.54
+      }
+    ]
+  }
+}

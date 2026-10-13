@@ -76,14 +76,14 @@ try {
   // =============== dados renderizados ===============
   await open({});
   const d = await ev(`(() => { const q = (s) => [...document.querySelectorAll(s)]; return {
-    cards: q('.ptile').length, items: q('li[data-search]').length, groups: q('[data-group]').length, rail: q('[data-rail-link]').length,
+    cards: q('.ptile, .pmore__link').length, pmore: q('.pmore__link').length, emptyTiles: q('.ptile--empty').length, items: q('li[data-search]').length, groups: q('[data-group]').length, rail: q('[data-rail-link]').length,
     fallbacks: q('.ptile__fallback').length, cardImgs: q('.ptile__media > img').length, stats: document.querySelector('.pintro__stats').textContent.replace(/\\s+/g, ' ').trim(),
     price: /R\\$|\\d+,\\d{2}/.test(document.querySelector('.pcatalog').textContent) || q('.ptile__price, .ptile__badge, .ptile__opts, .putility, .pgift').length > 0,
     pricesInMarkup: (document.documentElement.innerHTML.match(/R\\$\\s?\\d/g) || []).length,
     forbidden: /a partir de|oferta|adicionais|promo/i.test(document.querySelector('.pcatalog').textContent),
-    cta: [...new Set(q('.ptile__cta').map((a) => a.textContent.replace(/\\s+/g, ' ').trim().replace(/:.*/, '')))], ctaN: q('.ptile[data-open]').length,
-    haspopup: q('.ptile[aria-haspopup=dialog]').length, modalHidden: document.querySelector('[data-modal]').hidden, modalImgs: document.querySelectorAll('.pmodal img').length,
-    primaryOnly: q('.ptile__media > img').length === 44 && q('.ptile img').length === 46, robots: document.querySelector('meta[name=robots]')?.content, h1: q('h1').length,
+    cta: [...new Set(q('.ptile__cta, .pmore__cta').map((a) => a.textContent.replace(/\\s+/g, ' ').trim().replace(/:.*/, '')))], ctaN: q('.ptile[data-open], .pmore__link[data-open]').length,
+    haspopup: q('.ptile[aria-haspopup=dialog], .pmore__link[aria-haspopup=dialog]').length, modalHidden: document.querySelector('[data-modal]').hidden, modalImgs: document.querySelectorAll('.pmodal img').length,
+    primaryOnly: q('.ptile__media > img').length === 44 && q('.ptile img').length === 44, robots: document.querySelector('meta[name=robots]')?.content, h1: q('h1').length,
     noSize: q('.ptile__media > img').filter((i) => !i.getAttribute('width') || !i.getAttribute('height')).length, lazy: q('.ptile__media > img').filter((i) => i.loading === 'lazy').length, eager: q('.ptile__media > img').filter((i) => i.loading === 'eager').length,
     broken: q('img').filter((i) => i.complete && i.naturalWidth === 0 && i.loading !== 'lazy').length,
     cakes: { mode: document.querySelector('[data-cakes-cta]')?.dataset.cakesCta, prices: /R\\$/.test(document.querySelector('.pcakes')?.textContent ?? '') },
@@ -92,7 +92,7 @@ try {
   check('stats: "46 criações em 13 categorias"', /46 criações/.test(d.stats) && /13 categorias/.test(d.stats), d.stats);
   check('preço NÃO aparece na galeria (sem R$, "a partir de", oferta, opções, adicionais)', !d.price && !d.forbidden, `price=${d.price} forbidden=${d.forbidden}`);
   check('nenhum "R$ n" em todo o HTML da página (nem no JSON do modal)', d.pricesInMarkup === 0, `ocorrências=${d.pricesInMarkup}`);
-  check('2 cards sem foto usam o painel da marca', d.fallbacks === 2 && d.cardImgs === 44, `fallbacks=${d.fallbacks} imgs=${d.cardImgs}`);
+  check('as 2 criações sem foto não viram tile vazio: linha de texto "Também" que ainda abre o modal', d.fallbacks === 0 && d.emptyTiles === 0 && d.pmore === 2 && d.cardImgs === 44, `fallbacks=${d.fallbacks} vazios=${d.emptyTiles} pmore=${d.pmore} imgs=${d.cardImgs}`);
   check('CTA do card: "Ver criação" em todos, com data-open e aria-haspopup=dialog', d.cta.length === 1 && d.cta[0] === 'Ver criação' && d.ctaN === 46 && d.haspopup === 46, `${d.cta.join('|')} n=${d.ctaN}`);
   check('modal começa fechado e SEM nenhuma imagem no DOM (fotos extras só ao abrir)', d.modalHidden && d.modalImgs === 0, `imgsNoModal=${d.modalImgs}`);
   check('cards carregam só a imagem principal (1 por card, com width/height)', d.primaryOnly && d.noSize === 0 && d.cardImgs === 44, `semTamanho=${d.noSize}`);
@@ -112,7 +112,7 @@ try {
       cards: q('.pcard, .pgroup__grid').length, heroImgs: q('.phero__art img').length, tilesNoSize: q('.ptile').filter((e) => e.getBoundingClientRect().height < 80 || e.getBoundingClientRect().width < 80).length,
       headerLinks: q('.site-nav a').map((a) => a.textContent.trim()).filter(Boolean) }; })()`);
   check('13 capítulos numerados 01–13 (decorativos, aria-hidden)', art.nums.join() === Array.from({ length: 13 }, (_, i) => String(i + 1).padStart(2, '0')).join() && await ev(`[...document.querySelectorAll('.pchapter__num')].every((e) => e.getAttribute('aria-hidden') === 'true')`), art.nums.join());
-  check('layouts determinísticos por categoria: Bolos=solo, Fatias=mosaic5+trio, Sobremesas=wide4+duo, Salgados=2 stagger', art.bolos.join() === 'solo' && art.fatias.join() === 'mosaic5,trio' && art.sobremesas.join() === 'wide4,duo' && art.salgados.join() === 'stagger,stagger', JSON.stringify({ b: art.bolos, f: art.fatias, s: art.sobremesas, sg: art.salgados }));
+  check('layouts determinísticos por categoria: Bolos=solo, Fatias=mosaic5+trio, Sobremesas=wide4+pair (fontes estreitas), Salgados=2 stagger', art.bolos.join() === 'solo' && art.fatias.join() === 'mosaic5,trio' && art.sobremesas.join() === 'wide4,pair' && art.salgados.join() === 'stagger,stagger', JSON.stringify({ b: art.bolos, f: art.fatias, s: art.sobremesas, sg: art.salgados }));
   check('variação real: pelo menos 6 tipos de bloco diferentes na página', art.variants.length >= 6, art.variants.join());
   check('tiles sem caixa: sem borda nem sombra; nenhum card/grid antigo no DOM', art.noBox && art.cards === 0, `noBox=${art.noBox} cards=${art.cards}`);
   check('categorias = navegação tipográfica (sem imagens), busca "Buscar uma criação..."', art.railImgs === 0 && art.placeholder === 'Buscar uma criação...', `${art.railImgs} ${art.placeholder}`);
@@ -127,7 +127,7 @@ try {
   await ev(`document.querySelector('[data-reset]')?.click(); (() => { const i = document.querySelector('[data-search-input]'); i.value = ''; i.dispatchEvent(new Event('input', { bubbles: true })); })()`);
 
   // =============== busca ===============
-  const visible = `[...document.querySelectorAll('li[data-search]')].filter((l) => !l.hidden).map((l) => l.querySelector('.ptile__name').textContent.trim())`;
+  const visible = `[...document.querySelectorAll('li[data-search]')].filter((l) => !l.hidden).map((l) => l.querySelector('.ptile__name, .pmore__name').textContent.trim())`;
   const type = (t) => ev(`(() => { const i = document.querySelector('[data-search-input]'); i.value = ${JSON.stringify(t)}; i.dispatchEvent(new Event('input', { bubbles: true })); })()`);
   check('busca visível com JS', await ev(`!document.querySelector('[data-search-wrap]').hidden`));
   await type('acai'); let v = await ev(visible);
@@ -293,7 +293,7 @@ try {
 
   // =============== sem JS ===============
   await open({ js: false });
-  const nojs = await ev(`(() => ({ cards: document.querySelectorAll('.ptile').length, vis: [...document.querySelectorAll('.ptile')].filter((c) => getComputedStyle(c).opacity === '1' && c.getBoundingClientRect().height > 0).length, modalDisplay: getComputedStyle(document.querySelector('[data-modal]')).display, searchHidden: document.querySelector('[data-search-wrap]').hidden, anchors: document.querySelectorAll('[data-rail-link]').length, hrefs: [...new Set([...document.querySelectorAll('.ptile')].map((a) => a.href.split('?')[0]))], dead: [...document.querySelectorAll('.ptile')].filter((a) => !a.href || a.getAttribute('href') === '#').length, msg: document.querySelector('.ptile').href }))()`).catch(() => null);
+  const nojs = await ev(`(() => ({ cards: document.querySelectorAll('.ptile, .pmore__link').length, vis: [...document.querySelectorAll('.ptile, .pmore__link')].filter((c) => getComputedStyle(c).opacity === '1' && c.getBoundingClientRect().height > 0).length, modalDisplay: getComputedStyle(document.querySelector('[data-modal]')).display, searchHidden: document.querySelector('[data-search-wrap]').hidden, anchors: document.querySelectorAll('[data-rail-link]').length, hrefs: [...new Set([...document.querySelectorAll('.ptile, .pmore__link')].map((a) => a.href.split('?')[0]))], dead: [...document.querySelectorAll('.ptile, .pmore__link')].filter((a) => !a.href || a.getAttribute('href') === '#').length, msg: document.querySelector('.ptile').href }))()`).catch(() => null);
   check('sem JS: galeria completa visível, modal oculto, categorias por âncora, busca oculta', nojs && nojs.cards === 46 && nojs.vis === 46 && nojs.modalDisplay === 'none' && nojs.searchHidden && nojs.anchors === 14, JSON.stringify(nojs));
   check('sem JS: nenhum card morto (todos levam ao WhatsApp com o nome do produto)', nojs && nojs.dead === 0 && nojs.hrefs.length === 1 && nojs.hrefs[0] === 'https://wa.me/5535984235184' && /text=/.test(nojs.msg), `${nojs?.hrefs} | ${nojs?.msg}`);
 

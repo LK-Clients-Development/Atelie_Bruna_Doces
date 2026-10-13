@@ -287,16 +287,12 @@ html.motion-ready .phero__paper {
 /* =====================================================================
  * 04 O álbum: intro
  * =================================================================== */
-.pcatalog {
-  padding-top: clamp(20px, 2.4vw, 36px);
-}
-
 .pintro {
   display: grid;
   grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr) auto minmax(0, 0.9fr);
   align-items: center;
   gap: 20px clamp(20px, 3vw, 48px);
-  padding-bottom: clamp(18px, 2.2vw, 32px);
+  padding-block: clamp(20px, 2.4vw, 36px) clamp(18px, 2.2vw, 32px);
 }
 
 main .pintro .h2 {
@@ -351,7 +347,7 @@ main .pintro .h2 {
 .pintro__band img {
   position: absolute;
   inset: 0 0 0 auto;
-  width: 52%;
+  width: min(52%, 313px); /* nunca amplia a imagem provisória de 313 px */
   height: 100%;
   object-fit: cover;
   object-position: 60% 55%;
@@ -502,6 +498,15 @@ main .pintro .h2 {
   grid-auto-rows: calc(var(--row) * 1.9);
 }
 
+/* pair: duas fotos em tamanho natural (fontes estreitas); o resto da linha fica em branco */
+.pblock--pair {
+  grid-template-columns: repeat(2, minmax(0, 320px));
+}
+
+.pblock--pair .ptile {
+  aspect-ratio: 4 / 5;
+}
+
 /* feature3: 1 grande (2 linhas) + 2 menores empilhadas */
 .pblock--feature3 {
   grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
@@ -590,6 +595,65 @@ main .pintro .h2 {
 
 .pblock--wide4.pblock--flip > li:first-child {
   order: 4;
+}
+
+/* criações sem foto: linha de texto no fim do capítulo (sem tile vazio) */
+.pmore {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 clamp(18px, 2.4vw, 36px);
+  margin: clamp(10px, 1.2vw, 16px) 0 0;
+  padding: 4px 0 0;
+  border-top: 1px solid var(--color-line);
+  list-style: none;
+}
+
+.pmore:not(:has(li:not([hidden]))) {
+  display: none;
+}
+
+.pmore::before {
+  content: 'Também';
+  font-size: var(--text-micro);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-caramel-600);
+}
+
+.pmore__link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 12px;
+  min-height: 44px;
+  align-content: center;
+  color: var(--color-cacao-800);
+  text-decoration: none;
+}
+
+.pmore__name {
+  font-family: var(--font-display);
+  font-size: clamp(1.0625rem, 0.95rem + 0.35vw, 1.25rem);
+}
+
+.pmore__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--text-micro);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-caramel-600);
+}
+
+.pmore__link:hover .pmore__name {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.pmore__link:focus-visible {
+  outline: 2px solid var(--color-caramel-500);
+  outline-offset: 3px;
 }
 
 /* ----- tile: a fotografia é a unidade ----- */

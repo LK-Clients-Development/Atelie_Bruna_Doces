@@ -24,9 +24,9 @@
       "detail": "ocorrências=0"
     },
     {
-      "name": "2 cards sem foto usam o painel da marca",
+      "name": "as 2 criações sem foto não viram tile vazio: linha de texto \"Também\" que ainda abre o modal",
       "ok": true,
-      "detail": "fallbacks=2 imgs=44"
+      "detail": "fallbacks=0 vazios=0 pmore=2 imgs=44"
     },
     {
       "name": "CTA do card: \"Ver criação\" em todos, com data-open e aria-haspopup=dialog",
@@ -69,14 +69,14 @@
       "detail": "01,02,03,04,05,06,07,08,09,10,11,12,13"
     },
     {
-      "name": "layouts determinísticos por categoria: Bolos=solo, Fatias=mosaic5+trio, Sobremesas=wide4+duo, Salgados=2 stagger",
+      "name": "layouts determinísticos por categoria: Bolos=solo, Fatias=mosaic5+trio, Sobremesas=wide4+pair (fontes estreitas), Salgados=2 stagger",
       "ok": true,
-      "detail": "{\"b\":[\"solo\"],\"f\":[\"mosaic5\",\"trio\"],\"s\":[\"wide4\",\"duo\"],\"sg\":[\"stagger\",\"stagger\"]}"
+      "detail": "{\"b\":[\"solo\"],\"f\":[\"mosaic5\",\"trio\"],\"s\":[\"wide4\",\"pair\"],\"sg\":[\"stagger\",\"stagger\"]}"
     },
     {
       "name": "variação real: pelo menos 6 tipos de bloco diferentes na página",
       "ok": true,
-      "detail": "pblock--solo,pblock--mosaic5,pblock--trio,pblock--wide4,pblock--duo,pblock--stagger,pblock--feature3"
+      "detail": "pblock--solo,pblock--mosaic5,pblock--trio,pblock--wide4,pblock--pair,pblock--stagger,pblock--feature3,pblock--duo"
     },
     {
       "name": "tiles sem caixa: sem borda nem sombra; nenhum card/grid antigo no DOM",
@@ -286,7 +286,7 @@
     {
       "name": "fotos extras só carregam ao abrir (≤ 3 requisições novas ao CDN do Yooga)",
       "ok": true,
-      "detail": "antes=35 depois=36"
+      "detail": "antes=39 depois=40"
     },
     {
       "name": "próxima: foto 2 / 4, miniatura atual, alt descreve a foto",

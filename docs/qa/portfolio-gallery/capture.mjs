@@ -45,8 +45,17 @@ try {
     const h = await ev('Math.ceil(document.documentElement.scrollHeight)');
     await send('Emulation.setDeviceMetricsOverride', { width: w, height: h, deviceScaleFactor: 1, mobile: w < 700 });
     await sleep(800);
-    const full = await send('Page.captureScreenshot', { format: 'webp', quality: 74, captureBeyondViewport: true });
-    writeFileSync(join(OUT, `page-${w}.webp`), Buffer.from(full.data, 'base64'));
+    // páginas muito altas (> 12000 px) estouram o limite do Chrome: saem em partes (page-<w>-1, -2, ...)
+    const CHUNK = 9000;
+    if (h <= 12000) {
+      const full = await send('Page.captureScreenshot', { format: 'webp', quality: 74, captureBeyondViewport: true });
+      writeFileSync(join(OUT, `page-${w}.webp`), Buffer.from(full.data, 'base64'));
+    } else {
+      for (let y = 0, n = 1; y < h; y += CHUNK, n += 1) {
+        const part = await send('Page.captureScreenshot', { format: 'webp', quality: 74, captureBeyondViewport: true, clip: { x: 0, y, width: w, height: Math.min(CHUNK, h - y), scale: 1 } });
+        writeFileSync(join(OUT, `page-${w}-${n}.webp`), Buffer.from(part.data, 'base64'));
+      }
+    }
     console.log(`${w}px: página ${h}px`);
   }
 } finally { chrome.kill(); }

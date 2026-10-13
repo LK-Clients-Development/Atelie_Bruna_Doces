@@ -74,7 +74,7 @@ A camada de apresentação deixou de ser "grade de cards" e passou a ser **fotog
 | Tile | `src/components/PortfolioTile.astro` | uma fotografia com legenda sobreposta (nome + "Ver criação →"); sem caixa, borda, preço ou descrição |
 | CSS | `src/styles/products.css` | Hero, busca, trilho, intro, capítulos, blocos, tiles (CSS Grid; absoluto só em legenda/decoração) |
 
-**Blocos** (templates de grid reutilizáveis): `solo`, `duo`, `feature3`, `mosaic5`, `wide4`, `trio`, `stagger`. **Variantes por categoria:** `feature` (Bolos, Doces e bombons, Cookies, Bolos de pote, Açaí), `mosaic` (Fatias, Geladinhos), `strip` (Sobremesas no copo, Caseirinhos), `editorial` (Coxinhas doces, Cheesecakes e tortas, Cones trufados, Salgados). Mudar a composição de uma categoria = mudar uma linha em `CHAPTER_LAYOUT`; não há CSS por produto. A foto grande troca de lado alternadamente (`pblock--flip`).
+**Blocos** (templates de grid reutilizáveis): `solo`, `duo`, `pair` (duo de fontes estreitas, em tamanho natural), `feature3`, `mosaic5`, `wide4`, `trio`, `stagger`. Criação **sem foto** não vira tile: aparece como linha de texto ("Também") no fim do capítulo e ainda abre o modal. O trilho de categorias é sticky só dentro do álbum. **Variantes por categoria:** `feature` (Bolos, Doces e bombons, Cookies, Bolos de pote, Açaí), `mosaic` (Fatias, Geladinhos), `strip` (Sobremesas no copo, Caseirinhos), `editorial` (Coxinhas doces, Cheesecakes e tortas, Cones trufados, Salgados). Mudar a composição de uma categoria = mudar uma linha em `CHAPTER_LAYOUT`; não há CSS por produto. A foto grande troca de lado alternadamente (`pblock--flip`).
 
 Regras:
 

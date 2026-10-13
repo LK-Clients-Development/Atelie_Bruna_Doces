@@ -6,6 +6,7 @@
  */
 import PortfolioTile from './PortfolioTile.astro';
 import Icon from './Icon.astro';
+import { linkAttrs } from '../data/site';
 import { CHAPTER_LAYOUT, planBlocks } from '../data/portfolio-layout';
 import type { PortfolioProduct } from '../data/portfolio';
 
@@ -25,12 +26,18 @@ const layout = CHAPTER_LAYOUT[slug as keyof typeof CHAPTER_LAYOUT];
 const ordered = [...products].sort(
   (a, b) => b.publishableImageCount - a.publishableImageCount || (b.heroImage?.width ?? 0) - (a.heroImage?.width ?? 0),
 );
-const blocks = planBlocks(layout.variant, ordered.length, index % 2 === 0);
+// sem foto exibível não vira tile (seria um bloco vazio): a criação aparece como linha de texto, ainda abre o modal
+const withPhoto = ordered.filter((p) => p.heroImage?.src);
+const withoutPhoto = ordered.filter((p) => !p.heroImage?.src);
+const blocks = planBlocks(layout.variant, withPhoto.length, index % 2 === 0);
 let cursor = 0;
 const chapters = blocks.map((block) => {
-  const items = ordered.slice(cursor, cursor + block.count);
+  const items = withPhoto.slice(cursor, cursor + block.count);
   cursor += block.count;
-  return { ...block, items };
+  // dupla de fontes estreitas (< 320 px de largura, ex.: 231–299 px do Yooga): par em tamanho natural em vez de
+  // um tile grande, que ampliaria a foto ~2×. É só tamanho; a composição do capítulo continua a mesma.
+  const narrow = block.kind === 'duo' && items.some((p) => (p.heroImage?.width ?? 9999) < 320);
+  return { ...block, kind: narrow ? ('pair' as const) : block.kind, items };
 });
 const number = String(index).padStart(2, '0');
 ---
@@ -61,6 +68,23 @@ const number = String(index).padStart(2, '0');
           ))}
         </ul>
       ))
+    }
+    {
+      withoutPhoto.length > 0 && (
+        <ul class="pmore" role="list" aria-label={`Outras criações em ${name}`}>
+          {withoutPhoto.map((product) => {
+            const href = product.purchase.whatsappHref ?? '#';
+            return (
+              <li data-search={searchText.get(product.slug)}>
+                <a class="pmore__link" href={href} {...linkAttrs(href)} data-open={product.slug} data-slug={product.slug}>
+                  <span class="pmore__name">{product.name}</span>
+                  <span class="pmore__cta">Ver criação<Icon name="arrow" size={14} /></span>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      )
     }
   </div>
 </section>
