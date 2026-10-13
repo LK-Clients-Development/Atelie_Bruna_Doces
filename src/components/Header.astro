@@ -42,7 +42,7 @@ const pendingAttrs = linkAttrs;
     <a class="site-header__logo" href={base ? '/' : '#inicio'}>
       <span class="sr-only">Ateliê Doces Bruna, voltar ao início</span>
       <Image class="logo logo--light" src={logoLight} alt="" loading="eager" />
-      <Image class="logo logo--dark" src={logoDark} alt="" loading="eager" />
+      <Image class="logo logo--dark" src={logoDark} alt="" loading="eager" widths={[200, 400, 600]} sizes="(max-width: 479px) 156px, 200px" quality={95} />
     </a>
 
     <nav class="site-nav" aria-label="Principal">
@@ -78,7 +78,7 @@ const pendingAttrs = linkAttrs;
 
   <div class="site-menu" id="site-menu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
     <div class="site-menu__top container">
-      <Image class="logo" src={logoDark} alt="" />
+      <Image class="logo" src={logoDark} alt="" widths={[200, 400, 600]} sizes="(max-width: 479px) 156px, 200px" quality={95} />
       <button class="site-menu__close" type="button">
         <Icon name="close" size={26} />
         <span class="sr-only">Fechar menu</span>

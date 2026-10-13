@@ -44,7 +44,9 @@ import ctaCelebracao from '../assets/provisional/provisional-cta-celebracao.webp
 import florLinha from '../assets/provisional/provisional-flor-linha.png';
 import logoLockup from '../assets/provisional/provisional-logo-lockup.png';
 import logoWordmarkLight from '../assets/provisional/provisional-logo-wordmark-light.png';
-import logoWordmarkDark from '../assets/provisional/provisional-logo-wordmark-dark.png';
+// Logo OFICIAL aprovada (wordmark escuro, PNG transparente de alta resolução, recortada rente à tinta com respiro de 2,3%).
+// A variante clara (sobre o Hero escuro) continua o recorte provisório até existir a versão clara oficial.
+import logoWordmarkDark from '../assets/brand/atelie-doces-bruna-logo.png';
 import seloFlor from '../assets/provisional/provisional-selo-flor.png';
 
 export const IMAGES = {
@@ -103,5 +105,5 @@ export const ASSET_SLOTS: AssetSlot[] = [
   { slots: ['historiasMesa', 'historiasFatia'], folder: 'social-proof', real: 'Foto de celebração AUTORIZADA (clientes/mesa) e fatia de bolo', ratio: '780×940 (sem inset gravado), 286×355' },
   { slots: ['bastidoresConfeitando', 'bastidoresPeneira', 'bastidoresLaco'], folder: 'process', real: 'Fotos reais de processo: confeitar, peneirar cacau, embalar com laço', ratio: '760×670, 345×341, 504×352' },
   { slots: ['ctaCelebracao'], folder: 'products', real: 'Cena de celebração com embalagem real e velas', ratio: '780×520' },
-  { slots: ['logoWordmarkLight', 'logoWordmarkDark', 'logoLockup', 'seloFlor', 'florLinha'], folder: 'brand', real: 'Logo oficial (wordmark claro/escuro, lockup, flor) em SVG ou PNG transparente', ratio: 'wordmark 276×86; lockup 220×152; flor 88×88 e 148×180' },
+  { slots: ['logoWordmarkLight', 'logoWordmarkDark', 'logoLockup', 'seloFlor', 'florLinha'], folder: 'brand', real: 'Logo oficial: wordmark ESCURO já aplicado (src/assets/brand, 1944×510); faltam wordmark claro, lockup e flor em SVG ou PNG transparente', ratio: 'wordmark claro 276×86; lockup 220×152; flor 88×88 e 148×180' },
 ];
