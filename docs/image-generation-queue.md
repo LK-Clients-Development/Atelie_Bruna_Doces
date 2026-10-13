@@ -1,5 +1,7 @@
 # Fila de produção de imagens (em lotes)
 
+> **IMAGE PRODUCTION PAUSED — GALLERY ART DIRECTION GATE.** A produção das imagens restantes está congelada até a direção de arte da galeria (Concept 09 V2) ser fechada. A fila abaixo foi mantida intacta: nada foi apagado nem gerado.
+
 > Gerada por `tools/build-portfolio-docs.mjs` (2026-10-13). **Prioridade EDITORIAL (`EDITORIAL_PRIORITY`), não comercial: não existe dado de venda.** Nada de produzir 126 imagens de uma vez: um lote por vez, aprovado antes do próximo.
 
 ## Critérios

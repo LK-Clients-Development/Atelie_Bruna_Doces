@@ -60,3 +60,31 @@ Desktop: galeria à esquerda, informações à direita. Mobile (≤ 767px): folh
 - Descrições vêm **literais** do Yooga (inclusive erros como "garantr"/"matlda" na Fatia Chocolatuda e a nota comercial de calda): a Bruna deve revisar o texto antes de ele ser tratado como editorial.
 - Textos novos da página (`PRODUCTS_PAGE` em `src/data/site.ts`) precisam de aprovação da Bruna.
 - O site segue `noindex, nofollow`.
+
+## Direção de arte: Concept 09 V2 (álbum editorial)
+
+> **Fonte de verdade visual** da página: `docs/qa/portfolio-gallery/concept-09-v2.webp`. Comparação com a implementação: `docs/qa/portfolio-gallery/compare-1440.webp`. As fotografias do Concept são só direção visual: não são produtos adicionais.
+
+A camada de apresentação deixou de ser "grade de cards" e passou a ser **fotografia dominante, capítulos e blocos assimétricos**. A engenharia (dados, busca, filtro, modal, `?produto=`, provenance) não mudou.
+
+| Peça | Arquivo | Papel |
+|---|---|---|
+| Layout por categoria | `src/data/portfolio-layout.ts` | variante visual de cada capítulo + textos de capítulo + `planBlocks` (variante × nº de produtos → blocos) |
+| Capítulo | `src/components/PortfolioChapter.astro` | coluna editorial (número, título, texto, "Explorar") + blocos de fotos |
+| Tile | `src/components/PortfolioTile.astro` | uma fotografia com legenda sobreposta (nome + "Ver criação →"); sem caixa, borda, preço ou descrição |
+| CSS | `src/styles/products.css` | Hero, busca, trilho, intro, capítulos, blocos, tiles (CSS Grid; absoluto só em legenda/decoração) |
+
+**Blocos** (templates de grid reutilizáveis): `solo`, `duo`, `feature3`, `mosaic5`, `wide4`, `trio`, `stagger`. **Variantes por categoria:** `feature` (Bolos, Doces e bombons, Cookies, Bolos de pote, Açaí), `mosaic` (Fatias, Geladinhos), `strip` (Sobremesas no copo, Caseirinhos), `editorial` (Coxinhas doces, Cheesecakes e tortas, Cones trufados, Salgados). Mudar a composição de uma categoria = mudar uma linha em `CHAPTER_LAYOUT`; não há CSS por produto. A foto grande troca de lado alternadamente (`pblock--flip`).
+
+Regras:
+
+- **Tile = 01-source.** Exceção documentada: o tile **protagonista** de um capítulo (o primeiro) pode usar a `03-angle` gerada e aprovada quando existir (Chocolatuda em Fatias, Bolo de cenoura em Bolos), porque as fotos do Yooga têm no máximo 500 px e ficariam muito ampliadas num tile grande. As outras fotos só existem no modal.
+- **Ordem no capítulo:** produtos mais completos primeiro; em empate, a foto mais larga lidera.
+- **Busca:** blocos fixos não valem com itens ocultos; durante a busca (`data-searching`) eles viram uma grade simples. O filtro por categoria mostra o capítulo inteiro.
+- **Mobile/tablet (≤ 1023 px):** composição própria, não o mosaico miniaturizado: protagonista em linha inteira + pares; foto sozinha na última linha também ocupa a linha. Hero: foto e papéis acima do texto.
+- **Hover:** zoom de 1,04 na foto e seta deslocada; `prefers-reduced-motion` desliga. Legenda sobre degradê (contraste do nome ≥ 4,5:1 no pior caso).
+- **Sem JS:** tudo é HTML/CSS; cada tile leva ao WhatsApp com o nome do produto.
+
+**Copy nova da página** (frases manuscritas do Hero e do álbum e o texto dos capítulos): `NEEDS_BRUNA_APPROVAL` quando vem do Concept e afirma algo, `DRAFT` quando só resume o Yooga. Tudo listado em `docs/portfolio-copy-review.md`.
+
+**Limite conhecido:** as fotos do Yooga são ≤ 500 px; os tiles grandes ampliam até ~1,6×. A correção real é ter fotos de maior resolução (fila de produção, hoje pausada: `IMAGE PRODUCTION PAUSED — GALLERY ART DIRECTION GATE`).

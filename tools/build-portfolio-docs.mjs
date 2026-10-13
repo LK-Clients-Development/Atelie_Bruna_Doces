@@ -403,6 +403,8 @@ writeFileSync(
   'docs/image-generation-queue.md',
   `# Fila de produção de imagens (em lotes)
 
+> **IMAGE PRODUCTION PAUSED — GALLERY ART DIRECTION GATE.** A produção das imagens restantes está congelada até a direção de arte da galeria (Concept 09 V2) ser fechada. A fila abaixo foi mantida intacta: nada foi apagado nem gerado.
+
 > Gerada por \`tools/build-portfolio-docs.mjs\` (${generatedAt}). **Prioridade EDITORIAL (\`EDITORIAL_PRIORITY\`), não comercial: não existe dado de venda.** Nada de produzir ${T.generationEstimate} imagens de uma vez: um lote por vez, aprovado antes do próximo.
 
 ## Critérios
@@ -569,6 +571,7 @@ Pedir também a **autorização de uso no site** (com o que for fotografado), pa
 // Revisão da copy (SOURCE → EDITORIAL)
 // ---------------------------------------------------------------------------
 const { PORTFOLIO_COPY } = await import('../src/data/portfolio-copy.ts');
+const { CHAPTER_LAYOUT, EDITORIAL_MOMENTS } = await import('../src/data/portfolio-layout.ts');
 writeFileSync(
   'docs/portfolio-copy-review.md',
   `# Copy editorial: SOURCE → EDITORIAL DISPLAY
@@ -581,6 +584,18 @@ writeFileSync(
 | \`DRAFT\` (só correção/limpeza; aguarda revisão da Bruna) | ${T.copy.DRAFT} |
 | \`NEEDS_BRUNA_APPROVAL\` (fonte ambígua ou sem texto) | ${T.copy.NEEDS_BRUNA_APPROVAL} |
 | \`SOURCE_RAW\` (texto de origem sem tratamento) | ${T.copy.SOURCE_RAW} |
+
+## Copy da página (Concept 09 V2): capítulos e momentos editoriais
+
+Textos novos da direção de arte (\`src/data/portfolio-layout.ts\`). \`NEEDS_BRUNA_APPROVAL\` = vem do Concept e afirma algo que a Bruna precisa confirmar; \`DRAFT\` = só resume o que as descrições do Yooga já dizem.
+
+| Onde | Texto | Status | Nota |
+|---|---|---|---|
+| Hero (manuscrito) | ${EDITORIAL_MOMENTS.heroNote.text} | \`${EDITORIAL_MOMENTS.heroNote.status}\` | ${EDITORIAL_MOMENTS.heroNote.note} |
+| Álbum (manuscrito) | ${EDITORIAL_MOMENTS.albumNote.text} | \`${EDITORIAL_MOMENTS.albumNote.status}\` | ${EDITORIAL_MOMENTS.albumNote.note} |
+${EDITORIAL_CATEGORIES.map((c) => { const l = CHAPTER_LAYOUT[c.slug]; return `| Capítulo ${c.name} | ${l.blurb}${l.detail ? ' ' + l.detail : ''} | \`${l.status}\` | ${l.note ?? ''} |`; }).join('\n')}
+
+## Produtos
 
 ${PORTFOLIO.map((p) => p)
   .filter((p) => p.source)

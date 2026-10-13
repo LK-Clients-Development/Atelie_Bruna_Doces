@@ -9,6 +9,30 @@
 | `NEEDS_BRUNA_APPROVAL` (fonte ambígua ou sem texto) | 10 |
 | `SOURCE_RAW` (texto de origem sem tratamento) | 0 |
 
+## Copy da página (Concept 09 V2): capítulos e momentos editoriais
+
+Textos novos da direção de arte (`src/data/portfolio-layout.ts`). `NEEDS_BRUNA_APPROVAL` = vem do Concept e afirma algo que a Bruna precisa confirmar; `DRAFT` = só resume o que as descrições do Yooga já dizem.
+
+| Onde | Texto | Status | Nota |
+|---|---|---|---|
+| Hero (manuscrito) | Mais que doces, momentos inesquecíveis. | `NEEDS_BRUNA_APPROVAL` | Frase de marca do Concept; não existe na fonte. |
+| Álbum (manuscrito) | Cada criação conta um pedaço da nossa história. | `NEEDS_BRUNA_APPROVAL` | Frase de marca do Concept; não existe na fonte. |
+| Capítulo Bolos | Nossos clássicos, sempre especiais. Bolos que fazem parte da nossa história, preparados com ingredientes selecionados e muito carinho. | `NEEDS_BRUNA_APPROVAL` | Texto do Concept: "nossa história" e "ingredientes selecionados" são afirmações da marca a confirmar. |
+| Capítulo Fatias | Fatias generosas para adoçar o seu dia. Camadas que se encontram em sabores incríveis, com o equilíbrio perfeito entre massa, recheio e cobertura. | `NEEDS_BRUNA_APPROVAL` | Texto do Concept: "generosas" e "equilíbrio perfeito" são juízos de valor a confirmar. |
+| Capítulo Sobremesas no copo | Camadas de cremes, brownie e frutas, servidas no copo. | `DRAFT` | Resume as descrições do Yooga. |
+| Capítulo Coxinhas doces | Brigadeiro, morango e coberturas em formato de coxinha. | `DRAFT` | Resume as descrições do Yooga. |
+| Capítulo Doces e bombons | Brigadeiro, doce de leite e chocolate em pequenos doces. | `DRAFT` | Resume as descrições do Yooga. |
+| Capítulo Caseirinhos | Massas molhadinhas com recheios e coberturas cremosas. | `DRAFT` | Resume as descrições do Yooga. |
+| Capítulo Cheesecakes e tortas | Bases crocantes, cremes e geleias de frutas. | `DRAFT` | Resume as descrições do Yooga. |
+| Capítulo Cookies | Cookies americanos com chocolate. | `DRAFT` | Resume as descrições do Yooga. |
+| Capítulo Geladinhos | Geladinhos de sabores variados. | `DRAFT` | Resume os nomes do Yooga. |
+| Capítulo Bolos de pote | Massa de chocolate e recheios cremosos no pote. | `DRAFT` | Resume as descrições do Yooga. |
+| Capítulo Cones trufados | Casquinha crocante banhada no chocolate, com brigadeiro. | `DRAFT` | Resume as descrições do Yooga. |
+| Capítulo Salgados | Coxinhas, empada, esfihas e enroladinho. | `DRAFT` | Lista o que o cardápio do Yooga tem. |
+| Capítulo Açaí | Açaí puro, servido na bandeja. | `DRAFT` | Resume a descrição do Yooga. |
+
+## Produtos
+
 ### Bolo de cenoura tamanho família — `DRAFT`
 
 - **SOURCE** (nome): Bolo de cenoura
