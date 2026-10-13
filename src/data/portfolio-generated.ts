@@ -82,7 +82,7 @@ export const GENERATED_IMAGES: Record<number, GeneratedEntry[]> = {
       slot: '04-context',
       kind: 'CONTEXT',
       file: cenouraContext,
-      alt: 'Bolo de cenoura tamanho família servido em prato sobre pano e mesa de madeira, com espátula ao lado',
+      alt: 'Bolo de cenoura tamanho família inteiro, com o furo central visível, em prato branco sobre pano e mesa de madeira, com espátula dourada ao lado',
       generatedAt: '2026-10-13',
       approvedBy: APPROVER,
       approvedAt: '2026-10-13',
