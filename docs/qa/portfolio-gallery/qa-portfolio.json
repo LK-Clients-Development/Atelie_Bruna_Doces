@@ -1,6 +1,6 @@
 {
   "url": "http://localhost:4399/produtos",
-  "passed": 92,
+  "passed": 107,
   "failed": 0,
   "results": [
     {
@@ -11,7 +11,7 @@
     {
       "name": "stats: \"46 criações em 13 categorias\"",
       "ok": true,
-      "detail": "46 criaçõesem 13 categorias"
+      "detail": "46 criações em 13 categorias"
     },
     {
       "name": "preço NÃO aparece na galeria (sem R$, \"a partir de\", oferta, opções, adicionais)",
@@ -62,6 +62,56 @@
       "name": "JSON do modal com 46 produtos",
       "ok": true,
       "detail": ""
+    },
+    {
+      "name": "13 capítulos numerados 01–13 (decorativos, aria-hidden)",
+      "ok": true,
+      "detail": "01,02,03,04,05,06,07,08,09,10,11,12,13"
+    },
+    {
+      "name": "layouts determinísticos por categoria: Bolos=solo, Fatias=mosaic5+trio, Sobremesas=wide4+duo, Salgados=2 stagger",
+      "ok": true,
+      "detail": "{\"b\":[\"solo\"],\"f\":[\"mosaic5\",\"trio\"],\"s\":[\"wide4\",\"duo\"],\"sg\":[\"stagger\",\"stagger\"]}"
+    },
+    {
+      "name": "variação real: pelo menos 6 tipos de bloco diferentes na página",
+      "ok": true,
+      "detail": "pblock--solo,pblock--mosaic5,pblock--trio,pblock--wide4,pblock--duo,pblock--stagger,pblock--feature3"
+    },
+    {
+      "name": "tiles sem caixa: sem borda nem sombra; nenhum card/grid antigo no DOM",
+      "ok": true,
+      "detail": "noBox=true cards=0"
+    },
+    {
+      "name": "categorias = navegação tipográfica (sem imagens), busca \"Buscar uma criação...\"",
+      "ok": true,
+      "detail": "0 Buscar uma criação..."
+    },
+    {
+      "name": "Hero: eyebrow, headline e intro do álbum do Concept",
+      "ok": true,
+      "detail": "Nossas criações | Tem  empre algo para a  ua vontade. | O álbum do Ateliê"
+    },
+    {
+      "name": "Header preservado: sem A Marca/Bruna/Criações/Encomendas/Contato",
+      "ok": true,
+      "detail": "Produtos"
+    },
+    {
+      "name": "Hero com composição fotográfica (3 imagens) e todos os tiles com tamanho útil",
+      "ok": true,
+      "detail": "heroImgs=3 pequenos=0"
+    },
+    {
+      "name": "legenda sobre foto: contraste do nome ≥ 4,5:1 (branco sobre o degradê mais fraco da legenda)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "busca: blocos viram grade simples (sem sobreposição, tiles com tamanho útil)",
+      "ok": true,
+      "detail": "{\"n\":6,\"root\":true,\"minW\":191,\"minH\":239,\"overlap\":false}"
     },
     {
       "name": "busca visível com JS",
@@ -216,7 +266,7 @@
     {
       "name": "?produto=slug abre o produto direto",
       "ok": true,
-      "detail": "Fatia Chocolatuda"
+      "detail": "Fatia nutelluda"
     },
     {
       "name": "deep link: ESC fecha e limpa o parâmetro",
@@ -236,12 +286,12 @@
     {
       "name": "fotos extras só carregam ao abrir (≤ 3 requisições novas ao CDN do Yooga)",
       "ok": true,
-      "detail": "antes=38 depois=38"
+      "detail": "antes=35 depois=36"
     },
     {
       "name": "próxima: foto 2 / 4, miniatura atual, alt descreve a foto",
       "ok": true,
-      "detail": "2 / 4 Fatia Chocolatuda: foto 2 de 4"
+      "detail": "2 / 4 Fatia nutelluda: foto 2 de 4"
     },
     {
       "name": "anterior: volta à foto 1 / 4",
@@ -284,6 +334,31 @@
       "detail": "3 / 4"
     },
     {
+      "name": "Chocolatuda: modal com 4 fotos nativas (Yooga + 02-detail + 03-angle + 04-context), contador \"1 / 4\"",
+      "ok": true,
+      "detail": "[\"https://cdn-production.yooga.com.br/fc2ce19f307250909edaed3f2a9e91a7.jpeg\",\"/_astro/02-detail.gOA2422c.webp\",\"/_astro/03-angle.BUa6w_T_.webp\",\"/_astro/04-context.UeE8js8A.webp\"]"
+    },
+    {
+      "name": "Chocolatuda: as fotos geradas são servidas localmente (/_astro) e carregam",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "tile protagonista (Chocolatuda, líder de Fatias) usa a 03-angle aprovada (1 única imagem); os demais usam só a foto do Yooga",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Chocolatuda: navegação 1/4 → 2/4 → 3/4 → 4/4",
+      "ok": true,
+      "detail": "1 / 4,2 / 4,3 / 4,4 / 4"
+    },
+    {
+      "name": "Bolo de cenoura: 4 fotos na ordem (Yooga, 02-detail, 03-angle, 04-context) e navegação 1/4 → 4/4",
+      "ok": true,
+      "detail": "{\"title\":\"Bolo de cenoura tamanho família\",\"cen\":[\"https://cdn-production.yooga.com.br/ed6ba0b566fc694bfc585d4a12c7f94e.jpeg\",\"/_astro/02-detail.BTF7Km7r.webp\",\"/_astro/03-angle.BlPJaVk3.webp\",\"/_astro/04-context.3QeDjIYV.webp\"],\"cenSeq\":[\"1 / 4\",\"2 / 4\",\"3 / 4\",\"4 / 4\"]}"
+    },
+    {
       "name": "reduced-motion: modal sem animação e troca de foto sem transição",
       "ok": true,
       "detail": "{\"dialog\":\"none\",\"backdrop\":\"none\",\"img\":\"1e-05s\"}"
@@ -309,7 +384,7 @@
       "detail": "https://wa.me/5535984235184 | https://wa.me/5535984235184?text=Ol%C3%A1!%20Tenho%20interesse%20no%20produto%20Bolo%20de%20cenoura%20tamanho%20fam%C3%ADlia."
     },
     {
-      "name": "1440px: sem overflow horizontal (colunas do grid: 4)",
+      "name": "1440px: sem overflow horizontal (colunas do grid: 2)",
       "ok": true,
       "detail": "scrollWidth=1440 innerWidth=1440"
     },
@@ -329,7 +404,7 @@
       "detail": "{\"sw\":1440,\"iw\":1440,\"dw\":1040,\"dh\":720,\"vh\":900,\"actionsBottomOk\":true,\"actionsVisible\":true,\"stageW\":485,\"stageH\":578,\"cta\":[52,52]}"
     },
     {
-      "name": "1280px: sem overflow horizontal (colunas do grid: 4)",
+      "name": "1280px: sem overflow horizontal (colunas do grid: 2)",
       "ok": true,
       "detail": "scrollWidth=1280 innerWidth=1280"
     },
@@ -349,7 +424,7 @@
       "detail": "{\"sw\":1280,\"iw\":1280,\"dw\":1040,\"dh\":720,\"vh\":900,\"actionsBottomOk\":true,\"actionsVisible\":true,\"stageW\":485,\"stageH\":578,\"cta\":[52,52]}"
     },
     {
-      "name": "1024px: sem overflow horizontal (colunas do grid: 3)",
+      "name": "1024px: sem overflow horizontal (colunas do grid: 2)",
       "ok": true,
       "detail": "scrollWidth=1024 innerWidth=1024"
     },
@@ -369,7 +444,7 @@
       "detail": "{\"sw\":1024,\"iw\":1024,\"dw\":963,\"dh\":704,\"vh\":900,\"actionsBottomOk\":true,\"actionsVisible\":true,\"stageW\":452,\"stageH\":565,\"cta\":[52,52]}"
     },
     {
-      "name": "768px: sem overflow horizontal (colunas do grid: 3)",
+      "name": "768px: sem overflow horizontal (colunas do grid: 2)",
       "ok": true,
       "detail": "scrollWidth=768 innerWidth=768"
     },

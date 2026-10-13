@@ -1,6 +1,8 @@
 # QA: portfólio + galeria com modal
 
-`node docs/qa/portfolio-gallery/qa-portfolio.mjs` (com `npm run build && npx astro preview --port 4399`). Resultado: `qa-portfolio.json` (92 verificações) e capturas `gallery-*.webp` / `modal-*.webp` em 1440, 768 e 390.
+`node docs/qa/portfolio-gallery/qa-portfolio.mjs` (com `npm run build && npx astro preview --port 4399`). Resultado: `qa-portfolio.json` (107 verificações) e capturas `gallery-*.webp` / `modal-*.webp` em 1440, 768 e 390.
+
+Capturas da direção de arte (Concept 09 V2): `FULL=1440,1024,768,390 SECTIONS=bolos,fatias,sobremesas-no-copo node docs/qa/portfolio-gallery/capture.mjs` gera `top-<largura>.webp` (primeira dobra, 7 larguras), `sec-<capítulo>-<largura>.webp` e `page-<largura>.webp` (página inteira). `compare-1440.webp` põe o Concept aprovado (`concept-09-v2.webp`) ao lado da implementação.
 
 Larguras testadas para overflow, alvos de toque e modal: 1440, 1280, 1024, 768, 430, 390, 360.
 

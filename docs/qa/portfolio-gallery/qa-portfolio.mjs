@@ -76,15 +76,15 @@ try {
   // =============== dados renderizados ===============
   await open({});
   const d = await ev(`(() => { const q = (s) => [...document.querySelectorAll(s)]; return {
-    cards: q('.pcard').length, items: q('li[data-search]').length, groups: q('[data-group]').length, rail: q('[data-rail-link]').length,
-    fallbacks: q('.pcard__fallback').length, cardImgs: q('.pcard__media > img').length, stats: document.querySelector('.pintro__stats').textContent.replace(/\\s+/g, ' ').trim(),
-    price: /R\\$|\\d+,\\d{2}/.test(document.querySelector('.pcatalog').textContent) || q('.pcard__price, .pcard__badge, .pcard__opts, .putility, .pgift').length > 0,
+    cards: q('.ptile').length, items: q('li[data-search]').length, groups: q('[data-group]').length, rail: q('[data-rail-link]').length,
+    fallbacks: q('.ptile__fallback').length, cardImgs: q('.ptile__media > img').length, stats: document.querySelector('.pintro__stats').textContent.replace(/\\s+/g, ' ').trim(),
+    price: /R\\$|\\d+,\\d{2}/.test(document.querySelector('.pcatalog').textContent) || q('.ptile__price, .ptile__badge, .ptile__opts, .putility, .pgift').length > 0,
     pricesInMarkup: (document.documentElement.innerHTML.match(/R\\$\\s?\\d/g) || []).length,
     forbidden: /a partir de|oferta|adicionais|promo/i.test(document.querySelector('.pcatalog').textContent),
-    cta: [...new Set(q('.pcard__cta').map((a) => a.textContent.replace(/\\s+/g, ' ').trim().replace(/:.*/, '')))], ctaN: q('.pcard__cta[data-open]').length,
-    haspopup: q('.pcard__cta[aria-haspopup=dialog]').length, modalHidden: document.querySelector('[data-modal]').hidden, modalImgs: document.querySelectorAll('.pmodal img').length,
-    primaryOnly: q('.pcard__media > img').length === 44 && q('.pcard img').length === 46, robots: document.querySelector('meta[name=robots]')?.content, h1: q('h1').length,
-    noSize: q('.pcard__media > img').filter((i) => !i.getAttribute('width') || !i.getAttribute('height')).length, lazy: q('.pcard__media > img').filter((i) => i.loading === 'lazy').length, eager: q('.pcard__media > img').filter((i) => i.loading === 'eager').length,
+    cta: [...new Set(q('.ptile__cta').map((a) => a.textContent.replace(/\\s+/g, ' ').trim().replace(/:.*/, '')))], ctaN: q('.ptile[data-open]').length,
+    haspopup: q('.ptile[aria-haspopup=dialog]').length, modalHidden: document.querySelector('[data-modal]').hidden, modalImgs: document.querySelectorAll('.pmodal img').length,
+    primaryOnly: q('.ptile__media > img').length === 44 && q('.ptile img').length === 46, robots: document.querySelector('meta[name=robots]')?.content, h1: q('h1').length,
+    noSize: q('.ptile__media > img').filter((i) => !i.getAttribute('width') || !i.getAttribute('height')).length, lazy: q('.ptile__media > img').filter((i) => i.loading === 'lazy').length, eager: q('.ptile__media > img').filter((i) => i.loading === 'eager').length,
     broken: q('img').filter((i) => i.complete && i.naturalWidth === 0 && i.loading !== 'lazy').length,
     cakes: { mode: document.querySelector('[data-cakes-cta]')?.dataset.cakesCta, prices: /R\\$/.test(document.querySelector('.pcakes')?.textContent ?? '') },
     json: JSON.parse(document.getElementById('portfolio-data').textContent).length }; })()`);
@@ -101,8 +101,33 @@ try {
   check('noindex mantido, 1 h1', /noindex/.test(d.robots) && d.h1 === 1, d.robots);
   check('JSON do modal com 46 produtos', d.json === 46);
 
+  // =============== direção de arte (Concept 09 V2) ===============
+  const art = await ev(`(() => { const q = (s) => [...document.querySelectorAll(s)]; const kinds = (id) => q('#' + id + ' .pblock').map((b) => [...b.classList].find((c) => /^pblock--(?!flip)/.test(c)).replace('pblock--', ''));
+    const t = document.querySelector('.ptile'); const cs = getComputedStyle(t);
+    return { nums: q('.pchapter__num').map((e) => e.textContent), variants: [...new Set(q('.pblock').map((b) => [...b.classList].find((c) => /^pblock--(?!flip)/.test(c))))],
+      bolos: kinds('bolos'), fatias: kinds('fatias'), sobremesas: kinds('sobremesas-no-copo'), salgados: kinds('salgados'),
+      noBox: cs.borderTopWidth === '0px' && cs.boxShadow === 'none' && !q('.ptile').some((e) => getComputedStyle(e).borderTopWidth !== '0px'),
+      railImgs: q('.prail img').length, placeholder: document.querySelector('[data-search-input]').placeholder, h1: document.querySelector('h1').textContent.replace(/\s+/g, ' ').trim(),
+      eyebrow: document.querySelector('.phero .eyebrow').textContent.trim(), album: document.querySelector('.pintro .eyebrow').textContent.trim(),
+      cards: q('.pcard, .pgroup__grid').length, heroImgs: q('.phero__art img').length, tilesNoSize: q('.ptile').filter((e) => e.getBoundingClientRect().height < 80 || e.getBoundingClientRect().width < 80).length,
+      headerLinks: q('.site-nav a').map((a) => a.textContent.trim()).filter(Boolean) }; })()`);
+  check('13 capítulos numerados 01–13 (decorativos, aria-hidden)', art.nums.join() === Array.from({ length: 13 }, (_, i) => String(i + 1).padStart(2, '0')).join() && await ev(`[...document.querySelectorAll('.pchapter__num')].every((e) => e.getAttribute('aria-hidden') === 'true')`), art.nums.join());
+  check('layouts determinísticos por categoria: Bolos=solo, Fatias=mosaic5+trio, Sobremesas=wide4+duo, Salgados=2 stagger', art.bolos.join() === 'solo' && art.fatias.join() === 'mosaic5,trio' && art.sobremesas.join() === 'wide4,duo' && art.salgados.join() === 'stagger,stagger', JSON.stringify({ b: art.bolos, f: art.fatias, s: art.sobremesas, sg: art.salgados }));
+  check('variação real: pelo menos 6 tipos de bloco diferentes na página', art.variants.length >= 6, art.variants.join());
+  check('tiles sem caixa: sem borda nem sombra; nenhum card/grid antigo no DOM', art.noBox && art.cards === 0, `noBox=${art.noBox} cards=${art.cards}`);
+  check('categorias = navegação tipográfica (sem imagens), busca "Buscar uma criação..."', art.railImgs === 0 && art.placeholder === 'Buscar uma criação...', `${art.railImgs} ${art.placeholder}`);
+  check('Hero: eyebrow, headline e intro do álbum do Concept', art.eyebrow === 'Nossas criações' || /NOSSAS CRIAÇÕES/i.test(art.eyebrow) && /Tem sempre algo para a sua vontade\./.test(art.h1) && /álbum do ateliê/i.test(art.album), `${art.eyebrow} | ${art.h1} | ${art.album}`);
+  check('Header preservado: sem A Marca/Bruna/Criações/Encomendas/Contato', !art.headerLinks.some((t) => /marca|bruna$|criações|encomendas|contato/i.test(t)), art.headerLinks.join('|'));
+  check('Hero com composição fotográfica (3 imagens) e todos os tiles com tamanho útil', art.heroImgs >= 2 && art.tilesNoSize === 0, `heroImgs=${art.heroImgs} pequenos=${art.tilesNoSize}`);
+  check('legenda sobre foto: contraste do nome ≥ 4,5:1 (branco sobre o degradê mais fraco da legenda)', await ev(`(() => { const lum = (r, g, b) => { const f = (v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; }; return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b); }; const bg = getComputedStyle(document.querySelector('.ptile__cap')).backgroundImage; if (!bg.includes('0.62')) return false; /* pior caso: foto branca sob o degradê na altura do nome (~52%): alfa 0.62 */ const bgc = 255 * 0.38 + 24 * 0.62; const L = lum(bgc, 255 * 0.38 + 11 * 0.62, 255 * 0.38 + 5 * 0.62); const Lt = lum(255, 250, 246); return (Lt + 0.05) / (L + 0.05) >= 4.5; })()`));
+  // modo resultado de busca: grade simples sem buracos
+  await ev(`(() => { const i = document.querySelector('[data-search-input]'); i.value = 'copo'; i.dispatchEvent(new Event('input', { bubbles: true })); })()`); await sleep(200);
+  const sm = await ev(`(() => { const t = [...document.querySelectorAll('.ptile')].filter((e) => e.offsetParent); const r = t.map((e) => e.getBoundingClientRect()); return { n: t.length, root: document.querySelector('.products-page').hasAttribute('data-searching'), minW: Math.round(Math.min(...r.map((x) => x.width))), minH: Math.round(Math.min(...r.map((x) => x.height))), overlap: r.some((a, i) => r.some((b, j) => j > i && a.left < b.right - 1 && b.left < a.right - 1 && a.top < b.bottom - 1 && b.top < a.bottom - 1)) }; })()`);
+  check('busca: blocos viram grade simples (sem sobreposição, tiles com tamanho útil)', sm.root && sm.n >= 5 && sm.minW > 120 && sm.minH > 120 && !sm.overlap, JSON.stringify(sm));
+  await ev(`document.querySelector('[data-reset]')?.click(); (() => { const i = document.querySelector('[data-search-input]'); i.value = ''; i.dispatchEvent(new Event('input', { bubbles: true })); })()`);
+
   // =============== busca ===============
-  const visible = `[...document.querySelectorAll('li[data-search]')].filter((l) => !l.hidden).map((l) => l.querySelector('.pcard__name').textContent.trim())`;
+  const visible = `[...document.querySelectorAll('li[data-search]')].filter((l) => !l.hidden).map((l) => l.querySelector('.ptile__name').textContent.trim())`;
   const type = (t) => ev(`(() => { const i = document.querySelector('[data-search-input]'); i.value = ${JSON.stringify(t)}; i.dispatchEvent(new Event('input', { bubbles: true })); })()`);
   check('busca visível com JS', await ev(`!document.querySelector('[data-search-wrap]').hidden`));
   await type('acai'); let v = await ev(visible);
@@ -236,7 +261,7 @@ try {
   const choc = await ev(`[...document.querySelectorAll('.pmodal__thumb img')].map((i) => i.src.replace(location.origin, ''))`);
   check('Chocolatuda: modal com 4 fotos nativas (Yooga + 02-detail + 03-angle + 04-context), contador "1 / 4"', m.thumbs === 4 && m.count === '1 / 4' && /yooga/.test(choc[0]) && choc.slice(1).every((u) => /_astro/.test(u)), JSON.stringify(choc));
   check('Chocolatuda: as fotos geradas são servidas localmente (/_astro) e carregam', await ev(`(async () => { const r = await Promise.all([...document.querySelectorAll('.pmodal__thumb img')].slice(1).map((i) => fetch(i.src).then((x) => x.ok))); return r.every(Boolean); })()`));
-  check('Chocolatuda: o card continua mostrando só a foto principal (Yooga)', await ev(`(() => { const img = document.querySelector('[data-slug="fatia-chocolatuda"] .pcard__media > img'); return /yooga/.test(img.src) && document.querySelectorAll('[data-slug="fatia-chocolatuda"] img').length === 1; })()`));
+  check('tile protagonista (Chocolatuda, líder de Fatias) usa a 03-angle aprovada (1 única imagem); os demais usam só a foto do Yooga', await ev(`(() => { const t = document.querySelector('[data-slug="fatia-chocolatuda"]'); const m = document.querySelector('[data-slug="fatia-maracolate"]'); return t.querySelectorAll('img').length === 1 && /03-angle/.test(t.querySelector('img').src) && m.querySelectorAll('img').length === 1 && /yooga/.test(m.querySelector('img').src); })()`));
   const seq = [m.count];
   for (let i = 0; i < 3; i++) { await ev(`document.querySelector('[data-next]').click()`); await sleep(500); seq.push((await modalState()).count); }
   check('Chocolatuda: navegação 1/4 → 2/4 → 3/4 → 4/4', seq.join(',') === '1 / 4,2 / 4,3 / 4,4 / 4', seq.join(','));
@@ -268,7 +293,7 @@ try {
 
   // =============== sem JS ===============
   await open({ js: false });
-  const nojs = await ev(`(() => ({ cards: document.querySelectorAll('.pcard').length, vis: [...document.querySelectorAll('.pcard')].filter((c) => getComputedStyle(c).opacity === '1' && c.getBoundingClientRect().height > 0).length, modalDisplay: getComputedStyle(document.querySelector('[data-modal]')).display, searchHidden: document.querySelector('[data-search-wrap]').hidden, anchors: document.querySelectorAll('[data-rail-link]').length, hrefs: [...new Set([...document.querySelectorAll('.pcard__cta')].map((a) => a.href.split('?')[0]))], dead: [...document.querySelectorAll('.pcard__cta')].filter((a) => !a.href || a.getAttribute('href') === '#').length, msg: document.querySelector('.pcard__cta').href }))()`).catch(() => null);
+  const nojs = await ev(`(() => ({ cards: document.querySelectorAll('.ptile').length, vis: [...document.querySelectorAll('.ptile')].filter((c) => getComputedStyle(c).opacity === '1' && c.getBoundingClientRect().height > 0).length, modalDisplay: getComputedStyle(document.querySelector('[data-modal]')).display, searchHidden: document.querySelector('[data-search-wrap]').hidden, anchors: document.querySelectorAll('[data-rail-link]').length, hrefs: [...new Set([...document.querySelectorAll('.ptile')].map((a) => a.href.split('?')[0]))], dead: [...document.querySelectorAll('.ptile')].filter((a) => !a.href || a.getAttribute('href') === '#').length, msg: document.querySelector('.ptile').href }))()`).catch(() => null);
   check('sem JS: galeria completa visível, modal oculto, categorias por âncora, busca oculta', nojs && nojs.cards === 46 && nojs.vis === 46 && nojs.modalDisplay === 'none' && nojs.searchHidden && nojs.anchors === 14, JSON.stringify(nojs));
   check('sem JS: nenhum card morto (todos levam ao WhatsApp com o nome do produto)', nojs && nojs.dead === 0 && nojs.hrefs.length === 1 && nojs.hrefs[0] === 'https://wa.me/5535984235184' && /text=/.test(nojs.msg), `${nojs?.hrefs} | ${nojs?.msg}`);
 
@@ -276,14 +301,14 @@ try {
   for (const w of [1440, 1280, 1024, 768, 430, 390, 360]) {
     await open({ width: w });
     const o = await ev(`(() => ({ sw: document.documentElement.scrollWidth, iw: innerWidth,
-      small: [...document.querySelectorAll('.pcard, .prail__item, .psearch__go, .pempty__btn, .pbtn')].filter((e) => { const r = e.getBoundingClientRect(); return r.height > 0 && (r.height < 43.5 || r.width < 43.5); }).map((e) => e.className + ':' + Math.round(e.getBoundingClientRect().height) + 'x' + Math.round(e.getBoundingClientRect().width)).slice(0, 4),
+      small: [...document.querySelectorAll('.ptile, .prail__item, .psearch__go, .pempty__btn, .pbtn, .pchapter__explore')].filter((e) => { const r = e.getBoundingClientRect(); return r.height > 0 && (r.height < 43.5 || r.width < 43.5); }).map((e) => e.className + ':' + Math.round(e.getBoundingClientRect().height) + 'x' + Math.round(e.getBoundingClientRect().width)).slice(0, 4),
       tiny: [...document.querySelectorAll('main *')].filter((e) => !(e instanceof SVGElement) && e.children.length === 0 && e.textContent.trim() && parseFloat(getComputedStyle(e).fontSize) < 11.99 && getComputedStyle(e).visibility !== 'hidden' && e.getBoundingClientRect().width > 2).map((e) => e.className + ':' + getComputedStyle(e).fontSize).slice(0, 4),
-      cols: getComputedStyle(document.querySelector('.pgroup__grid')).gridTemplateColumns.split(' ').length }))()`);
+      cols: getComputedStyle(document.querySelector('.pblock')).gridTemplateColumns.split(' ').length }))()`);
     check(`${w}px: sem overflow horizontal (colunas do grid: ${o.cols})`, o.sw <= o.iw, `scrollWidth=${o.sw} innerWidth=${o.iw}`);
     check(`${w}px: alvos interativos ≥ 44px (card inteiro é o alvo do link)`, o.small.length === 0, o.small.join(' '));
     check(`${w}px: texto ≥ 12px`, o.tiny.length === 0, o.tiny.join(' '));
     // galeria
-    await ev(`document.querySelector('#fatias').scrollIntoView(); document.querySelectorAll('.pcard').forEach((c) => c.classList.add('is-in')); window.scrollBy(0, -90); 1`); await sleep(500);
+    await ev(`document.querySelector('#fatias').scrollIntoView(); document.querySelectorAll('.ptile').forEach((c) => c.classList.add('is-in')); window.scrollBy(0, -90); 1`); await sleep(500);
     if ([1440, 768, 390].includes(w)) await shot(`gallery-${w}.webp`);
     // modal (4 fotos)
     await openCard('fatia-nutelluda'); await sleep(900);
