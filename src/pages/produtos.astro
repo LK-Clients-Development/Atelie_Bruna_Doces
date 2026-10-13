@@ -31,6 +31,7 @@ import { IMAGES } from '../data/images';
 import { EDITORIAL_CATEGORIES, PORTFOLIO, getDisplayableImages } from '../data/portfolio';
 import { normalizeSearchText } from '../lib/search';
 import '../styles/products.css';
+import '../styles/product-modal.css';
 
 const page = PRODUCTS_PAGE;
 
@@ -177,9 +178,9 @@ const cakesLabel = menuReady ? page.cakes.ctaMenu : page.cakes.ctaFallback;
               <p class="pgroup__count">{count(group.products.length, 'criação', 'criações')}</p>
             </div>
             <ul class="pgroup__grid" role="list">
-              {group.products.map((product, index) => (
+              {group.products.map((product) => (
                 <li data-search={searchText.get(product.slug)}>
-                  <PortfolioCard product={product} eager={group === groups[0] && index < 4} />
+                  <PortfolioCard product={product} />
                 </li>
               ))}
             </ul>
@@ -235,7 +236,36 @@ const cakesLabel = menuReady ? page.cakes.ctaMenu : page.cakes.ctaFallback;
 
   <Footer base="/" />
 
+  {/* Modal de produto: preenchido por src/scripts/products.ts; as fotos só carregam ao abrir */}
+  <div class="pmodal" data-modal hidden>
+    <div class="pmodal__backdrop" data-modal-close></div>
+    <div class="pmodal__dialog" role="dialog" aria-modal="true" aria-labelledby="pmodal-title" tabindex="-1" data-dialog>
+      <button class="pmodal__close" type="button" data-modal-close aria-label="Fechar"><Icon name="close" size={22} /></button>
+      <div class="pmodal__scroll">
+        <div class="pmodal__gallery" role="group" aria-roledescription="galeria" aria-label="Fotos da criação">
+          <div class="pmodal__stage" data-stage>
+            <button class="pmodal__nav pmodal__nav--prev" type="button" data-prev aria-label="Foto anterior" hidden><Icon name="arrow" size={22} /></button>
+            <button class="pmodal__nav pmodal__nav--next" type="button" data-next aria-label="Próxima foto" hidden><Icon name="arrow" size={22} /></button>
+            <p class="pmodal__count" data-count aria-live="polite" hidden></p>
+          </div>
+          <ul class="pmodal__thumbs" role="list" data-thumbs hidden></ul>
+        </div>
+        <div class="pmodal__info">
+          <p class="pmodal__cat" data-m-cat></p>
+          <h2 class="pmodal__title" id="pmodal-title" data-m-title></h2>
+          <p class="pmodal__desc" data-m-desc></p>
+        </div>
+      </div>
+      <div class="pmodal__actions">
+        <a class="pbtn" href={LINKS.whatsapp} target="_blank" rel="noopener" data-m-wa><Icon name="whatsapp" size={22} /><span>Quero este produto</span><span class="sr-only"> (abre o WhatsApp em nova aba)</span></a>
+        <a class="pbtn pbtn--ghost" href={LINKS.cardapio} target="_blank" rel="noopener" data-m-yooga><span>Ver cardápio no Yooga</span><span class="sr-only"> (abre em nova aba)</span><Icon name="arrow" size={22} /></a>
+      </div>
+    </div>
+  </div>
+  <script type="application/json" id="portfolio-data" set:html={JSON.stringify(modalData)} />
+
   <script>
     import '../scripts/products';
+    import '../scripts/product-modal';
   </script>
 </BaseLayout>

@@ -16,11 +16,9 @@ import { EDITORIAL_CATEGORIES, type PortfolioProduct } from '../data/portfolio';
 
 interface Props {
   product: PortfolioProduct;
-  /** Primeira linha do grid: a foto não é lazy (evita atraso no LCP). */
-  eager?: boolean;
 }
 
-const { product, eager = false } = Astro.props;
+const { product } = Astro.props;
 const hero = product.heroImage;
 const category = EDITORIAL_CATEGORIES.find((c) => c.slug === product.category)!.name;
 const href = product.purchase.whatsappHref ?? '#';
@@ -35,7 +33,7 @@ const href = product.purchase.whatsappHref ?? '#';
           width={hero.width ?? undefined}
           height={hero.height ?? undefined}
           alt=""
-          loading={eager ? 'eager' : 'lazy'}
+          loading="lazy"
           decoding="async"
         />
       ) : (
