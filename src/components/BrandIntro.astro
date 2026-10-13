@@ -1,0 +1,124 @@
+---
+/**
+ * BRAND INTRO: assinatura de entrada da marca (flor desenhada → bloom → pousa no "o" da logo → o site abre).
+ * NÃO é loading: é uma camada de apresentação de ~1,75 s sobre um site que já está sendo renderizado por trás.
+ *
+ * Primeiro filho do <body> (existe no primeiro frame). Estilos críticos e a decisão "primeira visita da sessão":
+ * src/components/BrandIntroHead.astro (no <head>). Aqui: markup decorativo (aria-hidden, sem foco) + controller.
+ *
+ * Flor: SVG VETORIAL traçado da logo oficial (src/data/brand-flower.ts, gerado por tools/build-brand-flower.mjs).
+ * Wordmark: o asset oficial da logo SEM a flor (a flor vetorial ocupa o lugar do "o": nada de refazer o texto com fonte parecida).
+ * Motion: Web Animations API (sem biblioteca, sem GSAP, sem esperar o bundle): o controller é inline e começa no 1º frame.
+ *
+ *  timeline (ms)                                   total ≈ 1700
+ *    0–180     miolo: opacity 0→1, scale .85→1
+ *    180–765   6 pétalas traçadas em sequência (55 ms de stagger, 340 ms cada; stroke-dashoffset numa máscara)
+ *    765–1000  bloom: scale .98 → 1.03 → 1
+ *    990–1320  a flor desce ao tamanho da logo e pousa no "o"; 1010–1330 o nome sobe e aparece (translateY 7→0)
+ *    1400–1700 o site é revelado por trás e a camada some (opacity 1→0, scale 1→1.015)
+ *  prefers-reduced-motion: sem desenho nem movimento; logo pronta em fade de 160 ms; sai em ~500 ms no total.
+ *  FAILSAFE: 2,5 s (head) remove tudo mesmo que este script falhe.
+ */
+import { Image } from 'astro:assets';
+import { BRAND_FLOWER as F } from '../data/brand-flower';
+import wordmark from '../assets/brand/atelie-doces-bruna-logo-sem-flor.png';
+---
+
+<div class="brand-intro" data-brand-intro aria-hidden="true">
+  <div class="brand-intro__stage">
+    <Image
+      class="brand-intro__word"
+      src={wordmark}
+      alt=""
+      widths={[440, 880]}
+      sizes="(max-width: 564px) 78vw, 440px"
+      loading="eager"
+      fetchpriority="high"
+      quality={95}
+    />
+    <div class="brand-intro__flower">
+      <div class="brand-intro__bloom">
+        <svg class="brand-intro__svg" viewBox={F.viewBox} focusable="false" aria-hidden="true">
+          <defs>
+            <mask id="brand-intro-mask" maskUnits="userSpaceOnUse" x="0" y="0" width={F.width} height={F.height}>
+              {F.masks.map((d) => <path class="brand-intro__mask" d={d} pathLength="1" />)}
+            </mask>
+          </defs>
+          <circle class="brand-intro__dot" cx={F.dot.cx} cy={F.dot.cy} r={F.dot.r} fill={F.color}></circle>
+          <path d={F.petals} fill={F.color} fill-rule="evenodd" mask="url(#brand-intro-mask)"></path>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var root = document.documentElement;
+    var el = document.querySelector('[data-brand-intro]');
+    if (!el || !root.classList.contains('intro-pending')) return;
+
+    var finished = false;
+    function finish() {
+      if (finished) return;
+      finished = true;
+      root.classList.remove('intro-pending');
+      root.classList.remove('intro-leaving');
+      if (el.parentNode) el.parentNode.removeChild(el);
+    }
+    // o site aparece por trás (sai de intro-pending) enquanto a camada ainda cobre (intro-leaving)
+    function reveal() {
+      root.classList.add('intro-leaving');
+      root.classList.remove('intro-pending');
+    }
+    if (!el.animate) {
+      setTimeout(reveal, 400);
+      setTimeout(finish, 700);
+      return;
+    }
+
+    var stage = el.querySelector('.brand-intro__stage');
+    var word = el.querySelector('.brand-intro__word');
+    var pos = el.querySelector('.brand-intro__flower');
+    var bloom = el.querySelector('.brand-intro__bloom');
+    var dot = el.querySelector('.brand-intro__dot');
+    var masks = el.querySelectorAll('.brand-intro__mask');
+    var ease = 'cubic-bezier(0.22, 0.61, 0.36, 1)';
+    function play(node, frames, opts) {
+      opts.fill = 'both';
+      if (!opts.easing) opts.easing = ease;
+      return node.animate(frames, opts);
+    }
+
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      for (var i = 0; i < masks.length; i++) masks[i].style.strokeDashoffset = '0';
+      dot.style.opacity = '1';
+      word.style.opacity = '1';
+      play(stage, [{ opacity: 0 }, { opacity: 1 }], { duration: 160 });
+      setTimeout(reveal, 300);
+      play(el, [{ opacity: 1 }, { opacity: 0 }], { delay: 300, duration: 200, easing: 'ease-out' }).onfinish = finish;
+      setTimeout(finish, 2500);
+      return;
+    }
+
+    // a flor começa grande no centro da janela e termina no tamanho do "o" da logo
+    var r = pos.getBoundingClientRect();
+    var bigH = Math.min(156, Math.max(104, innerWidth * 0.1 + 24));
+    var s = bigH / r.height;
+    var dx = innerWidth / 2 - (r.left + r.width / 2);
+    var dy = innerHeight / 2 - (r.top + r.height / 2);
+    var from = 'translate(' + dx.toFixed(1) + 'px,' + dy.toFixed(1) + 'px) scale(' + s.toFixed(3) + ')';
+
+    play(dot, [{ opacity: 0, transform: 'scale(0.85)' }, { opacity: 1, transform: 'scale(1)' }], { duration: 180 });
+    for (var k = 0; k < masks.length; k++) {
+      play(masks[k], [{ strokeDashoffset: 1.001 }, { strokeDashoffset: 0 }], { delay: 180 + k * 55, duration: 340, easing: 'cubic-bezier(0.45, 0.05, 0.35, 1)' });
+    }
+    play(bloom, [{ transform: 'scale(0.98)' }, { transform: 'scale(1.03)', offset: 0.5 }, { transform: 'scale(1)' }], { delay: 765, duration: 235 });
+    play(pos, [{ transform: from }, { transform: 'translate(0,0) scale(1)' }], { delay: 990, duration: 330, easing: 'cubic-bezier(0.55, 0, 0.2, 1)' });
+    play(word, [{ opacity: 0, transform: 'translateY(7px)' }, { opacity: 1, transform: 'translateY(0)' }], { delay: 1010, duration: 320 });
+    setTimeout(reveal, 1400);
+    play(stage, [{ transform: 'scale(1)' }, { transform: 'scale(1.015)' }], { delay: 1400, duration: 300, easing: 'ease-out' });
+    play(el, [{ opacity: 1 }, { opacity: 0 }], { delay: 1400, duration: 300, easing: 'ease-out' }).onfinish = finish;
+    setTimeout(finish, 2500);
+  })();
+</script>

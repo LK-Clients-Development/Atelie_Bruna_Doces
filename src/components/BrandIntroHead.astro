@@ -1,0 +1,111 @@
+---
+/**
+ * Brand intro: parte CRÍTICA, no <head> (src/components/BrandIntro.astro tem o markup e o motion).
+ *
+ * - Decide, antes do primeiro frame, se esta é a primeira entrada da SESSÃO (`sessionStorage.brunaBrandIntroSeen`).
+ *   Só então marca <html class="intro-pending">. Sem JS a classe nunca existe: o overlay é `display: none` e o site
+ *   abre normalmente (nada preso).
+ * - A flag é gravada na hora: recarregar ou navegar não repete; nova aba/sessão repete. Se o storage estiver
+ *   bloqueado, a intro simplesmente não roda.
+ * - FAILSAFE: em 2,5 s as classes saem, aconteça o que acontecer (o controller do motion pode ter falhado).
+ * - Primeiro frame: fundo creme (o mesmo da intro) e o resto do site `visibility: hidden` (continua sendo
+ *   carregado e renderizado, só não aparece), então não há "site → flash → intro → site".
+ * - Durante a intro, animações CSS do site ficam pausadas: a entrada do Hero acontece quando a marca "abre" o site.
+ * - Scroll travado só enquanto a intro existe (`scrollbar-gutter: stable` evita salto de layout ao restaurar).
+ * - O overlay é `position: fixed` (CLS 0), com z-index 300 (Header 100; menu e modal 200).
+ */
+---
+
+<script is:inline>
+  (function () {
+    var root = document.documentElement;
+    try {
+      if (sessionStorage.getItem('brunaBrandIntroSeen')) return;
+      sessionStorage.setItem('brunaBrandIntroSeen', '1');
+    } catch (e) {
+      return;
+    }
+    root.classList.add('intro-pending');
+    setTimeout(function () {
+      root.classList.remove('intro-pending');
+      root.classList.remove('intro-leaving');
+    }, 2500);
+  })();
+</script>
+
+<style is:inline>
+  html.intro-pending,
+  html.intro-leaving {
+    overflow: hidden;
+    scrollbar-gutter: stable;
+  }
+  html.intro-pending {
+    background: var(--color-cream-100, #fbf3eb);
+  }
+  html.intro-pending body > :not(.brand-intro) {
+    visibility: hidden !important;
+  }
+  html.intro-pending *,
+  html.intro-pending *::before,
+  html.intro-pending *::after {
+    animation-play-state: paused !important;
+  }
+
+  .brand-intro {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    place-items: center;
+    background: var(--color-cream-100, #fbf3eb);
+    overflow: hidden;
+  }
+  html.intro-pending .brand-intro,
+  html.intro-leaving .brand-intro {
+    display: grid;
+  }
+  html.intro-leaving .brand-intro {
+    pointer-events: none;
+  }
+  .brand-intro__stage {
+    position: relative;
+    width: min(78vw, 440px);
+    aspect-ratio: 1944 / 510;
+  }
+  .brand-intro__word {
+    display: block;
+    width: 100%;
+    height: auto;
+    opacity: 0;
+  }
+  /* posição EXATA do "o" da logo: onde a flor pousa */
+  .brand-intro__flower {
+    position: absolute;
+    left: 11.73%;
+    top: 35.49%;
+    width: 13.68%;
+    aspect-ratio: 266 / 290;
+    transform-origin: 50% 50%;
+  }
+  .brand-intro__bloom,
+  .brand-intro__svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+  .brand-intro__dot {
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  .brand-intro__mask {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 30;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 1 2;
+    stroke-dashoffset: 1.001;
+  }
+</style>

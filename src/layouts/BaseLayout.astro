@@ -9,6 +9,8 @@ import '../styles/content.css'; // depois do global: as classes de seção vence
 import '../styles/responsive.css'; // toda a adaptação tablet/mobile num só lugar
 import '../styles/motion.css'; // estados iniciais do motion (só valem com html.motion-ready)
 import Header from '../components/Header.astro';
+import BrandIntro from '../components/BrandIntro.astro';
+import BrandIntroHead from '../components/BrandIntroHead.astro';
 import { BRAND, SEO, STRUCTURED_DATA } from '../data/site';
 import { resolveSeo } from '../lib/seo';
 import { buildStructuredData } from '../lib/structured-data';
@@ -32,6 +34,8 @@ const jsonLd = STRUCTURED_DATA.enabled ? buildStructuredData(seo.siteUrl, seo.og
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {/* Brand intro (primeira visita da sessão): decisão e estilos críticos antes do primeiro frame */}
+    <BrandIntroHead />
     <title>{seo.title}</title>
     {seo.description && <meta name="description" content={seo.description} />}
     {/* Enquanto houver assets/textos/dados provisórios a página fica fora dos buscadores
@@ -58,6 +62,8 @@ const jsonLd = STRUCTURED_DATA.enabled ? buildStructuredData(seo.siteUrl, seo.og
     </script>
   </head>
   <body>
+    {/* Intro de marca: 1º filho do body, decorativa (aria-hidden), só aparece na primeira entrada da sessão */}
+    <BrandIntro />
     <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
     <Header {...header} />
     <slot />

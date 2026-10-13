@@ -1,0 +1,97 @@
+{
+  "base": "http://localhost:4399",
+  "passed": 18,
+  "failed": 0,
+  "results": [
+    {
+      "name": "1. nova sessão → Home: a intro aparece (classe + overlay visível + site oculto por trás)",
+      "ok": true,
+      "detail": "{\"pending\":true,\"overlay\":\"grid\",\"headerVis\":\"hidden\"}"
+    },
+    {
+      "name": "1b. primeiro frame: já no DOMContentLoaded o site está oculto e o overlay creme visível (sem \"site → flash → intro\")",
+      "ok": true,
+      "detail": "{\"pending\":true,\"headerVisibility\":\"hidden\",\"overlayDisplay\":\"grid\",\"htmlBg\":\"rgb(251, 243, 235)\"}"
+    },
+    {
+      "name": "1c. a intro termina sozinha e tudo é restaurado (classes, overlay removido do DOM, scroll liberado)",
+      "ok": true,
+      "detail": "fim após 1548 ms; {\"overlayInDom\":false,\"overflow\":\"visible\"}"
+    },
+    {
+      "name": "1d. duração real da intro (classe → fim) entre 1,4 e 2,0 s; o site é revelado por trás ~1,4 s",
+      "ok": true,
+      "detail": "pending=14ms leaving=1437ms done=1857ms → total 1843 ms (revela em 1423 ms)"
+    },
+    {
+      "name": "1e. flag da sessão gravada (brunaBrandIntroSeen)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1f. CLS ≈ 0 (≤ 0,001): a intro não empurra nada (a sobra é o swap de fonte do próprio site, que sem intro dá ~0,002)",
+      "ok": true,
+      "detail": "cls=5.144032921810699e-7"
+    },
+    {
+      "name": "2. Home → Produtos: sem intro",
+      "ok": true,
+      "detail": "{\"path\":\"/produtos\",\"overlay\":\"none\"}"
+    },
+    {
+      "name": "3. Produtos → Home: sem intro",
+      "ok": true,
+      "detail": "{\"path\":\"/\",\"overlay\":\"none\"}"
+    },
+    {
+      "name": "4. reload na mesma sessão: sem intro",
+      "ok": true,
+      "detail": "{\"overlay\":\"none\"}"
+    },
+    {
+      "name": "4b. sem erros de JS",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "5. nova sessão → /produtos direto: a intro aparece",
+      "ok": true,
+      "detail": "{\"pending\":true,\"path\":\"/produtos\"}"
+    },
+    {
+      "name": "5b. e termina; /produtos fica visível e interativa",
+      "ok": true,
+      "detail": "fim após 1543 ms"
+    },
+    {
+      "name": "5c. modal, busca e filtros não foram afetados (clique no 1º tile abre o modal)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "6. prefers-reduced-motion: versão mínima (sem desenho), termina em ≤ 0,8 s",
+      "ok": true,
+      "detail": "total 583 ms"
+    },
+    {
+      "name": "6b. reduced-motion: nenhuma animação de traço/transform das pétalas foi criada",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "7. JS lento: com a animação travada o overlay ainda cobre aos 0,9 s (não é loader)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "7b. failsafe: some sozinho em ≤ 2,6 s e o site fica livre",
+      "ok": true,
+      "detail": "fim após 1539 ms (classe→fim 2500 ms)"
+    },
+    {
+      "name": "8. SEM JS: o overlay não existe visualmente, o site está livre e nada cobre o clique",
+      "ok": true,
+      "detail": "{\"overlay\":\"none\",\"pending\":false,\"headerVis\":\"visible\",\"overflow\":\"visible\",\"top\":\"site\"}"
+    }
+  ]
+}
