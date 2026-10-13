@@ -1,6 +1,6 @@
 # Fila de produção de imagens (em lotes)
 
-> Gerada por `tools/build-portfolio-docs.mjs` (2026-10-13). **Prioridade EDITORIAL (`EDITORIAL_PRIORITY`), não comercial: não existe dado de venda.** Nada de produzir 130 imagens de uma vez: um lote por vez, aprovado antes do próximo.
+> Gerada por `tools/build-portfolio-docs.mjs` (2026-10-13). **Prioridade EDITORIAL (`EDITORIAL_PRIORITY`), não comercial: não existe dado de venda.** Nada de produzir 129 imagens de uma vez: um lote por vez, aprovado antes do próximo.
 
 ## Critérios
 
@@ -14,7 +14,7 @@ Regras: imagem gerada entra como `APPROVED_GENERATED` (nunca `REAL`) com proveni
 
 # BATCH 01
 
-8 produtos · 22 imagens (DETAIL, ANGLE, CONTEXT por produto)
+8 produtos · 21 imagens (DETAIL, ANGLE, CONTEXT por produto)
 
 Prompts prontos em [`image-generation-prompts/`](image-generation-prompts/). Motivo de cada escolha:
 
@@ -27,7 +27,7 @@ Prompts prontos em [`image-generation-prompts/`](image-generation-prompts/). Mot
 - `coxinha-de-frango-c-catupiry`: Representa Salgados; a foto-base já mostra o recheio cortado; cenário com a forminha da marca.
 - `cone-trufado-de-brigadeiro`: Representa Cones trufados; formato diferente dos demais itens; cenário limpo.
 
-- **Fatia Chocolatuda** (Fatias) — 3 publicável, faltam 1 · `GENERATE_1` · prioridade `A` · referência: https://cdn-production.yooga.com.br/fc2ce19f307250909edaed3f2a9e91a7.jpeg (375x500)
+- **Fatia Chocolatuda** (Fatias) — 4 publicável, faltam 0 · `NONE` · prioridade `A` · referência: https://cdn-production.yooga.com.br/fc2ce19f307250909edaed3f2a9e91a7.jpeg (375x500)
 - **Copo Ninho com Morango** (Sobremesas no copo) — 1 publicável, faltam 3 · `GENERATE_3` · prioridade `A` · referência: https://cdn-production.yooga.com.br/034f557ecdb934a9ad8bc383a0c331c0.jpeg (242x500) — estreita, referência fraca
 - **Cheesecake frutas vermelhas** (Cheesecakes e tortas) — 1 publicável, faltam 3 · `GENERATE_3` · prioridade `A` · referência: https://cdn-production.yooga.com.br/d426aa30b60bd3516dc94a3e636ddd11.jpeg (375x500)
 - **Coxinha Belga** (Coxinhas doces) — 1 publicável, faltam 3 · `GENERATE_3` · prioridade `A` · referência: https://cdn-production.yooga.com.br/95b56a584346968f8c80c1d212a64797.jpeg (375x500)
@@ -99,10 +99,10 @@ Prompts prontos em [`image-generation-prompts/`](image-generation-prompts/). Mot
 
 # Resumo
 
-- BATCH 01: 8 produtos, 22 imagens
+- BATCH 01: 8 produtos, 21 imagens
 - BATCH 02: 8 produtos, 24 imagens
 - BATCH 03: 8 produtos, 24 imagens
 - BATCH 04: 8 produtos, 24 imagens
 - BATCH 05: 8 produtos, 24 imagens
 - BATCH 06: 4 produtos, 12 imagens
-- Total a gerar: 130 imagens em 44 produtos
+- Total a gerar: 129 imagens em 43 produtos

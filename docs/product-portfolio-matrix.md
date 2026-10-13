@@ -16,8 +16,8 @@ Cada imagem tem um `sourceStatus`:
 
 | Indicador | Valor |
 |---|---|
-| **MAPPED_IMAGE_COUNT** (reais + referências encontradas) | **51** |
-| **PUBLICABLE_IMAGE_COUNT** (podem aparecer no site hoje) | **46** (inclui 2 gerada(s) e aprovada(s), `APPROVED_GENERATED`) |
+| **MAPPED_IMAGE_COUNT** (reais + referências encontradas) | **52** |
+| **PUBLICABLE_IMAGE_COUNT** (podem aparecer no site hoje) | **47** (inclui 3 gerada(s) e aprovada(s), `APPROVED_GENERATED`) |
 | Diferença (mapeadas e não publicáveis) | 5: 4 `AUTHORIZATION_PENDING` + 1 `REFERENCE_ONLY` |
 
 Toda cobertura e toda lacuna abaixo usam **PUBLICABLE_IMAGE_COUNT**. Se a Bruna autorizar as fotos do Instagram, a lacuna cai (coluna "Falta se autorizadas" do JSON), mas isso não altera o plano de hoje.
@@ -46,11 +46,11 @@ Todas as imagens do Yooga têm no máximo 500 px de altura (231–500 px de larg
 |---|---|
 | Produtos no portfólio | **48** (46 Yooga + 2 extras do Instagram; 46 publicados na galeria) |
 | Categorias editoriais | 13 |
-| Completos (4+ publicáveis) | 0 |
-| Com 3 / 2 / 1 / 0 publicáveis | 1 / 0 / 43 / 4 |
+| Completos (4+ publicáveis) | 1 |
+| Com 3 / 2 / 1 / 0 publicáveis | 0 / 0 / 43 / 4 |
 | Sem imagem publicável | Cookie tradicional; Geladinho Sensação; Coxinha de salmão; Morango do amor |
-| Imagens faltantes até a meta de 4/produto | 146 |
-| A gerar (produtos com referência real publicável) | 130, em 44 produtos (`NEEDS_GENERATION`) |
+| Imagens faltantes até a meta de 4/produto | 145 |
+| A gerar (produtos com referência real publicável) | 129, em 43 produtos (`NEEDS_GENERATION`) |
 | Retidos até autorização | Morango do amor (`BLOCKED_AUTHORIZATION`) |
 | Precisam de foto real | Cookie tradicional; Geladinho Sensação; Coxinha de salmão (`NEEDS_REAL_PHOTO`) |
 
@@ -63,7 +63,7 @@ Estrutura-alvo de cada galeria (4): `01-source` foto principal · `02-detail` cl
 | Bolo de cenoura tamanho família | Bolos | Yooga · `YOOGA_ACTIVE` | 1 | 1 | 3 | ✓·–·–·– | `PARTIAL_1` | `GENERATE_3` | BATCH 01 | `DRAFT` |
 | Fatia brownie Ninho com Nutella | Fatias | Yooga · `YOOGA_ACTIVE` | 1 | 1 | 3 | ✓·–·–·– | `PARTIAL_1` | `GENERATE_3` | BATCH 02 | `DRAFT` |
 | Fatia brownie brigadeiro | Fatias | Yooga · `YOOGA_ACTIVE` | 1 | 1 | 3 | ✓·–·–·– | `PARTIAL_1` | `GENERATE_3` | BATCH 02 | `DRAFT` |
-| Fatia Chocolatuda | Fatias | Yooga · `YOOGA_ACTIVE` | 3 | 3 | 1 | ✓·–·✓·✓ | `PARTIAL_3` | `GENERATE_1` | BATCH 01 | `DRAFT` |
+| Fatia Chocolatuda | Fatias | Yooga · `YOOGA_ACTIVE` | 4 | 4 | 0 | ✓·✓·✓·✓ | `COMPLETE` | `NONE` | BATCH 01 | `DRAFT` |
 | Fatia Maracolate | Fatias | Yooga · `YOOGA_ACTIVE` | 1 | 1 | 3 | ✓·–·–·– | `PARTIAL_1` | `GENERATE_3` | BATCH 03 | `DRAFT` |
 | Fatia duo com morango | Fatias | Yooga · `YOOGA_ACTIVE` | 1 | 1 | 3 | ✓·–·–·– | `PARTIAL_1` | `GENERATE_3` | BATCH 03 | `NEEDS_BRUNA_APPROVAL` |
 | Fatia nutelluda | Fatias | Yooga · `YOOGA_ACTIVE` | 1 | 1 | 3 | ✓·–·–·– | `PARTIAL_1` | `GENERATE_3` | BATCH 04 | `DRAFT` |

@@ -56,16 +56,16 @@
     "extrasFromInstagram": 2,
     "publishedInGallery": 46,
     "editorialCategories": 13,
-    "MAPPED_IMAGE_COUNT": 51,
-    "PUBLISHABLE_IMAGE_COUNT": 46,
-    "approvedGeneratedImages": 2,
+    "MAPPED_IMAGE_COUNT": 52,
+    "PUBLISHABLE_IMAGE_COUNT": 47,
+    "approvedGeneratedImages": 3,
     "mappedButNotPublishable": 5,
     "notPublishableBreakdown": {
       "AUTHORIZATION_PENDING": 4,
       "REFERENCE_ONLY": 1
     },
-    "complete4plus": 0,
-    "with3": 1,
+    "complete4plus": 1,
+    "with3": 0,
     "with2": 0,
     "with1": 43,
     "with0": 4,
@@ -75,9 +75,9 @@
       "Coxinha de salmão",
       "Morango do amor"
     ],
-    "imagesMissingToTarget": 146,
-    "generationEstimate": 130,
-    "productsThatCanReceiveGeneration": 44,
+    "imagesMissingToTarget": 145,
+    "generationEstimate": 129,
+    "productsThatCanReceiveGeneration": 43,
     "productsBlockedByAuthorization": [
       "Morango do amor"
     ],
@@ -90,7 +90,7 @@
       {
         "batch": "BATCH 01",
         "products": 8,
-        "imagesToGenerate": 22
+        "imagesToGenerate": 21
       },
       {
         "batch": "BATCH 02",
@@ -930,23 +930,21 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "mappedImageCount": 3,
-      "publishableImageCount": 3,
+      "mappedImageCount": 4,
+      "publishableImageCount": 4,
       "target": 4,
-      "missing": 1,
-      "missingIfMappedAuthorized": 1,
-      "imageStatus": "PARTIAL_3",
+      "missing": 0,
+      "missingIfMappedAuthorized": 0,
+      "imageStatus": "COMPLETE",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
       "slots": {
         "01-source": "PUBLICABLE",
-        "02-detail": "MISSING",
+        "02-detail": "GENERATED_APPROVED",
         "03-angle": "GENERATED_APPROVED",
         "04-context": "GENERATED_APPROVED"
       },
-      "approvedGeneratedImages": 2,
-      "missingKinds": [
-        "DETAIL"
-      ],
+      "approvedGeneratedImages": 3,
+      "missingKinds": [],
       "images": [
         {
           "id": "yooga-4672088-yooga",
@@ -958,6 +956,17 @@
           "orientation": "portrait",
           "match": "MATCH_CONFIRMED",
           "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        },
+        {
+          "id": "yooga-4672088-gen-02-detail",
+          "source": "generated",
+          "sourceStatus": "GENERATED_APPROVED",
+          "status": "APPROVED_GENERATED",
+          "url": "assets/portfolio/fatia-chocolatuda/02-detail.webp",
+          "size": "1122x1402",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Slot 02-detail. Não é fotografia do produto."
         },
         {
           "id": "yooga-4672088-gen-03-angle",
@@ -983,9 +992,9 @@
         }
       ],
       "primarySourceStatus": "PUBLICABLE",
-      "generationPlan": "NEEDS_GENERATION",
-      "action": "GENERATE_1",
-      "generationNeeded": 1,
+      "generationPlan": "NONE",
+      "action": "NONE",
+      "generationNeeded": 0,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-4672088-yooga",

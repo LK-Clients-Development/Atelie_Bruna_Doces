@@ -229,14 +229,17 @@ try {
   check('swipe para a direita volta (3 / 4)', m.count === '3 / 4', m.count);
   await key('Escape', 'Escape', 27); await sleep(300);
 
-  // =============== Fatia Chocolatuda: 3 fotos reais do projeto (1 Yooga + 2 geradas aprovadas) ===============
+  // =============== Fatia Chocolatuda: 4 fotos do projeto (1 Yooga + 3 geradas aprovadas) ===============
   await open({});
   await openCard('fatia-chocolatuda'); await sleep(900);
   m = await modalState();
   const choc = await ev(`[...document.querySelectorAll('.pmodal__thumb img')].map((i) => i.src.replace(location.origin, ''))`);
-  check('Chocolatuda: modal com 3 fotos nativas (Yooga + 03-angle + 04-context), contador "1 / 3"', m.thumbs === 3 && m.count === '1 / 3' && /yooga/.test(choc[0]) && /03-angle|_astro/.test(choc[1]) && /_astro/.test(choc[2]), JSON.stringify(choc));
+  check('Chocolatuda: modal com 4 fotos nativas (Yooga + 02-detail + 03-angle + 04-context), contador "1 / 4"', m.thumbs === 4 && m.count === '1 / 4' && /yooga/.test(choc[0]) && choc.slice(1).every((u) => /_astro/.test(u)), JSON.stringify(choc));
   check('Chocolatuda: as fotos geradas são servidas localmente (/_astro) e carregam', await ev(`(async () => { const r = await Promise.all([...document.querySelectorAll('.pmodal__thumb img')].slice(1).map((i) => fetch(i.src).then((x) => x.ok))); return r.every(Boolean); })()`));
   check('Chocolatuda: o card continua mostrando só a foto principal (Yooga)', await ev(`(() => { const img = document.querySelector('[data-slug="fatia-chocolatuda"] .pcard__media > img'); return /yooga/.test(img.src) && document.querySelectorAll('[data-slug="fatia-chocolatuda"] img').length === 1; })()`));
+  const seq = [m.count];
+  for (let i = 0; i < 3; i++) { await ev(`document.querySelector('[data-next]').click()`); await sleep(500); seq.push((await modalState()).count); }
+  check('Chocolatuda: navegação 1/4 → 2/4 → 3/4 → 4/4', seq.join(',') === '1 / 4,2 / 4,3 / 4,4 / 4', seq.join(','));
   await key('Escape', 'Escape', 27); await sleep(250);
 
   // =============== reduced-motion no modal ===============

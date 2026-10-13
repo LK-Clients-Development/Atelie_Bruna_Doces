@@ -8,9 +8,9 @@
 | Categoria | Fatias |
 | Foto-base (fonte de verdade) | https://cdn-production.yooga.com.br/fc2ce19f307250909edaed3f2a9e91a7.jpeg (375x500) |
 | Origem | imagem pública do cardápio Yooga (`PUBLICABLE`, `REAL`) |
-| Imagens publicáveis hoje | 3 |
-| Faltam | 1 (DETAIL) |
-| Já aprovadas (não gerar de novo) | 03-angle, 04-context |
+| Imagens publicáveis hoje | 4 |
+| Faltam | 0 () |
+| Já aprovadas (não gerar de novo) | 02-detail, 03-angle, 04-context |
 | Por que está no lote | Hero; Fatias é a maior categoria; foto-base nítida, peça inteira bem visível. |
 | Qualidade da base | baixa resolução (≤ 500 px de altura): a saída deve ser **coerente com a foto**, não "mais bonita" que ela |
 
@@ -28,15 +28,6 @@ Fatia triangular de bolo de chocolate em 3 camadas de massa escura separadas por
 - Se não for possível mostrar algo sem inventá-lo, escolha outro enquadramento (ex.: não mostre o interior se a foto não o mostra).
 - Aspecto 4:5 (retrato), mínimo 1080×1350 px, foto realista de confeitaria, luz natural suave, sem filtros exagerados, sem aparência de ilustração/3D.
 
-## Imagem 02-detail: DETAIL — close de textura / recheio / cobertura
-
-```text
-Use a foto real anexada como fonte de verdade do produto "Fatia Chocolatuda".
-Gere UMA nova foto do MESMO produto: close na lateral da fatia: textura molhadinha da massa e a espessura das camadas de brigadeiro.
-O que a foto-base mostra e deve permanecer idêntico: Fatia triangular de bolo de chocolate em 3 camadas de massa escura separadas por 2 camadas de brigadeiro cremoso; topo com cobertura/brigadeiro brilhante e granulado; a fatia está embalada em celofane transparente e segurada por uma mão; ao fundo, outras fatias desfocadas sobre uma superfície de aço.
-Não mude o produto, a forma, a cobertura, o recheio visível, os toppings, as proporções nem a embalagem. Não invente nada que não apareça na foto-base. Não escreva texto novo nem altere o rótulo/selo da marca.
-Pode mudar somente ângulo, luz, composição, cenário e enquadramento. Formato 4:5 retrato, mínimo 1080×1350 px, fotografia realista de confeitaria com luz natural suave.
-```
 
 ## Ao receber as imagens (checklist de aprovação)
 

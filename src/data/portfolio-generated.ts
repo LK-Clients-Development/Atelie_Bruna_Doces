@@ -7,6 +7,7 @@
  * Chave = `sourceProductId` do Yooga. As entradas são concatenadas à galeria na ordem dos slots.
  */
 import type { ImageSlot } from './portfolio';
+import chocolatudaDetail from '../assets/portfolio/fatia-chocolatuda/02-detail.webp';
 import chocolatudaAngle from '../assets/portfolio/fatia-chocolatuda/03-angle.webp';
 import chocolatudaContext from '../assets/portfolio/fatia-chocolatuda/04-context.webp';
 
@@ -24,8 +25,17 @@ export interface GeneratedEntry {
 const APPROVER = 'dono do projeto (aprovação em chat)';
 
 export const GENERATED_IMAGES: Record<number, GeneratedEntry[]> = {
-  // Fatia Chocolatuda: aprovadas 03-angle e 04-context; 02-detail ainda NÃO existe.
+  // Fatia Chocolatuda: galeria completa (01-source é a foto real do Yooga; as 3 abaixo são geradas e aprovadas).
   4672088: [
+    {
+      slot: '02-detail',
+      kind: 'DETAIL',
+      file: chocolatudaDetail,
+      alt: 'Close da Fatia Chocolatuda: massa de cacau molhadinha em camadas com brigadeiro cremoso e granulado no topo',
+      generatedAt: '2026-10-13',
+      approvedBy: APPROVER,
+      approvedAt: '2026-10-13',
+    },
     {
       slot: '03-angle',
       kind: 'ANGLE',

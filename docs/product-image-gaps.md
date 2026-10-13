@@ -2,7 +2,7 @@
 
 > Gerado por `tools/build-portfolio-docs.mjs` (2026-10-13). Meta: 4 imagens **publicáveis** por produto (`01-source`, `02-detail`, `03-angle`, `04-context`). Mapeada ≠ publicável: ver [a matriz](product-portfolio-matrix.md). Nenhuma imagem foi gerada.
 
-0 produtos completos; **48** com lacuna, somando **146** imagens publicáveis a produzir: 130 por geração a partir de referência real; os demais dependem de foto real ou de autorização.
+1 produtos completos; **47** com lacuna, somando **145** imagens publicáveis a produzir: 129 por geração a partir de referência real; os demais dependem de foto real ou de autorização.
 
 ## Bolo de cenoura tamanho família
 
@@ -49,22 +49,6 @@ Faltam (publicáveis): 3
 Melhor referência publicável: https://cdn-production.yooga.com.br/9c2f0932b6617fe6b4aba95dabe7ab5d.jpeg (281x500)
 
 Ação: `GENERATE_3`
-
----
-
-## Fatia Chocolatuda
-
-Categoria: Fatias · Yooga · `PARTIAL_3` · lote: BATCH 01
-
-Imagens mapeadas: 3 · **publicáveis: 3**
-
-Meta: 4
-
-Faltam (publicáveis): 1
-
-Melhor referência publicável: https://cdn-production.yooga.com.br/fc2ce19f307250909edaed3f2a9e91a7.jpeg (375x500)
-
-Ação: `GENERATE_1`
 
 ---
 
