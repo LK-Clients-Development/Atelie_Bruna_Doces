@@ -252,6 +252,9 @@ const yoogaImage = (product: Product, name: string): GalleryImage | null =>
       }
     : null;
 
+/** Só a primeira letra (o Yooga publica descrições em minúscula); o texto não muda. */
+const capitalize = (text: string | null) => (text ? text.charAt(0).toLocaleUpperCase('pt-BR') + text.slice(1) : null);
+
 const imageStatusOf = (count: number): ImageStatus =>
   count >= TARGET_IMAGES ? 'COMPLETE' : count === 3 ? 'PARTIAL_3' : count === 2 ? 'PARTIAL_2' : count === 1 ? 'PARTIAL_1' : 'MISSING';
 
@@ -301,7 +304,7 @@ const yoogaProducts: PortfolioProduct[] = CATEGORIES.filter((category) => !(cate
         sourceCategoryId: category.id,
         status: 'YOOGA_ACTIVE',
         portfolioSource: 'yooga',
-        shortDescription: getProductDescription(product),
+        shortDescription: capitalize(getProductDescription(product)),
       },
       gallery,
     );

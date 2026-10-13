@@ -306,7 +306,6 @@ main .pintro .h2 {
 }
 
 .pgroup[hidden],
-.putility[hidden],
 .pgroup__grid > li[hidden] {
   display: none;
 }
@@ -346,44 +345,7 @@ main .pintro .h2 {
   list-style: none;
 }
 
-/* bebidas: apresentação compacta, mesmo componente */
-.pgroup--drink .pgroup__grid {
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
-}
-
-.pgroup--drink .pcard {
-  grid-template-columns: 84px minmax(0, 1fr);
-  grid-template-rows: auto;
-}
-
-.pgroup--drink .pcard__media {
-  aspect-ratio: auto;
-  min-height: 108px;
-}
-
-.pgroup--drink .pcard__media > img {
-  position: absolute;
-  inset: 0;
-}
-
-.pgroup--drink .pcard__desc {
-  display: none;
-}
-
-.pgroup--drink .pcard__media {
-  background: #fff;
-}
-
-.pgroup--drink .pcard__media > img {
-  object-fit: contain;
-  padding: 6px;
-}
-
-.pgroup--drink .pcard__body {
-  padding: 12px 14px;
-}
-
-/* ----- card ----- */
+/* ----- card de portfólio: foto, nome, categoria/descrição, CTA (sem preço) ----- */
 .pcard {
   position: relative;
   display: grid;
@@ -402,11 +364,19 @@ main .pintro .h2 {
     border-color: var(--color-caramel-500);
     box-shadow: var(--card-shadow);
   }
+
+  .pcard:hover .pcard__media > img {
+    transform: scale(1.035);
+  }
+}
+
+.pcard:focus-within {
+  border-color: var(--color-caramel-600);
 }
 
 .pcard__media {
   position: relative;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
   background: var(--color-cream-200);
 }
@@ -415,10 +385,10 @@ main .pintro .h2 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 58%;
+  object-position: 50% 55%;
+  transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
-/* sem foto: superfície da marca, sem fingir ser fotografia */
 .pcard__fallback {
   display: grid;
   place-content: center;
@@ -446,55 +416,25 @@ main .pintro .h2 {
   color: var(--color-cacao-800);
 }
 
-.pcard__badge {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  padding: 5px 12px;
-  border-radius: var(--radius-pill);
-  background: var(--color-blush);
-  color: var(--color-cacao-800);
-  font-size: var(--text-micro);
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  line-height: 1.2;
-}
-
 .pcard__body {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding: 14px 16px 12px;
+  gap: 6px;
+  padding: 14px 16px 14px;
 }
 
 .pcard__name {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(1rem, 0.92rem + 0.3vw, 1.1875rem);
+  font-size: clamp(1.0625rem, 0.95rem + 0.35vw, 1.25rem);
   font-weight: 400;
   line-height: 1.2;
   color: var(--color-cacao-800);
   text-wrap: balance;
 }
 
-.pcard__desc {
+.pcard__cat {
   margin: 0;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  font-size: 0.8125rem;
-  line-height: 1.5;
-  color: var(--color-text-body);
-}
-
-.pcard__opts {
-  align-self: flex-start;
-  margin: 0;
-  padding: 3px 10px;
-  border: 1px solid var(--card-line);
-  border-radius: var(--radius-pill);
   font-size: var(--text-micro);
   font-weight: 500;
   letter-spacing: 0.12em;
@@ -502,82 +442,56 @@ main .pintro .h2 {
   color: var(--color-caramel-600);
 }
 
-.pcard__foot {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 4px 12px;
-  margin-top: auto;
-  padding-top: 6px;
-}
-
-.pcard__price {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0 8px;
+.pcard__desc {
   margin: 0;
-  color: var(--color-cacao-800);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--color-text-body);
 }
 
-.pcard__from {
-  flex-basis: 100%;
-  font-size: var(--text-micro);
+/* o link cobre o card inteiro: um único alvo de toque/foco por card */
+.pcard__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  margin-top: auto;
+  padding-top: 8px;
+  font-size: 0.8125rem;
+  font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-caramel-600);
-}
-
-.pcard__now {
-  font-size: 1.125rem;
-  font-weight: 600;
-  line-height: 1.2;
-}
-
-.pcard__now--promo {
-  color: var(--color-caramel-600);
-}
-
-.pcard__was {
-  font-size: 0.8125rem;
-  color: rgb(74 64 59 / 0.82);
-  text-decoration-thickness: 1px;
-}
-
-.pcard__cta {
-  display: inline-grid;
-  place-items: center;
-  flex: none;
-  width: 44px;
-  height: 44px;
-  margin-left: auto;
-  border: 1px solid var(--card-line);
-  border-radius: 50%;
-  color: var(--color-caramel-600);
   text-decoration: none;
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
-.pcard__cta-label {
+.pcard__cta::after {
+  content: '';
   position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
+  inset: 0;
+}
+
+.pcard__cta:focus-visible {
+  outline: none;
+}
+
+.pcard:has(.pcard__cta:focus-visible) {
+  outline: 2px solid var(--color-caramel-600);
+  outline-offset: 2px;
+}
+
+.pcard__cta svg {
+  transition: transform 0.25s ease;
 }
 
 @media (hover: hover) {
-  .pcard__cta:hover {
-    border-color: var(--color-caramel-600);
-    background: var(--color-caramel-600);
-    color: var(--color-offwhite);
+  .pcard:hover .pcard__cta svg {
+    transform: translateX(4px);
   }
-}
-
-.pcard[data-promo] {
-  border-color: rgb(216 138 104 / 0.6);
 }
 
 /* entrada: só com motion ligado (progressivo); sem JS/movimento reduzido o card já está lá */
@@ -586,102 +500,15 @@ html.motion-ready .pcard:not(.is-in) {
   transform: translateY(14px);
 }
 
-/* grupos de 1–2 produtos: dois cards largos e horizontais em vez de uma linha quase vazia */
-@media (min-width: 700px) {
-  .pgroup[data-count='1'] .pgroup__grid,
-  .pgroup[data-count='2'] .pgroup__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+@media (prefers-reduced-motion: reduce) {
+  .pcard,
+  .pcard__media > img {
+    transition: none;
   }
 
-  .pgroup[data-count='1'] .pcard,
-  .pgroup[data-count='2'] .pcard {
-    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-    grid-template-rows: auto;
+  .pcard:hover {
+    transform: none;
   }
-
-  .pgroup[data-count='1'] .pcard__media,
-  .pgroup[data-count='2'] .pcard__media {
-    aspect-ratio: auto;
-    min-height: 210px;
-  }
-
-  /* a foto preenche a coluna sem definir a altura do card */
-  .pgroup[data-count='1'] .pcard__media > img,
-  .pgroup[data-count='2'] .pcard__media > img {
-    position: absolute;
-    inset: 0;
-  }
-
-  .pgroup[data-count='1'] .pcard__body,
-  .pgroup[data-count='2'] .pcard__body {
-    padding: 18px 20px 12px;
-  }
-}
-
-/* ----- presentear (gift) ----- */
-.pgift {
-  align-items: center;
-  margin-block: clamp(14px, 1.6vw, 24px);
-  padding-inline: clamp(18px, 2.4vw, 36px);
-  border: 1px solid var(--card-line);
-  border-radius: 16px;
-  background: linear-gradient(100deg, rgb(254 215 194 / 0.5), rgb(250 231 218 / 0.7));
-}
-
-.pgift__head {
-  position: static;
-}
-
-.pgift__title {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(1.75rem, 2.6vw, 2.75rem);
-  font-style: italic;
-  font-weight: 400;
-  line-height: 1.05;
-  color: var(--color-caramel-500);
-  text-wrap: balance;
-}
-
-.pgift__text {
-  margin-top: 12px;
-  max-width: 22em;
-  font-size: 0.9375rem;
-  color: var(--color-text-body);
-}
-
-.pgift__grid {
-  grid-template-columns: minmax(0, 1fr);
-}
-
-/* ----- serviço do pedido (utility) ----- */
-.putility {
-  padding-block: 20px 8px;
-  border-top: 1px solid var(--color-line);
-  font-size: 0.875rem;
-  color: var(--color-text-body);
-}
-
-.putility ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.putility li[hidden] {
-  display: none;
-}
-
-.putility__name {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px 14px;
-  margin: 0;
-  color: var(--color-cacao-800);
-}
-
-.putility__text {
-  margin: 2px 0 0;
 }
 
 /* ----- busca: resultados e vazio ----- */
@@ -884,18 +711,6 @@ main .pcta .pcta__h2 {
   }
 }
 
-@media (min-width: 1200px) {
-  .pgroup[data-count='5'] .pgroup__grid,
-  .pgroup[data-count='6'] .pgroup__grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .pgroup--food[data-count='5'] .pcard__media,
-  .pgroup--food[data-count='6'] .pcard__media {
-    aspect-ratio: 16 / 9;
-  }
-}
-
 @media (max-width: 1199px) {
   .pgroup__grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -971,10 +786,6 @@ main .pcta .pcta__h2 {
     margin-top: 0;
   }
 
-  .pgift__grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
   .pintro {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -1027,10 +838,6 @@ main .pcta .pcta__h2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .pcard__body {
-    padding: 12px 12px 8px;
-  }
-
   .psearch__form {
     min-height: 56px;
     gap: 10px;
@@ -1047,47 +854,26 @@ main .pcta .pcta__h2 {
   }
 }
 
-/* telefone estreito: lista de cards horizontais (foto à esquerda), legível em 360px */
+/* telefone estreito: duas colunas de fotos, sem descrição (a foto é o assunto) */
 @media (max-width: 479px) {
-  .pgroup__grid,
-  .pgroup--drink .pgroup__grid {
-    grid-template-columns: minmax(0, 1fr);
+  .pgroup__grid {
+    gap: 10px;
   }
 
-  .pcard,
-  .pgroup--drink .pcard {
-    grid-template-columns: 112px minmax(0, 1fr);
-    grid-template-rows: auto;
+  .pcard__body {
+    padding: 10px 10px 12px;
   }
 
-  .pcard__media,
-  .pgroup--drink .pcard__media {
-    aspect-ratio: auto;
-    min-height: 124px;
-  }
-
-  .pcard__media > img {
-    position: absolute;
-    inset: 0;
-  }
-
-  .pcard__body,
-  .pgroup--drink .pcard__body {
-    padding: 12px 14px 8px;
+  .pcard__name {
+    font-size: 1rem;
   }
 
   .pcard__desc {
-    -webkit-line-clamp: 2;
-  }
-
-  .pgroup--drink .pcard__desc {
     display: none;
   }
 
-  .pcard__badge {
-    top: 6px;
-    left: 6px;
-    padding: 3px 9px;
+  .pcard__cta {
+    letter-spacing: 0.06em;
   }
 
   .pbtn {

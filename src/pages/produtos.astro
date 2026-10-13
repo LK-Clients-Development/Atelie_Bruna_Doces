@@ -1,15 +1,16 @@
 ---
 /**
- * /produtos: catálogo do Ateliê (camada de descoberta; o pedido acontece no cardápio Yooga).
+ * /produtos: portfólio / galeria de criações do Ateliê. NÃO é cardápio de compra: o visitante
+ * descobre, abre uma criação (modal com galeria) e só então segue para o WhatsApp ou o cardápio
+ * Yooga. Não há carrinho nem checkout.
  *
- * Duas fontes de verdade:
- *   VISUAL  Concept 09 aprovado (docs/qa/products-page/concept-09.webp)
- *   FATUAL  src/data/products.ts (snapshot auditado do Yooga). NADA factual é escrito aqui.
+ * Duas camadas de dados, nenhuma escrita aqui:
+ *   EDITORIAL  src/data/portfolio.ts (categorias editoriais, galeria de imagens, compra)
+ *   COMERCIAL  src/data/products.ts (snapshot do Yooga; preço e opções ficam lá e NÃO aparecem na galeria)
  *
- * - Todos os 54 produtos vêm dos dados, agrupados por categoria. Categorias `utility` (garfinho)
- *   e `gift` (cartão presente) têm tratamento próprio, mas continuam no catálogo e na busca.
- * - Busca e filtros rodam no cliente (src/scripts/products.ts) sobre o HTML já renderizado:
- *   sem JS o catálogo inteiro e a navegação por âncoras funcionam.
+ * - Os cards carregam só a imagem principal; as demais fotos são pedidas quando o modal abre.
+ * - Busca, filtro por categoria e modal rodam no cliente (src/scripts/products.ts) sobre o HTML
+ *   já renderizado: sem JS a galeria inteira aparece e cada card leva ao WhatsApp.
  * - Menu de Bolos NÃO foi auditado (CAKES_MENU.status = 'pending'): o bloco "Bolos por encomenda"
  *   não lista nenhum bolo, preço ou sabor.
  * - Provisório: imagem do bloco de bolos (recorte da Master). Textos institucionais: PRODUCTS_PAGE
@@ -20,44 +21,52 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Footer from '../components/Footer.astro';
 import SectionEyebrow from '../components/SectionEyebrow.astro';
 import CtaButton from '../components/CtaButton.astro';
-import ProductCard from '../components/ProductCard.astro';
+import PortfolioCard from '../components/PortfolioCard.astro';
 import Icon from '../components/Icon.astro';
 import Wave from '../components/Wave.astro';
 import Seal from '../components/Seal.astro';
 import { BRAND, LINKS, PRODUCTS_PAGE, isPending, linkAttrs } from '../data/site';
-import { CAKES_MENU, type ProductCategory } from '../data/products';
+import { CAKES_MENU } from '../data/products';
 import { IMAGES } from '../data/images';
-import {
-  PRODUCTS,
-  buildSearchIndex,
-  formatBRL,
-  getCatalogStats,
-  getCategories,
-  getCategoryDisplayName,
-  getNavigableCategories,
-  getProductDescription,
-  getProductDisplayName,
-} from '../lib/catalog';
+import { EDITORIAL_CATEGORIES, PORTFOLIO, getDisplayableImages } from '../data/portfolio';
+import { normalizeSearchText } from '../lib/search';
 import '../styles/products.css';
 
 const page = PRODUCTS_PAGE;
-const stats = getCatalogStats();
-const categories = getCategories();
-const railCategories = getNavigableCategories();
-const searchText = new Map(buildSearchIndex().map((entry) => [entry.id, entry.text]));
 
-// seções por papel: o catálogo principal (food/drink), o bloco de presente e o serviço do pedido
-const mainGroups = categories.filter((c) => c.kind === 'food' || c.kind === 'drink');
-const giftGroups = categories.filter((c) => c.kind === 'gift');
-const utilityGroups = categories.filter((c) => c.kind === 'utility');
+// grupos por categoria editorial (só as que têm itens publicados)
+const groups = EDITORIAL_CATEGORIES.map((category) => ({
+  ...category,
+  products: PORTFOLIO.filter((product) => product.category === category.slug),
+})).filter((group) => group.products.length > 0);
 
 const count = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
-const thumbOf = (category: ProductCategory) => category.products.find((p) => p.imageUrl && p.imageSize);
+const thumbOf = (group: (typeof groups)[number]) => group.products.find((p) => p.heroImage?.src)?.heroImage ?? null;
 
-// fotos do Hero: escolha editorial; as imagens vêm dos dados (não ampliadas: ≤ 500 px de altura)
-const HERO_IDS = [3415240, 4672088, 7103479, 3415251];
-const heroPhotos = HERO_IDS.map((id) => PRODUCTS.find((p) => p.sourceProductId === id))
-  .filter((p): p is NonNullable<typeof p> => Boolean(p?.imageUrl && p.imageSize));
+// busca: nome, descrição e categoria (normalizados, sem acento)
+const searchText = new Map(
+  PORTFOLIO.map((p) => [
+    p.slug,
+    normalizeSearchText([p.name, p.shortDescription ?? '', EDITORIAL_CATEGORIES.find((c) => c.slug === p.category)!.name].join(' ')),
+  ]),
+);
+
+// dados do modal (embutidos na página; as imagens só são pedidas ao abrir)
+const modalData = PORTFOLIO.map((p) => ({
+  slug: p.slug,
+  name: p.name,
+  category: EDITORIAL_CATEGORIES.find((c) => c.slug === p.category)!.name,
+  description: p.shortDescription,
+  images: getDisplayableImages(p).map((i) => ({ src: i.src, width: i.width, height: i.height, alt: p.name })),
+  whatsapp: p.purchase.whatsappHref,
+  yooga: p.purchase.yoogaHref,
+}));
+
+// fotos do Hero: escolha editorial dentre os itens do portfólio (imagens não ampliadas: ≤ 500 px de altura)
+const HERO_SLUGS = ['copo-ninho-com-morango', 'fatia-chocolatuda', 'cheesecake-frutas-vermelhas', 'coxinha-belga'];
+const heroPhotos = HERO_SLUGS.map((slug) => PORTFOLIO.find((p) => p.slug === slug)?.heroImage).filter(
+  (image): image is NonNullable<typeof image> => Boolean(image?.src && image.width && image.height),
+);
 
 // Menu de Bolos: enquanto não houver arquivo público auditado, o CTA vai para o WhatsApp (documentado)
 const menuReady = CAKES_MENU.status === 'audited' && !isPending(LINKS.menuBolos);
@@ -73,9 +82,9 @@ const cakesLabel = menuReady ? page.cakes.ctaMenu : page.cakes.ctaFallback;
         {heroPhotos.map((p, i) => (
           <div class="phero__photo" style={`--i:${i}`}>
             <img
-              src={p.imageUrl}
-              width={p.imageSize!.width}
-              height={p.imageSize!.height}
+              src={p.src!}
+              width={p.width!}
+              height={p.height!}
               alt=""
               loading={i < 3 ? 'eager' : 'lazy'}
               decoding="async"
@@ -113,7 +122,7 @@ const cakesLabel = menuReady ? page.cakes.ctaMenu : page.cakes.ctaFallback;
       </form>
     </div>
 
-    <nav class="prail" aria-label="Categorias do cardápio">
+    <nav class="prail" aria-label="Categorias do portfólio">
       <ul class="prail__list" role="list" data-rail>
         <li>
           <a class="prail__item prail__item--all" href="#catalogo" data-rail-link="all" aria-current="true">
@@ -121,15 +130,15 @@ const cakesLabel = menuReady ? page.cakes.ctaMenu : page.cakes.ctaFallback;
             <span class="prail__label">Todos</span>
           </a>
         </li>
-        {railCategories.map((category) => {
-          const thumb = thumbOf(category);
+        {groups.map((group) => {
+          const thumb = thumbOf(group);
           return (
             <li>
-              <a class="prail__item" href={`#${category.slug}`} data-rail-link={category.slug}>
+              <a class="prail__item" href={`#${group.slug}`} data-rail-link={group.slug}>
                 <span class="prail__thumb">
-                  {thumb && <img src={thumb.imageUrl!} width={thumb.imageSize!.width} height={thumb.imageSize!.height} alt="" loading="lazy" decoding="async" />}
+                  {thumb?.src && <img src={thumb.src} width={thumb.width ?? undefined} height={thumb.height ?? undefined} alt="" loading="lazy" decoding="async" />}
                 </span>
-                <span class="prail__label">{getCategoryDisplayName(category)}</span>
+                <span class="prail__label">{group.name}</span>
               </a>
             </li>
           );
@@ -137,8 +146,8 @@ const cakesLabel = menuReady ? page.cakes.ctaMenu : page.cakes.ctaFallback;
       </ul>
     </nav>
 
-    {/* 03 Catálogo */}
-    <section class="pcatalog" aria-label="Catálogo de produtos">
+    {/* 03 Galeria */}
+    <section class="pcatalog" aria-label="Galeria de criações">
       <div class="container pintro" id="catalogo">
         <div class="pintro__title">
           <SectionEyebrow>{page.catalogEyebrow}</SectionEyebrow>
@@ -149,8 +158,8 @@ const cakesLabel = menuReady ? page.cakes.ctaMenu : page.cakes.ctaFallback;
         </div>
         <p class="t1 pintro__lead">{page.catalogLead}</p>
         <p class="pintro__stats">
-          <strong>{count(stats.products, 'produto', 'produtos')}</strong>
-          <span>em {count(stats.categories, 'categoria', 'categorias')}</span>
+          <strong>{count(PORTFOLIO.length, 'criação', 'criações')}</strong>
+          <span>em {count(groups.length, 'categoria', 'categorias')}</span>
         </p>
       </div>
 
@@ -158,56 +167,23 @@ const cakesLabel = menuReady ? page.cakes.ctaMenu : page.cakes.ctaFallback;
         <p class="presults" data-results role="status" aria-live="polite" hidden></p>
         <div class="pempty" data-empty hidden>
           <p class="pempty__title">Nenhuma criação encontrada.</p>
-          <button class="pempty__btn" type="button" data-reset>Ver todos os produtos</button>
+          <button class="pempty__btn" type="button" data-reset>Ver todas as criações</button>
         </div>
 
-        {mainGroups.map((category) => (
-          <section class:list={['pgroup', `pgroup--${category.kind}`]} id={category.slug} aria-labelledby={`g-${category.slug}`} data-group data-count={category.products.length}>
+        {groups.map((group) => (
+          <section class="pgroup" id={group.slug} aria-labelledby={`g-${group.slug}`} data-group>
             <div class="pgroup__head">
-              <h2 class="pgroup__title" id={`g-${category.slug}`}>{getCategoryDisplayName(category)}</h2>
-              <p class="pgroup__count">{count(category.products.length, 'produto', 'produtos')}</p>
+              <h2 class="pgroup__title" id={`g-${group.slug}`}>{group.name}</h2>
+              <p class="pgroup__count">{count(group.products.length, 'criação', 'criações')}</p>
             </div>
             <ul class="pgroup__grid" role="list">
-              {category.products.map((product) => (
-                <li data-search={searchText.get(product.id)}>
-                  <ProductCard product={product} />
+              {group.products.map((product, index) => (
+                <li data-search={searchText.get(product.slug)}>
+                  <PortfolioCard product={product} eager={group === groups[0] && index < 4} />
                 </li>
               ))}
             </ul>
           </section>
-        ))}
-
-        {/* Presentear: categoria `gift`, com tratamento editorial; o produto continua vindo dos dados */}
-        {giftGroups.map((category) => (
-          <section class="pgroup pgift" id={category.slug} aria-labelledby={`g-${category.slug}`} data-group data-count={category.products.length}>
-            <div class="pgroup__head pgift__head">
-              <h2 class="pgift__title" id={`g-${category.slug}`}>{getCategoryDisplayName(category)}</h2>
-            </div>
-            <ul class="pgroup__grid pgift__grid" role="list">
-              {category.products.map((product) => (
-                <li data-search={searchText.get(product.id)}>
-                  <ProductCard product={product} />
-                </li>
-              ))}
-            </ul>
-          </section>
-        ))}
-
-        {/* Serviço do pedido (`utility`): fora da navegação e sem peso de seção; continua nos dados e na busca */}
-        {utilityGroups.map((category) => (
-          <aside class="putility" aria-label="Serviço do pedido" data-group>
-            <ul role="list">
-              {category.products.map((product) => (
-                <li data-search={searchText.get(product.id)}>
-                  <p class="putility__name">
-                    <span>{getProductDisplayName(product)}</span>
-                    <strong>{formatBRL(product.priceCents)}</strong>
-                  </p>
-                  {getProductDescription(product) && <p class="putility__text">{getProductDescription(product)}</p>}
-                </li>
-              ))}
-            </ul>
-          </aside>
         ))}
       </div>
     </section>

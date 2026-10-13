@@ -86,9 +86,9 @@ export const PRODUCTS_PAGE = {
   heroTitle: ['Tem sempre', 'algo para', 'a sua vontade.'],
   heroLead: 'Doces, salgados, sobremesas e criações artesanais para diferentes momentos do seu dia.',
   searchPlaceholder: 'Buscar doce, sabor ou produto...',
-  catalogEyebrow: 'Nossos produtos',
-  catalogTitle: ['Uma seleção de sabores', 'para cada momento.'],
-  catalogLead: 'O cardápio do Ateliê reunido em um só lugar, para você escolher o que combina com o seu momento.',
+  catalogEyebrow: 'O álbum do Ateliê',
+  catalogTitle: ['Tudo o que a Bruna', 'cria, em um só lugar.'],
+  catalogLead: 'Passeie pelas criações, abra a que chamar a sua atenção e conheça cada uma de perto. Quando decidir, o pedido é só um toque.',
   cakes: {
     eyebrow: 'Bolos por encomenda',
     title: ['Bolos que tornam', 'momentos ainda mais especiais.'],

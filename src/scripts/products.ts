@@ -1,9 +1,9 @@
 /**
- * /produtos no cliente: busca, trilho de categorias e entrada dos cards.
+ * /produtos no cliente: busca, filtro por categoria e entrada dos cards.
  *
- * Tudo age sobre o HTML já renderizado no build (54 produtos, `li[data-search]` com o texto
- * normalizado): sem JS a página é o catálogo completo e as categorias são âncoras comuns.
- * Só a normalização da busca vem de src/lib/search.ts; os dados do catálogo NÃO entram no bundle.
+ * Tudo age sobre o HTML já renderizado no build (`li[data-search]` com o texto normalizado):
+ * sem JS a galeria inteira aparece e as categorias são âncoras comuns. Só a normalização da busca
+ * vem de src/lib/search.ts; os dados do portfólio NÃO entram neste bundle.
  */
 import { matchesTerms, searchTerms } from '../lib/search';
 
@@ -23,17 +23,12 @@ if (root) {
   const list = root.querySelector<HTMLElement>('[data-rail]');
   const railLinks = [...root.querySelectorAll<HTMLAnchorElement>('[data-rail-link]')];
 
-  let searching = false;
+  let category = 'all';
+  let query = '';
 
-  // ----- trilho de categorias: item atual -----
-  const setCurrent = (key: string) => {
-    railLinks.forEach((link) => {
-      if (link.dataset.railLink === key) link.setAttribute('aria-current', 'true');
-      else link.removeAttribute('aria-current');
-    });
+  const centerRailItem = (key: string) => {
     const active = railLinks.find((link) => link.dataset.railLink === key);
     if (active && list && list.scrollWidth > list.clientWidth) {
-      // centraliza o item no trilho sem rolar a página
       list.scrollTo({ left: active.offsetLeft - (list.clientWidth - active.offsetWidth) / 2, behavior: reduced.matches ? 'auto' : 'smooth' });
     }
   };
@@ -54,7 +49,7 @@ if (root) {
     );
     groups.forEach((group) => {
       group.querySelectorAll<HTMLElement>('.pcard').forEach((card, index) => {
-        card.style.transitionDelay = `${Math.min(index, 5) * 70}ms`; // stagger curto, por grupo
+        card.style.transitionDelay = `${Math.min(index, 5) * 70}ms`;
         io!.observe(card);
       });
     });
@@ -62,75 +57,87 @@ if (root) {
     root.querySelectorAll('.pcard').forEach(reveal);
   }
 
-  // ----- busca -----
-  const filter = (query: string) => {
+  // ----- filtro (categoria + busca) -----
+  const apply = () => {
     const terms = searchTerms(query);
-    searching = terms.length > 0;
+    const searching = terms.length > 0;
     let visible = 0;
     items.forEach((item) => {
-      const match = matchesTerms(item.dataset.search ?? '', terms);
+      const group = item.closest<HTMLElement>('[data-group]');
+      const inCategory = category === 'all' || group?.id === category;
+      const match = inCategory && matchesTerms(item.dataset.search ?? '', terms);
       item.hidden = !match;
       if (match) {
         visible += 1;
-        item.querySelector('.pcard')?.classList.add('is-in'); // resultado nunca fica invisível
-        (item.querySelector('.pcard') as HTMLElement | null)?.style.removeProperty('transition-delay');
+        const card = item.querySelector<HTMLElement>('.pcard');
+        card?.classList.add('is-in'); // resultado nunca fica invisível
+        card?.style.removeProperty('transition-delay');
       }
     });
     groups.forEach((group) => {
       group.hidden = !group.querySelector('li:not([hidden])');
     });
+    railLinks.forEach((link) => {
+      if (link.dataset.railLink === category) link.setAttribute('aria-current', 'true');
+      else link.removeAttribute('aria-current');
+    });
     root.toggleAttribute('data-searching', searching);
-    if (empty) empty.hidden = !(searching && visible === 0);
+    const filtered = searching || category !== 'all';
+    if (empty) empty.hidden = !(filtered && visible === 0);
     if (status) {
-      status.hidden = !searching || visible === 0;
-      status.textContent = searching ? `Resultados para “${query.trim()}”: ${visible} ${visible === 1 ? 'criação' : 'criações'}` : '';
+      status.hidden = !filtered || visible === 0;
+      const label = visible === 1 ? 'criação' : 'criações';
+      const catName = category !== 'all' ? root.querySelector(`#${CSS.escape(category)} .pgroup__title`)?.textContent : null;
+      status.textContent = searching
+        ? `Resultados para “${query.trim()}”${catName ? ` em ${catName}` : ''}: ${visible} ${label}`
+        : catName
+          ? `${catName}: ${visible} ${label}`
+          : '';
     }
-    if (searching) railLinks.forEach((link) => link.removeAttribute('aria-current'));
-    else setCurrent('all');
   };
 
-  const clearSearch = () => {
+  const clearAll = () => {
     if (input) input.value = '';
-    filter('');
+    query = '';
+    category = 'all';
+    apply();
+    centerRailItem('all');
   };
 
   if (wrap && form && input) {
     wrap.hidden = false; // sem JS a busca nem aparece
     form.addEventListener('submit', (event) => {
       event.preventDefault();
-      filter(input.value);
+      query = input.value;
+      apply();
       root.querySelector('.pcatalog__body')?.scrollIntoView({ behavior: reduced.matches ? 'auto' : 'smooth', block: 'start' });
     });
-    input.addEventListener('input', () => filter(input.value));
+    input.addEventListener('input', () => {
+      query = input.value;
+      apply();
+    });
     input.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && input.value) clearSearch();
+      if (event.key === 'Escape' && input.value) {
+        input.value = '';
+        query = '';
+        apply();
+      }
     });
   }
 
   resetBtn?.addEventListener('click', () => {
-    clearSearch();
+    clearAll();
     input?.focus({ preventScroll: true });
   });
 
-  // ----- categorias: rolam até a seção (âncora); "Todos" volta ao topo do catálogo -----
+  // categorias = filtro (o visitante explora um portfólio); "Todos" remove o filtro
   railLinks.forEach((link) => {
-    link.addEventListener('click', () => {
-      if (searching) clearSearch(); // as seções precisam estar visíveis para a âncora existir
-      setCurrent(link.dataset.railLink ?? 'all');
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      category = link.dataset.railLink ?? 'all';
+      apply();
+      centerRailItem(category);
+      root.querySelector('#catalogo')?.scrollIntoView({ behavior: reduced.matches ? 'auto' : 'smooth', block: 'start' });
     });
   });
-
-  // item atual do trilho acompanha a rolagem
-  if ('IntersectionObserver' in window) {
-    const spy = new IntersectionObserver(
-      (entries) => {
-        if (searching) return;
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && entry.target.id && railLinks.some((l) => l.dataset.railLink === entry.target.id)) setCurrent(entry.target.id);
-        });
-      },
-      { rootMargin: '-28% 0px -62% 0px' },
-    );
-    groups.forEach((group) => group.id && spy.observe(group));
-  }
 }
