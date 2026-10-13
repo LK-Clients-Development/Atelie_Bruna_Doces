@@ -1,0 +1,425 @@
+{
+  "errors": [],
+  "metrics": {
+    "home-topo-1440": {
+      "ink": {
+        "w": 264,
+        "h": 67,
+        "left": 85,
+        "top": 37.7
+      },
+      "navLeft": 745,
+      "gapToNav": 396,
+      "surface": "clear",
+      "variant": "logo logo--light",
+      "src": "provisional-logo-wordmark-light.C_ydWNSk_Z1Cq2An.webp",
+      "natural": "276x86",
+      "rendered": "276x86",
+      "logoLeft": 80,
+      "logoTop": 25,
+      "headerH": 135,
+      "overflow": false,
+      "complete": true
+    },
+    "home-rolada-1440": {
+      "ink": {
+        "w": 293.6,
+        "h": 67,
+        "left": 86.8,
+        "top": 6.5
+      },
+      "navLeft": 745,
+      "gapToNav": 365,
+      "surface": "solid",
+      "variant": "logo logo--dark",
+      "src": "atelie-doces-bruna-logo.DSpt0oGy_Z26caDv.webp",
+      "natural": "308x80",
+      "rendered": "307x81",
+      "logoLeft": 80,
+      "logoTop": 0,
+      "headerH": 80,
+      "overflow": false,
+      "complete": true
+    },
+    "produtos-1440": {
+      "ink": {
+        "w": 293.6,
+        "h": 67,
+        "left": 86.8,
+        "top": 6.5
+      },
+      "navLeft": 745,
+      "gapToNav": 365,
+      "surface": "solid",
+      "variant": "logo logo--dark",
+      "src": "atelie-doces-bruna-logo.DSpt0oGy_Z26caDv.webp",
+      "natural": "308x80",
+      "rendered": "307x81",
+      "logoLeft": 80,
+      "logoTop": 0,
+      "headerH": 80,
+      "overflow": false,
+      "complete": true
+    },
+    "home-topo-1280": {
+      "ink": {
+        "w": 235.1,
+        "h": 59.6,
+        "left": 75.6,
+        "top": 33.4
+      },
+      "navLeft": 638,
+      "gapToNav": 327,
+      "surface": "clear",
+      "variant": "logo logo--light",
+      "src": "provisional-logo-wordmark-light.C_ydWNSk_Z1Cq2An.webp",
+      "natural": "276x86",
+      "rendered": "246x77",
+      "logoLeft": 71,
+      "logoTop": 22,
+      "headerH": 120,
+      "overflow": false,
+      "complete": true
+    },
+    "home-rolada-1280": {
+      "ink": {
+        "w": 261.4,
+        "h": 59.7,
+        "left": 77.2,
+        "top": 10.1
+      },
+      "navLeft": 638,
+      "gapToNav": 299,
+      "surface": "solid",
+      "variant": "logo logo--dark",
+      "src": "atelie-doces-bruna-logo.DSpt0oGy_Z26caDv.webp",
+      "natural": "308x80",
+      "rendered": "274x72",
+      "logoLeft": 71,
+      "logoTop": 4,
+      "headerH": 80,
+      "overflow": false,
+      "complete": true
+    },
+    "produtos-1280": {
+      "ink": {
+        "w": 261.4,
+        "h": 59.7,
+        "left": 77.2,
+        "top": 10.1
+      },
+      "navLeft": 638,
+      "gapToNav": 299,
+      "surface": "solid",
+      "variant": "logo logo--dark",
+      "src": "atelie-doces-bruna-logo.DSpt0oGy_Z26caDv.webp",
+      "natural": "308x80",
+      "rendered": "274x72",
+      "logoLeft": 71,
+      "logoTop": 4,
+      "headerH": 80,
+      "overflow": false,
+      "complete": true
+    },
+    "home-topo-1024": {
+      "ink": {
+        "w": 188,
+        "h": 47.7,
+        "left": 60.5,
+        "top": 26.8
+      },
+      "navLeft": 410,
+      "gapToNav": 161,
+      "surface": "clear",
+      "variant": "logo logo--light",
+      "src": "provisional-logo-wordmark-light.C_ydWNSk_Z1Cq2An.webp",
+      "natural": "276x86",
+      "rendered": "197x61",
+      "logoLeft": 57,
+      "logoTop": 18,
+      "headerH": 96,
+      "overflow": false,
+      "complete": true
+    },
+    "home-rolada-1024": {
+      "ink": {
+        "w": 209.1,
+        "h": 47.8,
+        "left": 61.8,
+        "top": 16.1
+      },
+      "navLeft": 410,
+      "gapToNav": 139,
+      "surface": "solid",
+      "variant": "logo logo--dark",
+      "src": "atelie-doces-bruna-logo.DSpt0oGy_Z26caDv.webp",
+      "natural": "308x80",
+      "rendered": "219x57",
+      "logoLeft": 57,
+      "logoTop": 11,
+      "headerH": 80,
+      "overflow": false,
+      "complete": true
+    },
+    "produtos-1024": {
+      "ink": {
+        "w": 209.1,
+        "h": 47.8,
+        "left": 61.8,
+        "top": 16.1
+      },
+      "navLeft": 410,
+      "gapToNav": 139,
+      "surface": "solid",
+      "variant": "logo logo--dark",
+      "src": "atelie-doces-bruna-logo.DSpt0oGy_Z26caDv.webp",
+      "natural": "308x80",
+      "rendered": "219x57",
+      "logoLeft": 57,
+      "logoTop": 11,
+      "headerH": 80,
+      "overflow": false,
+      "complete": true
+    },
+    "home-topo-768": {
+      "ink": {
+        "w": 143.5,
+        "h": 36.4,
+        "left": 45.4,
+        "top": 19.8
+      },
+      "navLeft": 0,
+      "gapToNav": null,
+      "surface": "clear",
+      "variant": "logo logo--light",
+      "src": "provisional-logo-wordmark-light.C_ydWNSk_Z1Cq2An.webp",
+      "natural": "276x86",
+      "rendered": "150x47",
+      "logoLeft": 43,
+      "logoTop": 13,
+      "headerH": 72,
+      "overflow": false,
+      "complete": true
+    },
+    "home-rolada-768": {
+      "ink": {
+        "w": 159.6,
+        "h": 36.4,
+        "left": 46.4,
+        "top": 21.8
+      },
+      "navLeft": 0,
+      "gapToNav": null,
+      "surface": "solid",
+      "variant": "logo logo--dark",
+      "src": "atelie-doces-bruna-logo.DSpt0oGy_Z26caDv.webp",
+      "natural": "308x80",
+      "rendered": "167x44",
+      "logoLeft": 43,
+      "logoTop": 18,
+      "headerH": 80,
+      "overflow": false,
+      "complete": true
+    },
+    "produtos-768": {
+      "ink": {
+        "w": 159.6,
+        "h": 36.4,
+        "left": 46.4,
+        "top": 21.8
+      },
+      "navLeft": 0,
+      "gapToNav": null,
+      "surface": "solid",
+      "variant": "logo logo--dark",
+      "src": "atelie-doces-bruna-logo.DSpt0oGy_Z26caDv.webp",
+      "natural": "308x80",
+      "rendered": "167x44",
+      "logoLeft": 43,
+      "logoTop": 18,
+      "headerH": 80,
+      "overflow": false,
+      "complete": true
+    },
+    "home-topo-430": {
+      "ink": {
+        "w": 139.8,
+        "h": 35.5,
+        "left": 26.6,
+        "top": 20.1
+      },
+      "navLeft": 0,
+      "gapToNav": null,
+      "surface": "clear",
+      "variant": "logo logo--light",
+      "src": "provisional-logo-wordmark-light.C_ydWNSk_Z1Cq2An.webp",
+      "natural": "276x86",
+      "rendered": "146x46",
+      "logoLeft": 24,
+      "logoTop": 13,
+      "headerH": 72,
+      "overflow": false,
+      "complete": true
+    },
+    "home-rolada-430": {
+      "ink": {
+        "w": 155.5,
+        "h": 35.5,
+        "left": 27.5,
+        "top": 22.2
+      },
+      "navLeft": 0,
+      "gapToNav": null,
+      "surface": "solid",
+      "variant": "logo logo--dark",
+      "src": "atelie-doces-bruna-logo.DSpt0oGy_Z26caDv.webp",
+      "natural": "174x45",
+      "rendered": "163x43",
+      "logoLeft": 24,
+      "logoTop": 19,
+      "headerH": 80,
+      "overflow": false,
+      "complete": true
+    },
+    "produtos-430": {
+      "ink": {
+        "w": 155.5,
+        "h": 35.5,
+        "left": 27.5,
+        "top": 22.2
+      },
+      "navLeft": 0,
+      "gapToNav": null,
+      "surface": "solid",
+      "variant": "logo logo--dark",
+      "src": "atelie-doces-bruna-logo.DSpt0oGy_Z26caDv.webp",
+      "natural": "174x45",
+      "rendered": "163x43",
+      "logoLeft": 24,
+      "logoTop": 19,
+      "headerH": 80,
+      "overflow": false,
+      "complete": true
+    },
+    "home-topo-390": {
+      "ink": {
+        "w": 126.8,
+        "h": 32.2,
+        "left": 24.1,
+        "top": 21.6
+      },
+      "navLeft": 0,
+      "gapToNav": null,
+      "surface": "clear",
+      "variant": "logo logo--light",
+      "src": "provisional-logo-wordmark-light.C_ydWNSk_Z1Cq2An.webp",
+      "natural": "276x86",
+      "rendered": "133x41",
+      "logoLeft": 22,
+      "logoTop": 15,
+      "headerH": 72,
+      "overflow": false,
+      "complete": true
+    },
+    "home-rolada-390": {
+      "ink": {
+        "w": 141,
+        "h": 32.2,
+        "left": 24.9,
+        "top": 23.9
+      },
+      "navLeft": 0,
+      "gapToNav": null,
+      "surface": "solid",
+      "variant": "logo logo--dark",
+      "src": "atelie-doces-bruna-logo.DSpt0oGy_Z26caDv.webp",
+      "natural": "174x45",
+      "rendered": "148x39",
+      "logoLeft": 22,
+      "logoTop": 21,
+      "headerH": 80,
+      "overflow": false,
+      "complete": true
+    },
+    "produtos-390": {
+      "ink": {
+        "w": 141,
+        "h": 32.2,
+        "left": 24.9,
+        "top": 23.9
+      },
+      "navLeft": 0,
+      "gapToNav": null,
+      "surface": "solid",
+      "variant": "logo logo--dark",
+      "src": "atelie-doces-bruna-logo.DSpt0oGy_Z26caDv.webp",
+      "natural": "174x45",
+      "rendered": "148x39",
+      "logoLeft": 22,
+      "logoTop": 21,
+      "headerH": 80,
+      "overflow": false,
+      "complete": true
+    },
+    "home-topo-360": {
+      "ink": {
+        "w": 117.1,
+        "h": 29.7,
+        "left": 22.2,
+        "top": 22.7
+      },
+      "navLeft": 0,
+      "gapToNav": null,
+      "surface": "clear",
+      "variant": "logo logo--light",
+      "src": "provisional-logo-wordmark-light.C_ydWNSk_Z1Cq2An.webp",
+      "natural": "276x86",
+      "rendered": "122x38",
+      "logoLeft": 20,
+      "logoTop": 17,
+      "headerH": 72,
+      "overflow": false,
+      "complete": true
+    },
+    "home-rolada-360": {
+      "ink": {
+        "w": 130.2,
+        "h": 29.7,
+        "left": 23,
+        "top": 25.1
+      },
+      "navLeft": 0,
+      "gapToNav": null,
+      "surface": "solid",
+      "variant": "logo logo--dark",
+      "src": "atelie-doces-bruna-logo.DSpt0oGy_Z26caDv.webp",
+      "natural": "174x45",
+      "rendered": "136x36",
+      "logoLeft": 20,
+      "logoTop": 22,
+      "headerH": 80,
+      "overflow": false,
+      "complete": true
+    },
+    "produtos-360": {
+      "ink": {
+        "w": 130.2,
+        "h": 29.7,
+        "left": 23,
+        "top": 25.1
+      },
+      "navLeft": 0,
+      "gapToNav": null,
+      "surface": "solid",
+      "variant": "logo logo--dark",
+      "src": "atelie-doces-bruna-logo.DSpt0oGy_Z26caDv.webp",
+      "natural": "174x45",
+      "rendered": "136x36",
+      "logoLeft": 20,
+      "logoTop": 22,
+      "headerH": 80,
+      "overflow": false,
+      "complete": true
+    }
+  }
+}

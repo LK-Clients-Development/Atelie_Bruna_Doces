@@ -42,7 +42,7 @@ const pendingAttrs = linkAttrs;
     <a class="site-header__logo" href={base ? '/' : '#inicio'}>
       <span class="sr-only">Ateliê Doces Bruna, voltar ao início</span>
       <Image class="logo logo--light" src={logoLight} alt="" loading="eager" />
-      <Image class="logo logo--dark" src={logoDark} alt="" loading="eager" widths={[200, 400, 600]} sizes="(max-width: 479px) 156px, 200px" quality={95} />
+      <Image class="logo logo--dark" src={logoDark} alt="" loading="eager" widths={[320, 640, 960]} sizes="(max-width: 479px) 174px, 308px" quality={95} />
     </a>
 
     <nav class="site-nav" aria-label="Principal">
@@ -239,8 +239,11 @@ const pendingAttrs = linkAttrs;
     transition: width 0.25s ease;
   }
 
+  /* Header claro = MESMA presença do escuro: a logo oficial (proporção real 4,38:1) com a mesma ALTURA de letra
+     da logo clara do Hero. A mesma largura-base do estado escuro × 1,113 (a logo oficial é mais larga que o
+     recorte provisório, 3,94:1, que era achatado). Antes o estado sólido encolhia (14vw contra 19,2vw). */
   .site-header[data-surface='solid'] .site-header__logo {
-    width: clamp(150px, 14vw, 200px);
+    width: calc(clamp(150px, 19.2vw, 276px) * 1.113);
   }
 
   .logo {
@@ -437,6 +440,10 @@ const pendingAttrs = linkAttrs;
       /* área de toque de 44px sem aumentar o logo */
       padding-block: 8px;
       box-sizing: content-box;
+    }
+
+    .site-header[data-surface='solid'] .site-header__logo {
+      width: calc(clamp(120px, 34vw, 156px) * 1.113);
     }
 
     .site-header__cta {
