@@ -2,6 +2,12 @@
   "generatedAt": "2026-10-13",
   "generatedBy": "tools/build-portfolio-docs.mjs (fonte: src/data/portfolio.ts)",
   "targetImagesPerProduct": 4,
+  "slots": [
+    "01-hero",
+    "02-detail",
+    "03-angle",
+    "04-context"
+  ],
   "totals": {
     "yoogaSnapshot": {
       "categories": 17,
@@ -50,18 +56,73 @@
     "extrasFromInstagram": 2,
     "publishedInGallery": 46,
     "editorialCategories": 13,
+    "MAPPED_IMAGE_COUNT": 49,
+    "PUBLISHABLE_IMAGE_COUNT": 44,
+    "mappedButNotPublishable": 5,
+    "notPublishableBreakdown": {
+      "AUTHORIZATION_PENDING": 4,
+      "REFERENCE_ONLY": 1
+    },
     "complete4plus": 0,
     "with3": 0,
-    "with2": 3,
-    "with1": 42,
-    "with0": 3,
-    "realImagesMapped": 48,
-    "realImagesPublishable": 44,
-    "imagesMissingToTarget": 144,
+    "with2": 0,
+    "with1": 44,
+    "with0": 4,
+    "withoutPublishableImage": [
+      "Cookie tradicional",
+      "Geladinho Sensação",
+      "Coxinha de salmão",
+      "Morango do amor"
+    ],
+    "imagesMissingToTarget": 148,
     "generationEstimate": 132,
-    "productsThatCanReceiveGeneration": 45,
-    "productsNeedingRealReference": 3,
-    "realPhotosNeededForThose": 12
+    "productsThatCanReceiveGeneration": 44,
+    "productsBlockedByAuthorization": [
+      "Morango do amor"
+    ],
+    "productsNeedingRealReference": [
+      "Cookie tradicional",
+      "Geladinho Sensação",
+      "Coxinha de salmão"
+    ],
+    "batches": [
+      {
+        "batch": "BATCH 01",
+        "products": 8,
+        "imagesToGenerate": 24
+      },
+      {
+        "batch": "BATCH 02",
+        "products": 8,
+        "imagesToGenerate": 24
+      },
+      {
+        "batch": "BATCH 03",
+        "products": 8,
+        "imagesToGenerate": 24
+      },
+      {
+        "batch": "BATCH 04",
+        "products": 8,
+        "imagesToGenerate": 24
+      },
+      {
+        "batch": "BATCH 05",
+        "products": 8,
+        "imagesToGenerate": 24
+      },
+      {
+        "batch": "BATCH 06",
+        "products": 4,
+        "imagesToGenerate": 12
+      }
+    ],
+    "copy": {
+      "SOURCE_RAW": 0,
+      "DRAFT": 36,
+      "NEEDS_BRUNA_APPROVAL": 10,
+      "APPROVED": 0
+    }
   },
   "products": [
     {
@@ -73,97 +134,139 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/d8cca77bd8665514da0eee6f8636e77e.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-3443815-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/d8cca77bd8665514da0eee6f8636e77e.jpeg",
+          "size": "375x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-3443815-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/d8cca77bd8665514da0eee6f8636e77e.jpeg",
-        "publishable": true,
-        "size": "375x500"
+        "url": "https://cdn-production.yooga.com.br/d8cca77bd8665514da0eee6f8636e77e.jpeg",
+        "size": "375x500",
+        "narrow": false
       },
-      "priority": "P2"
+      "copyStatus": "DRAFT",
+      "editorialPriority": "C",
+      "batch": "BATCH 05"
     },
     {
       "id": "yooga-4397996",
       "slug": "coxinha-de-costela-c-cream-cheese",
-      "name": "Coxinha de Costela c/ cream cheese",
+      "name": "Coxinha de costela com cream cheese",
       "editorialCategory": "Salgados",
       "sourceCategory": "SALGADOS DELICIOSOS  😍",
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/e050c256b22dc660a252fcc2c347a259.jpeg",
-      "instagramImages": [
+      "mappedImageCount": 2,
+      "publishableImageCount": 1,
+      "target": 4,
+      "missing": 3,
+      "missingIfMappedAuthorized": 2,
+      "imageStatus": "PARTIAL_1",
+      "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "images": [
         {
-          "postUrl": "https://www.instagram.com/ateliedocesbruna/p/Ddeb7QFx7yR/",
+          "id": "yooga-4397996-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/e050c256b22dc660a252fcc2c347a259.jpeg",
+          "size": "375x500",
+          "orientation": "portrait",
           "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        },
+        {
+          "id": "yooga-4397996-ig-Ddeb7QFx7yR",
+          "source": "instagram",
+          "sourceStatus": "AUTHORIZATION_PENDING",
+          "status": "REAL",
+          "url": "https://www.instagram.com/ateliedocesbruna/p/Ddeb7QFx7yR/",
           "size": "640x640",
           "orientation": "square",
+          "match": "MATCH_CONFIRMED",
           "note": "Foto de COMBO (coxinha salgada, coxinha doce e refrigerante): não serve de referência do produto isolado."
         }
       ],
-      "otherRealImages": [],
-      "realImages": 2,
-      "publishableImages": 1,
-      "target": 4,
-      "missing": 2,
-      "imageStatus": "PARTIAL_2",
-      "quality": "MEDIA (640 px)",
-      "authorization": "Instagram: PENDENTE (não exibir)",
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
-      "generationNeeded": 2,
+      "action": "GENERATE_3",
+      "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-4397996-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/e050c256b22dc660a252fcc2c347a259.jpeg",
-        "publishable": true,
-        "size": "375x500"
+        "url": "https://cdn-production.yooga.com.br/e050c256b22dc660a252fcc2c347a259.jpeg",
+        "size": "375x500",
+        "narrow": false
       },
-      "priority": "P1"
+      "copyStatus": "DRAFT",
+      "editorialPriority": "C",
+      "batch": "BATCH 05"
     },
     {
       "id": "yooga-4441576",
       "slug": "coxinha-de-frango-c-catupiry",
-      "name": "Coxinha de frango c/ catupiry",
+      "name": "Coxinha de frango com catupiry",
       "editorialCategory": "Salgados",
       "sourceCategory": "SALGADOS DELICIOSOS  😍",
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/b5352c095d6f4f1aa082ff8a47ad0966.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-4441576-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/b5352c095d6f4f1aa082ff8a47ad0966.jpeg",
+          "size": "375x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-4441576-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/b5352c095d6f4f1aa082ff8a47ad0966.jpeg",
-        "publishable": true,
-        "size": "375x500"
+        "url": "https://cdn-production.yooga.com.br/b5352c095d6f4f1aa082ff8a47ad0966.jpeg",
+        "size": "375x500",
+        "narrow": false
       },
-      "priority": "P2"
+      "copyStatus": "DRAFT",
+      "editorialPriority": "C",
+      "batch": "BATCH 01"
     },
     {
       "id": "yooga-5829904",
@@ -174,27 +277,40 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/046e14fb4254c7799730336d0115b2d7.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-5829904-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/046e14fb4254c7799730336d0115b2d7.jpeg",
+          "size": "281x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-5829904-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/046e14fb4254c7799730336d0115b2d7.jpeg",
-        "publishable": true,
-        "size": "281x500"
+        "url": "https://cdn-production.yooga.com.br/046e14fb4254c7799730336d0115b2d7.jpeg",
+        "size": "281x500",
+        "narrow": false
       },
-      "priority": "P2"
+      "copyStatus": "DRAFT",
+      "editorialPriority": "C",
+      "batch": "BATCH 06"
     },
     {
       "id": "yooga-7252226",
@@ -205,58 +321,84 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/716ee9e66ed58e075c56b21f575a2dca.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-7252226-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/716ee9e66ed58e075c56b21f575a2dca.jpeg",
+          "size": "375x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-7252226-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/716ee9e66ed58e075c56b21f575a2dca.jpeg",
-        "publishable": true,
-        "size": "375x500"
+        "url": "https://cdn-production.yooga.com.br/716ee9e66ed58e075c56b21f575a2dca.jpeg",
+        "size": "375x500",
+        "narrow": false
       },
-      "priority": "P2"
+      "copyStatus": "DRAFT",
+      "editorialPriority": "C",
+      "batch": "BATCH 06"
     },
     {
       "id": "yooga-8632823",
       "slug": "esfiha-de-frango-com-catupiry",
-      "name": "Esfiha de Frango com Catupiry",
+      "name": "Esfiha de frango com catupiry",
       "editorialCategory": "Salgados",
       "sourceCategory": "SALGADOS DELICIOSOS  😍",
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/768320cad0d2ffac42b74fd45cf252b4.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-8632823-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/768320cad0d2ffac42b74fd45cf252b4.jpeg",
+          "size": "375x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-8632823-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/768320cad0d2ffac42b74fd45cf252b4.jpeg",
-        "publishable": true,
-        "size": "375x500"
+        "url": "https://cdn-production.yooga.com.br/768320cad0d2ffac42b74fd45cf252b4.jpeg",
+        "size": "375x500",
+        "narrow": false
       },
-      "priority": "P2"
+      "copyStatus": "DRAFT",
+      "editorialPriority": "C",
+      "batch": "BATCH 06"
     },
     {
       "id": "yooga-3415238",
@@ -267,58 +409,84 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/7cfe9730e2dc460884db4d9a70e23d99.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-3415238-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/7cfe9730e2dc460884db4d9a70e23d99.jpeg",
+          "size": "375x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-3415238-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/7cfe9730e2dc460884db4d9a70e23d99.jpeg",
-        "publishable": true,
-        "size": "375x500"
+        "url": "https://cdn-production.yooga.com.br/7cfe9730e2dc460884db4d9a70e23d99.jpeg",
+        "size": "375x500",
+        "narrow": false
       },
-      "priority": "P1"
+      "copyStatus": "DRAFT",
+      "editorialPriority": "B",
+      "batch": "BATCH 02"
     },
     {
       "id": "yooga-5830601",
       "slug": "fatia-brownie-brigadeiro",
-      "name": "Fatia Brownie brigadeiro",
+      "name": "Fatia brownie brigadeiro",
       "editorialCategory": "Fatias",
       "sourceCategory": "FATIAS",
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/9c2f0932b6617fe6b4aba95dabe7ab5d.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-5830601-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/9c2f0932b6617fe6b4aba95dabe7ab5d.jpeg",
+          "size": "281x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-5830601-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/9c2f0932b6617fe6b4aba95dabe7ab5d.jpeg",
-        "publishable": true,
-        "size": "281x500"
+        "url": "https://cdn-production.yooga.com.br/9c2f0932b6617fe6b4aba95dabe7ab5d.jpeg",
+        "size": "281x500",
+        "narrow": false
       },
-      "priority": "P1"
+      "copyStatus": "DRAFT",
+      "editorialPriority": "B",
+      "batch": "BATCH 02"
     },
     {
       "id": "yooga-3415249",
@@ -329,27 +497,40 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/dd4ce04ca3ea7df0b6057ccd9f9f4db8.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-3415249-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/dd4ce04ca3ea7df0b6057ccd9f9f4db8.jpeg",
+          "size": "300x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-3415249-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/dd4ce04ca3ea7df0b6057ccd9f9f4db8.jpeg",
-        "publishable": true,
-        "size": "300x500"
+        "url": "https://cdn-production.yooga.com.br/dd4ce04ca3ea7df0b6057ccd9f9f4db8.jpeg",
+        "size": "300x500",
+        "narrow": false
       },
-      "priority": "P1"
+      "copyStatus": "DRAFT",
+      "editorialPriority": "B",
+      "batch": "BATCH 02"
     },
     {
       "id": "yooga-3415250",
@@ -360,27 +541,40 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/d604bf159c3a9a9ec9025b5c4bdfe62a.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-3415250-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/d604bf159c3a9a9ec9025b5c4bdfe62a.jpeg",
+          "size": "375x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-3415250-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/d604bf159c3a9a9ec9025b5c4bdfe62a.jpeg",
-        "publishable": true,
-        "size": "375x500"
+        "url": "https://cdn-production.yooga.com.br/d604bf159c3a9a9ec9025b5c4bdfe62a.jpeg",
+        "size": "375x500",
+        "narrow": false
       },
-      "priority": "P1"
+      "copyStatus": "DRAFT",
+      "editorialPriority": "B",
+      "batch": "BATCH 02"
     },
     {
       "id": "yooga-3415251",
@@ -391,27 +585,40 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/95b56a584346968f8c80c1d212a64797.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-3415251-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/95b56a584346968f8c80c1d212a64797.jpeg",
+          "size": "375x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-3415251-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/95b56a584346968f8c80c1d212a64797.jpeg",
-        "publishable": true,
-        "size": "375x500"
+        "url": "https://cdn-production.yooga.com.br/95b56a584346968f8c80c1d212a64797.jpeg",
+        "size": "375x500",
+        "narrow": false
       },
-      "priority": "P0"
+      "copyStatus": "DRAFT",
+      "editorialPriority": "A",
+      "batch": "BATCH 01"
     },
     {
       "id": "yooga-5777324",
@@ -422,27 +629,40 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/31a40ce902e5437088212b63cacd0813.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-5777324-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/31a40ce902e5437088212b63cacd0813.jpeg",
+          "size": "375x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-5777324-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/31a40ce902e5437088212b63cacd0813.jpeg",
-        "publishable": true,
-        "size": "375x500"
+        "url": "https://cdn-production.yooga.com.br/31a40ce902e5437088212b63cacd0813.jpeg",
+        "size": "375x500",
+        "narrow": false
       },
-      "priority": "P2"
+      "copyStatus": "DRAFT",
+      "editorialPriority": "C",
+      "batch": "BATCH 05"
     },
     {
       "id": "yooga-8271723",
@@ -453,27 +673,40 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/ccb4a79a5bd4623c2efbd6b1a8e731d4.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-8271723-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/ccb4a79a5bd4623c2efbd6b1a8e731d4.jpeg",
+          "size": "375x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-8271723-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/ccb4a79a5bd4623c2efbd6b1a8e731d4.jpeg",
-        "publishable": true,
-        "size": "375x500"
+        "url": "https://cdn-production.yooga.com.br/ccb4a79a5bd4623c2efbd6b1a8e731d4.jpeg",
+        "size": "375x500",
+        "narrow": false
       },
-      "priority": "P2"
+      "copyStatus": "DRAFT",
+      "editorialPriority": "C",
+      "batch": "BATCH 04"
     },
     {
       "id": "yooga-8801925",
@@ -484,27 +717,40 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/9e3e0647bdef50168374426bb6519e60.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-8801925-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/9e3e0647bdef50168374426bb6519e60.jpeg",
+          "size": "375x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-8801925-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/9e3e0647bdef50168374426bb6519e60.jpeg",
-        "publishable": true,
-        "size": "375x500"
+        "url": "https://cdn-production.yooga.com.br/9e3e0647bdef50168374426bb6519e60.jpeg",
+        "size": "375x500",
+        "narrow": false
       },
-      "priority": "P2"
+      "copyStatus": "DRAFT",
+      "editorialPriority": "C",
+      "batch": "BATCH 05"
     },
     {
       "id": "yooga-4672088",
@@ -515,27 +761,40 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/fc2ce19f307250909edaed3f2a9e91a7.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-4672088-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/fc2ce19f307250909edaed3f2a9e91a7.jpeg",
+          "size": "375x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-4672088-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/fc2ce19f307250909edaed3f2a9e91a7.jpeg",
-        "publishable": true,
-        "size": "375x500"
+        "url": "https://cdn-production.yooga.com.br/fc2ce19f307250909edaed3f2a9e91a7.jpeg",
+        "size": "375x500",
+        "narrow": false
       },
-      "priority": "P0"
+      "copyStatus": "DRAFT",
+      "editorialPriority": "A",
+      "batch": "BATCH 01"
     },
     {
       "id": "yooga-4679019",
@@ -546,58 +805,84 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/aaff3ea46fda622db5b45fced62cd29a.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-4679019-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/aaff3ea46fda622db5b45fced62cd29a.jpeg",
+          "size": "375x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-4679019-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/aaff3ea46fda622db5b45fced62cd29a.jpeg",
-        "publishable": true,
-        "size": "375x500"
+        "url": "https://cdn-production.yooga.com.br/aaff3ea46fda622db5b45fced62cd29a.jpeg",
+        "size": "375x500",
+        "narrow": false
       },
-      "priority": "P1"
+      "copyStatus": "DRAFT",
+      "editorialPriority": "B",
+      "batch": "BATCH 03"
     },
     {
       "id": "yooga-4679020",
       "slug": "fatia-duo-com-morango",
-      "name": "Fatia DUO com morango",
+      "name": "Fatia duo com morango",
       "editorialCategory": "Fatias",
       "sourceCategory": "FATIAS DE BOLO✨",
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/efa2efedb4347578afd4b8b980d242b1.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-4679020-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/efa2efedb4347578afd4b8b980d242b1.jpeg",
+          "size": "375x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-4679020-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/efa2efedb4347578afd4b8b980d242b1.jpeg",
-        "publishable": true,
-        "size": "375x500"
+        "url": "https://cdn-production.yooga.com.br/efa2efedb4347578afd4b8b980d242b1.jpeg",
+        "size": "375x500",
+        "narrow": false
       },
-      "priority": "P1"
+      "copyStatus": "NEEDS_BRUNA_APPROVAL",
+      "editorialPriority": "B",
+      "batch": "BATCH 03"
     },
     {
       "id": "yooga-4748080",
@@ -608,58 +893,84 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/a3e285b1c01d4a85e6ab66f6874f63ee.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-4748080-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/a3e285b1c01d4a85e6ab66f6874f63ee.jpeg",
+          "size": "375x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-4748080-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/a3e285b1c01d4a85e6ab66f6874f63ee.jpeg",
-        "publishable": true,
-        "size": "375x500"
+        "url": "https://cdn-production.yooga.com.br/a3e285b1c01d4a85e6ab66f6874f63ee.jpeg",
+        "size": "375x500",
+        "narrow": false
       },
-      "priority": "P1"
+      "copyStatus": "DRAFT",
+      "editorialPriority": "B",
+      "batch": "BATCH 04"
     },
     {
       "id": "yooga-8181132",
       "slug": "fatia-limao-siciliano-c-frutas-vermelhas",
-      "name": "Fatia Limão siciliano c/ frutas vermelhas",
+      "name": "Fatia limão siciliano com frutas vermelhas",
       "editorialCategory": "Fatias",
       "sourceCategory": "FATIAS DE BOLO✨",
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/835fa13b2e2b75c672407f808749543d.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-8181132-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/835fa13b2e2b75c672407f808749543d.jpeg",
+          "size": "375x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-8181132-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/835fa13b2e2b75c672407f808749543d.jpeg",
-        "publishable": true,
-        "size": "375x500"
+        "url": "https://cdn-production.yooga.com.br/835fa13b2e2b75c672407f808749543d.jpeg",
+        "size": "375x500",
+        "narrow": false
       },
-      "priority": "P1"
+      "copyStatus": "DRAFT",
+      "editorialPriority": "B",
+      "batch": "BATCH 03"
     },
     {
       "id": "yooga-8819556",
@@ -670,27 +981,40 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/4b004c94601bd7d9a4d5fb53a3e92d4b.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-8819556-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/4b004c94601bd7d9a4d5fb53a3e92d4b.jpeg",
+          "size": "375x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-8819556-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/4b004c94601bd7d9a4d5fb53a3e92d4b.jpeg",
-        "publishable": true,
-        "size": "375x500"
+        "url": "https://cdn-production.yooga.com.br/4b004c94601bd7d9a4d5fb53a3e92d4b.jpeg",
+        "size": "375x500",
+        "narrow": false
       },
-      "priority": "P1"
+      "copyStatus": "DRAFT",
+      "editorialPriority": "B",
+      "batch": "BATCH 04"
     },
     {
       "id": "yooga-6223177",
@@ -701,27 +1025,40 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/778df72cf7b3c8a7e48813d36267eac4.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-6223177-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/778df72cf7b3c8a7e48813d36267eac4.jpeg",
+          "size": "375x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-6223177-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/778df72cf7b3c8a7e48813d36267eac4.jpeg",
-        "publishable": true,
-        "size": "375x500"
+        "url": "https://cdn-production.yooga.com.br/778df72cf7b3c8a7e48813d36267eac4.jpeg",
+        "size": "375x500",
+        "narrow": false
       },
-      "priority": "P1"
+      "copyStatus": "DRAFT",
+      "editorialPriority": "B",
+      "batch": "BATCH 03"
     },
     {
       "id": "yooga-6245599",
@@ -732,27 +1069,40 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/aec435115a9c8397029ce71069d3cbe0.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-6245599-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/aec435115a9c8397029ce71069d3cbe0.jpeg",
+          "size": "375x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-6245599-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/aec435115a9c8397029ce71069d3cbe0.jpeg",
-        "publishable": true,
-        "size": "375x500"
+        "url": "https://cdn-production.yooga.com.br/aec435115a9c8397029ce71069d3cbe0.jpeg",
+        "size": "375x500",
+        "narrow": false
       },
-      "priority": "P1"
+      "copyStatus": "DRAFT",
+      "editorialPriority": "B",
+      "batch": "BATCH 01"
     },
     {
       "id": "yooga-6275769",
@@ -763,27 +1113,40 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/00ffa4eed400a7631278a9b64df42d09.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-6275769-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/00ffa4eed400a7631278a9b64df42d09.jpeg",
+          "size": "375x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-6275769-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/00ffa4eed400a7631278a9b64df42d09.jpeg",
-        "publishable": true,
-        "size": "375x500"
+        "url": "https://cdn-production.yooga.com.br/00ffa4eed400a7631278a9b64df42d09.jpeg",
+        "size": "375x500",
+        "narrow": false
       },
-      "priority": "P1"
+      "copyStatus": "DRAFT",
+      "editorialPriority": "B",
+      "batch": "BATCH 03"
     },
     {
       "id": "yooga-6551804",
@@ -794,27 +1157,40 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/9fdaacb7877bbc6f05ff30f78ddf2983.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-6551804-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/9fdaacb7877bbc6f05ff30f78ddf2983.jpeg",
+          "size": "375x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-6551804-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/9fdaacb7877bbc6f05ff30f78ddf2983.jpeg",
-        "publishable": true,
-        "size": "375x500"
+        "url": "https://cdn-production.yooga.com.br/9fdaacb7877bbc6f05ff30f78ddf2983.jpeg",
+        "size": "375x500",
+        "narrow": false
       },
-      "priority": "P1"
+      "copyStatus": "DRAFT",
+      "editorialPriority": "B",
+      "batch": "BATCH 02"
     },
     {
       "id": "yooga-7103479",
@@ -825,27 +1201,40 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/d426aa30b60bd3516dc94a3e636ddd11.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-7103479-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/d426aa30b60bd3516dc94a3e636ddd11.jpeg",
+          "size": "375x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-7103479-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/d426aa30b60bd3516dc94a3e636ddd11.jpeg",
-        "publishable": true,
-        "size": "375x500"
+        "url": "https://cdn-production.yooga.com.br/d426aa30b60bd3516dc94a3e636ddd11.jpeg",
+        "size": "375x500",
+        "narrow": false
       },
-      "priority": "P0"
+      "copyStatus": "DRAFT",
+      "editorialPriority": "A",
+      "batch": "BATCH 01"
     },
     {
       "id": "yooga-7584407",
@@ -856,27 +1245,40 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/efc2190e71af338f16f3f597c12caf5f.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-7584407-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/efc2190e71af338f16f3f597c12caf5f.jpeg",
+          "size": "375x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-7584407-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/efc2190e71af338f16f3f597c12caf5f.jpeg",
-        "publishable": true,
-        "size": "375x500"
+        "url": "https://cdn-production.yooga.com.br/efc2190e71af338f16f3f597c12caf5f.jpeg",
+        "size": "375x500",
+        "narrow": false
       },
-      "priority": "P1"
+      "copyStatus": "DRAFT",
+      "editorialPriority": "B",
+      "batch": "BATCH 02"
     },
     {
       "id": "yooga-3415240",
@@ -887,27 +1289,40 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/034f557ecdb934a9ad8bc383a0c331c0.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-3415240-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/034f557ecdb934a9ad8bc383a0c331c0.jpeg",
+          "size": "242x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-3415240-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/034f557ecdb934a9ad8bc383a0c331c0.jpeg",
-        "publishable": true,
-        "size": "242x500"
+        "url": "https://cdn-production.yooga.com.br/034f557ecdb934a9ad8bc383a0c331c0.jpeg",
+        "size": "242x500",
+        "narrow": true
       },
-      "priority": "P0"
+      "copyStatus": "NEEDS_BRUNA_APPROVAL",
+      "editorialPriority": "A",
+      "batch": "BATCH 01"
     },
     {
       "id": "yooga-3415241",
@@ -918,27 +1333,40 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/35c7d3ce5d2ed825b59fb3030e269976.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-3415241-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/35c7d3ce5d2ed825b59fb3030e269976.jpeg",
+          "size": "299x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-3415241-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/35c7d3ce5d2ed825b59fb3030e269976.jpeg",
-        "publishable": true,
-        "size": "299x500"
+        "url": "https://cdn-production.yooga.com.br/35c7d3ce5d2ed825b59fb3030e269976.jpeg",
+        "size": "299x500",
+        "narrow": false
       },
-      "priority": "P1"
+      "copyStatus": "DRAFT",
+      "editorialPriority": "B",
+      "batch": "BATCH 03"
     },
     {
       "id": "yooga-4579548",
@@ -949,27 +1377,40 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/6743d634f57efb54fd2ee58b47d588c8.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-4579548-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/6743d634f57efb54fd2ee58b47d588c8.jpeg",
+          "size": "375x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-4579548-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/6743d634f57efb54fd2ee58b47d588c8.jpeg",
-        "publishable": true,
-        "size": "375x500"
+        "url": "https://cdn-production.yooga.com.br/6743d634f57efb54fd2ee58b47d588c8.jpeg",
+        "size": "375x500",
+        "narrow": false
       },
-      "priority": "P1"
+      "copyStatus": "DRAFT",
+      "editorialPriority": "B",
+      "batch": "BATCH 03"
     },
     {
       "id": "yooga-5937243",
@@ -980,27 +1421,40 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/3e148b04514aa477b5d84d0eff8a74bb.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-5937243-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/3e148b04514aa477b5d84d0eff8a74bb.jpeg",
+          "size": "375x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-5937243-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/3e148b04514aa477b5d84d0eff8a74bb.jpeg",
-        "publishable": true,
-        "size": "375x500"
+        "url": "https://cdn-production.yooga.com.br/3e148b04514aa477b5d84d0eff8a74bb.jpeg",
+        "size": "375x500",
+        "narrow": false
       },
-      "priority": "P1"
+      "copyStatus": "DRAFT",
+      "editorialPriority": "B",
+      "batch": "BATCH 04"
     },
     {
       "id": "yooga-7876302",
@@ -1011,27 +1465,40 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/22b5009017e15397caeda563495c60eb.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-7876302-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/22b5009017e15397caeda563495c60eb.jpeg",
+          "size": "375x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-7876302-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/22b5009017e15397caeda563495c60eb.jpeg",
-        "publishable": true,
-        "size": "375x500"
+        "url": "https://cdn-production.yooga.com.br/22b5009017e15397caeda563495c60eb.jpeg",
+        "size": "375x500",
+        "narrow": false
       },
-      "priority": "P1"
+      "copyStatus": "NEEDS_BRUNA_APPROVAL",
+      "editorialPriority": "B",
+      "batch": "BATCH 03"
     },
     {
       "id": "yooga-8664774",
@@ -1042,27 +1509,40 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/0c706e49160695f7e4125f8182adf4f1.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-8664774-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/0c706e49160695f7e4125f8182adf4f1.jpeg",
+          "size": "375x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-8664774-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/0c706e49160695f7e4125f8182adf4f1.jpeg",
-        "publishable": true,
-        "size": "375x500"
+        "url": "https://cdn-production.yooga.com.br/0c706e49160695f7e4125f8182adf4f1.jpeg",
+        "size": "375x500",
+        "narrow": false
       },
-      "priority": "P1"
+      "copyStatus": "NEEDS_BRUNA_APPROVAL",
+      "editorialPriority": "B",
+      "batch": "BATCH 02"
     },
     {
       "id": "yooga-8977203",
@@ -1073,35 +1553,51 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/5481936d65656e67afe81d9b31ffa454.jpeg",
-      "instagramImages": [
+      "mappedImageCount": 2,
+      "publishableImageCount": 1,
+      "target": 4,
+      "missing": 3,
+      "missingIfMappedAuthorized": 2,
+      "imageStatus": "PARTIAL_1",
+      "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "images": [
         {
-          "postUrl": "https://www.instagram.com/ateliedocesbruna/p/DeFMvlxxTqZ/",
+          "id": "yooga-8977203-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/5481936d65656e67afe81d9b31ffa454.jpeg",
+          "size": "375x500",
+          "orientation": "portrait",
           "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        },
+        {
+          "id": "yooga-8977203-ig-DeFMvlxxTqZ",
+          "source": "instagram",
+          "sourceStatus": "AUTHORIZATION_PENDING",
+          "status": "REAL",
+          "url": "https://www.instagram.com/ateliedocesbruna/p/DeFMvlxxTqZ/",
           "size": "640x640",
           "orientation": "square",
+          "match": "MATCH_CONFIRMED",
           "note": null
         }
       ],
-      "otherRealImages": [],
-      "realImages": 2,
-      "publishableImages": 1,
-      "target": 4,
-      "missing": 2,
-      "imageStatus": "PARTIAL_2",
-      "quality": "MEDIA (640 px)",
-      "authorization": "Instagram: PENDENTE (não exibir)",
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
-      "generationNeeded": 2,
+      "action": "GENERATE_3",
+      "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
-        "id": "yooga-8977203-ig-DeFMvlxxTqZ",
-        "source": "instagram",
-        "ref": "https://www.instagram.com/ateliedocesbruna/p/DeFMvlxxTqZ/",
-        "publishable": false,
-        "size": "640x640"
+        "id": "yooga-8977203-yooga",
+        "url": "https://cdn-production.yooga.com.br/5481936d65656e67afe81d9b31ffa454.jpeg",
+        "size": "375x500",
+        "narrow": false
       },
-      "priority": "P1"
+      "copyStatus": "NEEDS_BRUNA_APPROVAL",
+      "editorialPriority": "B",
+      "batch": "BATCH 02"
     },
     {
       "id": "yooga-6902111",
@@ -1112,27 +1608,40 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/9a2d9239ef7f68bcdbcb413baebd85cb.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-6902111-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/9a2d9239ef7f68bcdbcb413baebd85cb.jpeg",
+          "size": "375x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-6902111-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/9a2d9239ef7f68bcdbcb413baebd85cb.jpeg",
-        "publishable": true,
-        "size": "375x500"
+        "url": "https://cdn-production.yooga.com.br/9a2d9239ef7f68bcdbcb413baebd85cb.jpeg",
+        "size": "375x500",
+        "narrow": false
       },
-      "priority": "P2"
+      "copyStatus": "DRAFT",
+      "editorialPriority": "C",
+      "batch": "BATCH 04"
     },
     {
       "id": "yooga-8835730",
@@ -1143,21 +1652,23 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": null,
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 0,
-      "publishableImages": 0,
+      "mappedImageCount": 0,
+      "publishableImageCount": 0,
       "target": 4,
       "missing": 4,
+      "missingIfMappedAuthorized": 4,
       "imageStatus": "MISSING",
       "quality": "SEM_IMAGEM",
-      "authorization": "n/a",
+      "images": [],
+      "primarySourceStatus": "MISSING",
       "generationPlan": "NEEDS_REAL_PHOTO",
+      "action": "REQUEST_REAL_REFERENCE",
       "generationNeeded": 0,
       "realPhotosNeeded": 4,
       "referenceImage": null,
-      "priority": "P2"
+      "copyStatus": "DRAFT",
+      "editorialPriority": "C",
+      "batch": null
     },
     {
       "id": "yooga-7734662",
@@ -1168,35 +1679,51 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/76666f636dadd1f611093d19e28f2c6c.jpeg",
-      "instagramImages": [
+      "mappedImageCount": 2,
+      "publishableImageCount": 1,
+      "target": 4,
+      "missing": 3,
+      "missingIfMappedAuthorized": 2,
+      "imageStatus": "PARTIAL_1",
+      "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "images": [
         {
-          "postUrl": "https://www.instagram.com/ateliedocesbruna/p/DdwhlyGxN6T/",
+          "id": "yooga-7734662-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/76666f636dadd1f611093d19e28f2c6c.jpeg",
+          "size": "375x500",
+          "orientation": "portrait",
           "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        },
+        {
+          "id": "yooga-7734662-ig-DdwhlyGxN6T",
+          "source": "instagram",
+          "sourceStatus": "AUTHORIZATION_PENDING",
+          "status": "REAL",
+          "url": "https://www.instagram.com/ateliedocesbruna/p/DdwhlyGxN6T/",
           "size": "640x640",
           "orientation": "square",
+          "match": "MATCH_CONFIRMED",
           "note": null
         }
       ],
-      "otherRealImages": [],
-      "realImages": 2,
-      "publishableImages": 1,
-      "target": 4,
-      "missing": 2,
-      "imageStatus": "PARTIAL_2",
-      "quality": "MEDIA (640 px)",
-      "authorization": "Instagram: PENDENTE (não exibir)",
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
-      "generationNeeded": 2,
+      "action": "GENERATE_3",
+      "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
-        "id": "yooga-7734662-ig-DdwhlyGxN6T",
-        "source": "instagram",
-        "ref": "https://www.instagram.com/ateliedocesbruna/p/DdwhlyGxN6T/",
-        "publishable": false,
-        "size": "640x640"
+        "id": "yooga-7734662-yooga",
+        "url": "https://cdn-production.yooga.com.br/76666f636dadd1f611093d19e28f2c6c.jpeg",
+        "size": "375x500",
+        "narrow": false
       },
-      "priority": "P1"
+      "copyStatus": "DRAFT",
+      "editorialPriority": "C",
+      "batch": "BATCH 05"
     },
     {
       "id": "yooga-7498098",
@@ -1207,27 +1734,40 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/01a4afef39dc3ef7c64dde16bf092a57.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-7498098-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/01a4afef39dc3ef7c64dde16bf092a57.jpeg",
+          "size": "296x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-7498098-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/01a4afef39dc3ef7c64dde16bf092a57.jpeg",
-        "publishable": true,
-        "size": "296x500"
+        "url": "https://cdn-production.yooga.com.br/01a4afef39dc3ef7c64dde16bf092a57.jpeg",
+        "size": "296x500",
+        "narrow": false
       },
-      "priority": "P2"
+      "copyStatus": "DRAFT",
+      "editorialPriority": "C",
+      "batch": "BATCH 04"
     },
     {
       "id": "yooga-7383565",
@@ -1238,27 +1778,40 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/663664731d269890b94fb0a6df8cf2fe.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-7383565-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/663664731d269890b94fb0a6df8cf2fe.jpeg",
+          "size": "375x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-7383565-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/663664731d269890b94fb0a6df8cf2fe.jpeg",
-        "publishable": true,
-        "size": "375x500"
+        "url": "https://cdn-production.yooga.com.br/663664731d269890b94fb0a6df8cf2fe.jpeg",
+        "size": "375x500",
+        "narrow": false
       },
-      "priority": "P2"
+      "copyStatus": "NEEDS_BRUNA_APPROVAL",
+      "editorialPriority": "C",
+      "batch": "BATCH 05"
     },
     {
       "id": "yooga-7383568",
@@ -1269,27 +1822,40 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/a9b69bb5272d19762cb79847030c4058.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-7383568-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/a9b69bb5272d19762cb79847030c4058.jpeg",
+          "size": "375x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-7383568-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/a9b69bb5272d19762cb79847030c4058.jpeg",
-        "publishable": true,
-        "size": "375x500"
+        "url": "https://cdn-production.yooga.com.br/a9b69bb5272d19762cb79847030c4058.jpeg",
+        "size": "375x500",
+        "narrow": false
       },
-      "priority": "P2"
+      "copyStatus": "NEEDS_BRUNA_APPROVAL",
+      "editorialPriority": "C",
+      "batch": "BATCH 06"
     },
     {
       "id": "yooga-7401609",
@@ -1300,27 +1866,40 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/7c878ad4bbc8046c678f2cafaef609e5.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-7401609-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/7c878ad4bbc8046c678f2cafaef609e5.jpeg",
+          "size": "375x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-7401609-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/7c878ad4bbc8046c678f2cafaef609e5.jpeg",
-        "publishable": true,
-        "size": "375x500"
+        "url": "https://cdn-production.yooga.com.br/7c878ad4bbc8046c678f2cafaef609e5.jpeg",
+        "size": "375x500",
+        "narrow": false
       },
-      "priority": "P2"
+      "copyStatus": "NEEDS_BRUNA_APPROVAL",
+      "editorialPriority": "C",
+      "batch": "BATCH 05"
     },
     {
       "id": "yooga-7455768",
@@ -1331,21 +1910,23 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": null,
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 0,
-      "publishableImages": 0,
+      "mappedImageCount": 0,
+      "publishableImageCount": 0,
       "target": 4,
       "missing": 4,
+      "missingIfMappedAuthorized": 4,
       "imageStatus": "MISSING",
       "quality": "SEM_IMAGEM",
-      "authorization": "n/a",
+      "images": [],
+      "primarySourceStatus": "MISSING",
       "generationPlan": "NEEDS_REAL_PHOTO",
+      "action": "REQUEST_REAL_REFERENCE",
       "generationNeeded": 0,
       "realPhotosNeeded": 4,
       "referenceImage": null,
-      "priority": "P2"
+      "copyStatus": "NEEDS_BRUNA_APPROVAL",
+      "editorialPriority": "C",
+      "batch": null
     },
     {
       "id": "yooga-3415245",
@@ -1356,27 +1937,40 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/95e66412d883d17112f83f17fbff0c0e.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-3415245-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/95e66412d883d17112f83f17fbff0c0e.jpeg",
+          "size": "231x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-3415245-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/95e66412d883d17112f83f17fbff0c0e.jpeg",
-        "publishable": true,
-        "size": "231x500"
+        "url": "https://cdn-production.yooga.com.br/95e66412d883d17112f83f17fbff0c0e.jpeg",
+        "size": "231x500",
+        "narrow": true
       },
-      "priority": "P2"
+      "copyStatus": "DRAFT",
+      "editorialPriority": "C",
+      "batch": "BATCH 05"
     },
     {
       "id": "yooga-3415246",
@@ -1387,27 +1981,40 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/fe9871fb7bb9456f472c6dd4750be3fd.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-3415246-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/fe9871fb7bb9456f472c6dd4750be3fd.jpeg",
+          "size": "281x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-3415246-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/fe9871fb7bb9456f472c6dd4750be3fd.jpeg",
-        "publishable": true,
-        "size": "281x500"
+        "url": "https://cdn-production.yooga.com.br/fe9871fb7bb9456f472c6dd4750be3fd.jpeg",
+        "size": "281x500",
+        "narrow": false
       },
-      "priority": "P2"
+      "copyStatus": "DRAFT",
+      "editorialPriority": "C",
+      "batch": "BATCH 04"
     },
     {
       "id": "yooga-3415255",
@@ -1418,27 +2025,40 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/c6ab9be564ca018df3270e58253f85ce.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-3415255-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/c6ab9be564ca018df3270e58253f85ce.jpeg",
+          "size": "375x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-3415255-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/c6ab9be564ca018df3270e58253f85ce.jpeg",
-        "publishable": true,
-        "size": "375x500"
+        "url": "https://cdn-production.yooga.com.br/c6ab9be564ca018df3270e58253f85ce.jpeg",
+        "size": "375x500",
+        "narrow": false
       },
-      "priority": "P2"
+      "copyStatus": "DRAFT",
+      "editorialPriority": "C",
+      "batch": "BATCH 01"
     },
     {
       "id": "yooga-3415256",
@@ -1449,27 +2069,40 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/abfc4ee77774ac08206d61c2cf643eee.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-3415256-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/abfc4ee77774ac08206d61c2cf643eee.jpeg",
+          "size": "375x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-3415256-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/abfc4ee77774ac08206d61c2cf643eee.jpeg",
-        "publishable": true,
-        "size": "375x500"
+        "url": "https://cdn-production.yooga.com.br/abfc4ee77774ac08206d61c2cf643eee.jpeg",
+        "size": "375x500",
+        "narrow": false
       },
-      "priority": "P2"
+      "copyStatus": "NEEDS_BRUNA_APPROVAL",
+      "editorialPriority": "C",
+      "batch": "BATCH 04"
     },
     {
       "id": "yooga-7986915",
@@ -1480,27 +2113,40 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "yoogaImage": "https://cdn-production.yooga.com.br/ed6ba0b566fc694bfc585d4a12c7f94e.jpeg",
-      "instagramImages": [],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 1,
+      "mappedImageCount": 1,
+      "publishableImageCount": 1,
       "target": 4,
       "missing": 3,
+      "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
-      "authorization": "PUBLIC_CDN (Yooga)",
+      "images": [
+        {
+          "id": "yooga-7986915-yooga",
+          "source": "yooga",
+          "sourceStatus": "PUBLICABLE",
+          "status": "REAL",
+          "url": "https://cdn-production.yooga.com.br/ed6ba0b566fc694bfc585d4a12c7f94e.jpeg",
+          "size": "375x500",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        }
+      ],
+      "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
+      "action": "GENERATE_3",
       "generationNeeded": 3,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-7986915-yooga",
-        "source": "yooga",
-        "ref": "https://cdn-production.yooga.com.br/ed6ba0b566fc694bfc585d4a12c7f94e.jpeg",
-        "publishable": true,
-        "size": "375x500"
+        "url": "https://cdn-production.yooga.com.br/ed6ba0b566fc694bfc585d4a12c7f94e.jpeg",
+        "size": "375x500",
+        "narrow": false
       },
-      "priority": "P2"
+      "copyStatus": "DRAFT",
+      "editorialPriority": "B",
+      "batch": "BATCH 01"
     },
     {
       "id": "ig-coxinha-de-salmao",
@@ -1511,29 +2157,35 @@
       "origin": "Instagram",
       "status": "PORTFOLIO_ONLY",
       "publishedInGallery": false,
-      "yoogaImage": null,
-      "instagramImages": [
+      "mappedImageCount": 1,
+      "publishableImageCount": 0,
+      "target": 4,
+      "missing": 4,
+      "missingIfMappedAuthorized": 3,
+      "imageStatus": "MISSING",
+      "quality": "SEM_IMAGEM_PUBLICÁVEL",
+      "images": [
         {
-          "postUrl": "https://www.instagram.com/ateliedocesbruna/reel/DdmO-cVxzgp/",
-          "match": "MATCH_PROBABLE",
+          "id": "ig-coxinha-de-salmao-ig-DdmO-cVxzgp",
+          "source": "instagram",
+          "sourceStatus": "REFERENCE_ONLY",
+          "status": "PENDING",
+          "url": "https://www.instagram.com/ateliedocesbruna/reel/DdmO-cVxzgp/",
           "size": "360x640",
           "orientation": "portrait",
+          "match": "MATCH_PROBABLE",
           "note": "Citada na legenda do reel; não consta no cardápio Yooga auditado."
         }
       ],
-      "otherRealImages": [],
-      "realImages": 0,
-      "publishableImages": 0,
-      "target": 4,
-      "missing": 4,
-      "imageStatus": "MISSING",
-      "quality": "SEM_IMAGEM",
-      "authorization": "n/a",
+      "primarySourceStatus": "REFERENCE_ONLY",
       "generationPlan": "NEEDS_REAL_PHOTO",
+      "action": "REQUEST_REAL_REFERENCE",
       "generationNeeded": 0,
       "realPhotosNeeded": 4,
       "referenceImage": null,
-      "priority": "P1"
+      "copyStatus": "SOURCE_RAW",
+      "editorialPriority": "C",
+      "batch": null
     },
     {
       "id": "ig-morango-do-amor",
@@ -1544,35 +2196,35 @@
       "origin": "Instagram",
       "status": "PORTFOLIO_ONLY",
       "publishedInGallery": false,
-      "yoogaImage": null,
-      "instagramImages": [
+      "mappedImageCount": 1,
+      "publishableImageCount": 0,
+      "target": 4,
+      "missing": 4,
+      "missingIfMappedAuthorized": 3,
+      "imageStatus": "MISSING",
+      "quality": "SEM_IMAGEM_PUBLICÁVEL",
+      "images": [
         {
-          "postUrl": "https://www.instagram.com/ateliedocesbruna/p/Ddb5yFqx5AW/",
-          "match": "MATCH_PROBABLE",
+          "id": "ig-morango-do-amor-ig-Ddb5yFqx5AW",
+          "source": "instagram",
+          "sourceStatus": "AUTHORIZATION_PENDING",
+          "status": "REAL",
+          "url": "https://www.instagram.com/ateliedocesbruna/p/Ddb5yFqx5AW/",
           "size": "578x640",
           "orientation": "portrait",
+          "match": "MATCH_PROBABLE",
           "note": "Legenda cita só \"Morango do amor\"; não consta no cardápio Yooga auditado."
         }
       ],
-      "otherRealImages": [],
-      "realImages": 1,
-      "publishableImages": 0,
-      "target": 4,
-      "missing": 3,
-      "imageStatus": "PARTIAL_1",
-      "quality": "MEDIA (640 px)",
-      "authorization": "Instagram: PENDENTE (não exibir)",
-      "generationPlan": "NEEDS_GENERATION",
-      "generationNeeded": 3,
+      "primarySourceStatus": "AUTHORIZATION_PENDING",
+      "generationPlan": "BLOCKED_AUTHORIZATION",
+      "action": "HOLD_UNTIL_AUTHORIZED",
+      "generationNeeded": 0,
       "realPhotosNeeded": 0,
-      "referenceImage": {
-        "id": "ig-morango-do-amor-ig-Ddb5yFqx5AW",
-        "source": "instagram",
-        "ref": "https://www.instagram.com/ateliedocesbruna/p/Ddb5yFqx5AW/",
-        "publishable": false,
-        "size": "578x640"
-      },
-      "priority": "P1"
+      "referenceImage": null,
+      "copyStatus": "SOURCE_RAW",
+      "editorialPriority": "C",
+      "batch": null
     }
   ]
 }
