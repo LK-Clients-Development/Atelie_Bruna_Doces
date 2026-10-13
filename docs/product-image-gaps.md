@@ -2,23 +2,7 @@
 
 > Gerado por `tools/build-portfolio-docs.mjs` (2026-10-13). Meta: 4 imagens **publicáveis** por produto (`01-source`, `02-detail`, `03-angle`, `04-context`). Mapeada ≠ publicável: ver [a matriz](product-portfolio-matrix.md). Nenhuma imagem foi gerada.
 
-1 produtos completos; **47** com lacuna, somando **145** imagens publicáveis a produzir: 129 por geração a partir de referência real; os demais dependem de foto real ou de autorização.
-
-## Bolo de cenoura tamanho família
-
-Categoria: Bolos · Yooga · `PARTIAL_1` · lote: BATCH 01
-
-Imagens mapeadas: 1 · **publicáveis: 1**
-
-Meta: 4
-
-Faltam (publicáveis): 3
-
-Melhor referência publicável: https://cdn-production.yooga.com.br/ed6ba0b566fc694bfc585d4a12c7f94e.jpeg (375x500)
-
-Ação: `GENERATE_3`
-
----
+2 produtos completos; **46** com lacuna, somando **142** imagens publicáveis a produzir: 126 por geração a partir de referência real; os demais dependem de foto real ou de autorização.
 
 ## Fatia brownie Ninho com Nutella
 

@@ -10,6 +10,9 @@ import type { ImageSlot } from './portfolio';
 import chocolatudaDetail from '../assets/portfolio/fatia-chocolatuda/02-detail.webp';
 import chocolatudaAngle from '../assets/portfolio/fatia-chocolatuda/03-angle.webp';
 import chocolatudaContext from '../assets/portfolio/fatia-chocolatuda/04-context.webp';
+import cenouraDetail from '../assets/portfolio/bolo-de-cenoura/02-detail.webp';
+import cenouraAngle from '../assets/portfolio/bolo-de-cenoura/03-angle.webp';
+import cenouraContext from '../assets/portfolio/bolo-de-cenoura/04-context.webp';
 
 export interface GeneratedEntry {
   slot: Exclude<ImageSlot, '01-source'>;
@@ -50,6 +53,36 @@ export const GENERATED_IMAGES: Record<number, GeneratedEntry[]> = {
       kind: 'CONTEXT',
       file: chocolatudaContext,
       alt: 'Fatia Chocolatuda servida em prato de cerâmica sobre mesa de madeira, com garfo dourado e guardanapo',
+      generatedAt: '2026-10-13',
+      approvedBy: APPROVER,
+      approvedAt: '2026-10-13',
+    },
+  ],
+  // Bolo de cenoura tamanho família: galeria completa (01-source = foto real do Yooga).
+  7986915: [
+    {
+      slot: '02-detail',
+      kind: 'DETAIL',
+      file: cenouraDetail,
+      alt: 'Close da cobertura de brigadeiro com granulado escorrendo pelo bolo de cenoura',
+      generatedAt: '2026-10-13',
+      approvedBy: APPROVER,
+      approvedAt: '2026-10-13',
+    },
+    {
+      slot: '03-angle',
+      kind: 'ANGLE',
+      file: cenouraAngle,
+      alt: 'Bolo de cenoura tamanho família inteiro em prato branco, com cobertura de brigadeiro e granulado, em fundo claro',
+      generatedAt: '2026-10-13',
+      approvedBy: APPROVER,
+      approvedAt: '2026-10-13',
+    },
+    {
+      slot: '04-context',
+      kind: 'CONTEXT',
+      file: cenouraContext,
+      alt: 'Bolo de cenoura tamanho família servido em prato sobre pano e mesa de madeira, com espátula ao lado',
       generatedAt: '2026-10-13',
       approvedBy: APPROVER,
       approvedAt: '2026-10-13',

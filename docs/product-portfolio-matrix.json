@@ -56,18 +56,18 @@
     "extrasFromInstagram": 2,
     "publishedInGallery": 46,
     "editorialCategories": 13,
-    "MAPPED_IMAGE_COUNT": 52,
-    "PUBLISHABLE_IMAGE_COUNT": 47,
-    "approvedGeneratedImages": 3,
+    "MAPPED_IMAGE_COUNT": 55,
+    "PUBLISHABLE_IMAGE_COUNT": 50,
+    "approvedGeneratedImages": 6,
     "mappedButNotPublishable": 5,
     "notPublishableBreakdown": {
       "AUTHORIZATION_PENDING": 4,
       "REFERENCE_ONLY": 1
     },
-    "complete4plus": 1,
+    "complete4plus": 2,
     "with3": 0,
     "with2": 0,
-    "with1": 43,
+    "with1": 42,
     "with0": 4,
     "withoutPublishableImage": [
       "Cookie tradicional",
@@ -75,9 +75,9 @@
       "Coxinha de salmão",
       "Morango do amor"
     ],
-    "imagesMissingToTarget": 145,
-    "generationEstimate": 129,
-    "productsThatCanReceiveGeneration": 43,
+    "imagesMissingToTarget": 142,
+    "generationEstimate": 126,
+    "productsThatCanReceiveGeneration": 42,
     "productsBlockedByAuthorization": [
       "Morango do amor"
     ],
@@ -90,7 +90,7 @@
       {
         "batch": "BATCH 01",
         "products": 8,
-        "imagesToGenerate": 21
+        "imagesToGenerate": 18
       },
       {
         "batch": "BATCH 02",
@@ -2675,25 +2675,21 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "mappedImageCount": 1,
-      "publishableImageCount": 1,
+      "mappedImageCount": 4,
+      "publishableImageCount": 4,
       "target": 4,
-      "missing": 3,
-      "missingIfMappedAuthorized": 3,
-      "imageStatus": "PARTIAL_1",
+      "missing": 0,
+      "missingIfMappedAuthorized": 0,
+      "imageStatus": "COMPLETE",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
       "slots": {
         "01-source": "PUBLICABLE",
-        "02-detail": "MISSING",
-        "03-angle": "MISSING",
-        "04-context": "MISSING"
+        "02-detail": "GENERATED_APPROVED",
+        "03-angle": "GENERATED_APPROVED",
+        "04-context": "GENERATED_APPROVED"
       },
-      "approvedGeneratedImages": 0,
-      "missingKinds": [
-        "DETAIL",
-        "ANGLE",
-        "CONTEXT"
-      ],
+      "approvedGeneratedImages": 3,
+      "missingKinds": [],
       "images": [
         {
           "id": "yooga-7986915-yooga",
@@ -2705,12 +2701,45 @@
           "orientation": "portrait",
           "match": "MATCH_CONFIRMED",
           "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        },
+        {
+          "id": "yooga-7986915-gen-02-detail",
+          "source": "generated",
+          "sourceStatus": "GENERATED_APPROVED",
+          "status": "APPROVED_GENERATED",
+          "url": "assets/portfolio/bolo-de-cenoura/02-detail.webp",
+          "size": "1122x1402",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Slot 02-detail. Não é fotografia do produto."
+        },
+        {
+          "id": "yooga-7986915-gen-03-angle",
+          "source": "generated",
+          "sourceStatus": "GENERATED_APPROVED",
+          "status": "APPROVED_GENERATED",
+          "url": "assets/portfolio/bolo-de-cenoura/03-angle.webp",
+          "size": "1122x1402",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Slot 03-angle. Não é fotografia do produto."
+        },
+        {
+          "id": "yooga-7986915-gen-04-context",
+          "source": "generated",
+          "sourceStatus": "GENERATED_APPROVED",
+          "status": "APPROVED_GENERATED",
+          "url": "assets/portfolio/bolo-de-cenoura/04-context.webp",
+          "size": "1122x1402",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Slot 04-context. Não é fotografia do produto."
         }
       ],
       "primarySourceStatus": "PUBLICABLE",
-      "generationPlan": "NEEDS_GENERATION",
-      "action": "GENERATE_3",
-      "generationNeeded": 3,
+      "generationPlan": "NONE",
+      "action": "NONE",
+      "generationNeeded": 0,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-7986915-yooga",

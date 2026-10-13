@@ -8,8 +8,9 @@
 | Categoria | Bolos |
 | Foto-base (fonte de verdade) | https://cdn-production.yooga.com.br/ed6ba0b566fc694bfc585d4a12c7f94e.jpeg (375x500) |
 | Origem | imagem pública do cardápio Yooga (`PUBLICABLE`, `REAL`) |
-| Imagens publicáveis hoje | 1 |
-| Faltam | 3 (DETAIL, ANGLE, CONTEXT) |
+| Imagens publicáveis hoje | 4 |
+| Faltam | 0 () |
+| Já aprovadas (não gerar de novo) | 02-detail, 03-angle, 04-context |
 | Por que está no lote | Representa a categoria Bolos (único bolo do cardápio atual); forte apelo visual. |
 | Qualidade da base | baixa resolução (≤ 500 px de altura): a saída deve ser **coerente com a foto**, não "mais bonita" que ela |
 
@@ -27,35 +28,6 @@ Bolo de cenoura em formato de rosca (forma com furo central, laterais com sulcos
 - Se não for possível mostrar algo sem inventá-lo, escolha outro enquadramento (ex.: não mostre o interior se a foto não o mostra).
 - Aspecto 4:5 (retrato), mínimo 1080×1350 px, foto realista de confeitaria, luz natural suave, sem filtros exagerados, sem aparência de ilustração/3D.
 
-## Imagem 02-detail: DETAIL — close de textura / recheio / cobertura
-
-```text
-Use a foto real anexada como fonte de verdade do produto "Bolo de cenoura tamanho família".
-Gere UMA nova foto do MESMO produto: close no brigadeiro escorrendo pelas laterais e na massa alaranjada de cenoura.
-O que a foto-base mostra e deve permanecer idêntico: Bolo de cenoura em formato de rosca (forma com furo central, laterais com sulcos) sobre prato plástico branco com bordas onduladas, segurado por uma mão; cobertura espessa de brigadeiro de chocolate escorrendo pelas laterais, com confeitos/granulado de chocolate no topo; ambiente do ateliê desfocado ao fundo.
-Não mude o produto, a forma, a cobertura, o recheio visível, os toppings, as proporções nem a embalagem. Não invente nada que não apareça na foto-base. Não escreva texto novo nem altere o rótulo/selo da marca.
-Pode mudar somente ângulo, luz, composição, cenário e enquadramento. Formato 4:5 retrato, mínimo 1080×1350 px, fotografia realista de confeitaria com luz natural suave.
-```
-
-## Imagem 03-angle: ANGLE — outro ângulo
-
-```text
-Use a foto real anexada como fonte de verdade do produto "Bolo de cenoura tamanho família".
-Gere UMA nova foto do MESMO produto: o MESMO bolo em 3⁄4 e levemente de cima, mostrando o furo central e a cobertura.
-O que a foto-base mostra e deve permanecer idêntico: Bolo de cenoura em formato de rosca (forma com furo central, laterais com sulcos) sobre prato plástico branco com bordas onduladas, segurado por uma mão; cobertura espessa de brigadeiro de chocolate escorrendo pelas laterais, com confeitos/granulado de chocolate no topo; ambiente do ateliê desfocado ao fundo.
-Não mude o produto, a forma, a cobertura, o recheio visível, os toppings, as proporções nem a embalagem. Não invente nada que não apareça na foto-base. Não escreva texto novo nem altere o rótulo/selo da marca.
-Pode mudar somente ângulo, luz, composição, cenário e enquadramento. Formato 4:5 retrato, mínimo 1080×1350 px, fotografia realista de confeitaria com luz natural suave.
-```
-
-## Imagem 04-context: CONTEXT — servido / mão / embalagem / mesa
-
-```text
-Use a foto real anexada como fonte de verdade do produto "Bolo de cenoura tamanho família".
-Gere UMA nova foto do MESMO produto: o MESMO bolo inteiro sobre uma mesa clara com flores desfocadas ao fundo (cenário do ateliê); se mostrar corte de fatia, a massa deve ser a mesma alaranjada de cenoura vista na foto.
-O que a foto-base mostra e deve permanecer idêntico: Bolo de cenoura em formato de rosca (forma com furo central, laterais com sulcos) sobre prato plástico branco com bordas onduladas, segurado por uma mão; cobertura espessa de brigadeiro de chocolate escorrendo pelas laterais, com confeitos/granulado de chocolate no topo; ambiente do ateliê desfocado ao fundo.
-Não mude o produto, a forma, a cobertura, o recheio visível, os toppings, as proporções nem a embalagem. Não invente nada que não apareça na foto-base. Não escreva texto novo nem altere o rótulo/selo da marca.
-Pode mudar somente ângulo, luz, composição, cenário e enquadramento. Formato 4:5 retrato, mínimo 1080×1350 px, fotografia realista de confeitaria com luz natural suave.
-```
 
 ## Ao receber as imagens (checklist de aprovação)
 

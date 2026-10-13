@@ -242,6 +242,16 @@ try {
   check('Chocolatuda: navegação 1/4 → 2/4 → 3/4 → 4/4', seq.join(',') === '1 / 4,2 / 4,3 / 4,4 / 4', seq.join(','));
   await key('Escape', 'Escape', 27); await sleep(250);
 
+  // =============== Bolo de cenoura tamanho família: 4 fotos (1 Yooga + 3 geradas aprovadas) ===============
+  await open({});
+  await openCard('bolo-de-cenoura'); await sleep(900);
+  m = await modalState();
+  const cen = await ev(`[...document.querySelectorAll('.pmodal__thumb img')].map((i) => i.src.replace(location.origin, ''))`);
+  const cenSeq = [m.count];
+  for (let i = 0; i < 3; i++) { await ev(`document.querySelector('[data-next]').click()`); await sleep(500); cenSeq.push((await modalState()).count); }
+  check('Bolo de cenoura: 4 fotos na ordem (Yooga, 02-detail, 03-angle, 04-context) e navegação 1/4 → 4/4', m.title === 'Bolo de cenoura tamanho família' && cen.length === 4 && /yooga/.test(cen[0]) && /02-detail/.test(cen[1]) && /03-angle/.test(cen[2]) && /04-context/.test(cen[3]) && cenSeq.join() === '1 / 4,2 / 4,3 / 4,4 / 4', JSON.stringify({ title: m.title, cen, cenSeq }));
+  await key('Escape', 'Escape', 27); await sleep(250);
+
   // =============== reduced-motion no modal ===============
   await open({ motion: false });
   await openCard('fatia-nutelluda'); await sleep(300);
