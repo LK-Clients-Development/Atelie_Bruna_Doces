@@ -3,7 +3,7 @@
   "generatedBy": "tools/build-portfolio-docs.mjs (fonte: src/data/portfolio.ts)",
   "targetImagesPerProduct": 4,
   "slots": [
-    "01-hero",
+    "01-source",
     "02-detail",
     "03-angle",
     "04-context"
@@ -56,17 +56,18 @@
     "extrasFromInstagram": 2,
     "publishedInGallery": 46,
     "editorialCategories": 13,
-    "MAPPED_IMAGE_COUNT": 49,
-    "PUBLISHABLE_IMAGE_COUNT": 44,
+    "MAPPED_IMAGE_COUNT": 51,
+    "PUBLISHABLE_IMAGE_COUNT": 46,
+    "approvedGeneratedImages": 2,
     "mappedButNotPublishable": 5,
     "notPublishableBreakdown": {
       "AUTHORIZATION_PENDING": 4,
       "REFERENCE_ONLY": 1
     },
     "complete4plus": 0,
-    "with3": 0,
+    "with3": 1,
     "with2": 0,
-    "with1": 44,
+    "with1": 43,
     "with0": 4,
     "withoutPublishableImage": [
       "Cookie tradicional",
@@ -74,8 +75,8 @@
       "Coxinha de salmão",
       "Morango do amor"
     ],
-    "imagesMissingToTarget": 148,
-    "generationEstimate": 132,
+    "imagesMissingToTarget": 146,
+    "generationEstimate": 130,
     "productsThatCanReceiveGeneration": 44,
     "productsBlockedByAuthorization": [
       "Morango do amor"
@@ -89,7 +90,7 @@
       {
         "batch": "BATCH 01",
         "products": 8,
-        "imagesToGenerate": 24
+        "imagesToGenerate": 22
       },
       {
         "batch": "BATCH 02",
@@ -141,6 +142,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-3443815-yooga",
@@ -185,6 +198,18 @@
       "missingIfMappedAuthorized": 2,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-4397996-yooga",
@@ -240,6 +265,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-4441576-yooga",
@@ -284,6 +321,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-5829904-yooga",
@@ -328,6 +377,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-7252226-yooga",
@@ -372,6 +433,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-8632823-yooga",
@@ -416,6 +489,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-3415238-yooga",
@@ -460,6 +545,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-5830601-yooga",
@@ -504,6 +601,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-3415249-yooga",
@@ -548,6 +657,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-3415250-yooga",
@@ -592,6 +713,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-3415251-yooga",
@@ -636,6 +769,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-5777324-yooga",
@@ -680,6 +825,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-8271723-yooga",
@@ -724,6 +881,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-8801925-yooga",
@@ -761,13 +930,23 @@
       "origin": "Yooga",
       "status": "YOOGA_ACTIVE",
       "publishedInGallery": true,
-      "mappedImageCount": 1,
-      "publishableImageCount": 1,
+      "mappedImageCount": 3,
+      "publishableImageCount": 3,
       "target": 4,
-      "missing": 3,
-      "missingIfMappedAuthorized": 3,
-      "imageStatus": "PARTIAL_1",
+      "missing": 1,
+      "missingIfMappedAuthorized": 1,
+      "imageStatus": "PARTIAL_3",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "GENERATED_APPROVED",
+        "04-context": "GENERATED_APPROVED"
+      },
+      "approvedGeneratedImages": 2,
+      "missingKinds": [
+        "DETAIL"
+      ],
       "images": [
         {
           "id": "yooga-4672088-yooga",
@@ -779,12 +958,34 @@
           "orientation": "portrait",
           "match": "MATCH_CONFIRMED",
           "note": "Imagem do CDN do Yooga (até 500 px de altura); não foi copiada para o repositório."
+        },
+        {
+          "id": "yooga-4672088-gen-03-angle",
+          "source": "generated",
+          "sourceStatus": "GENERATED_APPROVED",
+          "status": "APPROVED_GENERATED",
+          "url": "assets/portfolio/fatia-chocolatuda/03-angle.webp",
+          "size": "1122x1402",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Slot 03-angle. Não é fotografia do produto."
+        },
+        {
+          "id": "yooga-4672088-gen-04-context",
+          "source": "generated",
+          "sourceStatus": "GENERATED_APPROVED",
+          "status": "APPROVED_GENERATED",
+          "url": "assets/portfolio/fatia-chocolatuda/04-context.webp",
+          "size": "1122x1402",
+          "orientation": "portrait",
+          "match": "MATCH_CONFIRMED",
+          "note": "Slot 04-context. Não é fotografia do produto."
         }
       ],
       "primarySourceStatus": "PUBLICABLE",
       "generationPlan": "NEEDS_GENERATION",
-      "action": "GENERATE_3",
-      "generationNeeded": 3,
+      "action": "GENERATE_1",
+      "generationNeeded": 1,
       "realPhotosNeeded": 0,
       "referenceImage": {
         "id": "yooga-4672088-yooga",
@@ -812,6 +1013,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-4679019-yooga",
@@ -856,6 +1069,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-4679020-yooga",
@@ -900,6 +1125,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-4748080-yooga",
@@ -944,6 +1181,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-8181132-yooga",
@@ -988,6 +1237,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-8819556-yooga",
@@ -1032,6 +1293,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-6223177-yooga",
@@ -1076,6 +1349,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-6245599-yooga",
@@ -1120,6 +1405,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-6275769-yooga",
@@ -1164,6 +1461,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-6551804-yooga",
@@ -1208,6 +1517,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-7103479-yooga",
@@ -1252,6 +1573,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-7584407-yooga",
@@ -1296,6 +1629,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-3415240-yooga",
@@ -1340,6 +1685,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-3415241-yooga",
@@ -1384,6 +1741,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-4579548-yooga",
@@ -1428,6 +1797,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-5937243-yooga",
@@ -1472,6 +1853,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-7876302-yooga",
@@ -1516,6 +1909,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-8664774-yooga",
@@ -1560,6 +1965,18 @@
       "missingIfMappedAuthorized": 2,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-8977203-yooga",
@@ -1615,6 +2032,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-6902111-yooga",
@@ -1659,6 +2088,14 @@
       "missingIfMappedAuthorized": 4,
       "imageStatus": "MISSING",
       "quality": "SEM_IMAGEM",
+      "slots": {
+        "01-source": "MISSING",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [],
       "images": [],
       "primarySourceStatus": "MISSING",
       "generationPlan": "NEEDS_REAL_PHOTO",
@@ -1686,6 +2123,18 @@
       "missingIfMappedAuthorized": 2,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-7734662-yooga",
@@ -1741,6 +2190,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-7498098-yooga",
@@ -1785,6 +2246,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-7383565-yooga",
@@ -1829,6 +2302,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-7383568-yooga",
@@ -1873,6 +2358,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-7401609-yooga",
@@ -1917,6 +2414,14 @@
       "missingIfMappedAuthorized": 4,
       "imageStatus": "MISSING",
       "quality": "SEM_IMAGEM",
+      "slots": {
+        "01-source": "MISSING",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [],
       "images": [],
       "primarySourceStatus": "MISSING",
       "generationPlan": "NEEDS_REAL_PHOTO",
@@ -1944,6 +2449,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-3415245-yooga",
@@ -1988,6 +2505,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-3415246-yooga",
@@ -2032,6 +2561,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-3415255-yooga",
@@ -2076,6 +2617,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-3415256-yooga",
@@ -2120,6 +2673,18 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "PARTIAL_1",
       "quality": "BAIXA (até 500 px, CDN Yooga)",
+      "slots": {
+        "01-source": "PUBLICABLE",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [
+        "DETAIL",
+        "ANGLE",
+        "CONTEXT"
+      ],
       "images": [
         {
           "id": "yooga-7986915-yooga",
@@ -2164,6 +2729,14 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "MISSING",
       "quality": "SEM_IMAGEM_PUBLICÁVEL",
+      "slots": {
+        "01-source": "MISSING",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [],
       "images": [
         {
           "id": "ig-coxinha-de-salmao-ig-DdmO-cVxzgp",
@@ -2203,6 +2776,14 @@
       "missingIfMappedAuthorized": 3,
       "imageStatus": "MISSING",
       "quality": "SEM_IMAGEM_PUBLICÁVEL",
+      "slots": {
+        "01-source": "MISSING",
+        "02-detail": "MISSING",
+        "03-angle": "MISSING",
+        "04-context": "MISSING"
+      },
+      "approvedGeneratedImages": 0,
+      "missingKinds": [],
       "images": [
         {
           "id": "ig-morango-do-amor-ig-Ddb5yFqx5AW",

@@ -19,6 +19,7 @@ import { LINKS } from './site';
 import { CATEGORIES, type Product } from './products';
 import { getProductDescription, getProductDisplayName } from '../lib/catalog';
 import { PORTFOLIO_COPY } from './portfolio-copy';
+import { GENERATED_IMAGES, type GeneratedEntry } from './portfolio-generated';
 
 // ---------------------------------------------------------------------------
 // Tipos
@@ -54,7 +55,7 @@ export type SourceStatus = 'PUBLICABLE' | 'AUTHORIZATION_PENDING' | 'REFERENCE_O
 export type CopyStatus = 'APPROVED' | 'DRAFT' | 'SOURCE_RAW' | 'NEEDS_BRUNA_APPROVAL';
 
 /** Os 4 espaços de cada galeria, na ordem de exibição (arquivos futuros: `src/assets/portfolio/<slug>/<slot>.<ext>`). */
-export const IMAGE_SLOTS = ['01-hero', '02-detail', '03-angle', '04-context'] as const;
+export const IMAGE_SLOTS = ['01-source', '02-detail', '03-angle', '04-context'] as const;
 export type ImageSlot = (typeof IMAGE_SLOTS)[number];
 
 /** Registro obrigatório quando uma imagem GERADA for integrada (status `APPROVED_GENERATED`, nunca `REAL`). */
@@ -87,7 +88,7 @@ export interface GalleryImage {
     origin: string;
     observedAt: string;
     /** PUBLIC_CDN: imagem pública do cardápio Yooga, usada sem cópia local · PENDING: sem autorização, não exibir. */
-    authorization: 'PUBLIC_CDN' | 'PENDING';
+    authorization: 'PUBLIC_CDN' | 'PENDING' | 'GENERATED';
     match: MatchState;
     note?: string;
     /** Só para `APPROVED_GENERATED`. */
@@ -305,6 +306,35 @@ const yoogaImage = (product: Product, name: string): GalleryImage | null =>
 /** Só a primeira letra (o Yooga publica descrições em minúscula); o texto não muda. */
 const capitalize = (text: string | null) => (text ? text.charAt(0).toLocaleUpperCase('pt-BR') + text.slice(1) : null);
 
+const generatedImage = (entry: GeneratedEntry, productId: string, name: string, referenceImageId: string | null): GalleryImage => ({
+  id: `${productId}-gen-${entry.slot}`,
+  src: entry.file.src,
+  source: 'generated',
+  sourceUrl: LINKS.cardapio,
+  status: 'APPROVED_GENERATED', // nunca 'REAL'
+  sourceStatus: 'GENERATED_APPROVED',
+  alt: entry.alt || name,
+  orientation: orientationOf(entry.file.width, entry.file.height),
+  width: entry.file.width,
+  height: entry.file.height,
+  isPrimary: false,
+  provenance: {
+    origin: `Imagem GERADA a partir da foto real do Yooga (${entry.kind}), aprovada em ${entry.approvedAt}`,
+    observedAt: entry.generatedAt,
+    authorization: 'GENERATED',
+    match: 'MATCH_CONFIRMED',
+    note: `Slot ${entry.slot}. Não é fotografia do produto.`,
+    generation: {
+      baseProductId: productId,
+      referenceImageId: referenceImageId ?? '',
+      generatedAt: entry.generatedAt,
+      kind: entry.kind,
+      approvedBy: entry.approvedBy,
+      approvedAt: entry.approvedAt,
+    },
+  },
+});
+
 const imageStatusOf = (count: number): ImageStatus =>
   count >= TARGET_IMAGES ? 'COMPLETE' : count === 3 ? 'PARTIAL_3' : count === 2 ? 'PARTIAL_2' : count === 1 ? 'PARTIAL_1' : 'MISSING';
 
@@ -358,6 +388,11 @@ const yoogaProducts: PortfolioProduct[] = CATEGORIES.filter((category) => !(cate
     INSTAGRAM_PRODUCT_POSTS.filter((post) => post.sourceProductId === product.sourceProductId).forEach((post) =>
       gallery.push(igImage(post, product.id, name, post.note)),
     );
+    // geradas e aprovadas, na ordem dos slots (02-detail, 03-angle, 04-context)
+    (GENERATED_IMAGES[product.sourceProductId] ?? [])
+      .slice()
+      .sort((a, b) => a.slot.localeCompare(b.slot))
+      .forEach((entry) => gallery.push(generatedImage(entry, product.id, name, hero?.id ?? null)));
     return build(
       {
         id: product.id,

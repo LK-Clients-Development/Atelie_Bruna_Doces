@@ -18,8 +18,22 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 register(
   'data:text/javascript,' +
     encodeURIComponent(`
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
+function webpSize(buf) {
+  const t = buf.toString('ascii', 12, 16);
+  if (t === 'VP8X') return [1 + buf.readUIntLE(24, 3), 1 + buf.readUIntLE(27, 3)];
+  if (t === 'VP8 ') return [buf.readUInt16LE(26) & 0x3fff, buf.readUInt16LE(28) & 0x3fff];
+  if (t === 'VP8L') { const b = buf.readUInt32LE(21); return [1 + (b & 0x3fff), 1 + ((b >> 14) & 0x3fff)]; }
+  return [0, 0];
+}
+export async function load(url, context, next) {
+  if (/[.](webp|png|jpe?g)$/.test(url)) {
+    const [width, height] = webpSize(readFileSync(fileURLToPath(url)));
+    return { format: 'module', shortCircuit: true, source: 'export default ' + JSON.stringify({ src: url.split('/src/').pop(), width, height }) };
+  }
+  return next(url, context);
+}
 export async function resolve(specifier, context, next) {
   if (specifier.startsWith('.') && !/\\.[a-z]+$/.test(specifier) && context.parentURL) {
     const url = new URL(specifier + '.ts', context.parentURL);
@@ -150,6 +164,15 @@ const rows = PORTFOLIO_ALL.map((p) => {
   const publishable = p.gallery.filter(isPublishable);
   const missing = Math.max(0, TARGET_IMAGES - publishable.length);
   const yoogaCat = p.sourceCategoryId ? CATEGORIES.find((c) => c.id === p.sourceCategoryId) : null;
+  const generatedKinds = p.gallery.filter((i) => i.status === 'APPROVED_GENERATED').map((i) => i.provenance.generation?.kind);
+  const hasSource = p.gallery.some((i) => i.status === 'REAL' && isPublishable(i));
+  const missingKinds = hasSource ? ['DETAIL', 'ANGLE', 'CONTEXT'].filter((k) => !generatedKinds.includes(k)).slice(0, missing) : [];
+  const slots = {
+    '01-source': hasSource ? 'PUBLICABLE' : 'MISSING',
+    '02-detail': generatedKinds.includes('DETAIL') ? 'GENERATED_APPROVED' : 'MISSING',
+    '03-angle': generatedKinds.includes('ANGLE') ? 'GENERATED_APPROVED' : 'MISSING',
+    '04-context': generatedKinds.includes('CONTEXT') ? 'GENERATED_APPROVED' : 'MISSING',
+  };
   return {
     id: p.id,
     slug: p.slug,
@@ -166,11 +189,14 @@ const rows = PORTFOLIO_ALL.map((p) => {
     missingIfMappedAuthorized: Math.max(0, TARGET_IMAGES - p.mappedImageCount),
     imageStatus: p.imageStatus, // cobertura publicável
     quality: quality(p),
+    slots,
+    approvedGeneratedImages: generatedKinds.length,
+    missingKinds,
     images: p.gallery.map(imgInfo),
     primarySourceStatus: p.gallery.find((i) => i.isPrimary)?.sourceStatus ?? (p.gallery[0]?.sourceStatus ?? 'MISSING'),
     generationPlan: p.generationPlan,
     action: action({ generationPlan: p.generationPlan, missing }),
-    generationNeeded: p.generationPlan === 'NEEDS_GENERATION' ? missing : 0,
+    generationNeeded: p.generationPlan === 'NEEDS_GENERATION' ? missingKinds.length : 0,
     realPhotosNeeded: p.generationPlan === 'NEEDS_REAL_PHOTO' ? TARGET_IMAGES : 0,
     referenceImage: referenceOf(p),
     copyStatus: p.copyStatus,
@@ -218,6 +244,7 @@ const totals = {
   editorialCategories: EDITORIAL_CATEGORIES.length,
   MAPPED_IMAGE_COUNT: sum((r) => r.mappedImageCount),
   PUBLISHABLE_IMAGE_COUNT: sum((r) => r.publishableImageCount),
+  approvedGeneratedImages: sum((r) => r.approvedGeneratedImages),
   mappedButNotPublishable: sum((r) => r.mappedImageCount - r.publishableImageCount),
   notPublishableBreakdown: Object.fromEntries(
     ['AUTHORIZATION_PENDING', 'REFERENCE_ONLY'].map((s) => [s, rows.reduce((n, r) => n + r.images.filter((i) => i.sourceStatus === s).length, 0)]),
@@ -276,7 +303,7 @@ Cada imagem tem um \`sourceStatus\`:
 | Indicador | Valor |
 |---|---|
 | **MAPPED_IMAGE_COUNT** (reais + referências encontradas) | **${T.MAPPED_IMAGE_COUNT}** |
-| **PUBLICABLE_IMAGE_COUNT** (podem aparecer no site hoje) | **${T.PUBLISHABLE_IMAGE_COUNT}** |
+| **PUBLICABLE_IMAGE_COUNT** (podem aparecer no site hoje) | **${T.PUBLISHABLE_IMAGE_COUNT}** (inclui ${T.approvedGeneratedImages} gerada(s) e aprovada(s), \`APPROVED_GENERATED\`) |
 | Diferença (mapeadas e não publicáveis) | ${T.mappedButNotPublishable}: ${T.notPublishableBreakdown.AUTHORIZATION_PENDING} \`AUTHORIZATION_PENDING\` + ${T.notPublishableBreakdown.REFERENCE_ONLY} \`REFERENCE_ONLY\` |
 
 Toda cobertura e toda lacuna abaixo usam **PUBLICABLE_IMAGE_COUNT**. Se a Bruna autorizar as fotos do Instagram, a lacuna cai (coluna "Falta se autorizadas" do JSON), mas isso não altera o plano de hoje.
@@ -310,16 +337,16 @@ ${T.excludedFromGallery.map((e) => `- **${e.sourceName}** (${e.products.join('; 
 | Retidos até autorização | ${T.productsBlockedByAuthorization.join('; ') || '—'} (\`BLOCKED_AUTHORIZATION\`) |
 | Precisam de foto real | ${T.productsNeedingRealReference.join('; ') || '—'} (\`NEEDS_REAL_PHOTO\`) |
 
-Estrutura-alvo de cada galeria (${TARGET_IMAGES}): \`01-hero\` foto principal · \`02-detail\` close de textura/recheio/cobertura · \`03-angle\` outro ângulo · \`04-context\` servido/mão/embalagem/mesa.
+Estrutura-alvo de cada galeria (${TARGET_IMAGES}): \`01-source\` foto principal · \`02-detail\` close de textura/recheio/cobertura · \`03-angle\` outro ângulo · \`04-context\` servido/mão/embalagem/mesa.
 
 ## Matriz por produto
 
-| Produto | Categoria editorial | Origem / status | Mapeadas | Publicáveis | Falta | Cobertura | Plano | Lote | Copy |
-|---|---|---|---|---|---|---|---|---|---|
+| Produto | Categoria editorial | Origem / status | Mapeadas | Publicáveis | Falta | Slots (S·D·A·C) | Cobertura | Plano | Lote | Copy |
+|---|---|---|---|---|---|---|---|---|---|---|
 ${sorted
   .map(
     (r) =>
-      `| ${esc(r.name)} | ${esc(r.editorialCategory)} | ${r.origin} · \`${r.status}\`${r.publishedInGallery ? '' : ' · fora da galeria'} | ${r.mappedImageCount} | ${r.publishableImageCount} | ${r.missing} | \`${r.imageStatus}\` | \`${r.action}\` | ${r.batch ?? '—'} | \`${r.copyStatus}\` |`,
+      `| ${esc(r.name)} | ${esc(r.editorialCategory)} | ${r.origin} · \`${r.status}\`${r.publishedInGallery ? '' : ' · fora da galeria'} | ${r.mappedImageCount} | ${r.publishableImageCount} | ${r.missing} | ${Object.values(r.slots).map((v) => (v === 'MISSING' ? '–' : '✓')).join('·')} | \`${r.imageStatus}\` | \`${r.action}\` | ${r.batch ?? '—'} | \`${r.copyStatus}\` |`,
   )
   .join('\n')}
 
@@ -344,7 +371,7 @@ writeFileSync(
   'docs/product-image-gaps.md',
   `# Lacunas de imagem por produto
 
-> Gerado por \`tools/build-portfolio-docs.mjs\` (${generatedAt}). Meta: ${TARGET_IMAGES} imagens **publicáveis** por produto (\`01-hero\`, \`02-detail\`, \`03-angle\`, \`04-context\`). Mapeada ≠ publicável: ver [a matriz](product-portfolio-matrix.md). Nenhuma imagem foi gerada.
+> Gerado por \`tools/build-portfolio-docs.mjs\` (${generatedAt}). Meta: ${TARGET_IMAGES} imagens **publicáveis** por produto (\`01-source\`, \`02-detail\`, \`03-angle\`, \`04-context\`). Mapeada ≠ publicável: ver [a matriz](product-portfolio-matrix.md). Nenhuma imagem foi gerada.
 
 ${T.complete4plus} produtos completos; **${gapRows.length}** com lacuna, somando **${T.imagesMissingToTarget}** imagens publicáveis a produzir: ${T.generationEstimate} por geração a partir de referência real; os demais dependem de foto real ou de autorização.
 
@@ -386,7 +413,7 @@ writeFileSync(
 
 Cada lote tem 8 produtos (o BATCH 01 foi montado à mão; os seguintes alternam categorias dentro de cada nível, para não juntar produtos parecidos). Só entram produtos com referência real **publicável** (\`NEEDS_GENERATION\`).
 
-Regras: imagem gerada entra como \`APPROVED_GENERATED\` (nunca \`REAL\`) com proveniência (ver \`GeneratedProvenance\` em \`src/data/portfolio.ts\`); a foto real anexada é a fonte de verdade; só mudam ângulo, luz, composição, cenário e enquadramento. Arquivos futuros: \`src/assets/portfolio/<slug>/01-hero · 02-detail · 03-angle · 04-context\`.
+Regras: imagem gerada entra como \`APPROVED_GENERATED\` (nunca \`REAL\`) com proveniência (ver \`GeneratedProvenance\` em \`src/data/portfolio.ts\`); a foto real anexada é a fonte de verdade; só mudam ângulo, luz, composição, cenário e enquadramento. Arquivos futuros: \`src/assets/portfolio/<slug>/01-source · 02-detail · 03-angle · 04-context\`.
 
 ${batches
   .map((b) => {
@@ -432,7 +459,8 @@ for (const b of BATCH_01) {
     ['DETAIL', b.detail],
     ['ANGLE', b.angle],
     ['CONTEXT', b.context],
-  ];
+  ].filter(([k]) => r.missingKinds.includes(k));
+  const done = ['DETAIL', 'ANGLE', 'CONTEXT'].filter((k) => !r.missingKinds.includes(k) && r.slots[SHOT[k].slot] !== 'MISSING');
   const md = `# ${r.name}
 
 > BATCH 01 · ${r.editorialCategory} · prioridade editorial \`${r.editorialPriority}\` · gerado por \`tools/build-portfolio-docs.mjs\`. Copie cada bloco para o chat de geração **com a foto de referência anexada**.
@@ -444,7 +472,8 @@ for (const b of BATCH_01) {
 | Foto-base (fonte de verdade) | ${ref.url} (${ref.size})${ref.narrow ? ' — **estreita**: gere com cuidado e confira o resultado contra a foto' : ''} |
 | Origem | imagem pública do cardápio Yooga (\`PUBLICABLE\`, \`REAL\`) |
 | Imagens publicáveis hoje | ${r.publishableImageCount} |
-| Faltam | ${r.missing} (${shots.map(([k]) => k).join(', ')}) |
+| Faltam | ${r.missing} (${shots.map(([k]) => k).join(', ')}) |${done.length ? `
+| Já aprovadas (não gerar de novo) | ${done.map((k) => SHOT[k].slot).join(', ')} |` : ''}
 | Por que está no lote | ${b.why} |
 | Qualidade da base | baixa resolução (≤ 500 px de altura): a saída deve ser **coerente com a foto**, não "mais bonita" que ela |
 
@@ -479,7 +508,7 @@ Pode mudar somente ângulo, luz, composição, cenário e enquadramento. Formato
 
 ## Arquivos e proveniência (quando aprovadas)
 
-Salvar como \`src/assets/portfolio/${r.slug}/${SHOT.DETAIL.slot}.webp\`, \`${SHOT.ANGLE.slot}.webp\`, \`${SHOT.CONTEXT.slot}.webp\` (e a foto-base como \`01-hero\` só quando existir cópia local autorizada). Cada uma entra em \`portfolio.ts\` com \`status: 'APPROVED_GENERATED'\`, \`sourceStatus: 'GENERATED_APPROVED'\` (**nunca \`REAL\`**) e \`provenance.generation\`:
+Salvar como \`src/assets/portfolio/${r.slug}/${SHOT.DETAIL.slot}.webp\`, \`${SHOT.ANGLE.slot}.webp\`, \`${SHOT.CONTEXT.slot}.webp\` (e a foto-base como \`01-source\` só quando existir cópia local autorizada). Cada uma entra em \`portfolio.ts\` com \`status: 'APPROVED_GENERATED'\`, \`sourceStatus: 'GENERATED_APPROVED'\` (**nunca \`REAL\`**) e \`provenance.generation\`:
 
 \`\`\`ts
 { baseProductId: '${r.id}', referenceImageId: '${ref.id}', generatedAt: 'AAAA-MM-DD', kind: 'DETAIL' | 'ANGLE' | 'CONTEXT', approvedBy: '…', approvedAt: 'AAAA-MM-DD' }

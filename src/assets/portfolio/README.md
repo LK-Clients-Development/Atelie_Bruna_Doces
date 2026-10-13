@@ -4,7 +4,7 @@ Esta pasta ainda **não tem imagens**: nenhuma foi baixada ou gerada. Quando hou
 
 ```
 src/assets/portfolio/<slug>/
-  01-hero.webp      foto principal
+  01-source.webp      foto principal
   02-detail.webp    close de textura / recheio / cobertura
   03-angle.webp     outro ângulo
   04-context.webp   servido, mão, embalagem ou mesa

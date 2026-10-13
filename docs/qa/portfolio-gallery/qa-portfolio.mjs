@@ -48,8 +48,8 @@ try {
   const shot = async (name) => { const r = await send('Page.captureScreenshot', { format: 'webp', quality: 82 }); writeFileSync(join(OUT, name), Buffer.from(r.data, 'base64')); };
   await send('Page.enable'); await send('Runtime.enable'); await send('Log.enable');
 
-  // QA: injeta 3 fotos extras no produto "fatia-chocolatuda" ao ler o JSON do modal (ver cabeçalho)
-  const multiHook = `(() => { const orig = JSON.parse; JSON.parse = function (text, r) { const v = orig.call(this, text, r); if (Array.isArray(v) && v[0] && v[0].slug && v[0].images) { const p = v.find((x) => x.slug === 'fatia-chocolatuda'); const others = v.filter((x) => x !== p && x.images[0]).slice(0, 3); if (p && window.__qaMulti !== false) p.images.push(...others.map((o) => o.images[0])); } return v; }; })();`;
+  // QA: injeta 3 fotos extras no produto "fatia-nutelluda" ao ler o JSON do modal (ver cabeçalho)
+  const multiHook = `(() => { const orig = JSON.parse; JSON.parse = function (text, r) { const v = orig.call(this, text, r); if (Array.isArray(v) && v[0] && v[0].slug && v[0].images) { const p = v.find((x) => x.slug === 'fatia-nutelluda'); const others = v.filter((x) => x !== p && x.images[0]).slice(0, 3); if (p && window.__qaMulti !== false) p.images.push(...others.map((o) => o.images[0])); } return v; }; })();`;
   await (send('Page.addScriptToEvaluateOnNewDocument', { source: multiHook }));
 
   const open = async ({ width = 1440, height = 900, motion = false, js = true, url = URL_ } = {}) => {
@@ -182,9 +182,9 @@ try {
   check('produto sem foto: modal funciona com o painel da marca (sem <img>), CTAs ativos', m.open && m.imgs === 0 && (await ev(`!!document.querySelector('.pmodal__empty') && !document.querySelector('[data-m-wa]').hidden`)), JSON.stringify({ imgs: m.imgs }));
   await key('Escape', 'Escape', 27); await sleep(250);
   // deep link
-  await open({ url: URL_ + '?produto=fatia-chocolatuda' });
+  await open({ url: URL_ + '?produto=fatia-nutelluda' });
   m = await modalState();
-  check('?produto=slug abre o produto direto', m.open && m.title === 'Fatia Chocolatuda', m.title);
+  check('?produto=slug abre o produto direto', m.open && m.title === 'Fatia nutelluda', m.title);
   await key('Escape', 'Escape', 27); await sleep(300);
   m = await modalState();
   check('deep link: ESC fecha e limpa o parâmetro', !m.open && m.url === '', m.url);
@@ -195,7 +195,7 @@ try {
   // =============== modal: várias fotos (hook de QA) ===============
   await open({});
   const yoogaBefore = await fetchesOfYooga();
-  await openCard('fatia-chocolatuda'); await sleep(900);
+  await openCard('fatia-nutelluda'); await sleep(900);
   const yoogaAfter = await fetchesOfYooga();
   m = await modalState();
   check('4 fotos: 1 imagem principal + 4 miniaturas + contador "1 / 4" + setas visíveis', m.imgs === 1 && m.thumbs === 4 && m.count === '1 / 4' && !m.navHidden && m.current === 0, JSON.stringify({ imgs: m.imgs, thumbs: m.thumbs, count: m.count }));
@@ -229,16 +229,26 @@ try {
   check('swipe para a direita volta (3 / 4)', m.count === '3 / 4', m.count);
   await key('Escape', 'Escape', 27); await sleep(300);
 
+  // =============== Fatia Chocolatuda: 3 fotos reais do projeto (1 Yooga + 2 geradas aprovadas) ===============
+  await open({});
+  await openCard('fatia-chocolatuda'); await sleep(900);
+  m = await modalState();
+  const choc = await ev(`[...document.querySelectorAll('.pmodal__thumb img')].map((i) => i.src.replace(location.origin, ''))`);
+  check('Chocolatuda: modal com 3 fotos nativas (Yooga + 03-angle + 04-context), contador "1 / 3"', m.thumbs === 3 && m.count === '1 / 3' && /yooga/.test(choc[0]) && /03-angle|_astro/.test(choc[1]) && /_astro/.test(choc[2]), JSON.stringify(choc));
+  check('Chocolatuda: as fotos geradas são servidas localmente (/_astro) e carregam', await ev(`(async () => { const r = await Promise.all([...document.querySelectorAll('.pmodal__thumb img')].slice(1).map((i) => fetch(i.src).then((x) => x.ok))); return r.every(Boolean); })()`));
+  check('Chocolatuda: o card continua mostrando só a foto principal (Yooga)', await ev(`(() => { const img = document.querySelector('[data-slug="fatia-chocolatuda"] .pcard__media > img'); return /yooga/.test(img.src) && document.querySelectorAll('[data-slug="fatia-chocolatuda"] img').length === 1; })()`));
+  await key('Escape', 'Escape', 27); await sleep(250);
+
   // =============== reduced-motion no modal ===============
   await open({ motion: false });
-  await openCard('fatia-chocolatuda'); await sleep(300);
+  await openCard('fatia-nutelluda'); await sleep(300);
   const rm = await ev(`(() => { const d = document.querySelector('.pmodal__dialog'); const b = document.querySelector('.pmodal__backdrop'); return { dialog: getComputedStyle(d).animationName, backdrop: getComputedStyle(b).animationName, img: getComputedStyle(document.querySelector('.pmodal__stage img')).transitionDuration }; })()`);
   check('reduced-motion: modal sem animação e troca de foto sem transição', rm.dialog === 'none' && rm.backdrop === 'none' && /^(0|1e-05)s/.test(rm.img), JSON.stringify(rm));
   await ev(`document.querySelector('[data-next]').click()`);
   check('reduced-motion: troca de foto é imediata', (await modalState()).count === '2 / 4');
   await key('Escape', 'Escape', 27); await sleep(250);
   await open({ motion: true });
-  await openCard('fatia-chocolatuda'); await sleep(200);
+  await openCard('fatia-nutelluda'); await sleep(200);
   const mo = await ev(`getComputedStyle(document.querySelector('.pmodal__dialog')).animationName`);
   check('com movimento: o modal anima (opacity/scale sutil)', mo !== 'none', mo);
   await key('Escape', 'Escape', 27); await sleep(250);
@@ -263,7 +273,7 @@ try {
     await ev(`document.querySelector('#fatias').scrollIntoView(); document.querySelectorAll('.pcard').forEach((c) => c.classList.add('is-in')); window.scrollBy(0, -90); 1`); await sleep(500);
     if ([1440, 768, 390].includes(w)) await shot(`gallery-${w}.webp`);
     // modal (4 fotos)
-    await openCard('fatia-chocolatuda'); await sleep(900);
+    await openCard('fatia-nutelluda'); await sleep(900);
     const mo2 = await ev(`(() => { const d = document.querySelector('.pmodal__dialog').getBoundingClientRect(); const a = document.querySelector('.pmodal__actions').getBoundingClientRect(); const st = document.querySelector('[data-stage]').getBoundingClientRect(); return { sw: document.documentElement.scrollWidth, iw: innerWidth, dw: Math.round(d.width), dh: Math.round(d.height), vh: innerHeight, actionsBottomOk: a.bottom <= innerHeight + 1 && a.top >= 0, actionsVisible: a.height > 0, stageW: Math.round(st.width), stageH: Math.round(st.height), cta: [...document.querySelectorAll('.pmodal__actions .pbtn')].map((e) => Math.round(e.getBoundingClientRect().height)) }; })()`);
     check(`${w}px: modal cabe na viewport, CTAs visíveis (≥ 44px) e sem overflow`, mo2.sw <= mo2.iw && mo2.dh <= mo2.vh + 1 && mo2.actionsBottomOk && mo2.cta.every((h) => h >= 44), JSON.stringify(mo2));
     if ([1440, 768, 390].includes(w)) await shot(`modal-${w}.webp`);

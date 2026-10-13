@@ -66,7 +66,7 @@ Pode mudar somente ângulo, luz, composição, cenário e enquadramento. Formato
 
 ## Arquivos e proveniência (quando aprovadas)
 
-Salvar como `src/assets/portfolio/bolo-de-cenoura/02-detail.webp`, `03-angle.webp`, `04-context.webp` (e a foto-base como `01-hero` só quando existir cópia local autorizada). Cada uma entra em `portfolio.ts` com `status: 'APPROVED_GENERATED'`, `sourceStatus: 'GENERATED_APPROVED'` (**nunca `REAL`**) e `provenance.generation`:
+Salvar como `src/assets/portfolio/bolo-de-cenoura/02-detail.webp`, `03-angle.webp`, `04-context.webp` (e a foto-base como `01-source` só quando existir cópia local autorizada). Cada uma entra em `portfolio.ts` com `status: 'APPROVED_GENERATED'`, `sourceStatus: 'GENERATED_APPROVED'` (**nunca `REAL`**) e `provenance.generation`:
 
 ```ts
 { baseProductId: 'yooga-7986915', referenceImageId: 'yooga-7986915-yooga', generatedAt: 'AAAA-MM-DD', kind: 'DETAIL' | 'ANGLE' | 'CONTEXT', approvedBy: '…', approvedAt: 'AAAA-MM-DD' }
