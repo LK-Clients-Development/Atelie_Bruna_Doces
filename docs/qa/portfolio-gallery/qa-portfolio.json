@@ -1,0 +1,467 @@
+{
+  "url": "http://localhost:4399/produtos",
+  "passed": 92,
+  "failed": 0,
+  "results": [
+    {
+      "name": "46 cards, 46 itens com texto de busca, 13 grupos, trilho com Todos + 13",
+      "ok": true,
+      "detail": "{\"cards\":46,\"groups\":13,\"rail\":14}"
+    },
+    {
+      "name": "stats: \"46 criações em 13 categorias\"",
+      "ok": true,
+      "detail": "46 criaçõesem 13 categorias"
+    },
+    {
+      "name": "preço NÃO aparece na galeria (sem R$, \"a partir de\", oferta, opções, adicionais)",
+      "ok": true,
+      "detail": "price=false forbidden=false"
+    },
+    {
+      "name": "nenhum \"R$ n\" em todo o HTML da página (nem no JSON do modal)",
+      "ok": true,
+      "detail": "ocorrências=0"
+    },
+    {
+      "name": "2 cards sem foto usam o painel da marca",
+      "ok": true,
+      "detail": "fallbacks=2 imgs=44"
+    },
+    {
+      "name": "CTA do card: \"Ver criação\" em todos, com data-open e aria-haspopup=dialog",
+      "ok": true,
+      "detail": "Ver criação n=46"
+    },
+    {
+      "name": "modal começa fechado e SEM nenhuma imagem no DOM (fotos extras só ao abrir)",
+      "ok": true,
+      "detail": "imgsNoModal=0"
+    },
+    {
+      "name": "cards carregam só a imagem principal (1 por card, com width/height)",
+      "ok": true,
+      "detail": "semTamanho=0"
+    },
+    {
+      "name": "todas as 44 fotos dos cards são lazy (o Hero é o LCP), nenhuma imagem quebrada",
+      "ok": true,
+      "detail": "lazy=44 eager=0 quebradas=0"
+    },
+    {
+      "name": "Menu de Bolos pendente: sem preço/bolo listado, CTA WhatsApp",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "noindex mantido, 1 h1",
+      "ok": true,
+      "detail": "noindex, nofollow"
+    },
+    {
+      "name": "JSON do modal com 46 produtos",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "busca visível com JS",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "busca \"acai\" (sem acento) acha o Açaí",
+      "ok": true,
+      "detail": "Açaí 350 ml"
+    },
+    {
+      "name": "busca \"CAMPOS\" sem resultado → mensagem vazia",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "busca por descrição (\"nutella\")",
+      "ok": true,
+      "detail": "10 resultados"
+    },
+    {
+      "name": "busca por categoria editorial (\"sobremesas no copo\")",
+      "ok": true,
+      "detail": "6"
+    },
+    {
+      "name": "busca por nome (\"geladinho\")",
+      "ok": true,
+      "detail": "5"
+    },
+    {
+      "name": "busca: mensagem de resultados anunciada (role=status, aria-live)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Esc limpa a busca",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "\"Ver todas as criações\" restaura tudo",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "filtro \"Fatias\": só as 8 fatias, só o grupo Fatias, item atual marcado, anunciado",
+      "ok": true,
+      "detail": "{\"vis\":8,\"groups\":[\"fatias\"],\"cur\":\"fatias\",\"msg\":\"Fatias: 8 criações\"}"
+    },
+    {
+      "name": "filtro + busca combinam (\"chocolatuda\" em Fatias = 1)",
+      "ok": true,
+      "detail": "n=1"
+    },
+    {
+      "name": "filtro + busca sem interseção → vazio (cenoura não está em Fatias)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "\"Todos\" remove o filtro (46 visíveis, 13 grupos)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "modal abre com role=dialog, aria-modal=true e título associado",
+      "ok": true,
+      "detail": "{\"role\":\"dialog\",\"modal\":\"true\",\"title\":\"Copo Ninho com Morango\"}"
+    },
+    {
+      "name": "fundo inerte (header, main, footer) e rolagem travada",
+      "ok": true,
+      "detail": "a,header,span,main,footer"
+    },
+    {
+      "name": "foco vai para o diálogo",
+      "ok": true,
+      "detail": "dialog"
+    },
+    {
+      "name": "produto com 1 foto: 1 imagem, sem miniaturas, sem setas, sem contador, sem duplicar",
+      "ok": true,
+      "detail": "{\"imgs\":1,\"thumbs\":0,\"nav\":true,\"count\":null}"
+    },
+    {
+      "name": "nenhuma mensagem interna (\"1 de 4\", \"planejadas\", \"faltam\") para o cliente",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "URL ganha ?produto=slug",
+      "ok": true,
+      "detail": "?produto=copo-ninho-com-morango"
+    },
+    {
+      "name": "WhatsApp: número do site + mensagem com o nome do produto",
+      "ok": true,
+      "detail": "https://wa.me/5535984235184?text=Ol%C3%A1!%20Tenho%20interesse%20no%20produto%20Copo%20Ninho%20com%20Morango."
+    },
+    {
+      "name": "CTA principal \"Quero este produto\"; secundário → cardápio Yooga geral",
+      "ok": true,
+      "detail": "Quero este produto (abre o WhatsApp em nova aba) | Ver cardápio no Yooga (abre em nova aba)"
+    },
+    {
+      "name": "focus trap: 8 × Tab nunca sai do modal",
+      "ok": true,
+      "detail": "in-modal,in-modal,in-modal,in-modal,in-modal,in-modal,in-modal,in-modal"
+    },
+    {
+      "name": "focus trap: 6 × Shift+Tab nunca sai do modal",
+      "ok": true,
+      "detail": "in-modal,in-modal,in-modal,in-modal,in-modal,in-modal"
+    },
+    {
+      "name": "ESC fecha, devolve o foco ao card, remove inert e destrava a rolagem",
+      "ok": true,
+      "detail": "{\"open\":false,\"active\":\"card:copo-ninho-com-morango\",\"inert\":[]}"
+    },
+    {
+      "name": "fechar limpa a URL (history.back)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ao fechar, as fotos do modal saem do DOM",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "clique no fundo fecha e devolve o foco",
+      "ok": true,
+      "detail": "card:fatia-matilda"
+    },
+    {
+      "name": "botão fechar (aria-label) fecha e devolve o foco",
+      "ok": true,
+      "detail": "card:torta-de-limao"
+    },
+    {
+      "name": "botão Voltar do navegador fecha o modal (sem sair da página)",
+      "ok": true,
+      "detail": "{\"open\":false,\"url\":\"\"}"
+    },
+    {
+      "name": "produto sem foto: modal funciona com o painel da marca (sem <img>), CTAs ativos",
+      "ok": true,
+      "detail": "{\"imgs\":0}"
+    },
+    {
+      "name": "?produto=slug abre o produto direto",
+      "ok": true,
+      "detail": "Fatia Chocolatuda"
+    },
+    {
+      "name": "deep link: ESC fecha e limpa o parâmetro",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "?produto inválido é ignorado (modal fechado)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "4 fotos: 1 imagem principal + 4 miniaturas + contador \"1 / 4\" + setas visíveis",
+      "ok": true,
+      "detail": "{\"imgs\":1,\"thumbs\":4,\"count\":\"1 / 4\"}"
+    },
+    {
+      "name": "fotos extras só carregam ao abrir (≤ 3 requisições novas ao CDN do Yooga)",
+      "ok": true,
+      "detail": "antes=38 depois=38"
+    },
+    {
+      "name": "próxima: foto 2 / 4, miniatura atual, alt descreve a foto",
+      "ok": true,
+      "detail": "2 / 4 Fatia Chocolatuda: foto 2 de 4"
+    },
+    {
+      "name": "anterior: volta à foto 1 / 4",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "anterior na primeira dá a volta (4 / 4)",
+      "ok": true,
+      "detail": "4 / 4"
+    },
+    {
+      "name": "teclado: → avança (volta à 1 / 4)",
+      "ok": true,
+      "detail": "1 / 4"
+    },
+    {
+      "name": "teclado: ← volta (4 / 4)",
+      "ok": true,
+      "detail": "4 / 4"
+    },
+    {
+      "name": "miniatura seleciona a foto (3 / 4)",
+      "ok": true,
+      "detail": "3 / 4"
+    },
+    {
+      "name": "miniaturas e setas são botões com nome acessível",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "swipe para a esquerda avança (4 / 4)",
+      "ok": true,
+      "detail": "4 / 4"
+    },
+    {
+      "name": "swipe para a direita volta (3 / 4)",
+      "ok": true,
+      "detail": "3 / 4"
+    },
+    {
+      "name": "reduced-motion: modal sem animação e troca de foto sem transição",
+      "ok": true,
+      "detail": "{\"dialog\":\"none\",\"backdrop\":\"none\",\"img\":\"1e-05s\"}"
+    },
+    {
+      "name": "reduced-motion: troca de foto é imediata",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "com movimento: o modal anima (opacity/scale sutil)",
+      "ok": true,
+      "detail": "pmodal-in"
+    },
+    {
+      "name": "sem JS: galeria completa visível, modal oculto, categorias por âncora, busca oculta",
+      "ok": true,
+      "detail": "{\"cards\":46,\"vis\":46,\"modalDisplay\":\"none\",\"searchHidden\":true,\"anchors\":14,\"hrefs\":[\"https://wa.me/5535984235184\"],\"dead\":0,\"msg\":\"https://wa.me/5535984235184?text=Ol%C3%A1!%20Tenho%20interesse%20no%20produto%20Bolo%20de%20cenoura%20tamanho%20fam%C3%ADlia.\"}"
+    },
+    {
+      "name": "sem JS: nenhum card morto (todos levam ao WhatsApp com o nome do produto)",
+      "ok": true,
+      "detail": "https://wa.me/5535984235184 | https://wa.me/5535984235184?text=Ol%C3%A1!%20Tenho%20interesse%20no%20produto%20Bolo%20de%20cenoura%20tamanho%20fam%C3%ADlia."
+    },
+    {
+      "name": "1440px: sem overflow horizontal (colunas do grid: 4)",
+      "ok": true,
+      "detail": "scrollWidth=1440 innerWidth=1440"
+    },
+    {
+      "name": "1440px: alvos interativos ≥ 44px (card inteiro é o alvo do link)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1440px: texto ≥ 12px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1440px: modal cabe na viewport, CTAs visíveis (≥ 44px) e sem overflow",
+      "ok": true,
+      "detail": "{\"sw\":1440,\"iw\":1440,\"dw\":1040,\"dh\":720,\"vh\":900,\"actionsBottomOk\":true,\"actionsVisible\":true,\"stageW\":485,\"stageH\":578,\"cta\":[52,52]}"
+    },
+    {
+      "name": "1280px: sem overflow horizontal (colunas do grid: 4)",
+      "ok": true,
+      "detail": "scrollWidth=1280 innerWidth=1280"
+    },
+    {
+      "name": "1280px: alvos interativos ≥ 44px (card inteiro é o alvo do link)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280px: texto ≥ 12px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1280px: modal cabe na viewport, CTAs visíveis (≥ 44px) e sem overflow",
+      "ok": true,
+      "detail": "{\"sw\":1280,\"iw\":1280,\"dw\":1040,\"dh\":720,\"vh\":900,\"actionsBottomOk\":true,\"actionsVisible\":true,\"stageW\":485,\"stageH\":578,\"cta\":[52,52]}"
+    },
+    {
+      "name": "1024px: sem overflow horizontal (colunas do grid: 3)",
+      "ok": true,
+      "detail": "scrollWidth=1024 innerWidth=1024"
+    },
+    {
+      "name": "1024px: alvos interativos ≥ 44px (card inteiro é o alvo do link)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1024px: texto ≥ 12px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1024px: modal cabe na viewport, CTAs visíveis (≥ 44px) e sem overflow",
+      "ok": true,
+      "detail": "{\"sw\":1024,\"iw\":1024,\"dw\":963,\"dh\":704,\"vh\":900,\"actionsBottomOk\":true,\"actionsVisible\":true,\"stageW\":452,\"stageH\":565,\"cta\":[52,52]}"
+    },
+    {
+      "name": "768px: sem overflow horizontal (colunas do grid: 3)",
+      "ok": true,
+      "detail": "scrollWidth=768 innerWidth=768"
+    },
+    {
+      "name": "768px: alvos interativos ≥ 44px (card inteiro é o alvo do link)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "768px: texto ≥ 12px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "768px: modal cabe na viewport, CTAs visíveis (≥ 44px) e sem overflow",
+      "ok": true,
+      "detail": "{\"sw\":768,\"iw\":768,\"dw\":722,\"dh\":552,\"vh\":900,\"actionsBottomOk\":true,\"actionsVisible\":true,\"stageW\":339,\"stageH\":424,\"cta\":[52,52]}"
+    },
+    {
+      "name": "430px: sem overflow horizontal (colunas do grid: 2)",
+      "ok": true,
+      "detail": "scrollWidth=430 innerWidth=430"
+    },
+    {
+      "name": "430px: alvos interativos ≥ 44px (card inteiro é o alvo do link)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "430px: texto ≥ 12px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "430px: modal cabe na viewport, CTAs visíveis (≥ 44px) e sem overflow",
+      "ok": true,
+      "detail": "{\"sw\":430,\"iw\":430,\"dw\":430,\"dh\":900,\"vh\":900,\"actionsBottomOk\":true,\"actionsVisible\":true,\"stageW\":331,\"stageH\":414,\"cta\":[52,52]}"
+    },
+    {
+      "name": "390px: sem overflow horizontal (colunas do grid: 2)",
+      "ok": true,
+      "detail": "scrollWidth=390 innerWidth=390"
+    },
+    {
+      "name": "390px: alvos interativos ≥ 44px (card inteiro é o alvo do link)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390px: texto ≥ 12px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390px: modal cabe na viewport, CTAs visíveis (≥ 44px) e sem overflow",
+      "ok": true,
+      "detail": "{\"sw\":390,\"iw\":390,\"dw\":390,\"dh\":900,\"vh\":900,\"actionsBottomOk\":true,\"actionsVisible\":true,\"stageW\":331,\"stageH\":414,\"cta\":[52,52]}"
+    },
+    {
+      "name": "390px: CTAs fixos no rodapé do modal (sheet em tela cheia)",
+      "ok": true,
+      "detail": "distância ao rodapé=0"
+    },
+    {
+      "name": "360px: sem overflow horizontal (colunas do grid: 2)",
+      "ok": true,
+      "detail": "scrollWidth=360 innerWidth=360"
+    },
+    {
+      "name": "360px: alvos interativos ≥ 44px (card inteiro é o alvo do link)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360px: texto ≥ 12px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "360px: modal cabe na viewport, CTAs visíveis (≥ 44px) e sem overflow",
+      "ok": true,
+      "detail": "{\"sw\":360,\"iw\":360,\"dw\":360,\"dh\":900,\"vh\":900,\"actionsBottomOk\":true,\"actionsVisible\":true,\"stageW\":331,\"stageH\":414,\"cta\":[52,52]}"
+    },
+    {
+      "name": "360px: CTAs fixos no rodapé do modal (sheet em tela cheia)",
+      "ok": true,
+      "detail": "distância ao rodapé=0"
+    },
+    {
+      "name": "console sem erros em todo o QA",
+      "ok": true,
+      "detail": ""
+    }
+  ]
+}

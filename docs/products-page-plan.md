@@ -1,6 +1,6 @@
 # Plano da futura página `/produtos`
 
-> **Status:** o concept visual (Concept 09) foi aprovado e a página foi implementada em `src/pages/produtos.astro`. Registro da implementação, QA e diferenças para o Concept: `docs/qa/products-page/README.md`. Este documento continua sendo o plano de origem. O site segue `noindex, nofollow`.
+> **SUPERADO (2026-10-13) pela direção de portfólio: ver `docs/portfolio-gallery-plan.md`.** Status anterior: o concept visual (Concept 09) foi aprovado e a página foi implementada em `src/pages/produtos.astro`. Registro da implementação, QA e diferenças para o Concept: `docs/qa/products-page/README.md`. Este documento continua sendo o plano de origem. O site segue `noindex, nofollow`.
 
 ## Fundação de dados (já pronta)
 
