@@ -1,0 +1,938 @@
+/*
+ * Shell da apresentação: trilho horizontal de cenas (16:9 prioritário, mas fluido em qualquer
+ * proporção), topbar e rodapé fixos e discretos, tipografia editorial compartilhada entre cenas.
+ */
+
+.shell {
+  position: relative;
+  height: 100dvh;
+  width: 100%;
+  /* "clip" (não "hidden"): impede qualquer scrollLeft/scrollIntoView programático de deslocar
+     o trilho de cenas — "hidden" ainda permite isso mesmo sem barra de rolagem visível. */
+  overflow: clip;
+  background: var(--color-cream-100);
+  color: var(--color-text-strong);
+}
+
+.shell:fullscreen {
+  background: var(--color-cream-100);
+}
+
+.shell__track {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  transition: transform 0.72s cubic-bezier(0.65, 0, 0.35, 1);
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shell__track {
+    transition-duration: 0.01s;
+  }
+}
+
+.shell__scene {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  overflow: clip;
+}
+
+.shell__topbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: clamp(14px, 2vw, 26px) clamp(18px, 3vw, 40px);
+  pointer-events: none;
+  font-size: 0.75rem;
+  letter-spacing: var(--tracking-nav);
+  text-transform: uppercase;
+}
+
+.shell__brand {
+  color: var(--color-cacao-800);
+  font-weight: 600;
+}
+
+.shell__agency {
+  color: var(--color-caramel-600);
+  opacity: 0.85;
+}
+
+.shell__footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: clamp(12px, 1.8vw, 22px) clamp(18px, 3vw, 40px);
+}
+
+/* =====================================================================
+ * Progresso (pétalas)
+ * =================================================================== */
+.progress {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.progress__list {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.progress__petal {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  color: var(--color-caramel-600);
+  opacity: 0.4;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.progress__petal svg {
+  width: 13px;
+  height: 13px;
+  fill: currentColor;
+}
+
+.progress__petal:hover {
+  opacity: 0.7;
+}
+
+.progress__petal.is-done {
+  opacity: 0.65;
+}
+
+.progress__petal.is-active {
+  opacity: 1;
+  transform: scale(1.25);
+  color: var(--color-cacao-800);
+}
+
+.progress__count {
+  margin: 0;
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+  color: var(--color-caramel-600);
+}
+
+/* =====================================================================
+ * Navegação
+ * =================================================================== */
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-controls__btn {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgb(255 250 245 / 0.6);
+  color: var(--color-cacao-800);
+  border: 1px solid var(--color-line-light);
+  transition: background-color 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-controls__btn:hover:not(:disabled) {
+  background: var(--color-blush-soft);
+  transform: translateY(-1px);
+}
+
+.nav-controls__btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+/* =====================================================================
+ * Tipografia e utilitários compartilhados
+ * =================================================================== */
+.kicker {
+  margin: 0 0 clamp(10px, 1.2vw, 18px);
+  font-size: 0.75rem;
+  letter-spacing: var(--tracking-micro);
+  text-transform: uppercase;
+  color: var(--color-caramel-600);
+  font-weight: 600;
+}
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--color-text-strong);
+  line-height: 1.05;
+}
+
+.display--xl {
+  font-size: clamp(2.1rem, 2vw + 2.6rem, 4.6rem);
+}
+
+.display--lg {
+  font-size: clamp(1.9rem, 1.6vw + 2.1rem, 3.6rem);
+}
+
+.display--md {
+  font-size: clamp(1.3rem, 1vw + 1.2rem, 2rem);
+  font-style: italic;
+  color: var(--color-caramel-500);
+  max-width: 20em;
+}
+
+.split-row {
+  display: block;
+  overflow: clip;
+}
+
+.split-row__in {
+  display: inline-block;
+}
+
+.lead {
+  margin-top: clamp(10px, 1.2vw, 18px);
+  max-width: 32em;
+  font-size: clamp(0.95rem, 0.4vw + 0.9rem, 1.15rem);
+  line-height: 1.5;
+  color: var(--color-text-body);
+}
+
+.fine-print {
+  margin-top: clamp(10px, 1vw, 16px);
+  max-width: 34em;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--color-text-body);
+  opacity: 0.78;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 26px;
+  background: var(--color-cacao-800);
+  color: var(--color-text-light);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+  background: var(--color-caramel-600);
+  transform: translateY(-1px);
+}
+
+.btn--pill {
+  border-radius: var(--radius-pill);
+}
+
+/* =====================================================================
+ * Layout padrão de cena
+ * =================================================================== */
+.scene {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  padding: clamp(64px, 9vh, 96px) clamp(20px, 5vw, 80px) clamp(72px, 9vh, 100px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+  background: radial-gradient(120% 90% at 85% 0%, rgb(254 215 194 / 0.45), transparent 55%), var(--color-cream-100);
+}
+
+.scene__inner {
+  max-width: 1280px;
+  margin-inline: auto;
+  min-height: 100%;
+}
+
+.scene__head {
+  max-width: 44em;
+}
+
+/* =====================================================================
+ * Cena 01 — Abertura
+ * =================================================================== */
+.opening {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  align-items: center;
+  gap: clamp(24px, 4vw, 64px);
+  min-height: 100%;
+}
+
+.opening__flower {
+  margin-bottom: clamp(14px, 1.6vw, 22px);
+}
+
+.opening__title {
+  max-width: 11em;
+}
+
+.opening__media {
+  position: relative;
+}
+
+.opening__photo {
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  box-shadow: 0 32px 60px -30px rgb(31 13 5 / 0.55);
+}
+
+.opening__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.opening__logo {
+  position: absolute;
+  left: -8%;
+  bottom: -6%;
+  width: 46%;
+  filter: drop-shadow(0 12px 24px rgb(31 13 5 / 0.25));
+}
+
+/* =====================================================================
+ * Cena 02 — Fundação / canais
+ * =================================================================== */
+.foundation {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr);
+  gap: clamp(24px, 4vw, 56px);
+  align-items: center;
+}
+
+.foundation__media img {
+  width: 100%;
+  border-radius: var(--radius-card);
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  box-shadow: 0 32px 60px -30px rgb(31 13 5 / 0.5);
+}
+
+.foundation__caption {
+  margin-top: 10px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--color-caramel-500);
+  text-align: center;
+}
+
+.channel-grid {
+  margin: clamp(28px, 3.2vw, 44px) 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(12px, 1.4vw, 20px);
+}
+
+.tilted-card {
+  will-change: transform;
+}
+
+.channel-card {
+  height: 100%;
+  padding: clamp(16px, 1.6vw, 22px);
+  border: 1px solid var(--color-line-light);
+  border-radius: var(--radius-card);
+  background: var(--color-offwhite);
+  color: var(--color-caramel-600);
+}
+
+.channel-card__label {
+  margin-top: 10px;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--color-text-strong);
+}
+
+.channel-card__detail {
+  margin-top: 4px;
+  font-size: 0.8rem;
+  color: var(--color-caramel-600);
+  font-weight: 600;
+}
+
+.channel-card__note {
+  margin-top: 8px;
+  font-size: 0.8rem;
+  color: var(--color-text-body);
+  line-height: 1.4;
+}
+
+/* =====================================================================
+ * Cena 03 — Oportunidade
+ * =================================================================== */
+.opportunity {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+  gap: clamp(24px, 4vw, 56px);
+  align-items: center;
+}
+
+.opportunity__stats {
+  display: flex;
+  gap: clamp(28px, 3vw, 48px);
+  margin-top: clamp(20px, 2.4vw, 32px);
+}
+
+.stat__number {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 2vw + 2rem, 4rem);
+  color: var(--color-cacao-800);
+  line-height: 1;
+}
+
+.stat__label {
+  margin-top: 4px;
+  font-size: 0.8rem;
+  color: var(--color-caramel-600);
+}
+
+.opportunity__visual {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 280px;
+}
+
+.opportunity__cupcake {
+  position: relative;
+  z-index: 2;
+}
+
+.chip-cloud {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.chip-cloud__list {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chip-cloud__chip {
+  position: absolute;
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--color-offwhite);
+  border: 1px solid var(--color-line-light);
+  font-size: 0.72rem;
+  color: var(--color-caramel-600);
+  white-space: nowrap;
+}
+
+.chip-cloud__chip:nth-child(1) { top: 2%; left: 4%; }
+.chip-cloud__chip:nth-child(2) { top: 14%; right: 2%; }
+.chip-cloud__chip:nth-child(3) { top: 40%; left: -2%; }
+.chip-cloud__chip:nth-child(4) { bottom: 32%; right: -4%; }
+.chip-cloud__chip:nth-child(5) { bottom: 10%; left: 10%; }
+.chip-cloud__chip:nth-child(6) { bottom: 0%; right: 18%; }
+.chip-cloud__chip:nth-child(7) { bottom: 4%; left: 30%; }
+.chip-cloud__chip:nth-child(8) { top: 0%; left: 40%; }
+.chip-cloud__chip:nth-child(9) { top: 50%; right: -6%; }
+.chip-cloud__chip:nth-child(10) { top: 30%; left: 74%; }
+.chip-cloud__chip:nth-child(11) { bottom: 18%; left: 58%; }
+.chip-cloud__chip:nth-child(12) { top: 48%; right: 4%; }
+
+/* =====================================================================
+ * Cena 04 — Revelação do site (mockups)
+ * =================================================================== */
+.reveal__devices {
+  margin-top: clamp(28px, 3.4vw, 46px);
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(20px, 3vw, 40px);
+}
+
+.device__frame {
+  border-radius: 14px;
+  background: var(--color-cacao-950);
+  padding: 8px;
+  box-shadow: 0 40px 70px -32px rgb(31 13 5 / 0.6);
+}
+
+.device--desktop {
+  width: min(62%, 620px);
+}
+
+.device__bar {
+  display: flex;
+  gap: 5px;
+  padding: 6px 8px;
+}
+
+.device__bar span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-caramel-400);
+  opacity: 0.6;
+}
+
+.device__screen {
+  position: relative;
+  border-radius: 8px;
+  background: var(--color-cream-100);
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  padding: clamp(14px, 2vw, 22px);
+}
+
+.device__logo {
+  height: 20px;
+  width: auto;
+}
+
+.device__hero-eyebrow {
+  margin-top: 14px;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-caramel-600);
+}
+
+.device__hero-title {
+  margin-top: 6px;
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.4vw, 1.6rem);
+  color: var(--color-text-strong);
+  max-width: 9em;
+}
+
+.device__hero-title em {
+  color: var(--color-caramel-500);
+  font-style: italic;
+}
+
+.device__hero-photo {
+  position: absolute;
+  right: -6%;
+  bottom: -14%;
+  width: 54%;
+  border-radius: 10px;
+  object-fit: cover;
+  aspect-ratio: 4 / 5;
+  box-shadow: 0 20px 36px -18px rgb(31 13 5 / 0.5);
+}
+
+.device--mobile {
+  width: min(22%, 190px);
+  align-self: flex-end;
+}
+
+.device__frame--mobile {
+  border-radius: 28px;
+  padding: 10px 7px;
+}
+
+.device__notch {
+  width: 36%;
+  height: 14px;
+  margin: 0 auto 6px;
+  border-radius: 0 0 10px 10px;
+  background: var(--color-cacao-950);
+}
+
+.device__screen--mobile {
+  aspect-ratio: 9 / 17;
+  padding: 10px;
+}
+
+.device__hero-photo--mobile {
+  position: static;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  margin-bottom: 10px;
+}
+
+.device__hero-title--mobile {
+  font-size: 1rem;
+  max-width: none;
+}
+
+.reveal__cta {
+  margin-top: clamp(24px, 3vw, 36px);
+}
+
+/* =====================================================================
+ * Cena 05 — Jornada
+ * =================================================================== */
+.journey__path {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: clamp(10px, 1.2vw, 16px);
+  margin: clamp(28px, 3.2vw, 46px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.journey__item {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 1.2vw, 16px);
+}
+
+.journey__card {
+  width: clamp(150px, 15vw, 190px);
+  padding: clamp(14px, 1.5vw, 20px);
+  background: var(--color-offwhite);
+  border: 1px solid var(--color-line-light);
+  border-radius: var(--radius-card);
+}
+
+.journey__num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.4rem;
+  color: var(--color-caramel-400);
+}
+
+.journey__label {
+  margin-top: 6px;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+}
+
+.journey__detail {
+  margin-top: 6px;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: var(--color-text-body);
+}
+
+.journey__arrow {
+  color: var(--color-caramel-400);
+  flex: none;
+}
+
+/* =====================================================================
+ * Cena 06 — Analytics conceitual
+ * =================================================================== */
+.analytics__panel {
+  margin-top: clamp(24px, 3vw, 40px);
+  max-width: 34em;
+  padding: clamp(18px, 2vw, 28px);
+  border-radius: var(--radius-card);
+  background: var(--color-offwhite);
+  border: 1px solid var(--color-line-light);
+}
+
+.analytics__disclaimer {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-caramel-600);
+  font-weight: 600;
+}
+
+.analytics__product {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+}
+
+.analytics__metrics {
+  display: flex;
+  gap: clamp(18px, 2.2vw, 30px);
+  margin-top: clamp(14px, 1.6vw, 22px);
+}
+
+.metric {
+  color: var(--color-caramel-600);
+}
+
+.metric--muted {
+  opacity: 0.65;
+}
+
+.metric__num {
+  margin-top: 6px;
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 1.2vw + 1.4rem, 2.4rem);
+  color: var(--color-cacao-800);
+}
+
+.metric__label {
+  font-size: 0.72rem;
+  color: var(--color-text-body);
+}
+
+.analytics__question {
+  margin-top: clamp(26px, 3vw, 40px);
+}
+
+/* =====================================================================
+ * Cena 07 — Roadmap / camadas de bolo
+ * =================================================================== */
+.roadmap__body {
+  margin-top: clamp(24px, 3vw, 40px);
+  display: grid;
+  grid-template-columns: minmax(200px, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(24px, 3.2vw, 48px);
+  align-items: start;
+}
+
+.roadmap__cake {
+  display: grid;
+  place-items: center;
+}
+
+.roadmap__phases {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+.roadmap__phase {
+  width: 100%;
+  text-align: left;
+  padding: clamp(14px, 1.5vw, 18px) clamp(16px, 1.8vw, 22px);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--color-line-light);
+  background: var(--color-offwhite);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 14px;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.roadmap__phase.is-active {
+  border-color: var(--color-caramel-500);
+  background: var(--color-cream-200);
+}
+
+.roadmap__phase-num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.3rem;
+  color: var(--color-caramel-400);
+}
+
+.roadmap__phase-label {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+}
+
+.roadmap__items {
+  grid-column: 1 / -1;
+  margin: 10px 0 0;
+  padding-left: 1.1em;
+  display: grid;
+  gap: 4px;
+  font-size: 0.8rem;
+  color: var(--color-text-body);
+}
+
+.roadmap__phase .fine-print {
+  grid-column: 1 / -1;
+}
+
+/* =====================================================================
+ * Cena 08 — Convite final
+ * =================================================================== */
+.closing {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: center;
+  gap: clamp(24px, 4vw, 64px);
+  min-height: 100%;
+}
+
+.closing__actions {
+  margin-top: clamp(20px, 2.4vw, 32px);
+}
+
+.closing__logo {
+  margin-top: clamp(28px, 3vw, 44px);
+  height: 26px;
+  width: auto;
+  opacity: 0.85;
+}
+
+.closing__signature {
+  margin-top: 8px;
+  font-size: 0.75rem;
+  color: var(--color-caramel-600);
+}
+
+.closing__media img {
+  width: 100%;
+  border-radius: var(--radius-card);
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  box-shadow: 0 32px 60px -30px rgb(31 13 5 / 0.55);
+}
+
+/* =====================================================================
+ * Partículas (confeitos)
+ * =================================================================== */
+.particles {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.particles__dot {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.55;
+  animation-name: particle-float;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes particle-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+/* =====================================================================
+ * Responsivo
+ * =================================================================== */
+@media (max-width: 960px) {
+  .opening,
+  .closing,
+  .opportunity,
+  .foundation {
+    grid-template-columns: 1fr;
+  }
+
+  .opening__media,
+  .closing__media,
+  .foundation__media {
+    order: -1;
+    max-width: 200px;
+    margin-inline: auto;
+  }
+
+  .display--xl {
+    font-size: clamp(1.9rem, 6vw + 1rem, 3rem);
+  }
+
+  .opening__flower {
+    margin-bottom: 10px;
+  }
+
+  .opening__logo {
+    display: none;
+  }
+
+  .channel-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .opportunity__visual {
+    display: none;
+  }
+
+  .reveal__devices {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .device--desktop,
+  .device--mobile {
+    width: min(86%, 340px);
+  }
+
+  .roadmap__body {
+    grid-template-columns: 1fr;
+  }
+
+  .roadmap__cake {
+    display: none;
+  }
+
+  .shell__topbar {
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .scene {
+    padding-top: clamp(56px, 10vh, 76px);
+    padding-bottom: clamp(100px, 14vh, 128px);
+  }
+
+  .channel-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .journey__path {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .journey__item {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .journey__card {
+    width: 100%;
+  }
+
+  .journey__arrow {
+    display: none;
+  }
+
+  .analytics__metrics {
+    flex-wrap: wrap;
+  }
+
+  .shell__footer {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .progress {
+    justify-content: space-between;
+  }
+
+  .nav-controls {
+    justify-content: center;
+  }
+}

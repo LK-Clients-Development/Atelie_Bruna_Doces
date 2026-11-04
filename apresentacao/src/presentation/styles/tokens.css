@@ -1,0 +1,42 @@
+/*
+ * Tokens visuais: espelham os mesmos valores de src/styles/tokens.css do site institucional
+ * (Ateliê Doces Bruna V2), copiados aqui para manter esta aplicação isolada e sem depender
+ * do projeto Astro em build nem em runtime. Qualquer alteração de marca deve ser replicada
+ * em ambos os arquivos.
+ */
+:root {
+  --color-cacao-950: #1f0d05;
+  --color-cacao-900: #261207;
+  --color-cacao-800: #2b1810;
+  --color-cacao-700: #552a1a;
+  --color-cream-100: #fbf3eb;
+  --color-cream-200: #f8eee6;
+  --color-offwhite: #fffaf5;
+  --color-blush: #fed7c2;
+  --color-blush-soft: #fbe0d0;
+
+  --color-caramel-600: #9a5233;
+  --color-caramel-500: #b86138;
+  --color-caramel-400: #d88a68;
+  --color-caramel-200: #fccfb5;
+  --color-caramel-line: #8c5b43;
+
+  --color-text-strong: #1a0a05;
+  --color-text-body: #4a403b;
+  --color-text-light: #fffaf6;
+  --color-text-light-muted: rgb(255 250 246 / 0.86);
+
+  --color-line: rgb(184 97 56 / 0.45);
+  --color-line-light: rgb(252 207 181 / 0.45);
+
+  --radius-pill: 999px;
+  --radius-card: 14px;
+
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'Montserrat Variable', 'Montserrat', 'Segoe UI', system-ui, sans-serif;
+
+  --tracking-micro: 0.22em;
+  --tracking-nav: 0.11em;
+
+  --ease-editorial: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
