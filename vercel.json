@@ -7,21 +7,16 @@
     },
     "apresentacao": {
       "root": "apresentacao",
-      "framework": "vite"
+      "framework": "vite",
+      "rewrites": [
+        { "source": "/apresentacao/(.*)", "destination": "/$1" },
+        { "source": "/apresentacao", "destination": "/" }
+      ]
     }
   },
   "rewrites": [
-    {
-      "source": "/apresentacao",
-      "destination": { "service": "apresentacao", "path": "/" }
-    },
-    {
-      "source": "/apresentacao/:path*",
-      "destination": { "service": "apresentacao", "path": "/:path*" }
-    },
-    {
-      "source": "/(.*)",
-      "destination": { "service": "app" }
-    }
+    { "source": "/apresentacao", "destination": { "service": "apresentacao" } },
+    { "source": "/apresentacao/(.*)", "destination": { "service": "apresentacao" } },
+    { "source": "/(.*)", "destination": { "service": "app" } }
   ]
 }
