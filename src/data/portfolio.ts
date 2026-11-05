@@ -141,7 +141,8 @@ export interface PortfolioProduct {
 // ---------------------------------------------------------------------------
 export const EDITORIAL_CATEGORIES = [
   { slug: 'bolos', name: 'Bolos' },
-  { slug: 'fatias', name: 'Fatias' },
+  { slug: 'fatias', name: 'Fatias de brownie' },
+  { slug: 'fatias-de-bolo', name: 'Fatias de bolo' },
   { slug: 'sobremesas-no-copo', name: 'Sobremesas no copo' },
   { slug: 'coxinhas-doces', name: 'Coxinhas doces' },
   { slug: 'doces-e-bombons', name: 'Doces e bombons' },
@@ -153,15 +154,21 @@ export const EDITORIAL_CATEGORIES = [
   { slug: 'cones-trufados', name: 'Cones trufados' },
   { slug: 'salgados', name: 'Salgados' },
   { slug: 'acai', name: 'Açaí' },
+  /** Composição de itens já publicados em outras coleções; não é promoção. */
+  { slug: 'combos', name: 'Combos do dia' },
+  /** Reposicionadas: não são criações do Ateliê (resenda de bebidas industrializadas), mas fazem parte do acervo real. */
+  { slug: 'bebidas', name: 'Bebidas' },
+  { slug: 'presentear', name: 'Presentear' },
 ] as const;
 
 export type EditorialCategorySlug = (typeof EDITORIAL_CATEGORIES)[number]['slug'];
 
 /** Categoria do Yooga → categoria editorial. Categorias ausentes aqui não entram na galeria (ver EXCLUDED). */
 const CATEGORY_MAP: Record<string, EditorialCategorySlug> = {
+  'cat-453111': 'combos', // "Combo do dia"
   'cat-441882': 'salgados',
-  'cat-438417': 'fatias', // Fatias (brownie)
-  'cat-578913': 'fatias', // Fatias de bolo
+  'cat-438417': 'fatias', // "Fatias" (brownie)
+  'cat-578913': 'fatias-de-bolo', // "Fatias de bolo"
   'cat-438420': 'coxinhas-doces',
   'cat-746352': 'caseirinhos',
   'cat-441886': 'cheesecakes-e-tortas', // "Exclusivos"
@@ -172,6 +179,8 @@ const CATEGORY_MAP: Record<string, EditorialCategorySlug> = {
   'cat-438419': 'bolos-de-pote',
   'cat-438421': 'cones-trufados',
   'cat-923026': 'bolos', // "Tamanho família" (bolo de cenoura)
+  'cat-441887': 'bebidas',
+  'cat-773392': 'presentear', // "Presentear pode & deve" (cartão presente)
 };
 
 /** Exceções por produto (`sourceProductId`) quando a categoria do Yooga não descreve o item. */
@@ -182,12 +191,13 @@ const CATEGORY_OVERRIDES: Record<number, EditorialCategorySlug> = {
   4579548: 'cheesecakes-e-tortas', // Torta de limão (no Yooga: Doses da felicidade)
 };
 
-/** Itens do snapshot que continuam no catálogo comercial mas NÃO entram na galeria editorial. */
+/**
+ * Itens do snapshot que continuam no catálogo comercial mas NÃO entram na galeria editorial.
+ * Só serviço/utilidade do pedido fica fora: Bebidas, Presentear e Combo do dia são coleções reais
+ * do acervo (gate de conteúdo de 2026-11-04) e entram, mesmo sem ser "criação" do Ateliê.
+ */
 export const EXCLUDED: Record<string, string> = {
-  'cat-442641': 'Serviço do pedido ("Adicionar garfinho"), não é criação.',
-  'cat-773392': 'Cartão presente: serviço/vale, não é criação para mostrar em galeria.',
-  'cat-441887': 'Bebidas industrializadas revendidas (água e Coca-Cola): não são criações do Ateliê.',
-  'cat-453111': 'Combo do dia: combinação temporária de itens que já aparecem separados (inclui refrigerante).',
+  'cat-442641': 'Serviço do pedido ("Adicionar garfinho"), não é criação nem coleção.',
 };
 
 // ---------------------------------------------------------------------------

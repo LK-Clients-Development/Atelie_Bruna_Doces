@@ -1,0 +1,40 @@
+---
+/**
+ * Card do ACERVO (/produtos): porta de entrada para uma coleção/categoria, não um produto.
+ * Nunca mostra preço, botão de compra ou quantidade — só imagem, número e nome (ver concept
+ * "galeria de coleções" aprovado). O card inteiro é um link: sem JS cai direto no capítulo
+ * (`#slug`, renderizado por PortfolioChapter); com JS, o mesmo clique filtra e rola até lá
+ * (data-rail-link, tratado em src/scripts/products.ts junto com os chips do Hero).
+ */
+import Icon from './Icon.astro';
+
+interface Props {
+  slug: string;
+  name: string;
+  /** Posição no acervo (1-based): vira o numeral "01, 02...". */
+  index: number;
+  image: { src: string; width: number | null; height: number | null } | null;
+  /** Peso visual reduzido: itens revendidos/serviço (Bebidas, Presentear), não criações do Ateliê. */
+  compact?: boolean;
+}
+
+const { slug, name, index, image, compact = false } = Astro.props;
+const number = String(index).padStart(2, '0');
+---
+
+<a class:list={['ccard', compact && 'ccard--compact']} href={`#${slug}`} data-rail-link={slug} data-collection-card>
+  <span class="ccard__media">
+    {
+      image?.src ? (
+        <img src={image.src} width={image.width ?? undefined} height={image.height ?? undefined} alt="" loading="lazy" decoding="async" />
+      ) : (
+        <span class="ccard__empty" aria-hidden="true" />
+      )
+    }
+  </span>
+  <span class="ccard__cap">
+    <span class="ccard__num" aria-hidden="true">{number}</span>
+    <span class="ccard__name">{name}</span>
+    <span class="ccard__hint" aria-hidden="true"><Icon name="arrow" size={15} /></span>
+  </span>
+</a>

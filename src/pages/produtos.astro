@@ -24,6 +24,7 @@ import Footer from '../components/Footer.astro';
 import SectionEyebrow from '../components/SectionEyebrow.astro';
 import CtaButton from '../components/CtaButton.astro';
 import PortfolioChapter from '../components/PortfolioChapter.astro';
+import CollectionCard from '../components/CollectionCard.astro';
 import Icon from '../components/Icon.astro';
 import Wave from '../components/Wave.astro';
 import Seal from '../components/Seal.astro';
@@ -47,6 +48,18 @@ const groups = EDITORIAL_CATEGORIES.map((category) => ({
 })).filter((group) => group.products.length > 0);
 
 const count = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
+
+// capas do acervo: uma por coleção, a imagem mais completa do grupo (mesmo critério do capítulo)
+// Bebidas e Presentear fazem parte do acervo real (gate de conteúdo de 2026-11-04), mas não são
+// criações do Ateliê: entram com peso visual menor (ver CollectionCard `compact`).
+const COMPACT_COLLECTIONS = new Set(['bebidas', 'presentear']);
+const collections = groups.map((group, i) => {
+  const ordered = [...group.products].sort(
+    (a, b) => b.publishableImageCount - a.publishableImageCount || (b.heroImage?.width ?? 0) - (a.heroImage?.width ?? 0),
+  );
+  const cover = ordered.find((p) => p.heroImage?.src)?.heroImage ?? null;
+  return { slug: group.slug, name: group.name, index: i + 1, image: cover, compact: COMPACT_COLLECTIONS.has(group.slug) };
+});
 
 // busca: nome, descrição e categoria (normalizados, sem acento)
 const searchText = new Map(
@@ -119,45 +132,46 @@ const cakesLabel = menuReady ? page.cakes.ctaMenu : page.cakes.ctaFallback;
             <button class="psearch__go" type="submit" aria-label="Buscar"><Icon name="arrow" size={20} /></button>
           </form>
         </div>
+
+        {/* 02 Chips: filtro por coleção (JS); sem JS são âncoras simples para o capítulo */}
+        <nav class="pchips" aria-label="Coleções do acervo">
+          <ul class="pchips__list" role="list" data-rail>
+            <li>
+              <a class="pchip pchip--all" href="#catalogo" data-rail-link="all" aria-current="true">Todas as coleções</a>
+            </li>
+            {groups.map((group) => (
+              <li>
+                <a class="pchip" href={`#${group.slug}`} data-rail-link={group.slug}>{group.name}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
     </section>
 
-    {/* 03 O álbum: intro + capítulos */}
-    <section class="pcatalog" aria-label="Galeria de criações">
-    {/* 02 Categorias: navegação tipográfica (filtro com JS; âncoras sem JS). Dentro do álbum: o sticky termina com ele */}
-    <nav class="prail" aria-label="Categorias do portfólio">
-      <ul class="prail__list" role="list" data-rail>
-        <li>
-          <a class="prail__item" href="#catalogo" data-rail-link="all" aria-current="true">Todos</a>
-        </li>
-        {groups.map((group) => (
-          <li>
-            <a class="prail__item" href={`#${group.slug}`} data-rail-link={group.slug}>{group.name}</a>
-          </li>
-        ))}
-      </ul>
-    </nav>
-
-      <div class="container pintro" id="catalogo">
-        <div class="pintro__title">
-          <SectionEyebrow>{page.catalogEyebrow}</SectionEyebrow>
-          <h2 class="h2">
-            <span class="line">{page.catalogTitle[0]}</span>{' '}
-            <span class="line h3">{page.catalogTitle[1]}</span>
-          </h2>
-        </div>
-        <p class="t1 pintro__lead">{page.catalogLead}</p>
-        <p class="pintro__stats">
-          <strong>{PORTFOLIO.length}</strong>{' '}
-          <span>{PORTFOLIO.length === 1 ? 'criação' : 'criações'}</span>{' '}
-          <small>em {groups.length} {groups.length === 1 ? 'categoria' : 'categorias'}</small>
+    {/* 03 Grid principal: cada card é uma coleção (porta de entrada), nunca um produto à venda */}
+    <section class="pcollections" id="catalogo" aria-label="Coleções do acervo">
+      <div class="container">
+        <p class="pcollections__count">
+          <strong>{groups.length}</strong>{' '}
+          <span>{groups.length === 1 ? 'coleção' : 'coleções'}</span>
         </p>
-        <div class="pintro__band" aria-hidden="true">
-          <Image src={IMAGES.manifestoChocolate} alt="" widths={[313]} sizes="30vw" />
-          <p class="pintro__script" data-copy-status={EDITORIAL_MOMENTS.albumNote.status}>{EDITORIAL_MOMENTS.albumNote.text}</p>
+        <div class="pcollections__grid">
+          {collections.map((collection) => (
+            <CollectionCard
+              slug={collection.slug}
+              name={collection.name}
+              index={collection.index}
+              image={collection.image}
+              compact={collection.compact}
+            />
+          ))}
         </div>
       </div>
+    </section>
 
+    {/* 04 O álbum: cada capítulo é o destino de uma coleção (busca, modal e CTA de compra vivem aqui) */}
+    <section class="pcatalog" aria-label="Galeria de criações">
       <div class="container pcatalog__body">
         <p class="presults" data-results role="status" aria-live="polite" hidden></p>
         <div class="pempty" data-empty hidden>
@@ -212,6 +226,7 @@ const cakesLabel = menuReady ? page.cakes.ctaMenu : page.cakes.ctaFallback;
           <CtaButton href={LINKS.cardapio}>{page.cta.order}</CtaButton>
           <CtaButton href={LINKS.whatsapp} variant="btn3" icon="whatsapp">{page.cta.whatsapp}</CtaButton>
         </div>
+        <p class="pcta__signature">{page.cta.signature}</p>
       </div>
     </section>
   </main>

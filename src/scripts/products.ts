@@ -138,14 +138,16 @@ if (root) {
     });
   });
 
-  // categorias = filtro (o visitante explora um portfólio); "Todos" remove o filtro
+  // categorias = filtro (chips do Hero e cards do acervo); "Todas as coleções" remove o filtro.
+  // Com categoria: rola direto até o capítulo (destino da coleção). Sem: volta ao topo do acervo.
   railLinks.forEach((link) => {
     link.addEventListener('click', (event) => {
       event.preventDefault();
       category = link.dataset.railLink ?? 'all';
       apply();
       centerRailItem(category);
-      root.querySelector('#catalogo')?.scrollIntoView({ behavior: reduced.matches ? 'auto' : 'smooth', block: 'start' });
+      const target = category !== 'all' ? root.querySelector(`#${CSS.escape(category)}`) : root.querySelector('#catalogo');
+      target?.scrollIntoView({ behavior: reduced.matches ? 'auto' : 'smooth', block: 'start' });
     });
   });
 }

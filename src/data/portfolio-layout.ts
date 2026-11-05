@@ -44,8 +44,14 @@ export const CHAPTER_LAYOUT: Record<EditorialCategorySlug, ChapterLayout> = {
     note: 'Texto do Concept: "nossa história" e "ingredientes selecionados" são afirmações da marca a confirmar.',
   },
   fatias: {
+    variant: 'editorial',
+    blurb: 'Fatias de brownie com recheio e cobertura generosos.',
+    status: 'DRAFT',
+    note: 'Resume as descrições do Yooga.',
+  },
+  'fatias-de-bolo': {
     variant: 'mosaic',
-    blurb: 'Fatias generosas para adoçar o seu dia.',
+    blurb: 'Fatias generosas de bolo, para adoçar o seu dia.',
     detail: 'Camadas que se encontram em sabores incríveis, com o equilíbrio perfeito entre massa, recheio e cobertura.',
     status: 'NEEDS_BRUNA_APPROVAL',
     note: 'Texto do Concept: "generosas" e "equilíbrio perfeito" são juízos de valor a confirmar.',
@@ -61,6 +67,24 @@ export const CHAPTER_LAYOUT: Record<EditorialCategorySlug, ChapterLayout> = {
   'cones-trufados': { variant: 'editorial', blurb: 'Casquinha crocante banhada no chocolate, com brigadeiro.', status: 'DRAFT', note: 'Resume as descrições do Yooga.' },
   salgados: { variant: 'editorial', blurb: 'Coxinhas, empada, esfihas e enroladinho.', status: 'DRAFT', note: 'Lista o que o cardápio do Yooga tem.' },
   acai: { variant: 'feature', blurb: 'Açaí puro, servido na bandeja.', status: 'DRAFT', note: 'Resume a descrição do Yooga.' },
+  combos: {
+    variant: 'editorial',
+    blurb: 'Duas criações do Ateliê reunidas em um só pedido.',
+    status: 'DRAFT',
+    note: 'Resume a composição do item no Yooga; não é promoção, é uma combinação permanente do cardápio.',
+  },
+  bebidas: {
+    variant: 'mosaic',
+    blurb: 'Refrigerantes e água para acompanhar o seu pedido.',
+    status: 'DRAFT',
+    note: 'Itens revendidos pelo Ateliê, não são criações próprias; por isso entram com peso visual menor no acervo.',
+  },
+  presentear: {
+    variant: 'editorial',
+    blurb: 'Um cartão-presente para quem você quer presentear.',
+    status: 'DRAFT',
+    note: 'Resume a descrição do Yooga.',
+  },
 };
 
 /** Momentos editoriais da página (copy nova do Concept; a Bruna precisa aprovar). */

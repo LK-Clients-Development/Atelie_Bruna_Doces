@@ -82,10 +82,11 @@ export const LINKS = {
 // ---------------------------------------------------------------------------
 export const PRODUCTS_PAGE = {
   title: 'Produtos',
-  eyebrow: 'Nossas criações',
-  heroTitle: ['Tem sempre algo', 'para', 'a sua vontade.'],
-  heroLead: 'Um álbum das criações do Ateliê. Doces, salgados e sobremesas artesanais para diferentes momentos do seu dia.',
-  searchPlaceholder: 'Buscar uma criação...',
+  eyebrow: 'O acervo do Ateliê',
+  heroTitle: ['Explore', 'nossas', 'criações.'],
+  heroLead: 'Um universo de sabores para você descobrir.',
+  searchPlaceholder: 'O que você procura?',
+  collectionsEyebrow: 'Nossas coleções',
   catalogEyebrow: 'O álbum do Ateliê',
   catalogTitle: ['Tudo o que a Bruna', 'cria, em um só lugar.'],
   catalogLead: 'Passeie pelas criações, abra a que chamar a sua atenção e conheça cada uma de perto. Quando decidir, o pedido é só um toque.',
@@ -103,6 +104,8 @@ export const PRODUCTS_PAGE = {
     text: 'Faça o seu pedido pelo cardápio ou fale com o Ateliê pelo WhatsApp.',
     order: 'Encomendar agora',
     whatsapp: 'Falar pelo WhatsApp',
+    /** Frase delicada do rodapé do acervo (ver src/pages/produtos.astro). */
+    signature: 'Feito com carinho, servido com afeto.',
   },
 } as const;
 
