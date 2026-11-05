@@ -7,26 +7,21 @@
     },
     "apresentacao": {
       "root": "apresentacao",
-      "framework": "vite",
-      "routes": [
-        {
-          "src": "/apresentacao/(.*)",
-          "transforms": [
-            { "type": "request.path", "op": "set", "args": "/$1" }
-          ]
-        },
-        {
-          "src": "/apresentacao",
-          "transforms": [
-            { "type": "request.path", "op": "set", "args": "/" }
-          ]
-        }
-      ]
+      "framework": "vite"
     }
   },
   "rewrites": [
-    { "source": "/apresentacao", "destination": { "service": "apresentacao" } },
-    { "source": "/apresentacao/(.*)", "destination": { "service": "apresentacao" } },
-    { "source": "/(.*)", "destination": { "service": "app" } }
+    {
+      "source": "/apresentacao",
+      "destination": { "service": "apresentacao", "path": "/" }
+    },
+    {
+      "source": "/apresentacao/:path*",
+      "destination": { "service": "apresentacao", "path": "/:path*" }
+    },
+    {
+      "source": "/(.*)",
+      "destination": { "service": "app" }
+    }
   ]
 }
