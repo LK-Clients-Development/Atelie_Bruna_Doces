@@ -1,6 +1,5 @@
-import { MessageCircle } from 'lucide-react';
+import { LINKS, AGENCY, CLOSING, SCENES } from '../content';
 import type { SceneProps } from './types';
-import { AGENCY, LINKS, SCENES } from '../content';
 import SplitText from '../components/SplitText';
 import Reveal from '../components/Reveal';
 import FlowerMark from '../components/FlowerMark';
@@ -16,25 +15,45 @@ export default function ClosingScene({ active }: SceneProps) {
       <Particles active={active} count={10} />
       <div className="scene__inner closing">
         <div className="closing__text">
-          <FlowerMark animate={active} size={72} />
+          <FlowerMark animate={active} size={64} />
           <p className="kicker">{copy.kicker}</p>
           <SplitText as="h2" className="display display--xl" lines={copy.title} active={active} />
           <Reveal active={active} order={2}>
             <p className="lead">{copy.subtitle}</p>
           </Reveal>
-          <Reveal active={active} order={3} className="closing__actions">
-            <a className="btn btn--pill" href={LINKS.whatsappProposta} target="_blank" rel="noopener noreferrer">
-              <MessageCircle size={18} aria-hidden="true" />
-              <span>Conversar sobre o projeto</span>
-            </a>
+
+          <Reveal active={active} order={3} className="closing__delivery">
+            <p className="closing__delivery-label">{CLOSING.deliveryLabel}</p>
+            <ul className="closing__delivery-list" role="list">
+              {CLOSING.delivery.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
           </Reveal>
-          <Reveal active={active} order={4}>
-            <img className="closing__logo" src={logo} alt={AGENCY.name} />
+
+          <Reveal active={active} order={4} className="closing__actions">
+            <ol className="closing__steps" role="list">
+              {CLOSING.steps.map((step, i) => (
+                <li key={step}>
+                  <span aria-hidden="true">{String(i + 1).padStart(2, '0')}</span> {step}
+                </li>
+              ))}
+            </ol>
+            {LINKS.lkContact && (
+              <a className="btn btn--pill" href={LINKS.lkContact} target="_blank" rel="noopener noreferrer">
+                <span>Conversar sobre o projeto</span>
+              </a>
+            )}
+            <p className="fine-print">{CLOSING.caveat}</p>
+          </Reveal>
+
+          <Reveal active={active} order={5}>
             <p className="closing__signature">{AGENCY.line}</p>
           </Reveal>
         </div>
         <Reveal active={active} order={1} className="closing__media">
           <img src={ctaPhoto} alt="Composição de celebração do Ateliê Doces Bruna" loading="lazy" />
+          <img className="closing__logo" src={logo} alt="Ateliê Doces Bruna" />
         </Reveal>
       </div>
     </div>

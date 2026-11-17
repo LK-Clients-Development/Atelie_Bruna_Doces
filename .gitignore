@@ -11,3 +11,8 @@ dist/
 # sistema
 .DS_Store
 Thumbs.db
+
+# material comercial interno e evidências locais (repositório público)
+apresentacao/docs/roteiro-comercial-*.md
+apresentacao/docs/evidencias/
+docs/evidencias/

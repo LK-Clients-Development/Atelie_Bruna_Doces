@@ -22,14 +22,15 @@ npm run preview # serve o build gerado
 
 ## Variáveis de ambiente
 
-Copie `.env.example` para `.env` se quiser habilitar o botão "Explorar o site" da Cena 04:
+`VITE_SITE_URL` define o destino do botão "Explorar o site" (Cena 04). Sem a variável, usa o site
+publicado (`PUBLISHED_SITE_URL` em `content.ts`). Para homologar contra o site local, crie
+`.env.local` (não versionado) com `VITE_SITE_URL=http://localhost:4321/` e rode o site com
+`npm run dev` na raiz do repositório (Astro, porta 4321). Nunca coloque credenciais no frontend.
 
-```
-VITE_SITE_URL=https://seu-dominio-publicado.com
-```
+## Roteiro comercial (uso interno)
 
-Sem essa variável, a cena mostra um aviso neutro em vez de um botão que não funciona — nunca uma
-URL inventada.
+O roteiro comercial interno (apresentador, objeções, agenda de 30 min e referências de preço) fica **fora do
+repositório público** (`docs/roteiro-comercial-*.md`, ignorado pelo git). Peça aos sócios a cópia local.
 
 ## Navegação
 
@@ -87,10 +88,8 @@ quem configurar o projeto na Vercel.
 
 ## Pendências reais (não inventadas)
 
-- `VITE_SITE_URL` não está definida: o botão "Explorar o site" (Cena 04) fica oculto até existir um
-  domínio publicado.
-- Os mockups de desktop/mobile da Cena 04 são uma composição estilizada (logo + foto real + texto do
-  Hero), não capturas de tela literais — ainda não há screenshots do site aprovados para uso aqui.
-- Os números da Cena 03 (17 categorias, 54 produtos) são um levantamento anterior do cardápio Yooga,
-  marcado como tal na própria cena — não uma garantia de volume atual.
-- Os números da Cena 06 são fictícios e identificados como demonstração conceitual.
+- **Contato comercial oficial da LK** não existe no repositório: `LINKS.lkContact` é `null` e o fechamento
+  (Cena 08) não tem link. Preencher em `content.ts` quando definido.
+- 17 coleções / 54 criações vêm da auditoria do Yooga de 05/10/2026 e estão rotuladas assim na Cena 03.
+- As capturas da Cena 04 (`src/assets/site/`) são do site publicado; recapturar se o site mudar.
+- Valores e escopo comercial: só no roteiro interno, a validar pelos sócios.

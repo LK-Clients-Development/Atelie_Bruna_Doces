@@ -1,6 +1,6 @@
 import { Instagram, Link2, ShoppingBag, MessageCircle, Store, MapPin, type LucideIcon } from 'lucide-react';
 import type { SceneProps } from './types';
-import { CHANNELS, SCENES } from '../content';
+import { CHANNELS, FOUNDATION_BRIDGE, REGIONAL_NEWS, SCENES } from '../content';
 import SplitText from '../components/SplitText';
 import Reveal from '../components/Reveal';
 import TiltedCard from '../components/TiltedCard';
@@ -49,10 +49,37 @@ export default function FoundationScene({ active }: SceneProps) {
           </ul>
         </div>
 
-        <Reveal active={active} order={1} className="foundation__media">
-          <img src={bruna} alt="Bruna, do Ateliê Doces Bruna" loading="lazy" />
-          <p className="foundation__caption">Por trás de cada criação, a Bruna.</p>
-        </Reveal>
+        <div className="foundation__side">
+          <Reveal active={active} order={1} className="foundation__media">
+            <img src={bruna} alt="Bruna, do Ateliê Doces Bruna" loading="lazy" />
+            <p className="foundation__caption">Por trás de cada criação, a Bruna.</p>
+          </Reveal>
+
+          <Reveal active={active} order={8} className="bridge">
+            <p className="bridge__text">{FOUNDATION_BRIDGE.text}</p>
+            <p className="bridge__invite">{FOUNDATION_BRIDGE.invite}</p>
+            <ul className="bridge__prompts" role="list">
+              {FOUNDATION_BRIDGE.prompts.map((prompt) => (
+                <li key={prompt}>{prompt}</li>
+              ))}
+            </ul>
+          </Reveal>
+
+          <Reveal active={active} order={9} className="regional">
+            <p className="regional__label">{REGIONAL_NEWS.label}</p>
+            <ul className="regional__list" role="list">
+              {REGIONAL_NEWS.cities.map((city) => (
+                <li key={city.id}>
+                  <MapPin size={16} aria-hidden="true" />
+                  <span>
+                    <strong>{city.name}</strong> — {city.text}.
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <p className="regional__note">{REGIONAL_NEWS.line}</p>
+          </Reveal>
+        </div>
       </div>
     </div>
   );

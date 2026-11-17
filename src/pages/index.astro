@@ -18,6 +18,7 @@ import SectionEyebrow from '../components/SectionEyebrow.astro';
 import CtaButton from '../components/CtaButton.astro';
 import MediaFrame from '../components/MediaFrame.astro';
 import Footer from '../components/Footer.astro';
+import RegionalNews from '../components/RegionalNews.astro';
 import { LINKS, CLAIMS, FOUNDER, TESTIMONIALS, SEO } from '../data/site';
 import { IMAGES } from '../data/images';
 
@@ -218,6 +219,9 @@ const quotes = TESTIMONIALS; // PLACEHOLDER: ver src/data/site.ts
         </div>
       </div>
     </section>
+
+    {/* 05b Novidades regionais (Extrema e Camanducaia): dados em src/data/regional.ts */}
+    <RegionalNews />
 
     {/* 06 Histórias Reais */}
     <section class="section section--historias" id="historias" aria-label="Histórias reais">

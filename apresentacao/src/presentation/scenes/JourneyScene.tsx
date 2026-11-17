@@ -1,6 +1,6 @@
 import { ArrowRight } from 'lucide-react';
 import type { SceneProps } from './types';
-import { JOURNEY_STEPS, SCENES } from '../content';
+import { JOURNEY_NOTE, JOURNEY_STEPS, SCENES } from '../content';
 import SplitText from '../components/SplitText';
 import Reveal from '../components/Reveal';
 
@@ -33,7 +33,7 @@ export default function JourneyScene({ active }: SceneProps) {
         </ol>
 
         <Reveal active={active} order={JOURNEY_STEPS.length + 1}>
-          <p className="fine-print">O site não substitui o delivery: não há carrinho nem checkout próprio. A compra continua na Yooga ou no WhatsApp.</p>
+          <p className="fine-print">{JOURNEY_NOTE}</p>
         </Reveal>
       </div>
     </div>

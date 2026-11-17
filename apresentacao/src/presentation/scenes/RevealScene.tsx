@@ -3,12 +3,16 @@ import type { SceneProps } from './types';
 import { SCENES, SITE_URL } from '../content';
 import SplitText from '../components/SplitText';
 import Reveal from '../components/Reveal';
-import bolo from '../../assets/photos/bolo-hero.webp';
-import fatia from '../../assets/photos/fatia-chocolatuda.webp';
-import logo from '../../assets/brand/atelie-doces-bruna-logo.png';
+import siteDesktop from '../../assets/site/site-desktop-1440.jpg';
+import siteTablet from '../../assets/site/site-tablet-820.jpg';
+import siteMobile from '../../assets/site/site-mobile-390.jpg';
 
 const copy = SCENES.reveal;
 
+/**
+ * Três dispositivos físicos em CSS (notebook, tablet, smartphone), cada um exibindo a captura REAL do
+ * site institucional no seu próprio viewport (1440×900, 820×1180, 390×844) — sem esticar nem reaproveitar.
+ */
 export default function RevealScene({ active }: SceneProps) {
   return (
     <div className="scene scene--reveal">
@@ -18,48 +22,80 @@ export default function RevealScene({ active }: SceneProps) {
           <SplitText as="h2" className="display display--lg" lines={copy.title} active={active} />
         </div>
 
-        <div className="reveal__devices">
-          <Reveal active={active} order={1} className="device device--desktop">
-            <div className="device__frame">
-              <div className="device__bar">
-                <span />
-                <span />
-                <span />
+        <div className="rig">
+          <Reveal active={active} order={1} className="rig__item rig__item--laptop">
+            <div className="laptop">
+              <div className="laptop__lid">
+                <div className="laptop__screen">
+                  <img
+                    src={siteDesktop}
+                    width={1440}
+                    height={900}
+                    alt="Captura real do site do Ateliê Doces Bruna no computador: bolo de chocolate e a frase “Mais que doces, momentos inesquecíveis”"
+                  />
+                  <span className="laptop__notch" aria-hidden="true">
+                    <i />
+                  </span>
+                </div>
               </div>
-              <div className="device__screen">
-                <img className="device__logo" src={logo} alt="" />
-                <p className="device__hero-eyebrow">Nossas criações</p>
-                <p className="device__hero-title">
-                  Tem sempre algo
-                  <br />
-                  para <em>a sua vontade.</em>
-                </p>
-                <img className="device__hero-photo" src={bolo} alt="Prévia do site institucional: hero com bolo de cenoura" />
+              <div className="laptop__hinge" aria-hidden="true" />
+              <div className="laptop__base" aria-hidden="true">
+                <span className="laptop__scoop" />
+              </div>
+              <div className="laptop__feet" aria-hidden="true">
+                <span />
+                <span />
               </div>
             </div>
           </Reveal>
 
-          <Reveal active={active} order={2} className="device device--mobile">
-            <div className="device__frame device__frame--mobile">
-              <div className="device__notch" />
-              <div className="device__screen device__screen--mobile">
-                <img className="device__hero-photo device__hero-photo--mobile" src={fatia} alt="Prévia do site em celular: galeria de criações" />
-                <p className="device__hero-eyebrow">Galeria</p>
-                <p className="device__hero-title device__hero-title--mobile">O álbum do Ateliê</p>
+          <Reveal active={active} order={2} className="rig__item rig__item--tablet">
+            <div className="tablet">
+              <span className="dev-btn tablet__btn tablet__btn--power" aria-hidden="true" />
+              <span className="dev-btn tablet__btn tablet__btn--vol" aria-hidden="true" />
+              <div className="tablet__bezel">
+                <span className="tablet__cam" aria-hidden="true" />
+                <div className="tablet__screen">
+                  <img
+                    src={siteTablet}
+                    width={820}
+                    height={1180}
+                    alt="Captura real do site do Ateliê Doces Bruna no tablet, com a frase de abertura e o botão Conheça nossa história"
+                  />
+                </div>
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal active={active} order={3} className="rig__item rig__item--phone">
+            <div className="phone">
+              <span className="dev-btn phone__btn phone__btn--action" aria-hidden="true" />
+              <span className="dev-btn phone__btn phone__btn--volup" aria-hidden="true" />
+              <span className="dev-btn phone__btn phone__btn--voldown" aria-hidden="true" />
+              <span className="dev-btn phone__btn phone__btn--power" aria-hidden="true" />
+              <div className="phone__bezel">
+                <div className="phone__screen">
+                  <span className="phone__island" aria-hidden="true">
+                    <i />
+                  </span>
+                  <img
+                    src={siteMobile}
+                    width={390}
+                    height={844}
+                    alt="Captura real do site do Ateliê Doces Bruna no celular, com a mesma frase de abertura e o botão Encomendar"
+                  />
+                </div>
               </div>
             </div>
           </Reveal>
         </div>
 
-        <Reveal active={active} order={3} className="reveal__cta">
-          {SITE_URL ? (
-            <a className="btn btn--pill" href={SITE_URL} target="_blank" rel="noopener noreferrer">
-              <span>Explorar o site</span>
-              <ExternalLink size={18} aria-hidden="true" />
-            </a>
-          ) : (
-            <p className="fine-print">A demonstração ao vivo entra aqui assim que o domínio estiver publicado.</p>
-          )}
+        <Reveal active={active} order={4} className="reveal__cta">
+          <a className="btn btn--pill" href={SITE_URL} target="_blank" rel="noopener noreferrer">
+            <span>Explorar o site</span>
+            <ExternalLink size={18} aria-hidden="true" />
+          </a>
+          <p className="fine-print">Capturas reais do site institucional publicado.</p>
         </Reveal>
       </div>
     </div>

@@ -1,0 +1,1791 @@
+/*
+ * V2 — estilos das refinações comerciais (cenas 02, 03, 04, 06, 07, 08).
+ * Carregado depois de presentation.css; só sobrescreve/estende, sem mudar a identidade visual.
+ */
+
+/* ---- Cena 02: ponte e convite ao diálogo ---- */
+.bridge {
+  margin-top: clamp(18px, 2vw, 28px);
+  padding-left: clamp(14px, 1.4vw, 20px);
+  border-left: 2px solid var(--color-caramel-400);
+  max-width: 40em;
+}
+
+.bridge__text {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--color-text-body);
+}
+
+.bridge__invite {
+  margin-top: 10px;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-caramel-600);
+}
+
+.bridge__prompts {
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 2px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--color-caramel-500);
+}
+
+/* ---- Cena 03: comparação das jornadas ---- */
+.opportunity {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(16px, 2.2vw, 28px);
+}
+
+.opportunity__top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(20px, 3vw, 48px);
+  align-items: end;
+}
+
+.opportunity__stats {
+  display: flex;
+  gap: clamp(20px, 2.4vw, 36px);
+  margin-top: 0;
+}
+
+.opportunity__stats .stat__number {
+  font-size: clamp(2rem, 1.4vw + 1.6rem, 3rem);
+}
+
+.compare {
+  display: grid;
+  gap: clamp(10px, 1.2vw, 16px);
+}
+
+.compare__row {
+  display: grid;
+  grid-template-columns: 11em minmax(0, 1fr);
+  gap: 6px clamp(12px, 1.6vw, 24px);
+  align-items: center;
+  padding: clamp(12px, 1.3vw, 18px) clamp(14px, 1.6vw, 22px);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--color-line-light);
+  background: var(--color-offwhite);
+}
+
+.compare__row--proposed {
+  border-color: var(--color-caramel-500);
+  background: var(--color-cream-200);
+  box-shadow: 0 18px 36px -26px rgb(31 13 5 / 0.45);
+}
+
+.compare__title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--color-text-strong);
+}
+
+.compare__caption {
+  margin-top: 2px;
+  font-size: 0.72rem;
+  color: var(--color-caramel-600);
+}
+
+.compare__steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.compare__step {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.compare__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px 6px 8px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-line-light);
+  background: var(--color-cream-100);
+  font-size: 0.76rem;
+  line-height: 1.25;
+  color: var(--color-text-body);
+}
+
+.compare__row--proposed .compare__pill {
+  border-color: var(--color-caramel-400);
+  background: var(--color-offwhite);
+  color: var(--color-text-strong);
+}
+
+.compare__index {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--color-caramel-400);
+  color: var(--color-cacao-950);
+  font-size: 0.62rem;
+  font-weight: 700;
+}
+
+.compare__arrow {
+  flex: none;
+  color: var(--color-caramel-400);
+}
+
+.compare__origins {
+  grid-column: 2;
+  font-size: 0.72rem;
+  color: var(--color-caramel-600);
+}
+
+/* ---- Cena 04: capturas reais nos aparelhos ---- */
+.device__screen--shot {
+  padding: 0;
+  aspect-ratio: 16 / 10;
+}
+
+.device__screen--mobile.device__screen--shot {
+  aspect-ratio: 390 / 844;
+}
+
+.device__shot {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.reveal__cta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+}
+
+.reveal__cta .fine-print {
+  margin-top: 0;
+}
+
+/* ---- Cena 06: três níveis ---- */
+.levels {
+  margin: clamp(20px, 2.4vw, 32px) 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(10px, 1.4vw, 18px);
+}
+
+.levels > li {
+  display: flex;
+}
+
+.level {
+  flex: 1;
+  padding: clamp(14px, 1.6vw, 22px);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--color-line-light);
+  background: var(--color-offwhite);
+}
+
+.level--a {
+  border-color: var(--color-caramel-500);
+  background: var(--color-cream-200);
+}
+
+.level__tag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-caramel-600);
+}
+
+.level__label {
+  margin-top: 8px;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--color-text-strong);
+}
+
+.level__items {
+  margin: 10px 0 0;
+  padding-left: 1.1em;
+  display: grid;
+  gap: 3px;
+  font-size: 0.8rem;
+  color: var(--color-text-body);
+}
+
+.level__status {
+  margin-top: 12px;
+  font-size: 0.72rem;
+  font-style: italic;
+  color: var(--color-caramel-600);
+}
+
+/* ---- Cena 07: fase 01 em destaque e possibilidades ---- */
+.roadmap__phase {
+  display: block;
+  padding: 0;
+  overflow: hidden;
+}
+
+.roadmap__phase--first {
+  border-color: var(--color-caramel-500);
+  box-shadow: 0 18px 36px -26px rgb(31 13 5 / 0.45);
+}
+
+.roadmap__phase--future:not(.is-active) {
+  opacity: 0.8;
+}
+
+.roadmap__phase-head {
+  width: 100%;
+  text-align: left;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  column-gap: 14px;
+  padding: clamp(12px, 1.4vw, 16px) clamp(16px, 1.8vw, 22px);
+}
+
+.roadmap__badge {
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-line-light);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-caramel-600);
+}
+
+.roadmap__phase--first .roadmap__badge {
+  background: var(--color-cacao-800);
+  border-color: var(--color-cacao-800);
+  color: var(--color-text-light);
+}
+
+.roadmap__detail {
+  padding: 0 clamp(16px, 1.8vw, 22px) clamp(12px, 1.4vw, 16px);
+}
+
+.roadmap__detail .roadmap__items {
+  margin-top: 0;
+}
+
+.extras {
+  margin-top: clamp(18px, 2.2vw, 30px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px clamp(20px, 3vw, 44px);
+}
+
+.extras__label {
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-caramel-600);
+}
+
+.extras__chips {
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.extras__chips li {
+  padding: 4px 11px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-line-light);
+  background: var(--color-offwhite);
+  font-size: 0.74rem;
+  color: var(--color-text-body);
+}
+
+.extras__note {
+  flex-basis: 100%;
+  margin-top: 0;
+}
+
+/* ---- Cena 08: fechamento consultivo ---- */
+.closing__media {
+  position: relative;
+}
+
+.closing__media > img:first-child {
+  width: 100%;
+  border-radius: var(--radius-card);
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  box-shadow: 0 32px 60px -30px rgb(31 13 5 / 0.55);
+}
+
+.closing__logo {
+  position: absolute;
+  left: -8%;
+  bottom: -5%;
+  width: 40%;
+  height: auto;
+  margin: 0;
+  opacity: 1;
+  filter: drop-shadow(0 12px 24px rgb(31 13 5 / 0.25));
+}
+
+.closing__delivery {
+  margin-top: clamp(14px, 1.6vw, 22px);
+}
+
+.closing__delivery-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-caramel-600);
+}
+
+.closing__delivery-list {
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.closing__delivery-list li {
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-caramel-400);
+  background: var(--color-offwhite);
+  font-size: 0.76rem;
+  color: var(--color-text-strong);
+}
+
+.closing__steps {
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+  font-size: 0.85rem;
+  color: var(--color-text-body);
+}
+
+.closing__steps span {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--color-caramel-500);
+}
+
+/* ---- Responsivo ---- */
+@media (max-width: 960px) {
+  .opportunity__top {
+    grid-template-columns: 1fr;
+  }
+
+  .compare__row {
+    grid-template-columns: 1fr;
+  }
+
+  .compare__origins {
+    grid-column: 1;
+  }
+
+  .levels {
+    grid-template-columns: 1fr;
+  }
+
+  .device__screen--mobile.device__screen--shot {
+    aspect-ratio: 390 / 560;
+  }
+
+  .closing__logo {
+    display: none;
+  }
+
+  .roadmap__phase-head {
+    grid-template-columns: auto 1fr;
+  }
+
+  .roadmap__badge {
+    grid-column: 2;
+    justify-self: start;
+  }
+}
+
+@media (max-width: 640px) {
+  .compare__arrow {
+    display: none;
+  }
+}
+
+/* ---- Ajustes de encaixe (desktop) ---- */
+.opportunity {
+  width: 100%;
+}
+
+.foundation {
+  align-items: start;
+}
+
+.foundation__side {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+
+.foundation__media img {
+  aspect-ratio: 16 / 11;
+  object-position: center 30%;
+}
+
+.foundation__side .bridge {
+  margin-top: 0;
+}
+
+.channel-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: clamp(18px, 2vw, 28px);
+}
+
+.channel-card {
+  padding: clamp(12px, 1.2vw, 16px);
+}
+
+.channel-card__label {
+  margin-top: 6px;
+  font-size: 1.05rem;
+}
+
+@media (max-width: 1100px) {
+  .channel-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 960px) {
+  .foundation__media img {
+    aspect-ratio: 4 / 5;
+  }
+}
+
+@media (max-width: 640px) {
+  .channel-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.opportunity {
+  align-items: stretch;
+}
+
+@media (min-width: 961px) {
+  .device--desktop {
+    width: min(66%, 800px);
+  }
+
+  .device--mobile {
+    width: min(20%, 230px);
+  }
+}
+
+/* ---- Correções de encaixe (após revisão visual a 1440x900) ---- */
+.closing__media .closing__logo {
+  position: absolute;
+  left: -8%;
+  bottom: -5%;
+  width: 40%;
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+  border-radius: 0;
+  box-shadow: none;
+  margin: 0;
+  opacity: 1;
+}
+
+.closing .display--xl {
+  font-size: clamp(1.9rem, 1.2vw + 2rem, 3.1rem);
+}
+
+.journey__item {
+  align-items: stretch;
+}
+
+.journey__card {
+  width: clamp(150px, 16vw, 210px);
+}
+
+.roadmap .display--lg {
+  font-size: clamp(1.8rem, 1.2vw + 1.8rem, 3.1rem);
+}
+
+.roadmap .lead {
+  margin-top: 6px;
+}
+
+.roadmap__body {
+  margin-top: clamp(14px, 1.6vw, 22px);
+}
+
+.roadmap__items {
+  gap: 2px;
+}
+
+.extras {
+  margin-top: clamp(12px, 1.4vw, 18px);
+}
+
+/* Aparelhos limitados também pela altura da tela, para a cena caber sem rolagem */
+@media (min-width: 961px) {
+  .device--desktop {
+    width: min(66%, 800px, max(320px, calc((100dvh - 490px) * 1.6)));
+  }
+
+  .device--mobile {
+    width: min(20%, 230px, max(110px, calc((100dvh - 490px) * 0.46)));
+  }
+}
+
+.closing__media .closing__logo {
+  bottom: 6%;
+  left: -7%;
+}
+
+/* Mobile: rodapé legível sobre o conteúdo rolável e aparelho menor */
+@media (max-width: 960px) {
+  .device--desktop {
+    width: min(92%, 380px);
+  }
+
+  .device--mobile {
+    width: min(58%, 220px);
+  }
+}
+
+@media (max-width: 640px) {
+  .shell__footer {
+    background: linear-gradient(to top, var(--color-cream-100) 62%, rgb(255 250 245 / 0));
+    padding-top: 28px;
+  }
+}
+
+/* =====================================================================
+ * Cena 04 — composição de três dispositivos (notebook, tablet, smartphone)
+ * Tudo em CSS: chassi bronze/chocolate, bezels escuros, reflexos e sombras. Sem bibliotecas 3D.
+ * =================================================================== */
+.rig {
+  --bronze-hi: #d9bfae;
+  --bronze-mid: #a4836f;
+  --bronze-lo: #5c4538;
+  --glass: #120b08;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(14px, 3.2%, 44px);
+  width: min(100%, max(540px, calc((100dvh - 390px) * 2.55)));
+  margin: clamp(18px, 2.4vw, 34px) auto clamp(14px, 1.8vw, 24px) 0;
+}
+
+.rig__item {
+  position: relative;
+  min-width: 0;
+}
+
+.rig__item--laptop {
+  flex: 0 0 55%;
+}
+
+.rig__item--tablet {
+  flex: 0 0 24%;
+}
+
+.rig__item--phone {
+  flex: 0 0 13%;
+}
+
+/* sombra de chão sob cada objeto */
+.rig__item::after {
+  content: '';
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  bottom: -3%;
+  height: 7%;
+  z-index: 0;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgb(31 13 5 / 0.38), transparent);
+  filter: blur(6px);
+}
+
+.rig__item > div {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- Notebook ---- */
+.laptop__lid {
+  position: relative;
+  padding: 2.1% 2.1% 2.4%;
+  border-radius: 12px 12px 3px 3px;
+  background: linear-gradient(150deg, #6d5646 0%, #2b1f19 38%, #4d3a2e 100%);
+  box-shadow: inset 0 0 0 1px rgb(255 235 220 / 0.18), 0 2px 0 rgb(0 0 0 / 0.25);
+}
+
+.laptop__cam {
+  position: absolute;
+  top: 0.85%;
+  left: 50%;
+  width: 0.7%;
+  height: 0.7%;
+  min-width: 3px;
+  min-height: 3px;
+  border-radius: 50%;
+  background: #2a2420;
+  box-shadow: inset 0 0 0 1px #4a403a;
+  transform: translateX(-50%);
+}
+
+.laptop__screen {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1440 / 900;
+  border-radius: 3px;
+  background: var(--glass);
+}
+
+.laptop__screen img,
+.tablet__screen img,
+.phone__screen img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.laptop__screen::after,
+.tablet__screen::after,
+.phone__screen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, rgb(255 255 255 / 0.1) 0%, rgb(255 255 255 / 0.03) 28%, transparent 29%);
+}
+
+.laptop__base {
+  position: relative;
+  width: 112%;
+  height: clamp(8px, 1.5vw, 16px);
+  margin-left: -6%;
+  border-radius: 0 0 22px 22px / 0 0 12px 12px;
+  background: linear-gradient(180deg, var(--bronze-hi) 0%, var(--bronze-mid) 55%, var(--bronze-lo) 100%);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 0.35) inset, 0 6px 10px -4px rgb(31 13 5 / 0.5);
+}
+
+.laptop__base::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 17%;
+  height: 45%;
+  border-radius: 0 0 8px 8px;
+  background: linear-gradient(180deg, #7d6352, #a98f7d);
+  transform: translateX(-50%);
+}
+
+/* ---- Tablet ---- */
+.tablet {
+  padding: 2px;
+  border-radius: 24px;
+  background: linear-gradient(150deg, var(--bronze-hi), var(--bronze-lo) 45%, var(--bronze-mid));
+  box-shadow: 0 24px 40px -22px rgb(31 13 5 / 0.65);
+}
+
+.tablet__bezel {
+  position: relative;
+  padding: 5.2%;
+  border-radius: 22px;
+  background: var(--glass);
+}
+
+.tablet__cam {
+  position: absolute;
+  top: 2.2%;
+  left: 50%;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #3a302a;
+  transform: translateX(-50%);
+}
+
+.tablet__screen {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 820 / 1180;
+  border-radius: 10px;
+}
+
+/* ---- Smartphone ---- */
+.phone {
+  padding: 2px;
+  border-radius: 30px;
+  background: linear-gradient(150deg, var(--bronze-hi), var(--bronze-lo) 45%, var(--bronze-mid));
+  box-shadow: 0 22px 36px -20px rgb(31 13 5 / 0.65);
+}
+
+.phone__bezel {
+  position: relative;
+  padding: 4.6%;
+  border-radius: 28px;
+  background: var(--glass);
+}
+
+.phone__island {
+  position: absolute;
+  top: 3.4%;
+  left: 50%;
+  z-index: 3;
+  width: 26%;
+  height: 2.2%;
+  border-radius: 999px;
+  background: #050302;
+  transform: translateX(-50%);
+}
+
+.phone__screen {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 390 / 844;
+  border-radius: 22px;
+}
+
+/* ---- Responsivo: notebook em destaque, tablet e celular abaixo ---- */
+@media (max-width: 960px) {
+  .rig {
+    width: 100%;
+    max-width: 640px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 22px 5%;
+    margin-inline: auto;
+  }
+
+  .rig__item--laptop {
+    flex: 0 0 100%;
+  }
+
+  .rig__item--tablet {
+    flex: 0 0 38%;
+  }
+
+  .rig__item--phone {
+    flex: 0 0 20%;
+  }
+}
+
+@media (max-width: 640px) {
+  .rig__item--tablet {
+    flex-basis: 46%;
+  }
+
+  .rig__item--phone {
+    flex-basis: 25%;
+  }
+
+  .tablet {
+    border-radius: 16px;
+  }
+
+  .tablet__bezel {
+    border-radius: 14px;
+  }
+
+  .phone {
+    border-radius: 20px;
+  }
+
+  .phone__bezel {
+    border-radius: 18px;
+  }
+
+  .phone__screen {
+    border-radius: 14px;
+  }
+}
+
+/* ---- Refinos da composição (revisão contra a referência aprovada) ---- */
+@media (min-width: 961px) {
+  .rig {
+    box-sizing: border-box;
+    margin-inline: auto;
+    padding-left: 3%;
+    gap: 0 4.6%;
+    justify-content: flex-start;
+  }
+
+  .rig__item--laptop {
+    flex: 0 0 52%;
+  }
+
+  .rig__item--tablet {
+    flex: 0 0 23%;
+  }
+
+  .rig__item--phone {
+    flex: 0 0 12.5%;
+  }
+}
+
+.phone__bezel {
+  padding: 6.4% 4.6% 4.6%;
+}
+
+.phone__island {
+  top: 2%;
+  width: 22%;
+  height: 1.7%;
+}
+
+@media (max-width: 960px) {
+  .rig {
+    max-width: 560px;
+  }
+
+  .laptop__base {
+    width: 106%;
+    margin-left: -3%;
+  }
+}
+
+/* =====================================================================
+ * Notebook v2 — MacBook fino: aro de alumínio, bezel preto, notch, dobradiça,
+ * base com recorte de dedo e pés de borracha. CSS puro (sem assets de terceiros).
+ * =================================================================== */
+.laptop {
+  --alu-hi: #efe2d6;
+  --alu-mid: #cdb6a5;
+  --alu-lo: #8e7664;
+  position: relative;
+  z-index: 1;
+}
+
+.laptop__lid {
+  position: relative;
+  padding: 1.15% 1.15% 1.5%;
+  border-radius: 14px 14px 2px 2px;
+  background: #060403;
+  /* aro de alumínio da tampa, visível ao redor do bezel preto */
+  box-shadow:
+    0 0 0 1.5px #1a1210,
+    0 0 0 3px var(--alu-mid),
+    0 0 0 4px var(--alu-lo),
+    inset 0 0 0 1px rgb(255 255 255 / 0.06);
+}
+
+.laptop__lid::before {
+  content: '';
+  position: absolute;
+  inset: -4px -4px 0;
+  z-index: -1;
+  border-radius: 17px 17px 3px 3px;
+  background: linear-gradient(100deg, var(--alu-hi) 0%, var(--alu-mid) 22%, #e4d3c5 50%, var(--alu-mid) 78%, var(--alu-lo) 100%);
+  box-shadow: 0 -2px 10px -4px rgb(31 13 5 / 0.25);
+}
+
+.laptop__screen {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1440 / 900;
+  border-radius: 7px 7px 2px 2px;
+  background: #120b08;
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.05);
+}
+
+.laptop__screen img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+}
+
+/* brilho de vidro: faixa diagonal suave + vinheta mínima */
+.laptop__screen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(112deg, rgb(255 255 255 / 0.11) 0%, rgb(255 255 255 / 0.035) 24%, transparent 25%),
+    radial-gradient(120% 100% at 50% 0%, transparent 70%, rgb(0 0 0 / 0.18));
+}
+
+.laptop__notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 8.6%;
+  height: 3.1%;
+  border-radius: 0 0 7px 7px;
+  background: #060403;
+  transform: translateX(-50%);
+}
+
+.laptop__notch i {
+  width: 14%;
+  aspect-ratio: 1;
+  min-width: 2px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #3b4a63, #0b0f16 70%);
+}
+
+.laptop__hinge {
+  position: relative;
+  z-index: 2;
+  width: 101%;
+  margin-left: -0.5%;
+  height: clamp(2px, 0.35vw, 4px);
+  background: linear-gradient(180deg, #2a1d17, #6f5848 55%, #b79f8d);
+  border-radius: 0 0 3px 3px;
+}
+
+.laptop__base {
+  position: relative;
+  z-index: 1;
+  width: 108%;
+  margin-left: -4%;
+  height: clamp(9px, 1.35vw, 17px);
+  border-radius: 1px 1px 30px 30px / 1px 1px 16px 16px;
+  background: linear-gradient(180deg, #f4eae0 0%, var(--alu-hi) 18%, var(--alu-mid) 62%, var(--alu-lo) 100%);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.7),
+    inset 0 -1px 0 rgb(0 0 0 / 0.18),
+    0 10px 18px -8px rgb(31 13 5 / 0.45);
+}
+
+/* recorte de dedo no centro da base */
+.laptop__scoop {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 16%;
+  height: 56%;
+  border-radius: 0 0 14px 14px / 0 0 8px 8px;
+  background: linear-gradient(180deg, #9d8573, #d6c3b3);
+  box-shadow: inset 0 1px 2px rgb(0 0 0 / 0.25);
+  transform: translateX(-50%);
+}
+
+.laptop__feet {
+  display: flex;
+  justify-content: space-between;
+  width: 86%;
+  margin: 0 auto;
+}
+
+.laptop__feet span {
+  width: 9%;
+  height: clamp(2px, 0.3vw, 4px);
+  border-radius: 0 0 4px 4px;
+  background: #2a1d17;
+}
+
+/* sombra de contato e de chão mais convincente só para o notebook */
+.rig__item--laptop::after {
+  left: -2%;
+  right: -2%;
+  bottom: -5%;
+  height: 9%;
+  background: radial-gradient(closest-side, rgb(31 13 5 / 0.5), transparent);
+  filter: blur(9px);
+}
+
+.laptop__feet {
+  width: 80%;
+}
+
+.laptop__feet span {
+  width: 5.5%;
+  background: linear-gradient(180deg, #4a382d, #1a1210);
+}
+
+/* =====================================================================
+ * iPad e iPhone v2 — chassi grafite, bezel de vidro, botões laterais, ilha dinâmica.
+ * Luz única vinda do alto à esquerda (mesma do MacBook): realce nas bordas esq./superior,
+ * sombra nas bordas dir./inferior e sombra de contato no chão.
+ * =================================================================== */
+.rig {
+  --gr-hi: #b9bcc3;
+  --gr-mid: #5b5e66;
+  --gr-lo: #202125;
+}
+
+.dev-btn {
+  position: absolute;
+  z-index: 0;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #6d7077, #2a2b2f);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.25);
+}
+
+/* sombra de chão do iPad e do iPhone: núcleo de contato + difusa, levemente deslocada à direita */
+.rig__item--tablet::after,
+.rig__item--phone::after {
+  left: 2%;
+  right: -4%;
+  bottom: -3.5%;
+  height: 8%;
+  background:
+    radial-gradient(closest-side, rgb(31 13 5 / 0.55), transparent 70%) center 30% / 70% 45% no-repeat,
+    radial-gradient(closest-side, rgb(31 13 5 / 0.28), transparent) center / 100% 100% no-repeat;
+  filter: blur(5px);
+}
+
+/* ---- iPad (vertical) ---- */
+.tablet {
+  position: relative;
+  padding: 1.3%;
+  border-radius: 9% / 6.4%;
+  background: linear-gradient(135deg, var(--gr-hi) 0%, var(--gr-mid) 24%, #3d3f45 52%, var(--gr-mid) 78%, var(--gr-lo) 100%);
+  box-shadow:
+    inset 1px 1px 0 rgb(255 255 255 / 0.55),
+    inset -1px -1px 0 rgb(0 0 0 / 0.5),
+    8px 26px 38px -24px rgb(31 13 5 / 0.7);
+}
+
+.tablet__bezel {
+  position: relative;
+  z-index: 1;
+  padding: 3.6%;
+  border-radius: 8% / 5.6%;
+  background: #050506;
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.05);
+}
+
+.tablet__cam {
+  top: 1.6%;
+  width: 0.9%;
+  min-width: 3px;
+  aspect-ratio: 1;
+  height: auto;
+  background: radial-gradient(circle at 35% 35%, #3b4a63, #0b0f16 70%);
+}
+
+.tablet__screen {
+  border-radius: 4.2% / 3%;
+}
+
+.tablet__btn--power {
+  top: -2px;
+  right: 14%;
+  width: 7%;
+  height: 3px;
+  background: linear-gradient(180deg, #6d7077, #2a2b2f);
+}
+
+.tablet__btn--vol {
+  top: 11%;
+  right: -2px;
+  width: 3px;
+  height: 7%;
+}
+
+/* ---- iPhone ---- */
+.phone {
+  position: relative;
+  padding: 2.4%;
+  border-radius: 17% / 7.8%;
+  background: linear-gradient(135deg, var(--gr-hi) 0%, #6b6e76 20%, #3a3c42 48%, #6a6d74 74%, var(--gr-lo) 100%);
+  box-shadow:
+    inset 1px 1px 0 rgb(255 255 255 / 0.6),
+    inset -1px -1px 0 rgb(0 0 0 / 0.55),
+    6px 24px 34px -22px rgb(31 13 5 / 0.7);
+}
+
+.phone__bezel {
+  position: relative;
+  z-index: 1;
+  padding: 2.6%;
+  border-radius: 15% / 7%;
+  background: #040405;
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.05);
+}
+
+.phone__screen {
+  position: relative;
+  border-radius: 12.5% / 5.8%;
+  background: #1c0d07;
+}
+
+/* o site começa abaixo da ilha: respeita o espaço físico do recorte */
+.phone__screen img {
+  position: absolute;
+  top: 5.4%;
+  left: 0;
+  width: 100%;
+  height: auto;
+  object-fit: initial;
+}
+
+.phone__island {
+  position: absolute;
+  top: 1.2%;
+  left: 50%;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 31%;
+  height: 3.7%;
+  padding-right: 3%;
+  border-radius: 999px;
+  background: #020203;
+  transform: translateX(-50%);
+}
+
+.phone__island i {
+  width: 18%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #2c3a55, #07090e 70%);
+}
+
+.phone__btn {
+  width: 3px;
+}
+
+.phone__btn--action {
+  top: 13.5%;
+  left: -2px;
+  height: 3.2%;
+}
+
+.phone__btn--volup {
+  top: 19.5%;
+  left: -2px;
+  height: 6%;
+}
+
+.phone__btn--voldown {
+  top: 27.5%;
+  left: -2px;
+  height: 6%;
+}
+
+.phone__btn--power {
+  top: 22%;
+  right: -2px;
+  height: 9.5%;
+  background: linear-gradient(270deg, #6d7077, #2a2b2f);
+}
+
+@media (max-width: 640px) {
+  .tablet,
+  .phone,
+  .tablet__bezel,
+  .phone__bezel {
+    /* mantém as proporções físicas também nas larguras pequenas */
+    border-radius: inherit;
+  }
+
+  .tablet {
+    border-radius: 9% / 6.4%;
+  }
+
+  .tablet__bezel {
+    border-radius: 8% / 5.6%;
+  }
+
+  .phone {
+    border-radius: 17% / 7.8%;
+  }
+
+  .phone__bezel {
+    border-radius: 15% / 7%;
+  }
+
+  .phone__screen {
+    border-radius: 12.5% / 5.8%;
+  }
+}
+
+/* =====================================================================
+ * Cena 03 — concept refinado (opp-*): Hoje x Experiência proposta
+ * Estilos escopados em .opp; animações por CSS (.is-active) com fallback de reduced-motion.
+ * =================================================================== */
+.opp .opportunity {
+  gap: clamp(10px, 1.5vh, 16px);
+  justify-content: flex-start;
+}
+
+/* ---- animação ---- */
+.opp [data-anim] {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.opp.is-active [data-anim] {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition-delay: calc(var(--d, 0) * 70ms + 120ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .opp [data-anim],
+  .opp.is-active [data-anim] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---- cabeçalho ---- */
+.opp-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(16px, 3vw, 48px);
+  align-items: start;
+}
+
+.opp-kicker {
+  display: inline-block;
+  margin: 0 0 clamp(8px, 1.2vh, 14px);
+  padding: 5px 16px;
+  border-radius: var(--radius-pill);
+  background: rgb(255 226 205 / 0.75);
+  box-shadow: 0 6px 14px -8px rgb(160 80 30 / 0.45);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-caramel-600);
+}
+
+.opp-title {
+  font-size: clamp(1.9rem, 1.2vw + 1.55rem, 3.2rem);
+  line-height: 1.02;
+  font-weight: 500;
+  color: var(--color-cacao-950);
+}
+
+.opp-title__line {
+  display: block;
+}
+
+.opp-em {
+  position: relative;
+  display: inline-block;
+}
+
+.opp-em::after {
+  content: '';
+  position: absolute;
+  left: 2%;
+  right: 0;
+  bottom: -0.04em;
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--color-caramel-500), var(--color-caramel-400));
+  transform: scaleX(0) rotate(-0.4deg);
+  transform-origin: left;
+}
+
+.opp.is-active .opp-em::after {
+  transform: scaleX(1) rotate(-0.4deg);
+  transition: transform 0.8s ease 0.9s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .opp .opp-em::after {
+    transform: scaleX(1) rotate(-0.4deg);
+    transition: none;
+  }
+}
+
+.opp-lead {
+  margin-top: clamp(6px, 1vh, 12px);
+  max-width: 34em;
+  font-size: clamp(0.92rem, 0.3vw + 0.85rem, 1.1rem);
+  line-height: 1.4;
+  color: var(--color-text-body);
+}
+
+/* ---- indicadores ---- */
+.opp-stats {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  gap: clamp(12px, 1.4vw, 20px);
+}
+
+.opp-stat {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 1.2vw, 18px);
+  padding: clamp(12px, 1.6vh, 18px) clamp(16px, 1.6vw, 24px);
+  border: 1px solid rgb(205 140 95 / 0.4);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgb(255 250 245 / 0.9), rgb(255 238 224 / 0.8));
+  box-shadow: 0 14px 26px -18px rgb(140 70 25 / 0.5);
+}
+
+.opp-stat__icon {
+  flex: none;
+  padding-right: clamp(10px, 1vw, 16px);
+  box-sizing: content-box;
+  border-right: 1px solid rgb(205 140 95 / 0.45);
+  color: var(--color-caramel-500);
+}
+
+.opp-stat__num {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 1.2vw + 1.5rem, 3rem);
+  line-height: 1;
+  color: var(--color-cacao-800);
+}
+
+.opp-stat__label {
+  margin-top: 4px;
+  font-size: 0.8rem;
+  color: var(--color-text-body);
+  white-space: nowrap;
+}
+
+/* ---- quadros ---- */
+.opp-card {
+  display: grid;
+  grid-template-columns: clamp(150px, 16vw, 230px) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(14px, 2vw, 32px);
+  padding: clamp(12px, 1.8vh, 20px) clamp(16px, 2vw, 32px);
+  border: 1px solid rgb(205 140 95 / 0.35);
+  border-radius: 28px;
+  background: linear-gradient(180deg, rgb(255 251 247 / 0.9), rgb(255 241 230 / 0.7));
+  box-shadow: 0 18px 34px -26px rgb(140 70 25 / 0.5);
+}
+
+.opp-proposed {
+  border-color: var(--color-caramel-500);
+  border-radius: 34px;
+}
+
+.opp-card__label {
+  align-self: center;
+  padding-right: clamp(12px, 2vw, 28px);
+  border-right: 1px solid rgb(205 140 95 / 0.45);
+}
+
+.opp-card__title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 0.9vw + 1.2rem, 2.2rem);
+  line-height: 1.05;
+  color: var(--color-cacao-950);
+}
+
+.opp-card__caption {
+  margin-top: 8px;
+  font-size: clamp(0.82rem, 0.2vw + 0.78rem, 1rem);
+  line-height: 1.3;
+  color: var(--color-caramel-600);
+}
+
+/* ---- número e pílulas ---- */
+.opp-num {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #f8c79d, #eba06a);
+  box-shadow: 0 4px 8px -3px rgb(180 90 30 / 0.55);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-cacao-950);
+}
+
+.opp-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 22px 9px 10px;
+  border: 1px solid rgb(205 140 95 / 0.3);
+  border-radius: var(--radius-pill);
+  background: linear-gradient(180deg, #fffaf5, #fdeee0);
+  box-shadow: 0 10px 20px -14px rgb(140 70 25 / 0.55);
+  color: var(--color-cacao-950);
+}
+
+.opp-pill__icon {
+  flex: none;
+  color: var(--color-cacao-800);
+}
+
+.opp-pill__label {
+  font-size: clamp(0.85rem, 0.2vw + 0.8rem, 1rem);
+  line-height: 1.2;
+  text-align: left;
+}
+
+/* ---- Hoje ---- */
+.opp-flow {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(8px, 1vw, 16px);
+}
+
+.opp-flow__item {
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 1vw, 16px);
+  min-width: 0;
+}
+
+.opp-arrow {
+  flex: none;
+  display: inline-flex;
+  color: var(--color-caramel-500);
+}
+
+/* ---- Experiência proposta ---- */
+.opp-journey {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(4px, 0.8vh, 8px);
+  min-width: 0;
+}
+
+.opp-hub {
+  width: 100%;
+  padding: clamp(8px, 1.2vh, 14px) clamp(12px, 1.4vw, 20px) clamp(10px, 1.4vh, 16px);
+  border: 1px solid rgb(205 140 95 / 0.45);
+  border-radius: 22px;
+  background: linear-gradient(180deg, #fffbf7, #fdf0e3);
+  box-shadow: 0 14px 28px -20px rgb(140 70 25 / 0.5);
+}
+
+.opp-hub__title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.05rem, 0.4vw + 0.95rem, 1.35rem);
+  color: var(--color-cacao-950);
+}
+
+.opp-hub__title::before,
+.opp-hub__title::after {
+  content: '';
+  flex: 1;
+  max-width: 26%;
+  height: 1px;
+  background: rgb(205 140 95 / 0.55);
+}
+
+.opp-hub__steps {
+  margin: clamp(8px, 1.2vh, 12px) 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(8px, 1vw, 14px);
+}
+
+.opp-step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 10px 12px;
+  border: 1px solid rgb(205 140 95 / 0.25);
+  border-radius: 16px;
+  background: linear-gradient(180deg, #fffaf5, #fdeee0);
+  box-shadow: 0 10px 20px -14px rgb(140 70 25 / 0.55);
+  text-align: center;
+}
+
+.opp-step .opp-num {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.opp-step__icon {
+  margin-top: 2px;
+  color: var(--color-cacao-800);
+}
+
+.opp-step__label {
+  font-size: clamp(0.8rem, 0.2vw + 0.76rem, 0.95rem);
+  line-height: 1.2;
+  color: var(--color-cacao-950);
+}
+
+/* ---- notas ---- */
+.opp-notes {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 1.6vw, 24px);
+  font-size: clamp(0.72rem, 0.15vw + 0.7rem, 0.85rem);
+  line-height: 1.35;
+  color: var(--color-text-body);
+}
+
+.opp-notes p {
+  margin: 0;
+}
+
+.opp-notes p + p {
+  padding-left: clamp(12px, 1.6vw, 24px);
+  border-left: 1px solid rgb(205 140 95 / 0.45);
+}
+
+.opp-notes__icon {
+  flex: none;
+  color: var(--color-caramel-500);
+}
+
+/* ---- responsivo ---- */
+@media (max-width: 1100px) {
+  .opp-head {
+    grid-template-columns: 1fr;
+  }
+
+  .opp-card {
+    grid-template-columns: 1fr;
+  }
+
+  .opp-card__label {
+    padding: 0 0 10px;
+    border-right: 0;
+    border-bottom: 1px solid rgb(205 140 95 / 0.45);
+  }
+
+  .opp-card__title br,
+  .opp-card__caption br {
+    display: none;
+  }
+
+  .opp-flow {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .opp-hub__steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .opp-notes {
+    flex-wrap: wrap;
+  }
+
+  .opp-notes p + p {
+    padding-left: 0;
+    border-left: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .opp-stats {
+    flex-wrap: wrap;
+  }
+
+  .opp-stat {
+    flex: 1 1 140px;
+  }
+
+  .opp-flow,
+  .opp-flow__item {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .opp-flow .opp-arrow--right {
+    align-self: center;
+    rotate: 90deg;
+  }
+
+  .opp-pill {
+    width: 100%;
+  }
+
+  .opp-journey {
+    align-items: stretch;
+  }
+
+  .opp-journey > .opp-arrow {
+    align-self: center;
+  }
+}
+
+@media (max-width: 360px) {
+  .opp-hub__steps {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Cena 03 — ajuste fino de escala (fidelidade ao concept em 1440x900) */
+.opp .opportunity {
+  gap: clamp(12px, 1.8vh, 18px);
+}
+
+.opp-title {
+  font-size: clamp(2rem, 1.5vw + 1.7rem, 3.5rem);
+}
+
+.opp-step {
+  padding: 12px 12px 14px;
+  gap: 6px;
+}
+
+.opp-step__icon {
+  width: 30px;
+  height: 30px;
+}
+
+.opp-hub__steps {
+  margin-top: clamp(10px, 1.4vh, 14px);
+}
+
+/* Cena 03 — tablet: fluxo "Hoje" em sequência vertical (evita seta solta no fim da linha) */
+@media (max-width: 900px) {
+  .opp-flow,
+  .opp-flow__item {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .opp-flow .opp-arrow--right {
+    align-self: center;
+    rotate: 90deg;
+  }
+
+  .opp-pill {
+    width: 100%;
+  }
+}
+
+/* Cena 03 — telas baixas (ex.: 1280x720): compacta espaçamentos sem encolher a tipografia */
+@media (min-width: 1101px) and (max-height: 800px) {
+  .opp .opportunity {
+    gap: 10px;
+  }
+
+  .opp-title {
+    font-size: clamp(1.9rem, 1.2vw + 1.5rem, 2.8rem);
+  }
+
+  .opp-card {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  .opp-step {
+    padding: 8px 10px 10px;
+    gap: 2px;
+  }
+
+  .opp-stat {
+    padding: 8px 16px;
+  }
+}
+
+/* ---- Cena 02: novidades regionais (discreto, sob a ponte) ---- */
+.foundation__side .regional {
+  padding: 12px 16px;
+  border: 1px solid rgb(205 140 95 / 0.4);
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgb(255 250 245 / 0.9), rgb(255 240 228 / 0.75));
+  box-shadow: 0 12px 24px -20px rgb(140 70 25 / 0.5);
+}
+
+.regional__label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-caramel-600);
+}
+
+.regional__list {
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 4px;
+}
+
+.regional__list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  line-height: 1.3;
+  color: var(--color-text-body);
+}
+
+.regional__list svg {
+  flex: none;
+  color: var(--color-caramel-500);
+}
+
+.regional__list strong {
+  font-family: var(--font-display);
+  font-weight: 500;
+  color: var(--color-cacao-950);
+}
+
+.regional__note {
+  margin-top: 8px;
+  font-size: 0.78rem;
+  font-style: italic;
+  line-height: 1.35;
+  color: var(--color-caramel-600);
+}

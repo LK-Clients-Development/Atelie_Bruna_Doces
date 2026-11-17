@@ -1,11 +1,16 @@
-import { Eye, EyeOff, ShoppingCart, TrendingUp } from 'lucide-react';
+import { ClipboardList, Globe, Workflow, type LucideIcon } from 'lucide-react';
 import type { SceneProps } from './types';
-import { ANALYTICS_DEMO, SCENES } from '../content';
+import { ANALYTICS_LEVELS, ANALYTICS_NOTE, ANALYTICS_QUESTION, SCENES } from '../content';
 import SplitText from '../components/SplitText';
 import Reveal from '../components/Reveal';
-import AnimatedCounter from '../components/AnimatedCounter';
 
 const copy = SCENES.analytics;
+
+const ICONS: Record<(typeof ANALYTICS_LEVELS)[number]['id'], LucideIcon> = {
+  a: Globe,
+  b: ClipboardList,
+  c: Workflow,
+};
 
 export default function AnalyticsScene({ active }: SceneProps) {
   return (
@@ -16,42 +21,34 @@ export default function AnalyticsScene({ active }: SceneProps) {
           <SplitText as="h2" className="display display--lg" lines={copy.title} active={active} />
         </div>
 
-        <Reveal active={active} order={1} className="analytics__panel">
-          <p className="analytics__disclaimer">{ANALYTICS_DEMO.disclaimer}</p>
-          <p className="analytics__product">
-            <TrendingUp size={18} aria-hidden="true" /> {ANALYTICS_DEMO.product}
-          </p>
-          <div className="analytics__metrics">
-            <div className="metric">
-              <Eye size={22} aria-hidden="true" />
-              <p className="metric__num">
-                <AnimatedCounter value={ANALYTICS_DEMO.views} active={active} />
-              </p>
-              <p className="metric__label">visualizações</p>
-            </div>
-            <div className="metric">
-              <ShoppingCart size={22} aria-hidden="true" />
-              <p className="metric__num">
-                <AnimatedCounter value={ANALYTICS_DEMO.purchases} active={active} />
-              </p>
-              <p className="metric__label">compras</p>
-            </div>
-            <div className="metric metric--muted">
-              <EyeOff size={22} aria-hidden="true" />
-              <p className="metric__num">
-                <AnimatedCounter value={ANALYTICS_DEMO.viewsWithoutPurchase} active={active} />
-              </p>
-              <p className="metric__label">visitas sem compra</p>
-            </div>
-          </div>
+        <ul className="levels" role="list">
+          {ANALYTICS_LEVELS.map((level, i) => {
+            const Icon = ICONS[level.id];
+            return (
+              <li key={level.id}>
+                <Reveal active={active} order={i + 1} className={`level level--${level.id}`}>
+                  <p className="level__tag">
+                    <Icon size={16} aria-hidden="true" /> {level.tag}
+                  </p>
+                  <p className="level__label">{level.label}</p>
+                  <ul className="level__items" role="list">
+                    {level.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                  <p className="level__status">{level.status}</p>
+                </Reveal>
+              </li>
+            );
+          })}
+        </ul>
+
+        <Reveal active={active} order={4} className="analytics__question">
+          <p className="display display--md">“{ANALYTICS_QUESTION}”</p>
         </Reveal>
 
-        <Reveal active={active} order={2} className="analytics__question">
-          <p className="display display--md">“{ANALYTICS_DEMO.question}”</p>
-        </Reveal>
-
-        <Reveal active={active} order={3}>
-          <p className="fine-print">{ANALYTICS_DEMO.note}</p>
+        <Reveal active={active} order={5}>
+          <p className="fine-print">{ANALYTICS_NOTE}</p>
         </Reveal>
       </div>
     </div>

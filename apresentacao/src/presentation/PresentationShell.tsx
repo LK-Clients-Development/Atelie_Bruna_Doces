@@ -55,6 +55,11 @@ export default function PresentationShell() {
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
+      if (event.ctrlKey || event.metaKey || event.altKey) return;
+      // Espaço/Enter em botões, links e campos pertencem ao elemento focado (ativá-lo), não à navegação.
+      const target = event.target;
+      const interactive = target instanceof Element && Boolean(target.closest('button, a, input, select, textarea, [contenteditable="true"]'));
+      if (event.key === ' ' && interactive) return;
       if (event.key === 'ArrowRight' || event.key === ' ') {
         event.preventDefault();
         guardedNext();
