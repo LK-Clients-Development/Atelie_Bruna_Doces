@@ -187,8 +187,8 @@ export const SEO = {
   siteUrl: null as string | null,
   /** PENDENTE: imagem social oficial (1200×630), caminho dentro de public/. */
   ogImage: null as string | null,
-  /** PENDENTE: favicon oficial, caminho dentro de public/. `null` usa um ícone vazio. */
-  favicon: null as string | null,
+  /** Favicon oficial (flor da marca), caminho dentro de public/. Gerado por tools/build-favicons.mjs. `null` usa um ícone vazio. */
+  favicon: '/favicon.svg' as string | null,
   /** @handle do X/Twitter, se existir. */
   twitterHandle: null as string | null,
   /** Cor da barra do navegador no mobile (cacau do Hero). */
@@ -249,7 +249,6 @@ export const PENDING_ITEMS: PendingItem[] = [
   { id: 'seo-description', kind: 'seo', state: 'missing', where: 'SEO.description', needs: 'Descrição aprovada (≈155 caracteres)' },
   { id: 'seo-url', kind: 'seo', state: 'missing', where: 'SEO.siteUrl / env SITE_URL', needs: 'URL/domínio final (canonical, og:url, sitemap)' },
   { id: 'seo-og', kind: 'seo', state: 'missing', where: 'SEO.ogImage', needs: 'Imagem social oficial 1200×630 (precisa de foto/logo real)' },
-  { id: 'favicon', kind: 'asset', state: 'missing', where: 'SEO.favicon', needs: 'Favicon oficial (a partir da logo/ícone floral)' },
   { id: 'indexing', kind: 'seo', state: 'placeholder', where: 'SEO.allowIndexing + public/robots.txt', needs: 'Ligar a indexação só no lançamento' },
   { id: 'structured-data', kind: 'seo', state: 'placeholder', where: 'STRUCTURED_DATA.enabled', needs: 'Ligar com endereço estruturado, horário e URL reais (src/lib/structured-data.ts)' },
 ];

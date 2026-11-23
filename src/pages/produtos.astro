@@ -24,7 +24,6 @@ import Footer from '../components/Footer.astro';
 import SectionEyebrow from '../components/SectionEyebrow.astro';
 import CtaButton from '../components/CtaButton.astro';
 import PortfolioChapter from '../components/PortfolioChapter.astro';
-import CollectionCard from '../components/CollectionCard.astro';
 import Icon from '../components/Icon.astro';
 import Wave from '../components/Wave.astro';
 import Seal from '../components/Seal.astro';
@@ -46,20 +45,6 @@ const groups = EDITORIAL_CATEGORIES.map((category) => ({
   ...category,
   products: PORTFOLIO.filter((product) => product.category === category.slug),
 })).filter((group) => group.products.length > 0);
-
-const count = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
-
-// capas do acervo: uma por coleção, a imagem mais completa do grupo (mesmo critério do capítulo)
-// Bebidas e Presentear fazem parte do acervo real (gate de conteúdo de 2026-11-04), mas não são
-// criações do Ateliê: entram com peso visual menor (ver CollectionCard `compact`).
-const COMPACT_COLLECTIONS = new Set(['bebidas', 'presentear']);
-const collections = groups.map((group, i) => {
-  const ordered = [...group.products].sort(
-    (a, b) => b.publishableImageCount - a.publishableImageCount || (b.heroImage?.width ?? 0) - (a.heroImage?.width ?? 0),
-  );
-  const cover = ordered.find((p) => p.heroImage?.src)?.heroImage ?? null;
-  return { slug: group.slug, name: group.name, index: i + 1, image: cover, compact: COMPACT_COLLECTIONS.has(group.slug) };
-});
 
 // busca: nome, descrição e categoria (normalizados, sem acento)
 const searchText = new Map(
@@ -149,29 +134,8 @@ const cakesLabel = menuReady ? page.cakes.ctaMenu : page.cakes.ctaFallback;
       </div>
     </section>
 
-    {/* 03 Grid principal: cada card é uma coleção (porta de entrada), nunca um produto à venda */}
-    <section class="pcollections" id="catalogo" aria-label="Coleções do acervo">
-      <div class="container">
-        <p class="pcollections__count">
-          <strong>{groups.length}</strong>{' '}
-          <span>{groups.length === 1 ? 'coleção' : 'coleções'}</span>
-        </p>
-        <div class="pcollections__grid">
-          {collections.map((collection) => (
-            <CollectionCard
-              slug={collection.slug}
-              name={collection.name}
-              index={collection.index}
-              image={collection.image}
-              compact={collection.compact}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
-
     {/* 04 O álbum: cada capítulo é o destino de uma coleção (busca, modal e CTA de compra vivem aqui) */}
-    <section class="pcatalog" aria-label="Galeria de criações">
+    <section class="pcatalog" id="catalogo" aria-label="Galeria de criações">
       <div class="container pcatalog__body">
         <p class="presults" data-results role="status" aria-live="polite" hidden></p>
         <div class="pempty" data-empty hidden>

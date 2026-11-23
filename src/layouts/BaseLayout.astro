@@ -45,8 +45,12 @@ const jsonLd = STRUCTURED_DATA.enabled ? buildStructuredData(seo.siteUrl, seo.og
     <meta name="robots" content={seo.robots} />
     {seo.canonical && <link rel="canonical" href={seo.canonical} />}
     <meta name="theme-color" content={SEO.themeColor} />
-    {/* sem favicon oficial o ícone é vazio (evita o 404 do navegador) */}
-    <link rel="icon" href={seo.favicon} />
+    {/* Favicon oficial: a flor da marca (tools/build-favicons.mjs → public/). Caminhos absolutos na raiz do site, válidos em /,
+         /produtos e na Vercel. O .ico cobre navegadores antigos e o /favicon.ico automático; o SVG é o preferido. */}
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href={seo.favicon} />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     {Object.entries(seo.og).map(([property, content]) => <meta property={property} content={content} />)}
     {Object.entries(seo.twitter).map(([name, content]) => <meta name={name} content={content} />)}
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}

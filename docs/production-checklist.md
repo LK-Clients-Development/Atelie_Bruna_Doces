@@ -39,7 +39,7 @@ Hoje: `noindex, nofollow` + `public/robots.txt` bloqueando tudo. Tudo é control
 - [ ] URL final em `SITE_URL` (ambiente de build) → liga `canonical`, `og:url`, `og:image` absoluta
 - [ ] `SEO.description` aprovada (≈ 155 caracteres) → liga `meta description`, `og:description`, `twitter:description`
 - [ ] `SEO.ogImage` oficial 1200 × 630 em `public/` → liga `og:image` e `twitter:card = summary_large_image`
-- [ ] `SEO.favicon` oficial em `public/` (+ apple-touch-icon se desejado)
+- [x] `SEO.favicon` oficial em `public/` (+ apple-touch-icon): flor da marca, gerado por `tools/build-favicons.mjs`
 - [ ] `SEO.twitterHandle`, se existir
 - [ ] `STRUCTURED_DATA.enabled = true` com url, telefone, endereço **estruturado** (PostalAddress), horário e redes reais (`src/lib/structured-data.ts` devolve `null` e avisa no build enquanto faltar algo)
 - [ ] Sitemap: `npx astro add sitemap` (exige `SITE_URL`) e acrescentar `Sitemap:` ao `robots.txt`
