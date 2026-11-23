@@ -1,22 +1,10 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "services": {
-    "app": {
-      "root": ".",
-      "framework": "astro"
-    },
-    "apresentacao": {
-      "root": "apresentacao",
-      "framework": "vite",
-      "rewrites": [
-        { "source": "/apresentacao/(.*)", "destination": "/$1" },
-        { "source": "/apresentacao", "destination": "/" }
-      ]
-    }
-  },
+  "framework": "astro",
+  "installCommand": "npm ci && npm ci --prefix apresentacao",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
   "rewrites": [
-    { "source": "/apresentacao", "destination": { "service": "apresentacao" } },
-    { "source": "/apresentacao/(.*)", "destination": { "service": "apresentacao" } },
-    { "source": "/(.*)", "destination": { "service": "app" } }
+    { "source": "/apresentacao", "destination": "/apresentacao/index.html" }
   ]
 }

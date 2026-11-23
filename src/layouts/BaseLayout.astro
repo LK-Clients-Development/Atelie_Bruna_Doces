@@ -22,9 +22,11 @@ interface Props {
   path?: string;
   /** Opções do Header em páginas internas (ver Header.astro). */
   header?: { current?: 'produtos'; base?: string; solid?: boolean };
+  /** Abertura de marca (logo sobre creme). Só a homepage a usa: páginas internas (ex.: /produtos) abrem direto no conteúdo. */
+  brandIntro?: boolean;
 }
 
-const { title, description, path, header = {} } = Astro.props;
+const { title, description, path, header = {}, brandIntro = false } = Astro.props;
 const seo = resolveSeo({ title, description, path, site: Astro.site });
 const jsonLd = STRUCTURED_DATA.enabled ? buildStructuredData(seo.siteUrl, seo.ogImage) : null;
 ---
@@ -34,8 +36,8 @@ const jsonLd = STRUCTURED_DATA.enabled ? buildStructuredData(seo.siteUrl, seo.og
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    {/* Brand intro (primeira visita da sessão): decisão e estilos críticos antes do primeiro frame */}
-    <BrandIntroHead />
+    {/* Brand intro (só na homepage): marcação `intro-pending` e estilos críticos antes do primeiro frame */}
+    {brandIntro && <BrandIntroHead />}
     <title>{seo.title}</title>
     {seo.description && <meta name="description" content={seo.description} />}
     {/* Enquanto houver assets/textos/dados provisórios a página fica fora dos buscadores
@@ -62,8 +64,8 @@ const jsonLd = STRUCTURED_DATA.enabled ? buildStructuredData(seo.siteUrl, seo.og
     </script>
   </head>
   <body>
-    {/* Intro de marca: 1º filho do body, decorativa (aria-hidden), só aparece na primeira entrada da sessão */}
-    <BrandIntro />
+    {/* Intro de marca: 1º filho do body, decorativa (aria-hidden); só é renderizada quando a página pede (homepage) */}
+    {brandIntro && <BrandIntro />}
     <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
     <Header {...header} />
     <slot />

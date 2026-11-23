@@ -99,6 +99,29 @@ html.motion-ready .eyebrow__line {
   transform-origin: left center;
 }
 
+/* molduras: antes da revelação não existe retângulo claro vazio. Sem fundo (a foto cobre a moldura inteira, mas
+   durante a varredura do clip-path o fundo apareceria como um bloco claro) e sem borda/sombra até o gatilho
+   (`data-revealed`, posto por reveals.ts), quando a borda aparece junto com a foto.
+   Exceção: o trilho horizontal de Criações no mobile não tem gatilho e fica sempre visível. */
+html.motion-ready main .media {
+  background: transparent;
+  transition: border-color 0.7s ease, box-shadow 0.9s ease;
+}
+
+@media (min-width: 900px) {
+  html.motion-ready main .media:not([data-revealed]) {
+    border-color: transparent;
+    box-shadow: none;
+  }
+}
+
+@media (max-width: 899px) {
+  html.motion-ready main .media:not([data-revealed]):not(.collage--criacoes .media) {
+    border-color: transparent;
+    box-shadow: none;
+  }
+}
+
 /* fotos de moldura: a imagem nasce recortada e é revelada (direção por moldura) */
 html.motion-ready main .media img {
   clip-path: inset(0 0 100% 0); /* de cima para baixo */

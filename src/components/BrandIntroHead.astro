@@ -2,12 +2,12 @@
 /**
  * Brand intro: parte CRÍTICA, no <head> (src/components/BrandIntro.astro tem o markup e o motion).
  *
- * - Decide, antes do primeiro frame, se esta é a primeira entrada da SESSÃO (`sessionStorage.brunaBrandIntroSeen`).
- *   Só então marca <html class="intro-pending">. Sem JS a classe nunca existe: o overlay é `display: none` e o site
- *   abre normalmente (nada preso).
- * - A flag é gravada na hora: recarregar ou navegar não repete; nova aba/sessão repete. Se o storage estiver
- *   bloqueado, a intro simplesmente não roda.
- * - FAILSAFE: em 2,5 s as classes saem, aconteça o que acontecer (o controller do motion pode ter falhado).
+ * - Toca em TODO carregamento de página (recarregar, nova aba, navegar entre páginas, qualquer largura de tela):
+ *   antes do primeiro frame marca <html class="intro-pending">. Não há flag de "já viu" (antes era
+ *   `sessionStorage.brunaBrandIntroSeen`, só na 1ª visita da sessão). Sem JS a classe nunca existe: o overlay é
+ *   `display: none` e o site abre normalmente (nada preso).
+ * - FAILSAFE: em 10 s as classes saem, aconteça o que acontecer (o controller do motion pode ter falhado).
+ *   Precisa ficar MAIOR que a duração da intro (≈ 7 s, ver BrandIntro.astro).
  * - Primeiro frame: fundo creme (o mesmo da intro) e o resto do site `visibility: hidden` (continua sendo
  *   carregado e renderizado, só não aparece), então não há "site → flash → intro → site".
  * - Durante a intro, animações CSS do site ficam pausadas: a entrada do Hero acontece quando a marca "abre" o site.
@@ -19,17 +19,11 @@
 <script is:inline>
   (function () {
     var root = document.documentElement;
-    try {
-      if (sessionStorage.getItem('brunaBrandIntroSeen')) return;
-      sessionStorage.setItem('brunaBrandIntroSeen', '1');
-    } catch (e) {
-      return;
-    }
     root.classList.add('intro-pending');
     setTimeout(function () {
       root.classList.remove('intro-pending');
       root.classList.remove('intro-leaving');
-    }, 2500);
+    }, 10000);
   })();
 </script>
 

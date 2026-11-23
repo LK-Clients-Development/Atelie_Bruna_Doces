@@ -4,8 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
+    "dev": "node tools/dev-all.mjs",
+    "dev:site": "astro dev",
+    "build": "node tools/build-all.mjs",
+    "build:site": "astro build",
     "preview": "astro preview",
     "check:content": "node tools/check-content.mjs",
     "check:content:strict": "node tools/check-content.mjs --strict",

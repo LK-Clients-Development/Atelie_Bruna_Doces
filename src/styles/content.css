@@ -6,9 +6,13 @@
  * proporção fixa e filhos posicionados em %. Abaixo de 900px tudo empilha.
  */
 
-/* distância do fim do container até a borda da janela: faz as colagens sangrarem à direita */
+/* distância do fim do container até a borda da janela (= a margem esquerda do texto, em qualquer largura) */
 :root {
   --bleed: calc((100vw - min(100vw - 2 * var(--layout-gutter), var(--layout-max))) / 2);
+  /* quanto as colagens (collage, journey, trio) avançam além do container, para a direita: METADE da margem esquerda.
+     Antes avançavam toda a --bleed e encostavam na borda da janela (margem direita 0 contra 80px+ à esquerda).
+     Os fundos full-bleed (hero, media2) seguem encostando na borda de propósito. */
+  --bleed-right: calc(var(--bleed) / 2);
 }
 
 /* ---------- Cores por superfície ---------- */
@@ -132,7 +136,7 @@ main .h2 { font-size: calc(var(--text-h2) * var(--h2-scale, 1)); }
 /* ---------- Colagens ---------- */
 .collage {
   position: relative;
-  margin-right: calc(-1 * var(--bleed));
+  margin-right: calc(-1 * var(--bleed-right));
 }
 
 .collage > .media {
@@ -157,8 +161,15 @@ main .h2 { font-size: calc(var(--text-h2) * var(--h2-scale, 1)); }
 
 .collage--manifesto .collage__a {
   left: 7.1%; top: 0; width: 90.5%; height: 54.7%;
-  /* topo inclinado e recorte creme sob o fim do título, como na Master */
-  clip-path: polygon(0 10.2%, 100% 0, 100% 100%, 21% 100%, 21% 61.3%, 0 61.3%);
+  /* topo inclinado e recorte creme sob o fim do título, como na Master.
+     Largura do recorte (--notch-x): no mínimo 21% (Master), mas acompanha o título: a fonte do h2 cresce com a janela
+     (até 7rem) e o container para em --layout-max, então em telas largas "memória." passava por cima da foto.
+     7.9 = largura da linha "cuidado e memória." em múltiplos da fonte; 0.487 e 0.071 = posição da foto no container. */
+  --notch-x: max(
+    21%,
+    calc(7.9 * var(--text-h2) - 0.487 * min(100vw - 2 * var(--layout-gutter), var(--layout-max)) - 0.071 * var(--bleed-right) + 32px)
+  );
+  clip-path: polygon(0 10.2%, 100% 0, 100% 100%, var(--notch-x) 100%, var(--notch-x) 61.3%, 0 61.3%);
 }
 .collage--manifesto .collage__b { left: 0; top: 55.3%; width: 49%; height: 40.7%; z-index: 2; }
 .collage--manifesto .collage__c { left: 59.7%; top: 50.7%; width: 40.3%; height: 49.3%; z-index: 3; }
@@ -204,10 +215,17 @@ main .h2 { font-size: calc(var(--text-h2) * var(--h2-scale, 1)); }
 
 .collage--criacoes .collage__a {
   left: 8.8%; top: 0; width: 86%; height: 67.4%;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 24% 100%, 24% 63.4%, 0 63.4%);
+  /* recorte creme sob o fim do título ("memória."): começa acima da linha do título, que assenta sobre o creme */
+  /* mesma regra da Essência: o recorte nunca é menor que o fim do título (6.46 = largura de "ficam na memória." em
+     múltiplos da fonte do h2, já com a escala da seção; 0.428 e 0.088 = posição da foto no container) */
+  --notch-x: max(
+    24%,
+    calc(6.46 * var(--text-h2) - 0.428 * min(100vw - 2 * var(--layout-gutter), var(--layout-max)) - 0.088 * var(--bleed-right) + 32px)
+  );
+  clip-path: polygon(0 0, 100% 0, 100% 100%, var(--notch-x) 100%, var(--notch-x) 54%, 0 54%);
 }
 .collage--criacoes .collage__b { left: 0; top: 63.2%; width: 53.4%; height: 36.8%; z-index: 2; }
-.collage--criacoes .collage__c { left: 81.9%; top: 12%; width: 18.1%; height: 47.2%; z-index: 2; }
+/* a faixa estreita "close da fatia" (asset de 156px de largura, esticado a ~160x400) foi removida desta colagem: parecia uma foto espremida */
 .collage--criacoes .collage__d { left: 60.4%; top: 55.5%; width: 39.6%; height: 43.3%; z-index: 3; }
 
 /* ---------- 05 Encomendas ---------- */
@@ -232,9 +250,11 @@ main .h2 { font-size: calc(var(--text-h2) * var(--h2-scale, 1)); }
 
 .journey {
   position: relative;
-  margin-right: calc(-1 * var(--bleed));
-  /* a foto do passo 03 continua sob a onda da seção seguinte, como na Master */
-  margin-bottom: -3vw;
+  margin-right: calc(-1 * var(--bleed-right));
+  /* A foto do passo 03 (top 80.5% + altura 28%) passa ~8.5% da altura do trilho abaixo dele. Com margem negativa
+     (antes: -3vw) a seção seguinte, que cobre a anterior, a cortava reto e deixava um retângulo creme sob o bolo.
+     A margem positiva (% = largura da coluna, que acompanha a altura do trilho) abre espaço para a foto inteira. */
+  margin-bottom: 8.6%;
   aspect-ratio: 899 / 883;
 }
 
@@ -248,8 +268,8 @@ main .h2 { font-size: calc(var(--text-h2) * var(--h2-scale, 1)); }
     line-height: 1.4;
   }
 
+  /* sem nowrap: a linha é mais larga que a coluna de texto e, numa linha só, passava por baixo do passo 02 da jornada */
   .split__tags {
-    white-space: nowrap;
     font-size: var(--text-micro);
     letter-spacing: 0.06em;
   }
@@ -322,13 +342,13 @@ main .h2 { font-size: calc(var(--text-h2) * var(--h2-scale, 1)); }
 .step--2 .step__text {
   left: 0;
   top: 61.5%;
-  width: 33%;
+  /* termina antes da foto (começa em 22.4%): o texto não passa por cima dela, então não precisa de fundo */
+  width: 21%;
   padding: 0;
   z-index: 3;
-  background: linear-gradient(to right, transparent, var(--color-cream-200) 14%);
 }
 
-.step--3 .step__media { left: 29.8%; top: 77.6%; width: 70.2%; height: 28%; }
+.step--3 .step__media { left: 29.8%; top: 80.5%; width: 70.2%; height: 28%; }
 .step--3 .step__text { left: 56.4%; top: 48.5%; width: 26%; z-index: 3; }
 
 /* no passo 02 só o numeral e o título recuam; o texto corrido começa na borda */
@@ -341,19 +361,36 @@ main .h2 { font-size: calc(var(--text-h2) * var(--h2-scale, 1)); }
   --section-bg: var(--color-cream-100);
 }
 
+/* A foto de fundo (recorte da Master) traz a fatia GRAVADA no canto inferior esquerdo e o parallax a move.
+   Em vez de depender de uma moldura por cima para escondê-la, o canto é recortado (--hist-hole-*, em vw) e a moldura
+   real da fatia ocupa exatamente esse recorte, rente à base da foto, como nas colagens de Criações e Manifesto. */
+.section--historias {
+  --hist-hole-w: 23.5vw;
+  --hist-hole-h: 37vw;
+}
+
 .historias__inset {
   position: absolute;
   left: 0;
-  bottom: 12%;
+  bottom: 5.9%; /* mesma base da foto de fundo (.media2) */
   z-index: var(--z-content);
-  width: 20.3%;
-  aspect-ratio: 292 / 363;
+  width: var(--hist-hole-w);
+  height: var(--hist-hole-h);
 }
 
 .section--historias .media2 {
   /* a Master recua a foto sob o bloco de texto na parte alta */
   /* topo inclinado: mais alto à esquerda, como na Master */
-  clip-path: polygon(0 0, 92.7% 6.1%, 92.7% 50%, 100% 50%, 100% 100%, 0 100%);
+  clip-path: polygon(
+    0 0,
+    92.7% 6.1%,
+    92.7% 50%,
+    100% 50%,
+    100% 100%,
+    var(--hist-hole-w) 100%,
+    var(--hist-hole-w) calc(100% - var(--hist-hole-h)),
+    0 calc(100% - var(--hist-hole-h))
+  );
 }
 
 .historias {
@@ -458,7 +495,7 @@ main .h2 { font-size: calc(var(--text-h2) * var(--h2-scale, 1)); }
   position: absolute;
   top: 47.1vw;
   left: 40%;
-  right: 0;
+  right: var(--bleed-right);
   z-index: var(--z-content);
   display: grid;
   grid-template-columns: 353fr 508fr;
@@ -599,4 +636,28 @@ main .h2 { font-size: calc(var(--text-h2) * var(--h2-scale, 1)); }
 
 .footer__bar .t3 {
   font-size: var(--text-micro);
+}
+
+.footer__bar-end {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 24px;
+}
+
+/* link discreto para a apresentação comercial (app separado, servido em /apresentacao/) */
+.footer__presentation {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+  text-decoration-color: rgb(74 64 59 / 0.3);
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.footer__presentation:hover {
+  --micro-color: var(--color-cacao-800);
+  text-decoration-color: currentColor;
 }

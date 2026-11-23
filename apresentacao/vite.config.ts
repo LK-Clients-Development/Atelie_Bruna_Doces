@@ -9,6 +9,8 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 5183,
+    // porta fixa: o dev do site (astro.config.mjs) repassa /apresentacao para esta porta
+    strictPort: true,
   },
   build: {
     outDir: 'dist',

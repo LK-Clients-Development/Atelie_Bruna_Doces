@@ -1,23 +1,25 @@
 ---
 /**
  * BRAND INTRO: assinatura de entrada da marca (flor desenhada → bloom → pousa no "o" da logo → o site abre).
- * NÃO é loading: é uma camada de apresentação de ~1,75 s sobre um site que já está sendo renderizado por trás.
+ * NÃO é loading: é uma camada de apresentação de ~8 s sobre um site que já está sendo renderizado por trás.
+ * Toca em todo carregamento de página e em todas as larguras (celular, tablet, desktop).
  *
- * Primeiro filho do <body> (existe no primeiro frame). Estilos críticos e a decisão "primeira visita da sessão":
+ * Primeiro filho do <body> (existe no primeiro frame). Estilos críticos e a marcação `intro-pending`:
  * src/components/BrandIntroHead.astro (no <head>). Aqui: markup decorativo (aria-hidden, sem foco) + controller.
  *
  * Flor: SVG VETORIAL traçado da logo oficial (src/data/brand-flower.ts, gerado por tools/build-brand-flower.mjs).
  * Wordmark: o asset oficial da logo SEM a flor (a flor vetorial ocupa o lugar do "o": nada de refazer o texto com fonte parecida).
  * Motion: Web Animations API (sem biblioteca, sem GSAP, sem esperar o bundle): o controller é inline e começa no 1º frame.
  *
- *  timeline (ms)                                   total ≈ 1700
- *    0–180     miolo: opacity 0→1, scale .85→1
- *    180–765   6 pétalas traçadas em sequência (55 ms de stagger, 340 ms cada; stroke-dashoffset numa máscara)
- *    765–1000  bloom: scale .98 → 1.03 → 1
- *    990–1320  a flor desce ao tamanho da logo e pousa no "o"; 1010–1330 o nome sobe e aparece (translateY 7→0)
- *    1400–1700 o site é revelado por trás e a camada some (opacity 1→0, scale 1→1.015)
+ *  timeline (ms)                                   total ≈ 7000 (era ≈ 1700; alongada para o cliente ver a marca; a pausa final foi encurtada em 1 s)
+ *    0–800      miolo: opacity 0→1, scale .85→1
+ *    800–3600   6 pétalas traçadas em sequência (280 ms de stagger, 1400 ms cada; stroke-dashoffset numa máscara)
+ *    3550–4400  bloom: scale .98 → 1.03 → 1
+ *    4400–5600  a flor desce ao tamanho da logo e pousa no "o"; 4430–5630 o nome sobe e aparece (translateY 7→0)
+ *    5600–6400  a logo completa fica parada na tela (é o momento em que o cliente lê a marca)
+ *    6400–7000  o site é revelado por trás e a camada some (opacity 1→0, scale 1→1.015)
  *  prefers-reduced-motion: sem desenho nem movimento; logo pronta em fade de 160 ms; sai em ~500 ms no total.
- *  FAILSAFE: 2,5 s (head) remove tudo mesmo que este script falhe.
+ *  FAILSAFE: 10 s (head) remove tudo mesmo que este script falhe. Ao mudar a duração, mantenha-o maior que o total.
  */
 import { Image } from 'astro:assets';
 import { BRAND_FLOWER as F } from '../data/brand-flower';
@@ -109,16 +111,17 @@ import wordmark from '../assets/brand/atelie-doces-bruna-logo-sem-flor.png';
     var dy = innerHeight / 2 - (r.top + r.height / 2);
     var from = 'translate(' + dx.toFixed(1) + 'px,' + dy.toFixed(1) + 'px) scale(' + s.toFixed(3) + ')';
 
-    play(dot, [{ opacity: 0, transform: 'scale(0.85)' }, { opacity: 1, transform: 'scale(1)' }], { duration: 180 });
+    // tempos em ms: ver a tabela no topo deste arquivo (total ≈ 7000)
+    play(dot, [{ opacity: 0, transform: 'scale(0.85)' }, { opacity: 1, transform: 'scale(1)' }], { duration: 800 });
     for (var k = 0; k < masks.length; k++) {
-      play(masks[k], [{ strokeDashoffset: 1.001 }, { strokeDashoffset: 0 }], { delay: 180 + k * 55, duration: 340, easing: 'cubic-bezier(0.45, 0.05, 0.35, 1)' });
+      play(masks[k], [{ strokeDashoffset: 1.001 }, { strokeDashoffset: 0 }], { delay: 800 + k * 280, duration: 1400, easing: 'cubic-bezier(0.45, 0.05, 0.35, 1)' });
     }
-    play(bloom, [{ transform: 'scale(0.98)' }, { transform: 'scale(1.03)', offset: 0.5 }, { transform: 'scale(1)' }], { delay: 765, duration: 235 });
-    play(pos, [{ transform: from }, { transform: 'translate(0,0) scale(1)' }], { delay: 990, duration: 330, easing: 'cubic-bezier(0.55, 0, 0.2, 1)' });
-    play(word, [{ opacity: 0, transform: 'translateY(7px)' }, { opacity: 1, transform: 'translateY(0)' }], { delay: 1010, duration: 320 });
-    setTimeout(reveal, 1400);
-    play(stage, [{ transform: 'scale(1)' }, { transform: 'scale(1.015)' }], { delay: 1400, duration: 300, easing: 'ease-out' });
-    play(el, [{ opacity: 1 }, { opacity: 0 }], { delay: 1400, duration: 300, easing: 'ease-out' }).onfinish = finish;
-    setTimeout(finish, 2500);
+    play(bloom, [{ transform: 'scale(0.98)' }, { transform: 'scale(1.03)', offset: 0.5 }, { transform: 'scale(1)' }], { delay: 3550, duration: 850 });
+    play(pos, [{ transform: from }, { transform: 'translate(0,0) scale(1)' }], { delay: 4400, duration: 1200, easing: 'cubic-bezier(0.55, 0, 0.2, 1)' });
+    play(word, [{ opacity: 0, transform: 'translateY(7px)' }, { opacity: 1, transform: 'translateY(0)' }], { delay: 4430, duration: 1200 });
+    setTimeout(reveal, 6400);
+    play(stage, [{ transform: 'scale(1)' }, { transform: 'scale(1.015)' }], { delay: 6400, duration: 600, easing: 'ease-out' });
+    play(el, [{ opacity: 1 }, { opacity: 0 }], { delay: 6400, duration: 600, easing: 'ease-out' }).onfinish = finish;
+    setTimeout(finish, 10000);
   })();
 </script>

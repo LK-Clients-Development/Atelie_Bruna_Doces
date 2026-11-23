@@ -9,6 +9,8 @@ interface SlideNavigationProps {
   fullscreenSupported: boolean;
   canPrev: boolean;
   canNext: boolean;
+  /** Rótulo acessível do botão de reiniciar (V3 usa outro dentro da expansão). */
+  restartLabel?: string;
 }
 
 /** Controles discretos: setas, reiniciar e tela cheia. Sempre navegável, mesmo com animações desligadas. */
@@ -21,10 +23,11 @@ export default function SlideNavigation({
   fullscreenSupported,
   canPrev,
   canNext,
+  restartLabel = 'Reiniciar apresentação',
 }: SlideNavigationProps) {
   return (
     <div className="nav-controls">
-      <button type="button" className="nav-controls__btn" onClick={onRestart} aria-label="Reiniciar apresentação">
+      <button type="button" className="nav-controls__btn" onClick={onRestart} aria-label={restartLabel}>
         <RotateCcw size={18} aria-hidden="true" />
       </button>
       <button type="button" className="nav-controls__btn" onClick={onPrev} disabled={!canPrev} aria-label="Cena anterior">

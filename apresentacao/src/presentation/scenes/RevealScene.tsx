@@ -13,13 +13,23 @@ const copy = SCENES.reveal;
  * Três dispositivos físicos em CSS (notebook, tablet, smartphone), cada um exibindo a captura REAL do
  * site institucional no seu próprio viewport (1440×900, 820×1180, 390×844) — sem esticar nem reaproveitar.
  */
-export default function RevealScene({ active }: SceneProps) {
+export interface RevealOverrides {
+  kicker?: string;
+  title?: readonly string[];
+  /** Destino do botão (V3 usa o site local quando disponível). */
+  siteUrl?: string;
+  buttonLabel?: string;
+  note?: string;
+  highlights?: readonly string[];
+}
+
+export default function RevealScene({ active, kicker, title, siteUrl, buttonLabel, note, highlights }: SceneProps & RevealOverrides) {
   return (
     <div className="scene scene--reveal">
       <div className="scene__inner reveal">
         <div className="scene__head">
-          <p className="kicker">{copy.kicker}</p>
-          <SplitText as="h2" className="display display--lg" lines={copy.title} active={active} />
+          <p className="kicker">{kicker ?? copy.kicker}</p>
+          <SplitText as="h2" className="display display--lg" lines={title ? [...title] : copy.title} active={active} />
         </div>
 
         <div className="rig">
@@ -91,11 +101,18 @@ export default function RevealScene({ active }: SceneProps) {
         </div>
 
         <Reveal active={active} order={4} className="reveal__cta">
-          <a className="btn btn--pill" href={SITE_URL} target="_blank" rel="noopener noreferrer">
-            <span>Explorar o site</span>
+          {highlights && (
+            <ul className="reveal__highlights" role="list">
+              {highlights.map((h) => (
+                <li key={h}>{h}</li>
+              ))}
+            </ul>
+          )}
+          <a className="btn btn--pill" href={siteUrl ?? SITE_URL} target="_blank" rel="noopener noreferrer">
+            <span>{buttonLabel ?? 'Explorar o site'}</span>
             <ExternalLink size={18} aria-hidden="true" />
           </a>
-          <p className="fine-print">Capturas reais do site institucional publicado.</p>
+          <p className="fine-print">{note ?? 'Capturas reais do site institucional publicado.'}</p>
         </Reveal>
       </div>
     </div>

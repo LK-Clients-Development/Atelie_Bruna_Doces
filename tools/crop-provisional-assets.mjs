@@ -40,27 +40,28 @@ const ASSETS = [
   // ---- Fotos de conteúdo das molduras `media` (Etapa 4). Recorte da reference com
   //      ~4px de folga da borda off-white gravada (a moldura HTML refaz a borda).
   // 02 Manifesto
-  { name: 'provisional-media-manifesto-maos', rect: { left: 714, top: 1040, width: 703, height: 460 } },
+  // recortes SEM os pedaços da Master gravados na borda (onda, caixa de texto, moldura vizinha): nada depende de overlay para escondê-los
+  { name: 'provisional-media-manifesto-maos', rect: { left: 764, top: 1086, width: 653, height: 374 } },
   // faixa de tecido sob as molduras (a Master continua o tecido até a borda direita)
   { name: 'provisional-manifesto-strip', rect: { left: 650, top: 1892, width: 790, height: 108 } },
   { name: 'provisional-criacoes-strip', rect: { left: 555, top: 4022, width: 885, height: 110 } },
   { name: 'provisional-media-manifesto-brigadeiros', rect: { left: 658, top: 1509, width: 377, height: 338 } },
-  { name: 'provisional-media-manifesto-chocolate', rect: { left: 1127, top: 1470, width: 313, height: 411 } },
+  { name: 'provisional-media-manifesto-chocolate', rect: { left: 1127, top: 1470, width: 313, height: 345 } },
   // 04 Criações
-  { name: 'provisional-media-criacoes-bolo', rect: { left: 640, top: 3195, width: 751, height: 540 } },
+  { name: 'provisional-media-criacoes-bolo', rect: { left: 715, top: 3195, width: 559, height: 432 } },
   { name: 'provisional-media-criacoes-brigadeiros', rect: { left: 562, top: 3701, width: 463, height: 309 } },
   { name: 'provisional-media-criacoes-fatia', rect: { left: 1284, top: 3260, width: 156, height: 398 } },
-  { name: 'provisional-media-criacoes-cheesecake', rect: { left: 1095, top: 3635, width: 345, height: 365 } },
+  { name: 'provisional-media-criacoes-cheesecake', rect: { left: 1095, top: 3675, width: 345, height: 298 } },
   // 05 Encomendas (jornada)
-  { name: 'provisional-media-jornada-caderno', rect: { left: 953, top: 4281, width: 487, height: 409 } },
-  { name: 'provisional-media-jornada-morango', rect: { left: 746, top: 4680, width: 262, height: 418 } },
-  { name: 'provisional-media-jornada-mesa', rect: { left: 809, top: 4962, width: 631, height: 247 } },
+  { name: 'provisional-media-jornada-caderno', rect: { left: 1100, top: 4281, width: 340, height: 409 } },
+  { name: 'provisional-media-jornada-morango', rect: { left: 752, top: 4680, width: 256, height: 322 } },
+  { name: 'provisional-media-jornada-mesa', rect: { left: 1024, top: 5014, width: 416, height: 195 } },
   // ---- Variantes MOBILE (tools/ Etapa 6A): mesmas fotos sem as molduras vizinhas da Master
   //      que, no desktop, ficam cobertas por outras molduras HTML.
   { name: 'provisional-media-manifesto-maos-m', rect: { left: 868, top: 1076, width: 549, height: 390 } },
-  { name: 'provisional-media-criacoes-bolo-m', rect: { left: 640, top: 3195, width: 751, height: 430 } },
-  { name: 'provisional-media-jornada-caderno-m', rect: { left: 1040, top: 4281, width: 400, height: 340 } },
-  { name: 'provisional-media-jornada-mesa-m', rect: { left: 1020, top: 4990, width: 420, height: 219 } },
+  { name: 'provisional-media-criacoes-bolo-m', rect: { left: 715, top: 3195, width: 559, height: 430 } },
+  { name: 'provisional-media-jornada-caderno-m', rect: { left: 1102, top: 4281, width: 338, height: 340 } },
+  { name: 'provisional-media-jornada-mesa-m', rect: { left: 1024, top: 5014, width: 416, height: 195 } },
   // 06 Histórias (inset)
   { name: 'provisional-media-historias-fatia', rect: { left: 0, top: 5819, width: 286, height: 355 } },
   // 07 Bastidores (trio)

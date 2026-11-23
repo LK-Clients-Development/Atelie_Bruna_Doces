@@ -30,7 +30,7 @@ export function initParallax() {
     ['.collage--criacoes .collage__d', -24],
     ['.trio__a', 18],
     ['.trio__b', -18],
-    ['.historias__inset', 20],
+    // .historias__inset NÃO deriva: ocupa o recorte da foto de fundo e precisa ficar alinhada a ele
   ];
   frames.forEach(([selector, shift]) => {
     const el = document.querySelector<HTMLElement>(selector);

@@ -42,7 +42,11 @@ if (!BUSINESS_HOURS) findings.seo.push('BUSINESS_HOURS = null (horário estrutur
 const pages = [];
 if (existsSync('dist')) {
   if (existsSync('dist/index.html')) pages.push(['/', 'dist/index.html']);
+  // `apresentacao` é outro app (copiado para dist/ por tools/build-all.mjs) e é noindex de propósito:
+  // não é página do site institucional, então não entra neste gate.
+  const OUTROS_APPS = new Set(['apresentacao']);
   for (const entry of readdirSync('dist', { withFileTypes: true })) {
+    if (OUTROS_APPS.has(entry.name)) continue;
     if (entry.isDirectory() && existsSync(`dist/${entry.name}/index.html`)) pages.push([`/${entry.name}`, `dist/${entry.name}/index.html`]);
   }
 }

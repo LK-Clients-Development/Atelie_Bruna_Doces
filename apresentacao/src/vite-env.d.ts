@@ -17,6 +17,8 @@ declare module '*.jpg' {
 
 interface ImportMetaEnv {
   readonly VITE_SITE_URL?: string;
+  /** 2 ou 3. Padrão: V3 só em dev local; build/produção = V2. */
+  readonly VITE_PRESENTATION_VERSION?: string;
 }
 
 interface ImportMeta {

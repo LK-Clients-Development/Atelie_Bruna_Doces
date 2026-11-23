@@ -8,6 +8,7 @@ import './presentation/styles/tokens.css';
 import './presentation/styles/global.css';
 import './presentation/styles/presentation.css';
 import './presentation/styles/v2.css';
+import './presentation/styles/v3.css';
 import App from './App';
 
 const root = document.getElementById('root');

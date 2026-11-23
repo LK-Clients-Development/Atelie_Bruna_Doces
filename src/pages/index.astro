@@ -27,7 +27,7 @@ const {
   heroBg, heroBase,
   manifestoBase, manifestoStrip, manifestoMaos, manifestoMaosM, manifestoBrigadeiros, manifestoChocolate,
   brunaRetrato, assinatura,
-  criacoesBase, criacoesStrip, criacoesBolo, criacoesBoloM, criacoesBrigadeiros, criacoesFatia, criacoesCheesecake,
+  criacoesBase, criacoesStrip, criacoesBolo, criacoesBoloM, criacoesBrigadeiros, criacoesCheesecake,
   jornadaCaderno, jornadaCadernoM, jornadaMorango, jornadaMesa, jornadaMesaM,
   historiasMesa, historiasFatia,
   bastidoresConfeitando, bastidoresPeneira, bastidoresLaco,
@@ -38,7 +38,7 @@ const claims = CLAIMS.join(' · ');
 const quotes = TESTIMONIALS; // PLACEHOLDER: ver src/data/site.ts
 ---
 
-<BaseLayout title={SEO.title}>
+<BaseLayout title={SEO.title} brandIntro>
   <main id="conteudo" tabindex="-1">
     {/* 01 Hero */}
     <section class="hero" id="inicio" aria-label="Início">
@@ -156,7 +156,6 @@ const quotes = TESTIMONIALS; // PLACEHOLDER: ver src/data/site.ts
         <div class="collage collage--criacoes">
           <MediaFrame class="collage__a" subject="Bolo claro com morangos e pistache" src={criacoesBolo} mobileSrc={criacoesBoloM} alt="Bolo claro decorado com morangos e pistache" />
           <MediaFrame class="collage__b" subject="Brigadeiros variados" src={criacoesBrigadeiros} alt="Brigadeiros de sabores variados" />
-          <MediaFrame class="collage__c" subject="Close da fatia" src={criacoesFatia} alt="Close de uma fatia de bolo com chantilly e pistache" />
           <MediaFrame class="collage__d" subject="Cheesecake com morangos e calda" src={criacoesCheesecake} alt="Fatia de cheesecake com morangos e calda" />
         </div>
       </div>

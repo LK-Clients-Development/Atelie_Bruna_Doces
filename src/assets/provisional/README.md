@@ -25,16 +25,16 @@ Recortes com ~4px de folga da borda off-white gravada na reference (a moldura HT
 
 | Arquivo | Região (x, y, w × h) | Uso |
 |---|---|---|
-| `provisional-media-manifesto-maos` | 714, 1089, 703 × 408 | Manifesto, moldura A |
+| `provisional-media-manifesto-maos` | 764, 1086, 653 × 374 | Manifesto, moldura A |
 | `provisional-media-manifesto-brigadeiros` | 658, 1509, 377 × 338 | Manifesto, moldura B |
-| `provisional-media-manifesto-chocolate` | 1127, 1470, 313 × 411 | Manifesto, moldura C |
-| `provisional-media-criacoes-bolo` | 640, 3205, 751 × 485 | Criações, bolo (abaixo da onda gravada) |
+| `provisional-media-manifesto-chocolate` | 1127, 1470, 313 × 345 | Manifesto, moldura C |
+| `provisional-media-criacoes-bolo` | 715, 3195, 559 × 432 | Criações, bolo (abaixo da onda gravada) |
 | `provisional-media-criacoes-brigadeiros` | 562, 3701, 463 × 309 | Criações |
 | `provisional-media-criacoes-fatia` | 1284, 3260, 156 × 398 | Criações, close |
-| `provisional-media-criacoes-cheesecake` | 1095, 3635, 345 × 365 | Criações |
-| `provisional-media-jornada-caderno` | 953, 4281, 487 × 409 | Encomendas, passo 01 |
-| `provisional-media-jornada-morango` | 746, 4680, 262 × 418 | Encomendas, passo 02 |
-| `provisional-media-jornada-mesa` | 809, 4962, 631 × 247 | Encomendas, passo 03 (abaixo do texto gravado) |
+| `provisional-media-criacoes-cheesecake` | 1095, 3675, 345 × 298 | Criações |
+| `provisional-media-jornada-caderno` | 1100, 4281, 340 × 409 | Encomendas, passo 01 |
+| `provisional-media-jornada-morango` | 752, 4680, 256 × 322 | Encomendas, passo 02 |
+| `provisional-media-jornada-mesa` | 1024, 5014, 416 × 195 | Encomendas, passo 03 (abaixo do texto gravado) |
 | `provisional-media-historias-fatia` | 0, 5819, 286 × 355 | Histórias, inset |
 | `provisional-media-bastidores-peneira` | 580, 7002, 345 × 341 | Bastidores, trio |
 | `provisional-media-bastidores-laco` | 936, 7002, 504 × 352 | Bastidores, trio |
@@ -48,3 +48,5 @@ Recortes com ~4px de folga da borda off-white gravada na reference (a moldura HT
 | `provisional-criacoes-strip` | 555, 4022, 885 × 110 | Faixa de tecido sob as molduras de Criações |
 
 Ajustados: `provisional-hero-bg` (agora 800 × 800, até a onda), `provisional-media-manifesto-maos` (714, 1040, 703 × 460, topo recortado por `clip-path`) e `provisional-media-criacoes-bolo` (640, 3195, 751 × 540).
+
+> **Recortes sem pedaços da Master gravados.** Os recortes das molduras `media` acima foram refeitos para NÃO incluir o que a Master grava junto da foto (caixa de texto com fragmentos do título, ondas, bordas de molduras vizinhas). Antes, essas peças só ficavam invisíveis porque outras molduras HTML as cobriam; o parallax as expunha durante o scroll. Continua sendo só recorte (sem IA, sem retoque). A foto de fundo de Histórias (`provisional-historias-mesa`) ainda traz a fatia gravada: ela é recortada pelo `clip-path` de `.section--historias .media2` e a moldura real ocupa esse recorte (ver `content.css`).
