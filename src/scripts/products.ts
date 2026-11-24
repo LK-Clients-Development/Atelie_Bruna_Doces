@@ -112,9 +112,13 @@ if (root) {
       apply();
       root.querySelector('.pcatalog__body')?.scrollIntoView({ behavior: reduced.matches ? 'auto' : 'smooth', block: 'start' });
     });
+    let searchTimer: number | undefined;
     input.addEventListener('input', () => {
       query = input.value;
       apply();
+      // analytics: um evento por busca "assentada" (sem registrar o texto digitado: só o tamanho)
+      window.clearTimeout(searchTimer);
+      if (query.trim().length >= 2) searchTimer = window.setTimeout(() => window.atelieTrack?.('product_search', { length: query.trim().length }), 1200);
     });
     input.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && input.value) {

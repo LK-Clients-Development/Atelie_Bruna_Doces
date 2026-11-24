@@ -1,0 +1,50 @@
+---
+/**
+ * Favoritos do Ateliê (V4): curadoria editorial de criações do catálogo real (src/data/commerce.ts → FAVORITES).
+ * NÃO são "os mais vendidos" (sem confirmação da Bruna). Cada card abre a ficha em /produtos?produto=<slug>.
+ * Fotos: as mesmas do catálogo (hero da galeria; o ângulo aprovado quando existir, como no tile protagonista).
+ */
+import SectionEyebrow from './SectionEyebrow.astro';
+import Icon from './Icon.astro';
+import { PORTFOLIO, isPublishable } from '../data/portfolio';
+import { FAVORITES, GO } from '../data/commerce';
+
+const items = FAVORITES.map((slug) => {
+  const product = PORTFOLIO.find((p) => p.slug === slug);
+  if (!product) return null;
+  const angle = product.gallery.find((i) => isPublishable(i) && i.provenance.generation?.kind === 'ANGLE');
+  const image = angle ?? product.heroImage;
+  if (!image?.src) return null;
+  return { slug, name: product.name, image };
+}).filter((item): item is NonNullable<typeof item> => item !== null);
+---
+
+{items.length >= 4 && (
+  <section class="section-v4 favs" id="favoritos" aria-labelledby="favoritos-titulo">
+    <div class="container">
+      <header class="favs__head">
+        <SectionEyebrow>Criações em destaque</SectionEyebrow>
+        <h2 class="h2 favs__title" id="favoritos-titulo">Favoritos do <span class="h3">Ateliê</span></h2>
+        <p class="t1 favs__lead">Criações especiais para transformar qualquer momento em uma experiência deliciosa.</p>
+      </header>
+      <ul class="favs__rail" role="list" tabindex="0" aria-label="Favoritos do Ateliê: use as setas para ver os próximos">
+        {items.map((item) => (
+          <li class="fav">
+            <a class="fav__link" href={`/produtos?produto=${item.slug}`}>
+              <span class="fav__media">
+                <img src={item.image.src} width={item.image.width ?? undefined} height={item.image.height ?? undefined} alt="" loading="lazy" decoding="async" />
+              </span>
+              <span class="fav__cap">
+                <span class="fav__name">{item.name}</span>
+                <span class="fav__cta">Ver criação<span class="sr-only">: {item.name}</span><Icon name="arrow" size={16} /></span>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <div class="favs__foot">
+        <a class="btn2" href={GO.products}><span>Ver todas as criações</span><Icon name="arrow" size={22} /></a>
+      </div>
+    </div>
+  </section>
+)}

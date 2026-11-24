@@ -19,6 +19,7 @@
 import { Image } from 'astro:assets';
 import Icon from './Icon.astro';
 import { HEADER_NAV, LINKS, linkAttrs, navHref, type NavItem } from '../data/site';
+import { GO } from '../data/commerce';
 import { IMAGES } from '../data/images';
 
 interface Props {
@@ -54,15 +55,15 @@ const pendingAttrs = linkAttrs;
     </nav>
 
     <div class="site-header__actions">
-      <a class="lnk site-header__social" href={LINKS.instagram} {...pendingAttrs(LINKS.instagram)}>
+      <a class="lnk site-header__social" href={LINKS.instagram} {...pendingAttrs(LINKS.instagram)} data-track="instagram_click" data-track-place="header">
         <Icon name="instagram" size={22} /><span>Instagram</span>
       </a>
-      <a class="lnk site-header__social" href={LINKS.whatsapp} {...pendingAttrs(LINKS.whatsapp)}>
+      <a class="lnk site-header__social" href={LINKS.whatsapp} {...pendingAttrs(LINKS.whatsapp)} data-track="whatsapp_click" data-track-place="header">
         <Icon name="whatsapp" size={22} /><span>WhatsApp</span>
       </a>
       <span class="site-header__sep" aria-hidden="true"></span>
-      <a class="btn site-header__cta" href={LINKS.whatsapp} {...pendingAttrs(LINKS.whatsapp)}>
-        <span>Encomendar</span><Icon name="arrow" size={20} />
+      <a class="btn site-header__cta" href={GO.delivery} {...pendingAttrs(GO.delivery)} data-track="delivery_click" data-track-place="header">
+        <span>Fazer pedido</span><Icon name="arrow" size={20} />
       </a>
       <button
         class="site-header__menu-btn"
@@ -91,13 +92,13 @@ const pendingAttrs = linkAttrs;
         ))}
       </ul>
       <div class="site-menu__actions">
-        <a class="btn" href={LINKS.whatsapp} {...pendingAttrs(LINKS.whatsapp)}>
-          <Icon name="whatsapp" size={22} /><span>Encomendar</span>
+        <a class="btn" href={GO.delivery} {...pendingAttrs(GO.delivery)} data-track="delivery_click" data-track-place="menu">
+          <span>Fazer pedido</span><Icon name="arrow" size={22} />
         </a>
-        <a class="lnk" href={LINKS.instagram} {...pendingAttrs(LINKS.instagram)}>
+        <a class="lnk" href={LINKS.instagram} {...pendingAttrs(LINKS.instagram)} data-track="instagram_click" data-track-place="menu">
           <Icon name="instagram" size={22} /><span>Instagram</span>
         </a>
-        <a class="lnk" href={LINKS.whatsapp} {...pendingAttrs(LINKS.whatsapp)}>
+        <a class="lnk" href={LINKS.whatsapp} {...pendingAttrs(LINKS.whatsapp)} data-track="whatsapp_click" data-track-place="menu">
           <Icon name="whatsapp" size={22} /><span>WhatsApp</span>
         </a>
       </div>

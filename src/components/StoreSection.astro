@@ -1,0 +1,37 @@
+---
+/**
+ * Conheça nossa loja (V4). Composição TIPOGRÁFICA: ainda não há fotografias reais da loja e nenhuma foto de
+ * terceiros/fachada inventada é usada. Só aparece o que é verificável (cidade); endereço e horário ficam de fora
+ * enquanto a Bruna não confirmar (src/data/commerce.ts → STORE). Pendências: PENDING_ITEMS em site.ts.
+ */
+import SectionEyebrow from './SectionEyebrow.astro';
+import Icon from './Icon.astro';
+import { STORE, GO } from '../data/commerce';
+---
+
+<section class="section-v4 store" id="loja" aria-labelledby="loja-titulo">
+  <div class="container store__inner">
+    <div class="store__text">
+      <SectionEyebrow>Nossa loja</SectionEyebrow>
+      <h2 class="h2 store__title" id="loja-titulo">Conheça <span class="h3">nossa loja</span></h2>
+      <p class="t1 store__lead">
+        Além do delivery, o Ateliê também recebe você pessoalmente. Venha conhecer de perto as criações da Bruna.
+      </p>
+      <div class="store__actions">
+        <a class="btn" href={STORE.directions} target="_blank" rel="noopener noreferrer" data-track="store_directions_click" data-track-place="loja">
+          <Icon name="pin" size={22} /><span>Como chegar</span>
+        </a>
+        <a class="btn2" href={GO.whatsapp} target="_blank" rel="noopener noreferrer" data-track="whatsapp_click" data-track-place="loja">
+          <Icon name="whatsapp" size={22} /><span>Falar com o Ateliê</span>
+        </a>
+      </div>
+    </div>
+    <div class="store__card" role="group" aria-label="Localização">
+      <p class="t3 store__card-label">Onde estamos</p>
+      <p class="store__city">{STORE.city}<span class="h3">, {STORE.state}</span></p>
+      <p class="t2 store__note">Chame no WhatsApp para combinar sua visita.</p>
+      {STORE.address && <p class="t1">{STORE.address}</p>}
+      {STORE.hours && <p class="t1">{STORE.hours}</p>}
+    </div>
+  </div>
+</section>

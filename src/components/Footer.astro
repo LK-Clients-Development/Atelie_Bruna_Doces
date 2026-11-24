@@ -6,7 +6,7 @@
 import { Image } from 'astro:assets';
 import Wave from './Wave.astro';
 import Icon from './Icon.astro';
-import { BRAND, NAV, CONTACT, navHref } from '../data/site';
+import { BRAND, NAV, CONTACT, LINKS, isPending, navHref } from '../data/site';
 import { IMAGES } from '../data/images';
 
 interface Props {
@@ -33,26 +33,33 @@ const { logoLockup } = IMAGES;
     <div class="footer__col">
       <h2 class="t3 footer__title">Contato</h2>
       <ul role="list" class="footer__contact">
-        <li><Icon name="whatsapp" size={22} /><span class="t1">{CONTACT.phone}</span></li>
+        <li>
+          <Icon name="whatsapp" size={22} />
+          <a class="t1" href={LINKS.whatsapp} target="_blank" rel="noopener noreferrer" data-track="whatsapp_click" data-track-place="footer">{CONTACT.phone}</a>
+        </li>
         <li>
           <Icon name="instagram" size={22} />
-          <span class="t1">{CONTACT.instagram}<small class="t2">Acompanhe no Instagram</small></span>
+          <a class="t1" href={LINKS.instagram} target="_blank" rel="noopener noreferrer" data-track="instagram_click" data-track-place="footer">{CONTACT.instagram}<small class="t2">Acompanhe no Instagram</small></a>
         </li>
-        <li><Icon name="pin" size={22} /><span class="t1">{CONTACT.location}</span></li>
-        <li><Icon name="mail" size={22} /><span class="t1">{CONTACT.email}</span></li>
+        <li>
+          <Icon name="pin" size={22} />
+          <a class="t1" href={base + '#loja'}>{CONTACT.location}<small class="t2">Como chegar</small></a>
+        </li>
+        {!isPending(CONTACT.email) && <li><Icon name="mail" size={22} /><span class="t1">{CONTACT.email}</span></li>}
       </ul>
     </div>
-    <div class="footer__col">
-      <h2 class="t3 footer__title">Atendimento</h2>
-      <ul role="list" class="footer__contact">
-        <li><Icon name="clock" size={22} /><span class="t1">{CONTACT.hours}</span></li>
-      </ul>
-    </div>
+    {!isPending(CONTACT.hours) && (
+      <div class="footer__col">
+        <h2 class="t3 footer__title">Atendimento</h2>
+        <ul role="list" class="footer__contact">
+          <li><Icon name="clock" size={22} /><span class="t1">{CONTACT.hours}</span></li>
+        </ul>
+      </div>
+    )}
     <div class="footer__bar">
       <p class="t2">© {CONTACT.year} Ateliê Doces Bruna. Todos os direitos reservados.</p>
       <div class="footer__bar-end">
         <p class="t3">Feito com cuidado. Sempre.</p>
-        <a class="t3 footer__presentation" href="/apresentacao/">Apresentação</a>
       </div>
     </div>
   </div>

@@ -14,15 +14,20 @@ interface Props {
   variant?: 'btn' | 'btn2' | 'btn3';
   icon?: 'whatsapp' | 'instagram';
   class?: string;
+  /** Evento de analytics (src/scripts/analytics.ts) e o local do clique. */
+  track?: string;
+  place?: string;
 }
 
-const { href, variant = 'btn', icon, class: className } = Astro.props;
+const { href, variant = 'btn', icon, class: className, track, place } = Astro.props;
 ---
 
 <a
   class:list={[variant, className]}
   href={href}
   {...linkAttrs(href)}
+  data-track={track}
+  data-track-place={place}
 >
   {icon && <Icon name={icon} size={22} />}
   <span><slot /></span>

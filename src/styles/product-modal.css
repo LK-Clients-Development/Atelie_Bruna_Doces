@@ -358,3 +358,26 @@ html.is-modal-open {
     transition: none;
   }
 }
+
+/* ----- V4: "Veja também" (outras criações da mesma coleção) ----- */
+.pmodal__related { margin-top: 20px; }
+.pmodal__related-title {
+  margin: 0 0 8px;
+  font-size: var(--text-micro);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-caramel-600);
+}
+.pmodal__related ul { display: grid; gap: 2px; }
+.pmodal__related a {
+  display: block;
+  padding: 8px 0;
+  min-height: 44px;
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  color: var(--color-text-strong);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-line);
+}
+.pmodal__related a:hover { color: var(--color-caramel-600); }

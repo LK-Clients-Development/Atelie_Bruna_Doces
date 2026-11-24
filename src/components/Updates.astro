@@ -1,0 +1,38 @@
+---
+/**
+ * Novidades e campanhas (V4). Lê src/data/commerce.ts → CAMPAIGNS. Sem campanha confirmada pela Bruna, mostra só uma
+ * chamada institucional para acompanhar as novidades no Instagram (nada comercial é inventado, nem de Natal).
+ */
+import SectionEyebrow from './SectionEyebrow.astro';
+import Icon from './Icon.astro';
+import { Image } from 'astro:assets';
+import { CAMPAIGNS, GO } from '../data/commerce';
+---
+
+<section class="section-v4 updates" id="novidades" aria-labelledby="novidades-titulo">
+  <div class="container">
+    <header class="updates__head">
+      <SectionEyebrow>Novidades</SectionEyebrow>
+      <h2 class="h2 updates__title" id="novidades-titulo">Fique por dentro <span class="h3">das novidades.</span></h2>
+    </header>
+    {CAMPAIGNS.length > 0 ? (
+      <ul class="updates__list" role="list">
+        {CAMPAIGNS.map((c) => (
+          <li class="update">
+            {c.image && <Image class="update__img" src={c.image} alt="" widths={[480, 800]} sizes="(max-width: 899px) 100vw, 40vw" />}
+            <h3 class="update__title">{c.title}</h3>
+            <p class="t1">{c.text}</p>
+            <a class="btn2" href={c.cta.href}><span>{c.cta.label}</span><Icon name="arrow" size={22} /></a>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <div class="updates__empty">
+        <p class="t1">Lançamentos, novos sabores e avisos do Ateliê são divulgados primeiro no Instagram.</p>
+        <a class="btn2" href={GO.instagram} target="_blank" rel="noopener noreferrer" data-track="instagram_click" data-track-place="novidades">
+          <Icon name="instagram" size={22} /><span>Acompanhar novidades</span>
+        </a>
+      </div>
+    )}
+  </div>
+</section>

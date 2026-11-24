@@ -15,7 +15,6 @@ export function buildStructuredData(siteUrl: string | null, ogImage: string | nu
   if (!siteUrl) missing.push('SEO.siteUrl / SITE_URL');
   if (isPending(CONTACT.phone)) missing.push('CONTACT.phone');
   if (isPending(CONTACT.location)) missing.push('CONTACT.location');
-  if (!BUSINESS_HOURS) missing.push('BUSINESS_HOURS');
   if (isPending(LINKS.instagram)) missing.push('LINKS.instagram');
   if (missing.length) {
     console.warn(`[structured-data] ligado, mas faltam dados reais: ${missing.join(', ')}. Nenhum JSON-LD emitido.`);
@@ -28,13 +27,19 @@ export function buildStructuredData(siteUrl: string | null, ogImage: string | nu
     name: BRAND.name,
     url: siteUrl,
     telephone: CONTACT.phone,
-    address: { '@type': 'PostalAddress', streetAddress: CONTACT.location },
-    openingHoursSpecification: (BUSINESS_HOURS ?? []).map((slot) => ({
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: slot.days,
-      opens: slot.opens,
-      closes: slot.closes,
-    })),
+    // só a cidade é verificada (endereço completo pendente): não inventar rua nem CEP
+    address: { '@type': 'PostalAddress', addressLocality: 'Itapeva', addressRegion: 'MG', addressCountry: 'BR' },
+    // horário só entra quando a Bruna confirmar (BUSINESS_HOURS em site.ts)
+    ...(BUSINESS_HOURS
+      ? {
+          openingHoursSpecification: BUSINESS_HOURS.map((slot) => ({
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: slot.days,
+            opens: slot.opens,
+            closes: slot.closes,
+          })),
+        }
+      : {}),
     sameAs: [LINKS.instagram],
     ...(SEO.description ? { description: SEO.description } : {}),
     ...(ogImage ? { image: ogImage } : {}),

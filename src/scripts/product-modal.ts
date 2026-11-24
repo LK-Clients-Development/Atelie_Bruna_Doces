@@ -22,6 +22,7 @@ interface ModalProduct {
   images: ModalImage[];
   whatsapp: string | null;
   yooga: string | null;
+  related?: Array<{ slug: string; name: string }>;
 }
 
 const modal = document.querySelector<HTMLElement>('[data-modal]');
@@ -43,6 +44,9 @@ if (modal && dataEl) {
   const desc = q<HTMLElement>('[data-m-desc]');
   const wa = q<HTMLAnchorElement>('[data-m-wa]');
   const yooga = q<HTMLAnchorElement>('[data-m-yooga]');
+  const share = q<HTMLAnchorElement>('[data-m-share]');
+  const related = q<HTMLElement>('[data-m-related]');
+  const relatedList = q<HTMLElement>('[data-m-related-list]');
 
   let current: ModalProduct | null = null;
   let index = 0;
@@ -145,6 +149,27 @@ if (modal && dataEl) {
     if (product.whatsapp) wa.href = product.whatsapp;
     yooga.hidden = !product.yooga;
     if (product.yooga) yooga.href = product.yooga;
+    // compartilhar: link direto para a ficha (?produto=slug) pelo WhatsApp (URL oficial wa.me, sem API)
+    const shareUrl = new URL(location.href);
+    shareUrl.search = '';
+    shareUrl.hash = '';
+    shareUrl.searchParams.set('produto', product.slug);
+    share.href = `https://wa.me/?text=${encodeURIComponent(`${product.name} · Ateliê Doces Bruna: ${shareUrl.toString()}`)}`;
+    share.dataset.trackProduct = product.slug;
+    wa.dataset.trackProduct = product.slug;
+    yooga.dataset.trackProduct = product.slug;
+    relatedList.replaceChildren(
+      ...(product.related ?? []).map((item) => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = `?produto=${encodeURIComponent(item.slug)}`;
+        a.dataset.open = item.slug;
+        a.textContent = item.name;
+        li.append(a);
+        return li;
+      }),
+    );
+    related.hidden = !(product.related && product.related.length);
     build(product);
     render();
   };
@@ -162,6 +187,7 @@ if (modal && dataEl) {
     const wasOpen = !modal.hidden;
     if (!wasOpen) opener = from ?? (document.activeElement as HTMLElement | null);
     fill(product);
+    window.atelieTrack?.('product_view', { product: slug });
     if (push) {
       history.pushState({ produto: slug }, '', urlFor(slug));
       pushed = true;

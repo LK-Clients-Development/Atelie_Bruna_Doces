@@ -16,10 +16,15 @@ import Wave from '../components/Wave.astro';
 import Seal from '../components/Seal.astro';
 import SectionEyebrow from '../components/SectionEyebrow.astro';
 import CtaButton from '../components/CtaButton.astro';
+import Icon from '../components/Icon.astro';
 import MediaFrame from '../components/MediaFrame.astro';
 import Footer from '../components/Footer.astro';
 import RegionalNews from '../components/RegionalNews.astro';
-import { LINKS, CLAIMS, FOUNDER, TESTIMONIALS, SEO } from '../data/site';
+import Favorites from '../components/Favorites.astro';
+import StoreSection from '../components/StoreSection.astro';
+import Updates from '../components/Updates.astro';
+import { LINKS, CLAIMS, FOUNDER, SEO } from '../data/site';
+import { GO } from '../data/commerce';
 import { IMAGES } from '../data/images';
 
 // Slots de imagem: troque o arquivo em src/data/images.ts, não aqui.
@@ -29,13 +34,11 @@ const {
   brunaRetrato, assinatura,
   criacoesBase, criacoesStrip, criacoesBolo, criacoesBoloM, criacoesBrigadeiros, criacoesCheesecake,
   jornadaCaderno, jornadaCadernoM, jornadaMorango, jornadaMesa, jornadaMesaM,
-  historiasMesa, historiasFatia,
   bastidoresConfeitando, bastidoresPeneira, bastidoresLaco,
   ctaCelebracao, florLinha,
 } = IMAGES;
 
 const claims = CLAIMS.join(' · ');
-const quotes = TESTIMONIALS; // PLACEHOLDER: ver src/data/site.ts
 ---
 
 <BaseLayout title={SEO.title} brandIntro>
@@ -58,10 +61,20 @@ const quotes = TESTIMONIALS; // PLACEHOLDER: ver src/data/site.ts
         <p class="t1 hero__lead">
           No Ateliê Doces Bruna, cada doce é feito à mão para transformar ocasiões em lembranças que ficam para sempre.
         </p>
-        <CtaButton href="#bruna">Conheça nossa história</CtaButton>
+        <div class="hero__actions">
+          <a class="btn" href={GO.delivery} target="_blank" rel="noopener noreferrer" data-track="delivery_click" data-track-place="hero">
+            <span>Fazer meu pedido</span><Icon name="arrow" size={22} />
+          </a>
+          <a class="btn3" href={GO.products} data-track-place="hero">
+            <span>Explorar o cardápio</span><Icon name="arrow" size={22} />
+          </a>
+        </div>
       </div>
       <div class="hero__seal"><Seal /></div>
     </section>
+
+    {/* V4 · Favoritos do Ateliê (curadoria do catálogo real: src/data/commerce.ts) */}
+    <Favorites />
 
     {/* 02 Nossa Essência (A Marca) */}
     <section class="section section--manifesto" id="a-marca" aria-label="Nossa essência">
@@ -161,6 +174,9 @@ const quotes = TESTIMONIALS; // PLACEHOLDER: ver src/data/site.ts
       </div>
     </section>
 
+    {/* V4 · Conheça nossa loja */}
+    <StoreSection />
+
     {/* 05 Encomendas */}
     <section class="section section--encomendas" id="encomendas" aria-label="Encomendas">
       <Wave shape="soft" />
@@ -175,7 +191,7 @@ const quotes = TESTIMONIALS; // PLACEHOLDER: ver src/data/site.ts
           <p class="t1 split__body">
             Cada encomenda começa com uma conversa. Você conta o momento, suas referências e preferências. O Ateliê cuida dos sabores, acabamentos e detalhes para transformar tudo em uma criação especial.
           </p>
-          <CtaButton class="split__cta" href={LINKS.whatsapp} icon="whatsapp">Começar uma encomenda</CtaButton>
+          <CtaButton class="split__cta" href={GO.customOrder} icon="whatsapp" track="custom_order_click" place="encomendas">Começar uma encomenda</CtaButton>
           <p class="t3 split__tags">Aniversários · Presentes · Celebrações · Momentos especiais</p>
         </div>
 
@@ -219,46 +235,14 @@ const quotes = TESTIMONIALS; // PLACEHOLDER: ver src/data/site.ts
       </div>
     </section>
 
+    {/* V4 · Novidades e campanhas (src/data/commerce.ts → CAMPAIGNS) */}
+    <Updates />
+
     {/* 05b Novidades regionais (Extrema e Camanducaia): dados em src/data/regional.ts */}
     <RegionalNews />
 
-    {/* 06 Histórias Reais */}
-    <section class="section section--historias" id="historias" aria-label="Histórias reais">
-      <Wave shape="swell" />
-      <div class="media2 media2--left" aria-hidden="true">
-        <Image src={historiasMesa} alt="" widths={[780, 1200]} sizes="(max-width: 899px) 100vw, 54vw" />
-      </div>
-      <MediaFrame class="historias__inset" subject="Fatia de bolo com morango" src={historiasFatia} alt="Fatia de bolo com morango em um prato" />
-      <div class="container section__inner historias">
-        <div class="historias__intro">
-          <SectionEyebrow>Histórias reais</SectionEyebrow>
-          <h2 class="h2">
-            <span class="line">Quem viveu,</span>{' '}
-            <span class="line">lembra com</span>{' '}
-            <span class="line h3">doçura.</span>
-          </h2>
-          <p class="t1 split__body">
-            Mais do que bolos e doces, cada criação do Ateliê faz parte de histórias, encontros e celebrações que ficam na memória.
-          </p>
-        </div>
-        {/* [PLACEHOLDER] depoimentos: não são relatos reais */}
-        <div class="quotes">
-          {quotes.map((q, i) => (
-            <figure class={`quote quote--${i + 1}`} data-provisional="depoimento">
-              <span class="quote__mark" aria-hidden="true">“</span>
-              <blockquote class="quote__text">
-                <p>{q.text.join(' ')}</p>
-              </blockquote>
-              <figcaption class="quote__by">
-                <span class="quote__rule" aria-hidden="true"></span>
-                <span class="t3 quote__who">Cliente Ateliê Doces Bruna</span>
-                <span class="t3 quote__tag">{q.tag}</span>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-      </div>
-    </section>
+    {/* 06 Histórias Reais: OCULTA na V4. Os depoimentos (TESTIMONIALS em src/data/site.ts) são texto de exemplo, não
+         relatos reais autorizados. Reativar só com depoimentos reais e autorizados pela Bruna. */}
 
     {/* 07 Bastidores */}
     <section class="section2 section2--bastidores" id="bastidores" aria-label="Por trás de cada detalhe">
@@ -268,7 +252,7 @@ const quotes = TESTIMONIALS; // PLACEHOLDER: ver src/data/site.ts
       </div>
       <div class="container section__inner split split--bastidores">
         <div class="split__text">
-          <SectionEyebrow>Por trás de cada detalhe</SectionEyebrow>
+          <SectionEyebrow>Acompanhe nosso dia a dia</SectionEyebrow>
           <h2 class="h2">
             <span class="line">O cuidado</span>{' '}
             <span class="line">que transforma</span>{' '}
@@ -278,6 +262,7 @@ const quotes = TESTIMONIALS; // PLACEHOLDER: ver src/data/site.ts
           <p class="t1 split__body">
             Antes de cada entrega, existem escolhas, ajustes e muito cuidado. São mãos que preparam, decoram, conferem e embalam, com o mesmo carinho que faz parte de cada criação do Ateliê Doces Bruna.
           </p>
+          <CtaButton class="split__cta" href={GO.instagram} variant="btn3" icon="instagram" track="instagram_click" place="bastidores">Acompanhar no Instagram</CtaButton>
         </div>
       </div>
       <div class="trio">
@@ -303,8 +288,8 @@ const quotes = TESTIMONIALS; // PLACEHOLDER: ver src/data/site.ts
             Conte o que você imagina. O Ateliê cuida dos detalhes para transformar sua celebração em algo feito para ser lembrado.
           </p>
           <div class="cta-actions">
-            <CtaButton href={LINKS.whatsapp} icon="whatsapp">Começar uma encomenda</CtaButton>
-            <CtaButton href={LINKS.instagram} variant="btn3" icon="instagram">Acompanhar no Instagram</CtaButton>
+            <CtaButton href={GO.delivery} track="delivery_click" place="cta-final">Fazer meu pedido</CtaButton>
+            <CtaButton href={GO.customOrder} variant="btn3" icon="whatsapp" track="custom_order_click" place="cta-final">Encomendar um bolo</CtaButton>
           </div>
         </div>
       </div>

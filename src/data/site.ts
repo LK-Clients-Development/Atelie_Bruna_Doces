@@ -39,20 +39,15 @@ export interface NavItem {
 }
 
 export const NAV: readonly NavItem[] = [
-  { label: 'A Marca', href: '#a-marca' },
-  { label: 'Bruna', href: '#bruna' },
+  { label: 'Início', href: '#inicio' },
   { label: 'Produtos', href: '/produtos', page: 'produtos' },
-  { label: 'Criações', href: '#criacoes' },
   { label: 'Encomendas', href: '#encomendas' },
-  { label: 'Contato', href: '#contato' },
+  { label: 'Nossa loja', href: '#loja' },
+  { label: 'Sobre', href: '#bruna' },
 ];
 
-/**
- * Navegação do HEADER: só o que representa uma página real (`page`). Regra: entra no Header uma página
- * real do site, um destino externo relevante (Instagram, WhatsApp) ou uma ação principal (Encomendar).
- * Não usar o Header como índice das seções da Home; `NAV` completo segue no Footer.
- */
-export const HEADER_NAV: readonly NavItem[] = NAV.filter((item) => item.page);
+/** Navegação do HEADER (V4): mesma lista do Footer, mais o CTA comercial "Fazer pedido" (LINKS.cardapio). */
+export const HEADER_NAV: readonly NavItem[] = NAV;
 
 /** Resolve o href de um item de NAV para a página atual (`base` = '' na Home, '/' nas demais). */
 export const navHref = (item: NavItem, base: string): string => (item.href.startsWith('#') ? base + item.href : item.href);
@@ -143,7 +138,8 @@ export const BUSINESS_HOURS: Array<{ days: string[]; opens: string; closes: stri
 // ---------------------------------------------------------------------------
 // Claims da faixa do Manifesto: NÃO VALIDADOS
 // ---------------------------------------------------------------------------
-export const CLAIMS = ['Feito à mão', 'Ingredientes reais', 'Histórias verdadeiras'] as const;
+/** "Histórias verdadeiras" saiu na V4: dependia dos depoimentos, que não são reais e foram ocultados. */
+export const CLAIMS = ['Feito à mão', 'Ingredientes reais'] as const;
 
 // ---------------------------------------------------------------------------
 // Fundadora: texto em 1ª pessoa e assinatura são PLACEHOLDER (exigem aprovação da Bruna)
@@ -182,9 +178,9 @@ export const SEO = {
   /** Título da home. Neutro e verdadeiro; não inventar localização nem claim. */
   title: BRAND.name,
   /** PENDENTE: não existe descrição aprovada. `null` = a tag nem é emitida. */
-  description: null as string | null,
+  description: 'Confeitaria artesanal em Itapeva, MG. Bolos, fatias, copos e doces feitos à mão. Peça pelo delivery ou encomende pelo WhatsApp.' as string | null,
   /** PENDENTE: URL final do site (também via env SITE_URL em astro.config.mjs). */
-  siteUrl: null as string | null,
+  siteUrl: 'https://ateliebrunadoces.vercel.app' as string | null,
   /** PENDENTE: imagem social oficial (1200×630), caminho dentro de public/. */
   ogImage: null as string | null,
   /** Favicon oficial (flor da marca), caminho dentro de public/. Gerado por tools/build-favicons.mjs. `null` usa um ícone vazio. */
@@ -207,7 +203,7 @@ export const SEO = {
  * `enabled` quando url, telefone, endereço, horário e redes forem reais.
  */
 export const STRUCTURED_DATA = {
-  enabled: false,
+  enabled: true,
   /** Tipo sugerido (confirmar): Bakery, LocalBusiness ou FoodEstablishment. */
   type: 'Bakery',
 } as const;

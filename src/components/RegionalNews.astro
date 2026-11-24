@@ -100,7 +100,7 @@ const ART: Record<string, { src: ImageMetadata; alt: string; pos: string; posM: 
 
               {cta ? (
                 <>
-                  <a class="rbtn" href={cta.href} {...linkAttrs(cta.href)}>
+                  <a class="rbtn" href={cta.href} {...linkAttrs(cta.href)} data-track="regional_group_click" data-track-place={city.id}>
                     <Icon name="whatsapp" size={22} />
                     <span>{cta.label}</span>
                     <Icon name="arrow" size={22} />

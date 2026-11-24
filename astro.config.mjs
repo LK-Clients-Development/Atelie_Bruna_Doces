@@ -8,7 +8,7 @@ const PRESENTATION_DEV = 'http://localhost:5183';
 // SITE_URL (env) é a URL final: liga canonical, og:url, og:image absoluta e o sitemap.
 // Vazio enquanto o site não tem endereço definido (ver docs/production-checklist.md).
 export default defineConfig({
-  site: process.env.SITE_URL || undefined,
+  site: process.env.SITE_URL || 'https://ateliebrunadoces.vercel.app',
   // Barra flutuante do `astro dev` (Inspect, Audit, Settings). Só existe em desenvolvimento; desligada para não aparecer
   // nas capturas e nos testes de celular. O build de produção nunca a inclui.
   devToolbar: { enabled: false },

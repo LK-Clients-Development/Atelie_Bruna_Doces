@@ -7,8 +7,10 @@ import '@fontsource-variable/montserrat/wght.css';
 import '../styles/global.css';
 import '../styles/content.css'; // depois do global: as classes de seção vencem as tags tipadas
 import '../styles/responsive.css'; // toda a adaptação tablet/mobile num só lugar
+import '../styles/v4.css'; // V4: Favoritos, loja, novidades, barra mobile
 import '../styles/motion.css'; // estados iniciais do motion (só valem com html.motion-ready)
 import Header from '../components/Header.astro';
+import MobileDock from '../components/MobileDock.astro';
 import BrandIntro from '../components/BrandIntro.astro';
 import BrandIntroHead from '../components/BrandIntroHead.astro';
 import { BRAND, SEO, STRUCTURED_DATA } from '../data/site';
@@ -73,6 +75,10 @@ const jsonLd = STRUCTURED_DATA.enabled ? buildStructuredData(seo.siteUrl, seo.og
     <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
     <Header {...header} />
     <slot />
+    <MobileDock current={header.current === 'produtos' ? 'produtos' : 'inicio'} base={header.base ?? ''} />
+    <script>
+      import '../scripts/analytics.ts';
+    </script>
     <script>
       // O motion sobe com o navegador ocioso (a entrada do Hero é CSS e não depende dele): o
       // download e a execução do GSAP não disputam a thread com a pintura do LCP.

@@ -63,6 +63,10 @@ const modalData = PORTFOLIO.map((p) => ({
   images: getDisplayableImages(p).map((i) => ({ src: i.src, width: i.width, height: i.height, alt: i.alt })),
   whatsapp: p.purchase.whatsappHref,
   yooga: p.purchase.yoogaHref,
+  // "Veja também": até 3 criações da mesma coleção editorial (só nome e slug; a ficha abre pelo mesmo modal)
+  related: PORTFOLIO.filter((o) => o.category === p.category && o.slug !== p.slug)
+    .slice(0, 3)
+    .map((o) => ({ slug: o.slug, name: o.name })),
 }));
 
 // Hero: composição editorial com imagens aprovadas já no projeto (bolo de cenoura e fatia = geradas e aprovadas,
@@ -215,11 +219,16 @@ const cakesLabel = menuReady ? page.cakes.ctaMenu : page.cakes.ctaFallback;
           <p class="pmodal__cat" data-m-cat></p>
           <h2 class="pmodal__title" id="pmodal-title" data-m-title></h2>
           <p class="pmodal__desc" data-m-desc></p>
+          <div class="pmodal__related" data-m-related hidden>
+            <p class="pmodal__related-title">Veja também</p>
+            <ul role="list" data-m-related-list></ul>
+          </div>
         </div>
       </div>
       <div class="pmodal__actions">
-        <a class="pbtn" href={LINKS.whatsapp} target="_blank" rel="noopener" data-m-wa><Icon name="whatsapp" size={22} /><span>Quero este produto</span><span class="sr-only"> (abre o WhatsApp em nova aba)</span></a>
-        <a class="pbtn pbtn--ghost" href={LINKS.cardapio} target="_blank" rel="noopener" data-m-yooga><span>Ver cardápio no Yooga</span><span class="sr-only"> (abre em nova aba)</span><Icon name="arrow" size={22} /></a>
+        <a class="pbtn" href={LINKS.whatsapp} target="_blank" rel="noopener" data-m-wa data-track="whatsapp_click" data-track-place="ficha"><Icon name="whatsapp" size={22} /><span>Quero este produto</span><span class="sr-only"> (abre o WhatsApp em nova aba)</span></a>
+        <a class="pbtn pbtn--ghost" href="https://wa.me/" target="_blank" rel="noopener noreferrer" data-m-share data-track="product_share" data-track-place="ficha"><Icon name="whatsapp" size={22} /><span>Compartilhar</span><span class="sr-only"> (abre o WhatsApp em nova aba)</span></a>
+        <a class="pbtn pbtn--ghost" href={LINKS.cardapio} target="_blank" rel="noopener" data-m-yooga data-track="delivery_click" data-track-place="ficha"><span>Ver cardápio no Yooga</span><span class="sr-only"> (abre em nova aba)</span><Icon name="arrow" size={22} /></a>
       </div>
     </div>
   </div>
