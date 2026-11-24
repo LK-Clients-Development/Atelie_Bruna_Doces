@@ -1,0 +1,82 @@
+[
+ {
+  "label": "/ direto",
+  "expectSplash": true,
+  "splash": true,
+  "ok": true,
+  "path": "/",
+  "pending": true,
+  "overlayInDom": true,
+  "overlayVisible": true
+ },
+ {
+  "label": "/produtos direto",
+  "expectSplash": false,
+  "splash": false,
+  "ok": true,
+  "path": "/produtos",
+  "pending": false,
+  "overlayInDom": false,
+  "overlayVisible": false
+ },
+ {
+  "label": "/produtos atualizar (reload)",
+  "expectSplash": false,
+  "splash": false,
+  "ok": true,
+  "path": "/produtos",
+  "pending": false,
+  "overlayInDom": false,
+  "overlayVisible": false
+ },
+ {
+  "label": "/ direto de novo",
+  "expectSplash": true,
+  "splash": true,
+  "ok": true,
+  "path": "/",
+  "pending": true,
+  "overlayInDom": true,
+  "overlayVisible": true
+ },
+ {
+  "label": "home -> clique em Produtos (header)",
+  "expectSplash": false,
+  "splash": false,
+  "ok": true,
+  "path": "/produtos",
+  "pending": false,
+  "overlayInDom": false,
+  "overlayVisible": false
+ },
+ {
+  "label": "voltar (produtos -> home)",
+  "expectSplash": true,
+  "splash": false,
+  "ok": false,
+  "path": "/",
+  "pending": false,
+  "overlayInDom": false,
+  "overlayVisible": false
+ },
+ {
+  "label": "avançar (home -> produtos)",
+  "expectSplash": false,
+  "splash": false,
+  "ok": true,
+  "path": "/produtos",
+  "pending": false,
+  "overlayInDom": false,
+  "overlayVisible": false
+ },
+ {
+  "label": "produtos -> clique em logo/home",
+  "expectSplash": true,
+  "splash": true,
+  "ok": true,
+  "path": "/",
+  "pending": true,
+  "overlayInDom": true,
+  "overlayVisible": true
+ }
+]

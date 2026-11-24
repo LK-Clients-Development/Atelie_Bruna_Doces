@@ -10,7 +10,7 @@
  * assinatura, depoimentos (`data-provisional`) e dados de contato
  * ([TELEFONE] etc., src/data/site.ts). Nada aqui é conteúdo factual.
  */
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Wave from '../components/Wave.astro';
 import Seal from '../components/Seal.astro';
@@ -26,6 +26,8 @@ import Updates from '../components/Updates.astro';
 import { LINKS, CLAIMS, FOUNDER, SEO } from '../data/site';
 import { GO } from '../data/commerce';
 import { IMAGES } from '../data/images';
+import heroDesktopSrc from '../assets/hero/hero-bruna-desktop.webp';
+import heroMobileSrc from '../assets/hero/hero-bruna-mobile.webp';
 
 // Slots de imagem: troque o arquivo em src/data/images.ts, não aqui.
 const {
@@ -38,6 +40,20 @@ const {
   ctaCelebracao, florLinha,
 } = IMAGES;
 
+// Hero V5: Bruna como rosto da marca. Duas fotos aprovadas (arte dirigida, sem recorte da horizontal no mobile).
+// <picture> com AVIF + WebP: cada dispositivo baixa UMA foto (o `media` escolhe a fonte; só a <img> pede o arquivo).
+const HERO_Q = 90; // sem compressão agressiva: rosto, pele e chocolate preservados
+const variants = async (src: ImageMetadata, widths: number[]) => {
+  const make = async (format: 'avif' | 'webp') => {
+    const set = await Promise.all(widths.map((width) => getImage({ src, width, format, quality: HERO_Q })));
+    return set.map((img) => `${img.src} ${img.options.width}w`).join(', ');
+  };
+  const fallback = await getImage({ src, width: widths[widths.length - 1], format: 'webp', quality: HERO_Q });
+  return { avif: await make('avif'), webp: await make('webp'), fallback };
+};
+const heroDesktop = await variants(heroDesktopSrc, [960, 1280, 1672]); // nativa: 1672 × 941 (sem upscale)
+const heroMobile = await variants(heroMobileSrc, [480, 720, 941]); // nativa: 941 × 1672
+
 const claims = CLAIMS.join(' · ');
 ---
 
@@ -45,11 +61,23 @@ const claims = CLAIMS.join(' · ');
   <main id="conteudo" tabindex="-1">
     {/* 01 Hero */}
     <section class="hero" id="inicio" aria-label="Início">
-      <div class="hero__photo" aria-hidden="true">
-        <Image src={heroBg} alt="" loading="eager" fetchpriority="high" widths={[800, 1200]} sizes="(max-width: 899px) 100vw, 56vw" />
-      </div>
-      <div class="hero__base" aria-hidden="true">
-        <Image src={heroBase} alt="" widths={[700]} sizes="49vw" />
+      <div class="hero__photo">
+        <picture>
+          <source media="(max-width: 899px)" type="image/avif" srcset={heroMobile.avif} sizes="(min-width: 600px) 520px, 100vw" />
+          <source media="(max-width: 899px)" type="image/webp" srcset={heroMobile.webp} sizes="(min-width: 600px) 520px, 100vw" />
+          <source type="image/avif" srcset={heroDesktop.avif} sizes="min(100vw, 1860px)" />
+          <source type="image/webp" srcset={heroDesktop.webp} sizes="min(100vw, 1860px)" />
+          <img
+            class="hero__img"
+            src={heroDesktop.fallback.src}
+            width={1672}
+            height={941}
+            alt="Bruna, confeiteira do Ateliê Doces Bruna, sorrindo ao lado de um bolo de chocolate com brigadeiros"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </picture>
       </div>
       <div class="hero__scrim" aria-hidden="true"></div>
       <div class="container hero__inner section__inner">

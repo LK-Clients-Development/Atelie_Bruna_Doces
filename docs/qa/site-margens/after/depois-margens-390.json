@@ -1,0 +1,128 @@
+{
+ "w": 390,
+ "margens": [
+  {
+   "secao": "hero",
+   "itens": [
+    {
+     "c": ".split__text, .hero__inner, .historias__intro",
+     "left": 0,
+     "rightGap": 0
+    },
+    {
+     "c": ".hero__photo",
+     "left": 0,
+     "rightGap": 0
+    }
+   ]
+  },
+  {
+   "secao": "essencia",
+   "itens": [
+    {
+     "c": ".split__text, .hero__inner, .historias__intro",
+     "left": 22,
+     "rightGap": 22
+    },
+    {
+     "c": ".collage",
+     "left": 22,
+     "rightGap": 22
+    },
+    {
+     "c": ".decor-base",
+     "left": 0,
+     "rightGap": 390
+    }
+   ]
+  },
+  {
+   "secao": "bruna",
+   "itens": [
+    {
+     "c": ".split__text, .hero__inner, .historias__intro",
+     "left": 0,
+     "rightGap": 390
+    },
+    {
+     "c": ".media2",
+     "left": 0,
+     "rightGap": 0
+    }
+   ]
+  },
+  {
+   "secao": "criacoes",
+   "itens": [
+    {
+     "c": ".split__text, .hero__inner, .historias__intro",
+     "left": 0,
+     "rightGap": 390
+    },
+    {
+     "c": ".collage",
+     "left": 0,
+     "rightGap": 0
+    },
+    {
+     "c": ".decor-base",
+     "left": 0,
+     "rightGap": 390
+    }
+   ]
+  },
+  {
+   "secao": "encomendas",
+   "itens": [
+    {
+     "c": ".split__text, .hero__inner, .historias__intro",
+     "left": 22,
+     "rightGap": 22
+    },
+    {
+     "c": ".journey",
+     "left": 22,
+     "rightGap": 22
+    }
+   ]
+  },
+  {
+   "secao": "bastidores",
+   "itens": [
+    {
+     "c": ".split__text, .hero__inner, .historias__intro",
+     "left": 0,
+     "rightGap": 390
+    },
+    {
+     "c": ".media2",
+     "left": 0,
+     "rightGap": 0
+    },
+    {
+     "c": ".trio",
+     "left": 22,
+     "rightGap": 22
+    }
+   ]
+  },
+  {
+   "secao": "cta",
+   "itens": [
+    {
+     "c": ".split__text, .hero__inner, .historias__intro",
+     "left": 22,
+     "rightGap": 22
+    },
+    {
+     "c": ".media2",
+     "left": 0,
+     "rightGap": 0
+    }
+   ]
+  }
+ ],
+ "issues": [],
+ "horizontalScrollReal": 0,
+ "console": []
+}

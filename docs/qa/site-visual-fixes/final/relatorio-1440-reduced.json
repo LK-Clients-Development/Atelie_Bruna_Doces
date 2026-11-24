@@ -1,0 +1,27 @@
+{
+ "w": 1440,
+ "h": 900,
+ "mode": "reduced-motion",
+ "issues": [],
+ "notes": [],
+ "shots": [
+  "1440-afeto-rm-3.png",
+  "1440-criacoes-rm-3.png",
+  "1440-encomendas-rm-3.png",
+  "1440-historias-rm-3.png"
+ ],
+ "broken": [],
+ "horizontalScroll": 0,
+ "docScrollWidthExcess": 0,
+ "reducedCheck": {
+  "bad": [],
+  "framesSemBorda": 0,
+  "htmlClass": ""
+ },
+ "produtos": {
+  "intro": false,
+  "horizontalScroll": 0,
+  "broken": 0
+ },
+ "console": []
+}

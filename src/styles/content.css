@@ -39,6 +39,10 @@
 .section--historias { --h2-scale: 0.865; }
 /* `main` eleva a especificidade: global.css é carregado depois deste arquivo */
 main .h2 { font-size: calc(var(--text-h2) * var(--h2-scale, 1)); }
+/* Encomendas: o título (uma linha por frase) invade a coluna da jornada; acima de 1440px o --text-h2 para de crescer
+   com a tela mas o container também (1280px), então o título passa a ocupar proporcionalmente mais e encosta no "01".
+   Trava no tamanho de 1440px (≈ 88px), onde a composição foi desenhada. */
+main .section--encomendas .h2 { font-size: min(calc(var(--text-h2) * var(--h2-scale, 1)), 5.525rem); }
 
 /* cada linha do título é uma linha visual, como no wireframe (só no desktop) */
 @media (min-width: 900px) {
@@ -88,12 +92,26 @@ main .h2 { font-size: calc(var(--text-h2) * var(--h2-scale, 1)); }
 }
 
 .hero__seal {
+  /* V5: o selo sai de cima da foto (rosto, bolo) e fica no canto inferior esquerdo, sobre o cacau */
   position: absolute;
-  top: 17.2%;
-  right: 3%;
+  bottom: calc(var(--wave-h) * 0.3 + 14px);
+  left: max(var(--layout-gutter), calc((100% - var(--layout-max)) / 2));
   z-index: var(--z-content);
-  width: clamp(110px, 14.6vw, 210px);
+  width: clamp(84px, 8vw, 124px);
 }
+
+/* V5: botões empilhados (a foto da Bruna e o bolo ocupam a direita; lado a lado os botões alcançariam o bolo) */
+.hero__actions {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  margin-top: clamp(22px, 1.95vw, 28px);
+}
+
+.hero__inner .hero__actions .btn {
+  margin-top: 0;
+}
+
 
 /* ---------- 02 Claims na crista da onda ---------- */
 .claims {
@@ -489,6 +507,16 @@ main .h2 { font-size: calc(var(--text-h2) * var(--h2-scale, 1)); }
 
 .split--bastidores .split__body {
   max-width: min(22em, 36vw);
+}
+
+/* V5: o botão do Instagram não pode invadir as fotos (o trio começa em 40% da seção): largura limitada ao que
+   sobra à esquerda delas; em telas estreitas o rótulo quebra em duas linhas em vez de passar por baixo das fotos */
+.split--bastidores .split__cta {
+  padding-inline: 1.7em;
+  letter-spacing: 0.14em;
+  white-space: normal;
+  text-align: center;
+  max-width: min(380px, calc(40vw - max(var(--layout-gutter), (100vw - var(--layout-max)) / 2) - 16px));
 }
 
 .trio {

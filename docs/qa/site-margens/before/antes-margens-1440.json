@@ -1,0 +1,128 @@
+{
+ "w": 1440,
+ "margens": [
+  {
+   "secao": "hero",
+   "itens": [
+    {
+     "c": ".split__text, .hero__inner, .historias__intro",
+     "left": 0,
+     "rightGap": 0
+    },
+    {
+     "c": ".hero__photo",
+     "left": 639,
+     "rightGap": 0
+    }
+   ]
+  },
+  {
+   "secao": "essencia",
+   "itens": [
+    {
+     "c": ".split__text, .hero__inner, .historias__intro",
+     "left": 80,
+     "rightGap": 787
+    },
+    {
+     "c": ".collage",
+     "left": 653,
+     "rightGap": 0
+    },
+    {
+     "c": ".decor-base",
+     "left": 0,
+     "rightGap": 792
+    }
+   ]
+  },
+  {
+   "secao": "bruna",
+   "itens": [
+    {
+     "c": ".split__text, .hero__inner, .historias__intro",
+     "left": 80,
+     "rightGap": 726
+    },
+    {
+     "c": ".media2",
+     "left": 619,
+     "rightGap": 0
+    }
+   ]
+  },
+  {
+   "secao": "criacoes",
+   "itens": [
+    {
+     "c": ".split__text, .hero__inner, .historias__intro",
+     "left": 80,
+     "rightGap": 883
+    },
+    {
+     "c": ".collage",
+     "left": 557,
+     "rightGap": 0
+    },
+    {
+     "c": ".decor-base",
+     "left": 0,
+     "rightGap": 886
+    }
+   ]
+  },
+  {
+   "secao": "encomendas",
+   "itens": [
+    {
+     "c": ".split__text, .hero__inner, .historias__intro",
+     "left": 80,
+     "rightGap": 899
+    },
+    {
+     "c": ".journey",
+     "left": 541,
+     "rightGap": 0
+    }
+   ]
+  },
+  {
+   "secao": "bastidores",
+   "itens": [
+    {
+     "c": ".split__text, .hero__inner, .historias__intro",
+     "left": 80,
+     "rightGap": 770
+    },
+    {
+     "c": ".media2",
+     "left": 680,
+     "rightGap": 0
+    },
+    {
+     "c": ".trio",
+     "left": 576,
+     "rightGap": 0
+    }
+   ]
+  },
+  {
+   "secao": "cta",
+   "itens": [
+    {
+     "c": ".split__text, .hero__inner, .historias__intro",
+     "left": 80,
+     "rightGap": 80
+    },
+    {
+     "c": ".media2",
+     "left": 662,
+     "rightGap": 0
+    }
+   ]
+  }
+ ],
+ "issues": [],
+ "horizontalScrollReal": 0,
+ "console": []
+}

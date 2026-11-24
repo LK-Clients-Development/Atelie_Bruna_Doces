@@ -148,6 +148,9 @@ if (modal && dataEl) {
     wa.hidden = !product.whatsapp;
     if (product.whatsapp) wa.href = product.whatsapp;
     yooga.hidden = !product.yooga;
+    // bolo por encomenda (sem Yooga): o CTA é o fluxo de encomenda pelo WhatsApp
+    const waLabel = wa.querySelector('span');
+    if (waLabel) waLabel.textContent = product.yooga ? 'Quero este produto' : 'Encomendar pelo WhatsApp';
     if (product.yooga) yooga.href = product.yooga;
     // compartilhar: link direto para a ficha (?produto=slug) pelo WhatsApp (URL oficial wa.me, sem API)
     const shareUrl = new URL(location.href);

@@ -35,7 +35,14 @@ export const STORE = {
   state: 'MG',
   address: null as string | null,
   hours: null as string | null,
-  directions: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('Ateliê Doces Bruna Itapeva MG')}`,
+  /**
+   * Ficha oficial no Google Maps ("Ateliê doces Bruna", Confeitaria, Itapeva-MG), validada em 2026-11-24: telefone
+   * (35) 98423-5184 e delivery.yooga.app da ficha batem com os do site. As coordenadas vêm da própria URL da ficha
+   * (não são estimadas). "Como chegar" abre a ficha; o iframe usa o embed público (sem chave de API, sem custo).
+   */
+  directions:
+    'https://www.google.com/maps/place/Ateli%C3%AA+doces+Bruna/@-22.7713384,-46.2171186,17z/data=!4m6!3m5!1s0x94ceabb872cddb43:0x2a7f4f42600e3326!8m2!3d-22.7713384!4d-46.2171186!16s%2Fg%2F11y5h9_hzq',
+  mapEmbed: 'https://maps.google.com/maps?q=-22.7713384,-46.2171186&z=17&hl=pt-BR&output=embed',
 } as const;
 
 /**

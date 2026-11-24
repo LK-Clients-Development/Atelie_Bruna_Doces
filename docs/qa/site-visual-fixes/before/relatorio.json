@@ -1,0 +1,37 @@
+{
+  "reduced": false,
+  "issues": [
+    "1440 /: overflow horizontal",
+    "390 /: overflow horizontal"
+  ],
+  "pages": [
+    {
+      "w": 1440,
+      "page": "/",
+      "introPresentAt1s": true,
+      "introStillAfter": false
+    },
+    {
+      "w": 1440,
+      "page": "/produtos",
+      "introAt0_9s": {
+        "pending": false,
+        "overlay": false
+      }
+    },
+    {
+      "w": 390,
+      "page": "/",
+      "introPresentAt1s": true,
+      "introStillAfter": false
+    },
+    {
+      "w": 390,
+      "page": "/produtos",
+      "introAt0_9s": {
+        "pending": false,
+        "overlay": false
+      }
+    }
+  ]
+}

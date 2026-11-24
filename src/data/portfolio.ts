@@ -20,6 +20,9 @@ import { CATEGORIES, type Product } from './products';
 import { getProductDescription, getProductDisplayName } from '../lib/catalog';
 import { PORTFOLIO_COPY } from './portfolio-copy';
 import { GENERATED_IMAGES, type GeneratedEntry } from './portfolio-generated';
+import diaDasMaesHero from '../assets/portfolio/bolo-especial-dia-das-maes/01-hero.webp';
+import chocolateMorangosHero from '../assets/portfolio/bolo-chocolate-morangos/01-hero.webp';
+import especialChocolateMorangosHero from '../assets/portfolio/bolo-especial-chocolate-morangos/01-hero.webp';
 
 // ---------------------------------------------------------------------------
 // Tipos
@@ -73,7 +76,7 @@ export interface GalleryImage {
   id: string;
   /** URL pública exibível. null = mapeada mas NÃO publicada (ex.: Instagram sem autorização). */
   src: string | null;
-  source: 'yooga' | 'instagram' | 'generated';
+  source: 'yooga' | 'instagram' | 'generated' | 'owner';
   /** Página de origem (publicação do Instagram) ou cardápio. */
   sourceUrl: string;
   status: GalleryImageStatus;
@@ -88,7 +91,7 @@ export interface GalleryImage {
     origin: string;
     observedAt: string;
     /** PUBLIC_CDN: imagem pública do cardápio Yooga, usada sem cópia local · PENDING: sem autorização, não exibir. */
-    authorization: 'PUBLIC_CDN' | 'PENDING' | 'GENERATED';
+    authorization: 'PUBLIC_CDN' | 'PENDING' | 'GENERATED' | 'OWNER_APPROVED';
     match: MatchState;
     note?: string;
     /** Só para `APPROVED_GENERATED`. */
@@ -444,8 +447,98 @@ const extraProducts: PortfolioProduct[] = EXTRA_PRODUCTS.map((extra) =>
   ),
 );
 
+// ---------------------------------------------------------------------------
+// Bolos por encomenda com fotografia fornecida e aprovada pelo dono do projeto (2026-11-24)
+// ---------------------------------------------------------------------------
+/**
+ * Bolos inteiros e personalizados: NÃO estão no Yooga nem são pronta-entrega. A compra é só pelo WhatsApp (encomenda).
+ * NOMES PROVISÓRIOS: confirmar com a Bruna. Não há sabores de recheio, ingredientes, preços, pesos, tamanhos nem
+ * disponibilidade: as descrições dizem apenas o que a foto mostra. Só o slot 01-hero está cadastrado (as demais
+ * variações serão produzidas depois; a ficha funciona com uma foto).
+ */
+const OWNER_CAKES: Array<{
+  slug: string;
+  name: string;
+  description: string;
+  alt: string;
+  file: { src: string; width: number; height: number };
+}> = [
+  {
+    slug: 'bolo-chocolate-morangos',
+    name: 'Bolo de Chocolate com Morangos',
+    description: 'Bolo artesanal com camadas de massa escura, recheio claro e acabamento delicado com morangos frescos.',
+    alt: 'Bolo de camadas de massa escura e recheio claro, com morangos frescos no topo',
+    file: chocolateMorangosHero,
+  },
+  {
+    slug: 'bolo-especial-chocolate-morangos',
+    name: 'Bolo Especial de Chocolate e Morangos',
+    description: 'Bolo artesanal com camadas aparentes, recheio claro, cobertura de chocolate, granulados e morangos na decoração superior.',
+    alt: 'Bolo com camadas aparentes, cobertura de chocolate com granulado e morangos ao redor, com o selo Ateliê Doces Bruna',
+    file: especialChocolateMorangosHero,
+  },
+  // por último: cai no tile vertical da galeria, que não corta o topper (nos tiles largos ele seria recortado)
+  {
+    slug: 'bolo-especial-dia-das-maes',
+    name: 'Bolo Especial — Dia das Mães',
+    description:
+      'Bolo artesanal com camadas aparentes, recheio claro, morangos, granulado de chocolate e decoração personalizada com flores, laço dourado e topper comemorativo.',
+    alt: 'Bolo com camadas aparentes e morangos, decorado com flores rosa, laço dourado e topper em formato de coração com a palavra Mãe',
+    file: diaDasMaesHero,
+  },
+];
+
+const ownerCakes: PortfolioProduct[] = OWNER_CAKES.map((cake) => {
+  const id = `owner-${cake.slug}`;
+  const image: GalleryImage = {
+    id: `${id}-hero`,
+    src: cake.file.src,
+    source: 'owner',
+    sourceUrl: LINKS.instagram,
+    status: 'PROVISIONAL',
+    sourceStatus: 'PUBLICABLE',
+    alt: cake.alt,
+    orientation: orientationOf(cake.file.width, cake.file.height),
+    width: cake.file.width,
+    height: cake.file.height,
+    isPrimary: true,
+    provenance: {
+      origin: 'Fotografia fornecida e aprovada para integração visual pelo dono do projeto (chat, 2026-11-24)',
+      observedAt: '2026-11-24',
+      authorization: 'OWNER_APPROVED',
+      match: 'MATCH_CONFIRMED',
+      note: 'Slot 01-hero. Aguarda confirmação da Bruna (nome, descrição e disponibilidade).',
+    },
+  };
+  const product = build(
+    {
+      id,
+      slug: cake.slug,
+      name: cake.name,
+      category: 'bolos',
+      sourceProductId: null,
+      sourceCategoryId: null,
+      status: 'CAKES_MENU_PENDING',
+      portfolioSource: 'yooga',
+      shortDescription: cake.description,
+      editorialDescription: null,
+      copyStatus: 'NEEDS_BRUNA_APPROVAL',
+      source: null,
+    },
+    [image],
+  );
+  // encomenda pelo WhatsApp (sem Yooga, sem pronta-entrega)
+  product.purchase = {
+    type: 'WHATSAPP',
+    whatsappHref: `${LINKS.whatsapp}?text=${encodeURIComponent(`Olá! Gostaria de encomendar o bolo ${cake.name}.`)}`,
+    yoogaHref: null,
+  };
+  product.published = true;
+  return product;
+});
+
 /** Todos os itens do portfólio (inclui os ainda não publicados). */
-export const PORTFOLIO_ALL: PortfolioProduct[] = [...yoogaProducts, ...extraProducts];
+export const PORTFOLIO_ALL: PortfolioProduct[] = [...yoogaProducts, ...ownerCakes, ...extraProducts];
 
 /** Itens da galeria pública, agrupados na ordem das categorias editoriais. */
 export const PORTFOLIO: PortfolioProduct[] = EDITORIAL_CATEGORIES.flatMap((category) =>

@@ -232,7 +232,6 @@
   }
 
   /* camadas decorativas saem: menos elementos simultâneos */
-  .hero__base,
   .hero__seal,
   .decor-base,
   .decor-strip {
@@ -261,8 +260,12 @@
     margin-top: clamp(18px, 4.6vw, 30px);
   }
 
-  .hero__inner .btn {
+  .hero__actions {
     margin-top: clamp(24px, 6vw, 36px);
+  }
+
+  .hero__actions .btn,
+  .hero__actions .btn3 {
     width: min(100%, 24rem);
   }
 
@@ -270,26 +273,36 @@
     display: none;
   }
 
+  /* V5 mobile: foto VERTICAL da Bruna primeiro (rosto e bolo sem texto por cima, abaixo do header); o texto entra pela
+     base da foto, que se funde ao cacau. Não usa a horizontal recortada. */
   .hero__photo {
     position: relative;
     inset: auto;
-    order: 2;
+    order: 0;
     width: 100%;
+    max-width: 520px;
     height: auto;
-    aspect-ratio: 1 / 0.95;
-    margin-top: clamp(-40px, -6vw, -20px);
+    aspect-ratio: 941 / 1440;
+    margin: var(--header-h) auto 0;
     -webkit-mask-image:
-      linear-gradient(to bottom, transparent 0, #000 26%),
-      linear-gradient(to right, transparent 0, #000 14%);
+      linear-gradient(to bottom, transparent 0, #000 7%, #000 88%, transparent 100%),
+      linear-gradient(to right, transparent 0, #000 14%, #000 86%, transparent 100%);
     -webkit-mask-composite: source-in;
     mask-image:
-      linear-gradient(to bottom, transparent 0, #000 26%),
-      linear-gradient(to right, transparent 0, #000 14%);
+      linear-gradient(to bottom, transparent 0, #000 7%, #000 88%, transparent 100%),
+      linear-gradient(to right, transparent 0, #000 14%, #000 86%, transparent 100%);
     mask-composite: intersect;
   }
 
   .hero__photo img {
-    object-position: 62% 50%;
+    object-position: 50% 0;
+  }
+
+  .hero__inner {
+    order: 1;
+    margin-top: calc(-1 * clamp(10px, 3vw, 24px));
+    padding-top: 0;
+    padding-bottom: calc(var(--wave-h) + 8px);
   }
 
   /* ----- fotos de fundo viram blocos verticais, fundidos ao texto ----- */
@@ -665,9 +678,6 @@
     --rail-card: min(42vw, 340px);
   }
 
-  .hero__photo {
-    aspect-ratio: 16 / 10;
-  }
 
   .collage--manifesto {
     gap: 16px;

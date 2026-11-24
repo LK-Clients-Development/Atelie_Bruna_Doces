@@ -1,7 +1,7 @@
 ---
 /**
  * Conheça nossa loja (V4). Composição TIPOGRÁFICA: ainda não há fotografias reais da loja e nenhuma foto de
- * terceiros/fachada inventada é usada. Só aparece o que é verificável (cidade); endereço e horário ficam de fora
+ * terceiros/fachada inventada é usada. Só aparece o que é verificável (cidade e a ficha do Google Maps); endereço e horário ficam de fora
  * enquanto a Bruna não confirmar (src/data/commerce.ts → STORE). Pendências: PENDING_ITEMS em site.ts.
  */
 import SectionEyebrow from './SectionEyebrow.astro';
@@ -26,12 +26,14 @@ import { STORE, GO } from '../data/commerce';
         </a>
       </div>
     </div>
-    <div class="store__card" role="group" aria-label="Localização">
-      <p class="t3 store__card-label">Onde estamos</p>
-      <p class="store__city">{STORE.city}<span class="h3">, {STORE.state}</span></p>
-      <p class="t2 store__note">Chame no WhatsApp para combinar sua visita.</p>
-      {STORE.address && <p class="t1">{STORE.address}</p>}
-      {STORE.hours && <p class="t1">{STORE.hours}</p>}
+    <div class="store__map">
+      <iframe
+        title="Mapa: localização do Ateliê Doces Bruna em Itapeva, MG"
+        src={STORE.mapEmbed}
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen
+      ></iframe>
     </div>
   </div>
 </section>

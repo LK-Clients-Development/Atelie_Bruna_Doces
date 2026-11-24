@@ -1,0 +1,30 @@
+{
+ "status": "complete",
+ "splash": false,
+ "removidos": {
+  "ccard": 0,
+  "pcollections": 0,
+  "texto17": false
+ },
+ "layout": {
+  "heroBottom": 1057,
+  "buscaEChipsFim": 1057,
+  "catalogoTopo": 1057,
+  "primeiroCapituloId": "bolos",
+  "primeiroCapituloTopo": 1057,
+  "buscaVisivel": true,
+  "chipsVisiveis": true
+ },
+ "busca": {
+  "resultados": "Resultados para “brownie”: 8 criações",
+  "cardsVisiveis": 8
+ },
+ "chip": {
+  "categoria": "bolos",
+  "topoDoCapituloAposClique": 212,
+  "topoDoCatalogoAposTodas": 212
+ },
+ "horizontalScroll": 0,
+ "broken": 0,
+ "console": []
+}

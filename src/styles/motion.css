@@ -86,7 +86,8 @@ html.motion-ready .hero__lead {
   animation: hero-fade-up 1s cubic-bezier(0.215, 0.61, 0.355, 1) 0.85s both;
 }
 
-html.motion-ready .hero__inner .btn {
+html.motion-ready .hero__inner .btn,
+html.motion-ready .hero__actions .btn3 {
   animation: hero-fade-up 0.9s cubic-bezier(0.215, 0.61, 0.355, 1) 1.05s both;
 }
 

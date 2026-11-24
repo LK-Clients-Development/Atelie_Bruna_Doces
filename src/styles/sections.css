@@ -44,50 +44,39 @@
   color: var(--color-text-light);
 }
 
+.hero {
+  /* altura-base do Hero (a mesma do --min-h); a foto 16:9 ocupa o que sobra abaixo do header */
+  --hero-h: min(65.3vw, 1180px);
+}
+
+/* V5: foto horizontal da Bruna. Começa ABAIXO do header (o logo e a navegação não tocam a cabeça), ancorada à
+   direita com a proporção original (1672 × 941): em telas ultrawide a foto não estica, o cacau completa à esquerda. */
 .hero__photo {
   position: absolute;
-  top: 11.7%;
-  bottom: 3.2%;
+  top: var(--header-h);
+  bottom: 0;
   right: 0;
-  width: 55.6%;
+  width: min(100%, calc((var(--hero-h) - var(--header-h)) * 1.777));
   z-index: var(--z-bg);
-  /* funde a foto no cacau à esquerda e no topo (sob o header) */
+  /* funde a foto no cacau à esquerda e sob o header; a base é coberta pela onda */
   -webkit-mask-image:
-    linear-gradient(to right, transparent 0, #000 24%),
-    linear-gradient(to bottom, transparent 0, #000 14%);
+    linear-gradient(to right, transparent 0, #000 20%),
+    linear-gradient(to bottom, transparent 0, #000 10%);
   -webkit-mask-composite: source-in;
   mask-image:
-    linear-gradient(to right, transparent 0, #000 24%),
-    linear-gradient(to bottom, transparent 0, #000 14%);
+    linear-gradient(to right, transparent 0, #000 20%),
+    linear-gradient(to bottom, transparent 0, #000 10%);
   mask-composite: intersect;
+}
+
+.hero__photo picture {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .hero__photo img {
-  object-position: 40% 50%;
-}
-
-/* tecido + tigela abaixo do texto (a Master tem a foto em largura total) */
-.hero__base {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 48.6%;
-  aspect-ratio: 700 / 192;
-  z-index: var(--z-bg);
-  -webkit-mask-image:
-    linear-gradient(to bottom, transparent 0, #000 38%),
-    linear-gradient(to left, transparent 0, #000 30%);
-  -webkit-mask-composite: source-in;
-  mask-image:
-    linear-gradient(to bottom, transparent 0, #000 38%),
-    linear-gradient(to left, transparent 0, #000 30%);
-  mask-composite: intersect;
-}
-
-.hero__base img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  object-position: 100% 35%;
 }
 
 /* scrim: garante contraste do texto do Hero (Etapa 3) */
@@ -95,10 +84,7 @@
   position: absolute;
   inset: 0;
   z-index: var(--z-scrim);
-  background: linear-gradient(90deg, rgb(31 13 5 / 0.7) 0%, rgb(31 13 5 / 0.35) 38%, transparent 62%);
-  /* o scrim some perto da base: tecido e tigela ficam com a luz da Master */
-  -webkit-mask-image: linear-gradient(to bottom, #000 52%, transparent 84%);
-  mask-image: linear-gradient(to bottom, #000 52%, transparent 84%);
+  background: linear-gradient(90deg, rgb(31 13 5 / 0.55) 0%, rgb(31 13 5 / 0.22) 34%, transparent 52%);
   pointer-events: none;
 }
 

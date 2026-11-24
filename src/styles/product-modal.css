@@ -381,3 +381,6 @@ html.is-modal-open {
   border-bottom: 1px solid var(--color-line);
 }
 .pmodal__related a:hover { color: var(--color-caramel-600); }
+
+/* botão sem destino (ex.: bolo por encomenda não tem Yooga): `hidden` precisa vencer o display do .pbtn */
+.pmodal__actions [hidden] { display: none; }
